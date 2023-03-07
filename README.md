@@ -22,3 +22,6 @@ Ewentualna dodatkowa funkcjonalność:
 Wykorzystane technologie:
 - Python 3
 - Kivy 2
+
+Link do projektu:
+https://github.com/MarcinLangsam/ProjektSkryptowy.git
