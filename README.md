@@ -1,4 +1,4 @@
-# ProjektSkryptowy
+# NIESKOŃCZONY LOCH
 TUROWA GRA RPG
 
 Omówienia projektu:
