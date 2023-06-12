@@ -1,0 +1,503 @@
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+
+WindowManger:
+    transition: WipeTransition()
+
+    id: screen_manager
+
+    menu: menu
+    team: team
+    shop: shop
+    skills_window: skills_window
+    fight: fight
+    game_over: game_over
+    battle_result: battle_result
+    character_creation: character_creation
+    main_menu: main_menu
+    tutorial: tutorial
+
+    Menu:
+        id: menu
+        name: "menu"
+        manager: screen_manager
+    Team:
+        id: team
+        name: "team"
+        manager: screen_manager
+    Shop:
+        id: shop
+        name: "shop"
+        manager: screen_manager
+    Skills_Window:
+        id: skills_window
+        name: "skills"
+        manager: screen_manager
+    Fight:
+        id: fight
+        name: "fight"
+        manager: screen_manager
+    Game_Over:
+        id: game_over
+        name: "game_over"
+        manager: screen_manager
+    Battle_Result:
+        id: battle_result
+        name: "battle_result"
+        manager: screen_manager
+    Character_Creation:
+        id: character_creation
+        name: "character_creation"
+        manager: screen_manager
+    Main_Menu:
+        id: main_menu
+        name: "main_menu"
+        manager: screen_manager
+    Tutorial:
+        id: tutorial
+        name:"tutorial"
+        manager: screen_manager
+
+<Menu>:
+    name: "menu"
+    on_pre_enter: root.setup_window()
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/stage1_background.png"
+        pos: 0,0
+    Button:
+        on_release: app.root.current = "shop"
+        pos: 110,350    
+        size_hint: 0.1,0.133
+        background_normal: "graphics/shop_button.png"
+    Button:
+        on_release: root.start_main_fight()
+        pos: 1175,540
+        size_hint: 0.1,0.133
+        background_normal: "graphics/main_fight_button.png"
+    Button:
+        on_release: root.start_random_fight()
+        pos: 380,510     
+        size_hint: 0.1,0.133  
+        background_normal: "graphics/random_fight_button.png"    
+    Button:
+        on_release: app.root.current = "team"
+        pos: 200,0
+        size_hint: 0.1,0.133
+        background_normal: "graphics/team_button.png"
+    Button:
+        on_release: app.root.current = "skills"
+        pos: 400,0
+        size_hint: 0.1,0.133
+        background_normal: "graphics/skills_button.png"
+    Button:
+        on_release: root.save_game()
+        pos: 1000,0
+        size_hint: 0.1,0.133
+        background_normal: "graphics/save_button.png"
+    Button:
+        on_release: app.root.current = "main_menu"
+        pos: 1200,0
+        size_hint: 0.1,0.133
+        background_normal: "graphics/exit_button.png"
+
+<Shop>:
+    name: "shop"
+    on_pre_enter: root.setup_window()
+    size_hint: None, None
+        
+<Skills_Window>:
+    name: "skills"
+    on_pre_enter: root.setup_window()
+    size_hint: None, None
+
+<Team>:
+    name: "team"
+    on_pre_enter: root.setup_window()
+    size_hint: None, None
+
+<Fight>:
+    name: "fight"
+    on_pre_enter: root.start_fight_setup()
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/battle_background.png"
+        pos: 0,0
+    Button:
+        id: attack
+        on_release: root.action_attack()
+        pos: 600,0
+        size_hint: 0.09,0.113
+        background_normal: "graphics/attack_button.png"
+        background_disabled_normal: "graphics/attack_button_disabled.png"
+
+    Button:
+        id: spells
+        on_release: root.action_spells()
+        pos: 760,0
+        size_hint: 0.09,0.113
+        background_normal: "graphics/magic_button.png"
+        background_disabled_normal: "graphics/magic_button_disabled.png"
+
+<Game_Over>:
+    name: "game_over"
+    size_hint: None, None
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/game_over_background.png"
+        pos: 0,0
+    Button:
+        on_release: app.root.current = "menu"
+        pos: 450,400
+        size: 200,150
+        size_hint: None,None
+        text: "Wróc do menu"
+        font_size: 25
+    Button:
+        on_release: app.root.current = "menu"
+        pos: 850,400
+        size: 200,150
+        size_hint: None,None
+        text: "Wczytaj grę"
+        font_size: 25
+    Label:
+        text: "KONIEC GRY"
+        font_size: 45
+        pos: 0,300
+
+<Character_Creation>:
+    name: "character_creation"
+    size_hint: None, None
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/plain_background.png"
+        pos: 0,0
+
+<Main_Menu>:
+    name: "main_menu"
+    size_hint: None, None
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/plain_background.png"
+        pos: 0,0
+    Image:
+        pos: 450,570
+        size_hint: None,None
+        allow_stretch: True
+        size: 600,300
+        source: "graphics/title.png"
+
+    Button:
+        on_release: app.root.current = "character_creation"
+        pos: 650,460
+        size: 200,130
+        size_hint: None,None
+        text: "Nowa Gra"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: root.load_game()
+        pos: 650,310
+        size: 200,130
+        size_hint: None,None
+        text: "Wczytaj grę"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: app.root.current = "tutorial"
+        pos: 650,160
+        size: 200,130
+        size_hint: None,None
+        text: "Jak grać?"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: root.exit()
+        pos: 650,10
+        size: 200,130
+        size_hint: None,None
+        text: "Wyjście"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+
+<Tutorial>:
+    name:"tutorial"
+    size_hint: None,None
+    on_pre_enter: root.start()
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/plain_background.png"
+        pos: 0,0
+    Image:
+        id: help_image
+        pos: 200,20
+        source: ""
+        size: 1100,600
+        size_hint: None,None
+    Button:
+        text: "Start"
+        pos: 50,750
+        size: 170,80
+        on_release: root.start()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Ekwipunek\nSklep"
+        pos: 250,750
+        size: 170,80
+        on_release: root.inventory_shop()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Rozwój postaci"
+        pos: 450,750
+        size: 170,80
+        on_release: root.progress()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Walka"
+        pos: 650,750
+        size: 170,80
+        on_release: root.fight()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Powrót"
+        pos: 850,750
+        size: 170,80
+        on_release: app.root.current = "main_menu"
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Label:
+        id: help_text
+        size_hint: None,None
+        pos: 700,650
+        font_size: 20
+        halign: "left"
+        valign: "middle"
+
+<Battle_Result>:
+    name: "battle_result"
+    size_hint: None, None
+    on_pre_enter: root.setup_window()
+        
+<Character_Sprite>:
+    size_hint: 0.17,0.3
+    canvas:
+        Rectangle:
+            source: root.sprite
+            size: self.size
+            pos: self.pos
+        Rectangle:
+            source: root.weapon
+            size: self.size
+            pos: self.pos
+
+<Enemy_Sprite>:
+    size_hint: 0.17,0.3
+    canvas:
+        Rectangle:
+            source: root.sprite
+            size: self.size
+            pos: self.pos
+
+<ItemSlot>:
+    drag_rectangle: self.x, self.y, self.width, self.height
+    drag_timeout: 10000000
+    drag_distance: 0
+    size_hint: None, None   
+    size: 75,75
+    canvas:
+        Color: 
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.sprite
+
+<SkillSlot>:
+    size_hint: None, None   
+    size: 50,50
+    canvas:
+        Color: 
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.sprite
+
+<Skill_Line>:
+    canvas:
+        Color: 
+            rgba: 1,1,1,1
+        Line:
+            width: 4
+            points: self.points
+                  
+<Skill_List_Pop_Up>:
+    list: list
+    orientation: 'vertical'
+    canvas:
+        Color: 
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: 600,270
+            size: 280,500
+            source: "graphics/skills_pop_bg.png"
+
+    ScrollView:
+        size_hint: (0.19, None)
+        bar_width: 10
+        bar_color: 1, 0, 0, 1   # red
+        bar_inactive_color: 0, 0, 1, 1   # blue
+        effect_cls: "ScrollEffect"
+        scroll_type: ['bars']
+        pos_hint:{"x":0.40}
+        height: 700
+        BoxLayout:
+            id: list
+            orientation: 'vertical'
+            size_hint: 1, None
+
+<Stat_Button>:
+    size_hint: None, None
+    size: 25,25
+    background_normal: "graphics/stat_up_button.png"
+
+<-HPBar@ProgressBar>:
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 24
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            id: border_image
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            source: 'graphics/pb_hp.png'
+
+<-MPBar@ProgressBar>:
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 24
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            source: 'graphics/pb_mp.png'
+
+<-EnemyHPBar@ProgressBar>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 180
+            origin: self.center
+    canvas.after:
+        PopMatrix
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 24
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            source: 'graphics/pb_hp.png'
+
+<-EXPBar@ProgressBar>:
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 24
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            source: 'graphics/pb_exp.png'
+
+<-StageProgressBar@ProgressBar>:
+    pos: 1150,0
+    size_hint_x: .40
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 90
+            origin: self.center
+    canvas.after:
+        PopMatrix
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 24
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            id: border_image
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            source: 'graphics/pb_stage.png'
+
+<Skill_Record>:
+    size_hint: None,None
+    size: 260,50
+    background_color:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: 50,50
+            source: self.source
+
+<Status_Icon>:
+    size_hint: None,None
+    size: 20,20
+    background_color:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: 20,20
+            source: self.source
+
+<Switch_Character_Button>:
+    size_hint: 0.10,0.06
+    background_normal:"graphics/target_button.png"
