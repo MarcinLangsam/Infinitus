@@ -130,13 +130,13 @@ enemy_skills ={
     "atak":["atak","self.final_damage = self.current_turn.damage",0,0,"attack","melee"],
     "szarża":["Szarża","self.final_damage = (self.current_turn.damage*2)","by_HP",1,"on_character","melee"],
     "leczenie":["Leczenie","self.final_damage = -(self.current_turn.INT*3)","by_HP",0.5,"on_enemy","ranged"],
-    "zemsta":["Zemsta","self.current_target.status.append([se.status_effect.status_list['zemsta'].copy(),se.Status_Icon('graphics/icons/zemsta_status.png','Zemsta\\nCel zadaje półtora razy więcej obrażeń'),Label(font_size = 22)])\nself.final_damage = 'ZEMSTA!'","by_HP",1,"on_self", "status"],
-    "zatrucie":["Zatrucie","self.current_target.status.append([se.status_effect.status_list['trucizna'].copy(),se.Status_Icon('graphics/icons/trucizna_status.png','Trucizna\\nCel traci 5% zdrowia co turę'),Label(font_size = 22)])\nself.final_damage = 'ZATRUCIE!'","by_status","trucizna","on_charcter","status"],
+    "zemsta":["Zemsta","self.final_damage = 0\nself.action_status = 'zemsta'","by_HP",1,"on_self", "status"],
+    "zatrucie":["Zatrucie","self.final_damage = 0\nself.action_status = 'trucizna'","by_status","trucizna","on_charcter","status"],
     "mroczny_pocisk":["Mroczny Pocisk","self.final_damage = self.current_turn.INT",0,0,"attack","ranged"],
-    "mroczna_potega":["Mroczna Potęga","self.current_target.status.append([se.status_effect.status_list['mroczna potega'].copy(),se.Status_Icon('graphics/icons/mroczna_potega_status.png','Mroczna Potęga\\nCel zadaje 100% więcej obrażeń\\nale traci cały pancerz'),Label(font_size = 22)])\nself.final_damage = 'MROCZNA POTĘGA!'","by_status","mroczna potega","on_enemy","status"],
+    "mroczna_potega":["Mroczna Potęga","self.final_damage = 0\nself.action_status = 'mroczna potega'","by_status","mroczna potega","on_enemy","status"],
     "uderzenie_smierci":["Uderzenie Śmierci","self.final_damage = (self.current_turn.STR)","by_HP",0.2,"on_character","melee"],
-    "obezwladnienie":["Obezwładnienie","self.current_target.status.append([se.status_effect.status_list['obezwladnienie'].copy(),se.Status_Icon('graphics/icons/ogluszenie_status.png','Obezwładnienie\\nCel pomija swoją turę'),Label(font_size = 22)])\nself.final_damage = 'OBEZWŁADNIENIE!'","by_status","obezwladnienie","on_character","status"],
-    "niemoc":["Niemoc","self.current_target.status.append([se.status_effect.status_list['osłabienie'].copy(),se.Status_Icon('graphics/icons/niemoc_status.png','Niemoc\\nCel zadaje tylko połowę obrażeń'),Label(font_size = 22)])\nself.final_damage = 'NIEMOC!'","by_status","osłabienie","on_character","status"]
+    "obezwladnienie":["Obezwładnienie","self.final_damage = 0\nself.action_status = 'obezwladnienie'","by_status","obezwladnienie","on_character","status"],
+    "niemoc":["Niemoc","self.final_damage = 0\nself.action_status = 'niemoc'","by_status","osłabienie","on_character","status"]
 }
                 #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
 skeleton = Enemy("Szkielet",1,50,20,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")

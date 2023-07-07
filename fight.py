@@ -45,6 +45,7 @@ class Fight(Screen):
         self.target = 0
         self.turn_number = 0
         self.action = ""
+        self.action_status = ""
         self.resign_button = Button(size_hint=(0.09,0.113), pos=(900,0), on_press = lambda y:self.resign_action(), background_normal="graphics/back_button.png")
         self.enemy_team = list()
         self.battle_end = False
@@ -154,7 +155,6 @@ class Fight(Screen):
         
     def chose_target(self,target):
         if target == "on_enemy":
-            print(len(enemy.enemy_team))
             for x in range(0,len(enemy.enemy_team)):
                 self.add_widget(self.target_option[x][0])
         else:
@@ -291,7 +291,6 @@ class Fight(Screen):
         if self.current_target.HP <= 0:
             if self.current_target in self.turn_order:
                 self.turn_order[self.get_turn_index(self.current_target)] = "dead"
-                #self.turn_order.remove(self.current_target)
                 self.remove_widget(self.chose_sprite(self.current_target))
                 if self.current_target in player.team:
                     enemy.player_team_alive.remove(self.current_target)
@@ -339,7 +338,6 @@ class Fight(Screen):
                     exec(self.current_turn.status[x][0][1])
 
     def start_status(self):
-            print(len(self.current_target.status))
             if len(self.current_target.status) != 0:
                 if self.current_target in enemy.player_team_alive:
                     self.current_target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]+280+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]+30)
@@ -364,68 +362,75 @@ class Fight(Screen):
             self.enemy_sprites[y][2].text = "HP: " + str(enemy.enemy_team[y].HP) + "/" + str(enemy.enemy_team[y].MAX_HP)
 
 
+    def calculate_damage(self,target):
+        self.dodge_roll = random.randint(0,100)
+        self.crit_roll = random.randint(0,100)
+        self.action = "self.current_target.HP -= self.final_damage"
+        ### roll for critical hit
+        if self.crit_roll < self.current_turn.crit_chance and self.distance != "heal" and self.distance != "status":
+                self.final_damage = self.final_damage+(self.final_damage*0.5)
+                self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
+        ### substract defence of the target(can't deal less than 5 poits of damage)
+        if (self.final_damage - self.current_target.defence) < 5  and self.distance != "heal" and self.distance != "status":    
+            self.final_damage = 5
+        elif self.distance != "heal" and self.distance != "status":
+            self.final_damage -= self.current_target.defence
+        ### roll for dodging the attack
+        if self.dodge_roll < self.current_target.dodge_chance  and self.distance != "heal" and self.distance != "status":
+                self.action = "self.final_damage = 'PUDŁO!'"
+
+        exec(self.action)
+        if self.action_status != "":
+            self.add_status(self.action_status)
+            self.start_status()
+
+        self.check_for_exceed_HP_MP()
+
+        if self.distance == "melee":
+            if self.current_turn in player.team:
+                self.create_movement_animation(self.sprite, self.target_option[target][1][0]-100, self.target_option[target][1][1])
+            else: 
+                self.create_movement_animation(self.sprite, self.chose_sprite(self.current_target).pos[0]+100,self.chose_sprite(self.current_target).pos[1])
+            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+        elif self.distance == "ranged":
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+        elif self.distance == "heal":
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+        else:
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
+            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
+        
+        if self.current_turn in player.team:
+            self.current_turn.MP -= self.MP_cost
+        self.action_status = ""
+
+    def check_for_exceed_HP_MP(self):
+        if self.current_target in player.team and self.current_target.MP > self.current_target.MAX_MP:
+            self.current_target.MP = self.current_target.MAX_MP
+        if self.current_target.HP > self.current_target.MAX_HP:
+            self.current_target.HP = self.current_target.MAX_HP
+    def add_status(self,status):
+        self.current_target.status.append([se.status_effect.status_list[status].copy(),se.Status_Icon(se.status_effect.status_list[status][3],se.status_effect.status_list[status][6]),Label(font_size = 22)])
+        #self.final_damage = str(self.final_damage)+' '+status
+
     def attack(self,target):
         self.target = target
 
-        self.dodge_roll = random.randint(0,100)
-        self.crit_roll = random.randint(0,100)
-        
+        ### activate skills and decide targets 
         for x in self.skill_list_pop_up.children:
             x.disabled = False
         if self.target_type == "on_enemy":
             self.current_target = enemy.enemy_team[self.target]
         else:
             self.current_target = player.team[self.target]
-        exec(self.action)
-        if self.distance == "melee":
-            if self.crit_roll < self.current_turn.crit_chance:
-                self.final_damage = self.final_damage+(self.final_damage*0.5)
-                self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
-            if self.dodge_roll < self.current_target.dodge_chance:
-                self.action = "self.final_damage = 'PUDŁO!'"
-            if (self.final_damage - self.current_target.defence) < 5:
-                
-                self.final_damage = 5
-            else:
-                self.final_damage -= self.current_target.defence 
-            exec("self.current_target.HP -= self.final_damage")
-            self.create_movement_animation(self.sprite, self.target_option[target][1][0]-100, self.target_option[target][1][1])
-            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-        elif self.distance == "ranged":
-            if self.crit_roll >= self.current_turn.crit_chance:
-                self.final_damage = self.final_damage+(self.final_damage*0.5)
-                self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
-            if self.dodge_roll >= self.current_target.dodge_chance:
-                self.action = "self.final_damage = 'PUDŁO!'"
-            if self.final_damage - self.current_target.defence < 5:
-                self.final_damage == 5
-            else:
-                self.final_damage -= self.current_target.defence 
-            exec("self.current_target.HP -= self.final_damage")
-            if self.current_target in enemy.player_team_alive:
-                if self.current_target.MP > self.current_target.MAX_MP:
-                    self.current_target.MP = self.current_target.MAX_MP
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-        elif self.distance == "heal":
-            exec("self.current_target.HP -= self.final_damage")
-            if self.current_target in enemy.player_team_alive:
-                if self.current_target.MP > self.current_target.MAX_MP:
-                    self.current_target.MP = self.current_target.MAX_MP
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-        else:
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-            self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            self.start_status()
         
-        if self.current_target.HP > self.current_target.MAX_HP:
-            self.current_target.HP = self.current_target.MAX_HP   
-        self.current_turn.MP -= self.MP_cost
+        self.calculate_damage(target)
         
         for x in self.target_option:
             self.remove_widget(self.target_option[x][0])
@@ -462,7 +467,7 @@ class Fight(Screen):
         else:
             for x in self.skill_list_pop_up.children:
                 x.disabled = True
-            self.action = skill
+            exec(skill)
             self.MP_cost = MP
             self.distance = distance
             self.target_type = target
@@ -481,63 +486,15 @@ class Fight(Screen):
             enemy.current = e    
             temp = e.set_actions()
             self.current_target = temp[0]
-            self.action = temp[1]
+            #self.action = temp[1]
+            exec(temp[1])
             self.distance = temp[3]
             if temp[2] != "":
                 tp.text_pop.text = self.current_turn.name+" używa: "+temp[2]
             Clock.schedule_interval(tp.clear_pop_up,2)
 
-            if self.distance == "melee":
-                exec(self.action)
-                self.dodge_roll = random.randint(0,100)
-                self.crit_roll = random.randint(0,100)
-                if self.crit_roll < self.current_turn.crit_chance:
-                    self.final_damage = self.final_damage+(self.final_damage*0.5)
-                    self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
-                if self.dodge_roll < self.current_target.dodge_chance:
-                    self.action = "self.final_damage = 'PUDŁO!'"
-                if self.final_damage - self.current_target.defence < 5:
-                    self.final_damage == 5
-                else:
-                    self.final_damage -= self.current_target.defence 
-                exec("self.current_target.HP -= self.final_damage")
-                self.create_movement_animation(self.sprite, self.chose_sprite(self.current_target).pos[0]+100,self.chose_sprite(self.current_target).pos[1])
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-                self.create_movement_animation(self.sprite, self.sprite.pos[0],self.sprite.pos[1])    
-            elif self.distance == "ranged":
-                exec(self.action)
-                self.dodge_roll = random.randint(0,100)
-                self.crit_roll = random.randint(0,100)
-                if self.crit_roll < self.current_turn.crit_chance:
-                    self.final_damage = self.final_damage+(self.final_damage*0.5)
-                    self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
-                if self.dodge_roll < self.current_target.dodge_chance:
-                    self.action = "self.final_damage = 'PUDŁO!'"
-                if self.final_damage - self.current_target.defence < 5:
-                    self.final_damage == 5
-                else:
-                    self.final_damage -= self.current_target.defence 
-                exec("self.current_target.HP -= self.final_damage")
-                self.create_movement_animation(self.sprite, self.sprite.pos[0],self.sprite.pos[1])
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-                self.create_movement_animation(self.sprite, self.sprite.pos[0],self.sprite.pos[1])
-            elif self.distance == "heal":
-                exec("self.current_target.HP -= self.final_damage")
-                if self.current_target in enemy.player_team_alive:
-                    if self.current_target.MP > self.current_target.MAX_MP:
-                        self.current_target.MP = self.current_target.MAX_MP
-                self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-                self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            elif self.distance == "status":
-                exec(self.action)
-                self.start_status()
-                self.create_movement_animation(self.sprite, self.sprite.pos[0],self.sprite.pos[1])
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
-                self.create_movement_animation(self.sprite, self.sprite.pos[0],self.sprite.pos[1])
-            
-            if self.current_target.HP > self.current_target.MAX_HP:
-                self.current_target.HP = self.current_target.MAX_HP
+            self.calculate_damage(temp[0])
+
             self.run_animation()
 
     def take_action(self,e):
@@ -556,7 +513,7 @@ class Fight(Screen):
             if se.status_effect.status_list["obezwladnienie"][0] == x[0][0]:
                 self.status_modificator.append("obezwladnienie")
                 
-        ### jeśli tura gracza ###
+        ### if player turn ###
         if e in enemy.player_team_alive:
             self.restore_control()
             self.pointer.pos = (self.chose_sprite(self.current_turn).pos[0]-685,self.chose_sprite(self.current_turn).pos[1]-205)
@@ -571,7 +528,7 @@ class Fight(Screen):
                 if self.current_turn.HP <= 0:
                     self.next_turn()
                 
-        ### jeśli tura przeciwnika ###
+        ### if enemy turn ###
         if e in enemy.enemy_team_alive:
             self.disable_control()
             if "ogluszenie" in self.status_modificator:
