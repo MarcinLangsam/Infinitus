@@ -334,7 +334,7 @@ class Fight(Screen):
                 self.add_widget(self.current_turn.status[x][1])
                 self.add_widget(self.current_turn.status[x][2])
 
-                if self.current_turn.status[x][0][4] == "every_turn":
+                if self.current_turn.status[x][0][4] != "one_time":
                     exec(self.current_turn.status[x][0][1])
 
     def start_status(self):
@@ -346,7 +346,7 @@ class Fight(Screen):
                     self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-25-(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]+30)
                     self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-785-(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-390)
                 self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
-                if self.current_target.status[-1][0][4] != "every_turn":
+                if self.current_target.status[-1][0][4] == "one_time":
                     exec(self.current_target.status[-1][0][1])
                 
                 self.add_widget(self.current_target.status[-1][1])
@@ -370,7 +370,7 @@ class Fight(Screen):
         if self.crit_roll < self.current_turn.crit_chance and self.distance != "heal" and self.distance != "status":
                 self.final_damage = self.final_damage+(self.final_damage*0.5)
                 self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
-        ### substract defence of the target(can't deal less than 5 poits of damage)
+        ### substract defence of the target(can't deal less than 5 points of damage)
         if (self.final_damage - self.current_target.defence) < 5  and self.distance != "heal" and self.distance != "status":    
             self.final_damage = 5
         elif self.distance != "heal" and self.distance != "status":
@@ -497,12 +497,47 @@ class Fight(Screen):
 
             self.run_animation()
 
+    """
+    def stun_behavior(self):
+        self.next_turn()
+    def damage_over_time_behavior(self):
+        self.update_status()
+        self.check_for_death()
+        self.check_for_victory_or_defeat()
+        if self.current_turn.HP <= 0:
+            self.next_turn()
+    def stun_and_damage_behavior(self):
+        self.update_status()
+        self.check_for_death()
+        self.check_for_victory_or_defeat()
+        if self.current_turn.HP <= 0:
+            self.next_turn()
+        else:
+            self.next_turn()
+    """
+    def status_menagment(self):
+        stun_ok = False
+        for x in self.current_turn.status:
+            if x[0][4] == "dmg_ot" or x[0][4] == "stun_dmg_ot":
+                self.update_status()
+                self.check_for_death()
+                self.check_for_victory_or_defeat()
+            if x[0][4] == "stun" or x[0][4] == "stun_dmg_ot":
+                    stun_ok = True
+        
+        if self.current_turn.HP <= 0 or stun_ok == True:
+                self.next_turn()
+        elif self.current_turn in enemy.enemy_team_alive:
+                self.enemy_action(self.current_turn)        
     def take_action(self,e):
         self.if_attack = True
         self.sprite = self.chose_sprite(e)
         self.current_turn = e 
         self.check_for_status()
         self.status_modificator.clear()
+        self.status_menagment()
+        
+        """
         for x in self.current_turn.status:
             if se.status_effect.status_list["ogluszenie"][0] == x[0][0]:
                 self.status_modificator.append("ogluszenie")
@@ -548,7 +583,7 @@ class Fight(Screen):
                 self.next_turn()
             elif len(self.status_modificator) == 0:
                 self.enemy_action(e)
-            
+            """
     
     def next_turn(self):
         self.check_for_victory_or_defeat()

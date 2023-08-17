@@ -9,7 +9,7 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.label import Label
-## secret XD
+
 class StageProgressBar(ProgressBar):
     pass
 class Menu(Screen):
@@ -112,7 +112,7 @@ class Tutorial(Screen):
         self.ids.help_image.source = "graphics/help_inventory.png"
     def progress(self):
         self.ids.help_text.text = """
-        W tym ekranie możesz uczyć swoich bohateró nowych umiejętności, wystraczy na nie kliknąć, najedź na nie myszą aby zobaczyć opis umiejętności. 
+        W tym ekranie możesz uczyć swoich bohaterów nowych umiejętności, wystraczy na nie kliknąć, najedź na nie myszą aby zobaczyć opis umiejętności. 
         Rozwijanie zaczyna się od dołu, nie można wybrać umiejętności bez posiadania poprzednich z drzewka.
         W ekranie ekwipunku możesz również zwiększać statystyki bohaterów. 
         Walcząć zdobywasz punkty doświadczenia a awansując zyskujesz 1 punkt umijętności oraz 5 punktów statystyk.
