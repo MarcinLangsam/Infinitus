@@ -6,7 +6,6 @@ from kivy.core.window import Window
 from kivy.uix.behaviors import DragBehavior
 from kivy.properties import StringProperty
 from kivy.clock import Clock
-from kivy.graphics import Color, Rectangle
 
 global screen
 screen = ""
@@ -138,9 +137,9 @@ class ItemSlot(DragBehavior, Widget):
                                 Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):
-        tt.clear_tooltip()
+        tt.clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        tt.set_tooltip(self.t, self.p)
+        tt.set_tooltip(self.parent.tooltip,self.t, self.p)
 
 class Items(Widget):
     def __init__(self):

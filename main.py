@@ -8,7 +8,6 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
-from kivy.uix.label import Label
 
 class StageProgressBar(ProgressBar):
     pass
@@ -61,7 +60,8 @@ class Menu(Screen):
            f.write(characters[x]+'.skill_points = '+str(player.team[x].skill_points)+'\n')
            for y in player.team[x].skill:
                temp = str(player.team[x].skill[y][3]).replace("\n","\\n")
-               f.write(characters[x]+'.skill["'+y+'"] = ["'+str(player.team[x].skill[y][0])+'",'+str(player.team[x].skill[y][1])+',"'+str(player.team[x].skill[y][2])+'","'+temp+'","'+str(player.team[x].skill[y][4])+'","'+str(player.team[x].skill[y][5])+'","'+str(player.team[x].skill[y][6])+'"]\n')
+               temp2 = str(player.team[x].skill[y][0]).replace("\n","\\n")
+               f.write(characters[x]+'.skill["'+y+'"] = ["'+temp2+'",'+str(player.team[x].skill[y][1])+',"'+str(player.team[x].skill[y][2])+'","'+temp+'","'+str(player.team[x].skill[y][4])+'","'+str(player.team[x].skill[y][5])+'","'+str(player.team[x].skill[y][6])+'"]\n')
            f.write(characters[x]+'.inventory["main_hand"][2] = "'+str(player.team[x].inventory["main_hand"][2])+'"\n')
            f.write(characters[x]+'.inventory["off_hand"][2] = "'+str(player.team[x].inventory["off_hand"][2])+'"\n')
            f.write(characters[x]+'.inventory["armor"][2] = "'+str(player.team[x].inventory["armor"][2])+'"\n')

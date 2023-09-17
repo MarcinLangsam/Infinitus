@@ -21,6 +21,7 @@ class Team(Screen):
         self.companion2_button = Switch_Character_Button(text=player.team[2].name,  pos=(910,800), on_press = lambda y:self.change_character_menu(player.companion2))
         self.current_button = self.main_player_button
         self.exp_bar = EXPBar()
+        self.tooltip = tt.Tooltip()
 
     def change_screen(self):
         self.clear_widgets()
@@ -74,16 +75,17 @@ class Team(Screen):
             
             self.add_widget(self.current_sprite)
             self.add_widget(tp.text_pop)
-            self.add_widget(Label(text="EKWPUNEK", pos=(-490,415), font_size=40))
-            self.add_widget(tt.tooltip)
+            self.add_widget(Label(text="EKWIPUNEK", pos=(-490,415), font_size=40))
+            
+            
 
             self.add_widget(Label(text="Broń",font_size=18,pos=(-145,-15)))
             self.add_widget(Label(text="Druga ręka",font_size=18,pos=(120,-15)))
             self.add_widget(Label(text="Pancerz",font_size=18,pos=(-15,140)))
             self.add_widget(Label(text="Akcesoria",font_size=18,pos=(-15,-160)))
-
+            self.add_widget(self.tooltip)
             self.refresh_items()
-
+            
     def change_character_menu(self,character):
         self.clear_widgets()
         UI.ui.stats_refresh(character)
@@ -109,6 +111,6 @@ class Team(Screen):
         self.current_sprite.set_sprite_weapon()
         self.add_widget(self.current_sprite)
         #tyczasowe rozwiązanie
-        self.remove_widget(tt.tooltip)
-        self.add_widget(tt.tooltip)
+        self.remove_widget(self.tooltip)
+        self.add_widget(self.tooltip)
  

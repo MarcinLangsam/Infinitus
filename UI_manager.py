@@ -1,7 +1,5 @@
 import player
 from kivy.uix.label import Label
-from kivy.uix.widget import Widget
-from kivy.properties import StringProperty
 
 class UI():         
     def stats_setup(self,character):
@@ -9,8 +7,6 @@ class UI():
         stats["lv"] = Label(pos_hint={'x':0.75,'y':0.4}, font_size=20,halign="left", valign="middle", text=(("Poziom postaci: ") + str(character.lv)))
         stats["HP"]  = Label(pos_hint={'x':0.75,'y':0.35}, font_size=20,halign="left", valign="middle", text=(("HP: ") + str(character.MAX_HP)))
         stats["MP"] = Label(pos_hint={'x':0.75,'y':0.30}, font_size=20,halign="left", valign="middle", text=(("MP: ")+ str(character.MAX_MP)))
-        #stats["HP"]  = Label(pos_hint={'x':0.75,'y':0.35}, font_size=20,halign="left", valign="middle", text=(("HP: ") + str(character.HP) + ("/") + str(character.MAX_HP)))
-        #stats["MP"] = Label(pos_hint={'x':0.75,'y':0.30}, font_size=20,halign="left", valign="middle", text=(("MP: ") + str(character.MP) + ("/") + str(character.MAX_MP)))
         stats["STR"] = Label(pos_hint={'x':0.75,'y':0.25}, font_size=20,halign="left", valign="middle", text=(("Siła: ") + str(character.STR)))
         stats["DEX"] = Label(pos_hint={'x':0.75,'y':0.20}, font_size=20,halign="left", valign="middle", text=(("Zręczność: ") + str(character.DEX)))
         stats["INT"] = Label(pos_hint={'x':0.75,'y':0.15}, font_size=20,halign="left", valign="middle", text=(("Inteligencja: ") + str(character.INT)))
@@ -23,7 +19,6 @@ class UI():
         stats["exp_boost"] = Label(pos_hint={'x':0.75,'y':-0.2}, font_size=20,halign="left", valign="middle", text=(("Bonus do doświadczenia: ") + str(character.EXP_boost)))
         
         stats["gold"] = Label(pos_hint={'x':0.77,'y':-0.3}, font_size=33,halign="left", valign="middle", text=(("Złoto: ") + str(player.gold)))
-        
         stats["skill_points"] = Label(pos_hint={'x':0.32,'y':0.45}, font_size=25,halign="left", valign="middle", text=(("Punkty umiejętności: ") + str(character.skill_points)))    
         
     def stats_refresh(self,character):

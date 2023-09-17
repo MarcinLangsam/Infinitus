@@ -8,7 +8,6 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.core.window import Window
 
 current_stage = 1
 current_fight = 2
@@ -29,7 +28,7 @@ class Skill_List_Pop_Up(BoxLayout):
     list = ObjectProperty(None)
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.list.bind(minimum_height=self.list.setter('height'))
+        #self.list.bind(minimum_height=self.list.setter('height'))
 
 class Fight(Screen):
     def __init__(self, **kwargs):
@@ -59,8 +58,10 @@ class Fight(Screen):
         self.crit_roll = 0
         self.dodge_roll = 0
         self.pointer = Image(pos=(0,0), source="graphics/pointer.png")
-        self.target_pointer = Image(pos=(0,0), source="graphics/pointer.png")
-        self.status_modificator = list()
+        self.tooltip = tt.Tooltip()
+
+    def send_tooltip():
+        return Fight.tooltip
 
     def clear_after_battle(self):
         for x in range(0,len(player.team)):
@@ -69,7 +70,7 @@ class Fight(Screen):
         for x in range(0,len(enemy.enemy_team)):
             for y in range(0,4):
                 self.remove_widget(self.enemy_sprites[x][y])
-        self.remove_widget(tt.tooltip_status)
+        self.remove_widget(self.tooltip)
         self.remove_widget(self.pointer)
         self.remove_widget(tp.text_pop)
         self.remove_widget(self.text_pop)
@@ -126,7 +127,7 @@ class Fight(Screen):
         for x in range(0,len(enemy.enemy_team)):
             for y in range(0,4):
                 self.add_widget(self.enemy_sprites[x][y])
-        self.add_widget(tt.tooltip_status)
+        self.add_widget(self.tooltip)
         self.add_widget(self.pointer)
         self.add_widget(tp.text_pop)
         self.add_widget(self.text_pop)
@@ -198,10 +199,7 @@ class Fight(Screen):
             self.turn_order.append(enemy.enemy_team[x])
         self.turn_order.sort(key=self.sort_by)
         self.turn_number = len(self.turn_order)-1
-
-    def set_pointer(self,target):
-        self.target_pointer.pos = (self.chose_sprite(target).pos[0]-685,self.chose_sprite(target).pos[1]-205)
-        
+      
     def create_target_option(self):
         if len(enemy.enemy_team) >= 1:
             self.target_option[0] = [Button(text=enemy.enemy_team[0].name,font_size = 18,size_hint=(0.08,0.08), pos=(570+0*130,100), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
@@ -375,7 +373,7 @@ class Fight(Screen):
             self.final_damage = 5
         elif self.distance != "heal" and self.distance != "status":
             self.final_damage -= self.current_target.defence
-        ### roll for dodging the attack
+        ### roll for dodeging the attack
         if self.dodge_roll < self.current_target.dodge_chance  and self.distance != "heal" and self.distance != "status":
                 self.action = "self.final_damage = 'PUDŁO!'"
 
@@ -383,6 +381,10 @@ class Fight(Screen):
         if self.action_status != "":
             self.add_status(self.action_status)
             self.start_status()
+            if self.final_damage == 0:
+                self.final_damage = self.action_status.upper()
+            else:
+                self.final_damage = str(self.final_damage) + " " + self.action_status.upper()
 
         self.check_for_exceed_HP_MP()
 
@@ -479,6 +481,7 @@ class Fight(Screen):
         for x in self.current_turn.skill:
             if self.current_turn.skill[x][4] != "passive":
                 self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6]))))
+                pass
         self.add_widget(self.skill_list_pop_up)
         
     
@@ -494,27 +497,8 @@ class Fight(Screen):
             Clock.schedule_interval(tp.clear_pop_up,2)
 
             self.calculate_damage(temp[0])
-
             self.run_animation()
 
-    """
-    def stun_behavior(self):
-        self.next_turn()
-    def damage_over_time_behavior(self):
-        self.update_status()
-        self.check_for_death()
-        self.check_for_victory_or_defeat()
-        if self.current_turn.HP <= 0:
-            self.next_turn()
-    def stun_and_damage_behavior(self):
-        self.update_status()
-        self.check_for_death()
-        self.check_for_victory_or_defeat()
-        if self.current_turn.HP <= 0:
-            self.next_turn()
-        else:
-            self.next_turn()
-    """
     def status_menagment(self):
         stun_ok = False
         for x in self.current_turn.status:
@@ -524,67 +508,22 @@ class Fight(Screen):
                 self.check_for_victory_or_defeat()
             if x[0][4] == "stun" or x[0][4] == "stun_dmg_ot":
                     stun_ok = True
-        
         if self.current_turn.HP <= 0 or stun_ok == True:
                 self.next_turn()
         elif self.current_turn in enemy.enemy_team_alive:
-                self.enemy_action(self.current_turn)        
+                self.enemy_action(self.current_turn) 
+           
     def take_action(self,e):
         self.if_attack = True
         self.sprite = self.chose_sprite(e)
         self.current_turn = e 
         self.check_for_status()
-        self.status_modificator.clear()
         self.status_menagment()
-        
-        """
-        for x in self.current_turn.status:
-            if se.status_effect.status_list["ogluszenie"][0] == x[0][0]:
-                self.status_modificator.append("ogluszenie")
-            if se.status_effect.status_list["trucizna"][0] == x[0][0]:
-                self.status_modificator.append("trucizna")
-            if se.status_effect.status_list["zamrożenie"][0] == x[0][0]:
-                self.status_modificator.append("zamrożenie")
-            if se.status_effect.status_list["obezwladnienie"][0] == x[0][0]:
-                self.status_modificator.append("obezwladnienie")
                 
-        ### if player turn ###
-        if e in enemy.player_team_alive:
-            self.restore_control()
+        ### if player turn, set pointer ###
+        if e in enemy.player_team_alive:            
             self.pointer.pos = (self.chose_sprite(self.current_turn).pos[0]-685,self.chose_sprite(self.current_turn).pos[1]-205)
-            if "ogluszenie" in self.status_modificator:
-                self.next_turn()
-            elif "obezwladnienie" in self.status_modificator:
-                self.next_turn()
-            elif "trucizna" in self.status_modificator:
-                self.update_status()
-                self.check_for_death()
-                self.check_for_victory_or_defeat()
-                if self.current_turn.HP <= 0:
-                    self.next_turn()
-                
-        ### if enemy turn ###
-        if e in enemy.enemy_team_alive:
-            self.disable_control()
-            if "ogluszenie" in self.status_modificator:
-                self.next_turn()
-            elif "trucizna" in self.status_modificator:
-                self.update_status()
-                self.check_for_death()
-                self.check_for_victory_or_defeat()
-                if self.current_turn.HP <= 0:
-                    self.next_turn()
-                else:
-                    self.enemy_action(e)
-            elif "zamrożenie" in self.status_modificator:
-                self.update_status()
-                self.check_for_death()
-                self.check_for_victory_or_defeat()
-                self.next_turn()
-            elif len(self.status_modificator) == 0:
-                self.enemy_action(e)
-            """
-    
+            
     def next_turn(self):
         self.check_for_victory_or_defeat()
         if self.battle_end == False:

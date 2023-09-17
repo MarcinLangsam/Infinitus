@@ -25,6 +25,7 @@ class Battle_Result(Screen):
         self.ok1 = False
         self.ok2 = False
         self.ok3 = False
+        self.tooltip = tt.Tooltip()
     def change_screen(self):
         self.check_for_lv_up()
         self.clear_widgets()
@@ -52,7 +53,7 @@ class Battle_Result(Screen):
         
         self.add_widget(Label(text="EKWPUNEK", pos=(-490,415), font_size=40))
         self.add_widget(Label(text="ŁUPY", pos=(435,415), font_size=40))
-        self.add_widget(tt.tooltip)
+        self.add_widget(self.tooltip)
             
     def progress_bar_start(self, instance): 
         self.ok1 = False

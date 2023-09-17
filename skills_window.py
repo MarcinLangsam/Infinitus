@@ -12,6 +12,7 @@ class Skills_Window(Screen):
         self.companion1_button = Switch_Character_Button(text=player.team[1].name, pos=(680,800), on_press = lambda y:self.change_character_menu(player.companion1))
         self.companion2_button = Switch_Character_Button(text=player.team[2].name,  pos=(860,800), on_press = lambda y:self.change_character_menu(player.companion2))
         self.current_button = self.main_player_button
+        self.tooltip = tt.Tooltip()
 
 
     def change_screen(self):
@@ -51,7 +52,7 @@ class Skills_Window(Screen):
                 am.skills_objects[x] = am.SkillSlot(pos=(am.skills.skill_list[x][4],am.skills.skill_list[x][5]), sprite=(am.skills.skill_list[x][3]))
                 self.add_widget(am.skills_objects[x])
 
-        self.add_widget(tt.tooltip)
+        self.add_widget(self.tooltip)
         
 
     def change_character_menu(self,character):

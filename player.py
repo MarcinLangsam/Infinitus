@@ -67,7 +67,7 @@ class Character(Widget):
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 20
-        self.skill_points = 6
+        self.skill_points = 18
         self.skill = {}
         self.status = list()
 

@@ -135,16 +135,16 @@ enemy_skills ={
     "mroczny_pocisk":["Mroczny Pocisk","self.final_damage = self.current_turn.INT",0,0,"attack","ranged"],
     "mroczna_potega":["Mroczna Potęga","self.final_damage = 0\nself.action_status = 'mroczna potega'","by_status","mroczna potega","on_enemy","status"],
     "uderzenie_smierci":["Uderzenie Śmierci","self.final_damage = (self.current_turn.STR)","by_HP",0.2,"on_character","melee"],
-    "obezwladnienie":["Obezwładnienie","self.final_damage = 0\nself.action_status = 'obezwladnienie'","by_status","obezwladnienie","on_character","status"],
+    "obezwładnienie":["Obezwładnienie","self.final_damage = 0\nself.action_status = 'obezwładnienie'","by_status","obezwładnienie","on_character","status"],
     "niemoc":["Niemoc","self.final_damage = 0\nself.action_status = 'niemoc'","by_status","osłabienie","on_character","status"]
 }
                 #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
 skeleton = Enemy("Szkielet",1,50,20,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 skeleton2 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 skeleton3 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
-death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwladnienie":enemy_skills["obezwladnienie"]},{},"graphics/items/death_knight.png")
-death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwladnienie":enemy_skills["obezwladnienie"]},{},"graphics/items/death_knight.png")
-death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwladnienie":enemy_skills["obezwladnienie"]},{},"graphics/items/death_knight.png")
+death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/items/death_knight.png")
+death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/items/death_knight.png")
+death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/items/death_knight.png")
 
 #skeleton_priest = Enemy("Duch Wojownika",2,150,20,5,10,20,10,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 #skeleton_warrior = Enemy("Upadły kapłan",3,70,5,20,30,5,5,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")

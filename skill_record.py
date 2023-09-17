@@ -12,7 +12,9 @@ class Skill_Record(Button):
         super().__init__(**kwargs)
         self.source = source
         self.t = ""
-        self. p = 0
+        self.p = 0
+        self.tooltip = tt.Tooltip()
+        self.add_widget(self.tooltip)
 
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
@@ -23,10 +25,12 @@ class Skill_Record(Button):
             for x in am.skills.skill_list.keys():
                     if self.source == am.skills.skill_list[x][3]:
                             self.t = am.skills.skill_list[x][10]
-                            self.p = (235,685)
+                            self.p = (self.pos[0]+250, self.pos[1])
+                            
             Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):
-        tt.clear_tooltip()
+        tt.clear_tooltip(self.tooltip)
     def display_tooltip(self, *args):
-        tt.set_tooltip(self.t, self.p)
+        tt.set_tooltip(self.tooltip, self.t, self.p)
+

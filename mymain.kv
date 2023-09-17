@@ -251,7 +251,7 @@ WindowManger:
         source: "graphics/title.png"
 
     Button:
-        on_release: app.root.current = "character_creation"
+        on_release: app.root.current = "menu"
         pos: 650,460
         size: 200,130
         size_hint: None,None
@@ -408,28 +408,21 @@ WindowManger:
 <Skill_List_Pop_Up>:
     list: list
     orientation: 'vertical'
-    canvas:
-        Color: 
-            rgba: 1,1,1,1
-        Rectangle:
-            pos: 600,270
-            size: 280,500
-            source: "graphics/skills_pop_bg.png"
-
+    size_hint_y: 0.7
+    pos_hint: {"y":.12}
     ScrollView:
-        size_hint: (0.19, None)
-        bar_width: 10
-        bar_color: 1, 0, 0, 1   # red
-        bar_inactive_color: 0, 0, 1, 1   # blue
-        effect_cls: "ScrollEffect"
-        scroll_type: ['bars']
-        pos_hint:{"x":0.40}
-        height: 700
-        BoxLayout:
+        size_hint_y: .73
+        pos_hint: {"x":0, "y":0}
+        do_scroll_x: False
+        do_scroll_y: True
+        GridLayout:
             id: list
-            orientation: 'vertical'
-            size_hint: 1, None
-
+            size:(root.width, root.height)
+            size_hint_x: None
+            size_hint_y: None
+            cols: 1
+            height: self.minimum_height
+            
 <Stat_Button>:
     size_hint: None, None
     size: 25,25
@@ -555,3 +548,20 @@ WindowManger:
 <Switch_Character_Button>:
     size_hint: 0.10,0.06
     background_normal:"graphics/target_button.png"
+
+<Tooltip>:
+    padding: 10,10
+    text_size: self.width, None
+    size_hint: None, None
+    height: self.texture_size[1]
+    font_size: 23
+    color: 0,0,0,1
+    width: 300
+    canvas.before:
+        Color:
+            rgba: 0.8,0.8,0.8,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
