@@ -127,10 +127,10 @@ class Fight(Screen):
         for x in range(0,len(enemy.enemy_team)):
             for y in range(0,4):
                 self.add_widget(self.enemy_sprites[x][y])
-        self.add_widget(self.tooltip)
         self.add_widget(self.pointer)
         self.add_widget(tp.text_pop)
         self.add_widget(self.text_pop)
+        self.add_widget(self.tooltip)
         
 
     def chose_sprite(self,e):
@@ -329,8 +329,8 @@ class Fight(Screen):
                     self.current_turn.status[x][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-25+-x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]+30)
                     self.current_turn.status[x][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-785-x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-390)
                 self.current_turn.status[x][2].text = str(self.current_turn.status[x][0][2])
-                self.add_widget(self.current_turn.status[x][1])
-                self.add_widget(self.current_turn.status[x][2])
+                self.add_widget(self.current_turn.status[x][1],-1)
+                self.add_widget(self.current_turn.status[x][2],-2)
 
                 if self.current_turn.status[x][0][4] != "one_time":
                     exec(self.current_turn.status[x][0][1])
@@ -347,8 +347,9 @@ class Fight(Screen):
                 if self.current_target.status[-1][0][4] == "one_time":
                     exec(self.current_target.status[-1][0][1])
                 
-                self.add_widget(self.current_target.status[-1][1])
-                self.add_widget(self.current_target.status[-1][2])
+                self.add_widget(self.current_target.status[-1][1],-1)
+                self.add_widget(self.current_target.status[-1][2],-2)
+
     def update_status(self):
         for x in range(0,len(self.player_sprites)):
             self.player_sprites[x][1].value = player.team[x].HP

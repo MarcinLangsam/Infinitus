@@ -15,7 +15,7 @@ class Skill_Record(Button):
         self.p = 0
         self.tooltip = tt.Tooltip()
         self.add_widget(self.tooltip)
-
+        
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
             return

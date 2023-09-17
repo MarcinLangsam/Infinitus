@@ -55,7 +55,7 @@ class SkillSlot(Widget):
     def close_tooltip(self, *args):
         tt.clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        tt.set_tooltip(self.parent.tooltip,self.t, self.p)
+        tt.set_tooltip_skill(self.parent.tooltip,self.t, self.p)
     
 class Skills():
     skill_list={

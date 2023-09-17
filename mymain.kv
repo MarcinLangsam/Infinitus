@@ -409,10 +409,10 @@ WindowManger:
     list: list
     orientation: 'vertical'
     size_hint_y: 0.7
-    pos_hint: {"y":.12}
+    pos_hint: {"y":.2}
     ScrollView:
         size_hint_y: .73
-        pos_hint: {"x":0, "y":0}
+        pos_hint: {"x":0.41, "y":0}
         do_scroll_x: False
         do_scroll_y: True
         GridLayout:
@@ -556,7 +556,7 @@ WindowManger:
     height: self.texture_size[1]
     font_size: 23
     color: 0,0,0,1
-    width: 300
+    width: 400
     canvas.before:
         Color:
             rgba: 0.8,0.8,0.8,1

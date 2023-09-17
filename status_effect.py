@@ -45,7 +45,7 @@ class Status_Icon(Widget):
     def close_tooltip(self, *args):
         tt.clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        tt.set_tooltip(self.parent.tooltip,self.t, self.p)
+        tt.set_tooltip_status(self.parent.tooltip,self.t, self.p)
 
 
 status_effect = Status()
