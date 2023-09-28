@@ -110,7 +110,6 @@ class Team(Screen):
         self.current_sprite.set_sprite()
         self.current_sprite.set_sprite_weapon()
         self.add_widget(self.current_sprite)
-        #tyczasowe rozwiązanie
         self.remove_widget(self.tooltip)
         self.add_widget(self.tooltip)
  

@@ -1,4 +1,5 @@
-import player,inventory_manager as im, random, status_effect as se
+# -*- coding: utf-8 -*-
+import player,inventory_manager as im, random, status_effect as se, codecs
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 
@@ -127,17 +128,42 @@ class Enemy(Widget):
 
 enemy_skills ={
             #nazwa(0)  efekt(1)     po czym wybrać cel(2)       mnożnik statystyki(3)   typ(4)  dystans(5)
-    "atak":["atak","self.final_damage = self.current_turn.damage",0,0,"attack","melee"],
-    "szarża":["Szarża","self.final_damage = (self.current_turn.damage*2)","by_HP",1,"on_character","melee"],
-    "leczenie":["Leczenie","self.final_damage = -(self.current_turn.INT*3)","by_HP",0.5,"on_enemy","ranged"],
-    "zemsta":["Zemsta","self.final_damage = 0\nself.action_status = 'zemsta'","by_HP",1,"on_self", "status"],
-    "zatrucie":["Zatrucie","self.final_damage = 0\nself.action_status = 'trucizna'","by_status","trucizna","on_charcter","status"],
-    "mroczny_pocisk":["Mroczny Pocisk","self.final_damage = self.current_turn.INT",0,0,"attack","ranged"],
-    "mroczna_potega":["Mroczna Potęga","self.final_damage = 0\nself.action_status = 'mroczna potega'","by_status","mroczna potega","on_enemy","status"],
-    "uderzenie_smierci":["Uderzenie Śmierci","self.final_damage = (self.current_turn.STR)","by_HP",0.2,"on_character","melee"],
-    "obezwładnienie":["Obezwładnienie","self.final_damage = 0\nself.action_status = 'obezwładnienie'","by_status","obezwładnienie","on_character","status"],
-    "niemoc":["Niemoc","self.final_damage = 0\nself.action_status = 'niemoc'","by_status","osłabienie","on_character","status"]
+    #"atak":["atak","self.final_damage = self.current_turn.damage",0,0,"attack","melee"],
+    #"szarża":["Szarża","self.final_damage = (self.current_turn.damage*2)","by_HP",1,"on_character","melee"],
+    #"leczenie":["Leczenie","self.final_damage = -(self.current_turn.INT*3)","by_HP",0.5,"on_enemy","ranged"],
+    #"zemsta":["Zemsta","self.final_damage = 0\nself.action_status = 'zemsta'","by_HP",1,"on_self", "status"],
+    #zatrucie":["Zatrucie","self.final_damage = 0\nself.action_status = 'trucizna'","by_status","trucizna","on_charcter","status"],
+    #"mroczny_pocisk":["Mroczny Pocisk","self.final_damage = self.current_turn.INT",0,0,"attack","ranged"],
+    #"mroczna_potega":["Mroczna Potęga","self.final_damage = 0\nself.action_status = 'mroczna potega'","by_status","mroczna potega","on_enemy","status"],
+    #"uderzenie_smierci":["Uderzenie Śmierci","self.final_damage = (self.current_turn.STR)","by_HP",0.2,"on_character","melee"],
+    #"obezwładnienie":["Obezwładnienie","self.final_damage = 0\nself.action_status = 'obezwładnienie'","by_status","obezwładnienie","on_character","status"],
+    #"niemoc":["Niemoc","self.final_damage = 0\nself.action_status = 'niemoc'","by_status","osłabienie","on_character","status"]
 }
+
+def load_enemy_skill():
+    data =["","","","","","",""]
+    count = 0
+    with codecs.open("enemy_skill_list.txt",'r','utf-8') as f:
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            if line[0] == "_":
+                pass 
+            else:
+                data[count] = line.strip().replace(r'\n','\n')
+                if count == 3 and len(data[count]) <= 4:
+                        data[count] = int(data[count])
+                if count == 4 and len(data[count]) <= 4:
+                        data[count] = float(data[count])
+                count+=1             
+                if count == 7: # <--- amout of separated data for one item/skill/status, change appropriately
+                    enemy_skills[data[0]] = [data[1],data[2],data[3],data[4],data[5],data[6]]
+                    count=0
+    f.close()
+
+load_enemy_skill()
+
                 #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
 skeleton = Enemy("Szkielet",1,50,20,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 skeleton2 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")

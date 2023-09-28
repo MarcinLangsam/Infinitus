@@ -1,0 +1,88 @@
+_ 1. name of skill and key name in list
+_ 2. name of skill
+_ 3. efect
+_ 4. sort target by(HP,MP?)
+_ 5. stat multiplyer(4+5 = use skill from 50% target HP)
+_ 6. type(on who skill will be used)
+_ 7. distance(decide that enemy will be moving while using skill)
+____________enemy skills____________
+atak
+atak
+self.final_damage = self.current_turn.damage
+0
+0
+attack
+melee
+_______________________________________
+szarża
+Szarża
+self.final_damage = (self.current_turn.damage*2)
+by_HP
+1
+on_character
+melee
+_______________________________________
+leczenie
+Leczenie
+self.final_damage = -(self.current_turn.INT*3)
+by_HP
+0.5
+on_enemy
+ranged
+_______________________________________
+zemsta
+Zemsta
+self.final_damage = 0\nself.action_status = 'zemsta'
+by_HP
+1
+on_self
+status
+_______________________________________
+zatrucie
+Zatrucie
+self.final_damage = 0\nself.action_status = 'trucizna'
+by_status
+trucizna
+on_charcter
+status
+_______________________________________
+mroczny_pocisk
+Mroczny Pocisk
+self.final_damage = self.current_turn.INT
+0
+0
+attack
+ranged
+_______________________________________
+mroczna_potega
+Mroczna Potega
+self.final_damage = 0\nself.action_status = 'mroczna potega'
+by_status
+mroczna potega
+on_enemy
+status
+_______________________________________
+uderzenie_smierci
+Uderzenie Smierci
+self.final_damage = (self.current_turn.STR)
+by_HP
+0.2
+on_character
+melee
+_______________________________________
+obezwładnienie
+Obezwładnienie
+self.final_damage = 0\nself.action_status = 'obezwładnienie'
+by_status
+obezwładnienie
+on_character
+status
+_______________________________________
+niemoc
+Niemoc
+self.final_damage = 0\nself.action_status = 'niemoc'
+by_status
+osłabienie
+on_character
+status
+_______________________________________

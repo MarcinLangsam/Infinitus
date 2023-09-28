@@ -1,4 +1,5 @@
-import player, UI_manager as UI, text_pop as tp, tooltip as tt
+# -*- coding: utf-8 -*-
+import player, UI_manager as UI, text_pop as tp, tooltip as tt, codecs
 from itertools import islice
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
@@ -144,29 +145,29 @@ class ItemSlot(DragBehavior, Widget):
 class Items(Widget):
     def __init__(self):
         self.item_list={
-            "graphics/items/empty_slot.png" : ["none","","","",0],
+            # type(0), stat increase on equip(1), stat decrease on take off(2), description(3), price(4)
+            #"graphics/items/empty_slot.png" : ["none","","","",0],
             #main_hand
-            "graphics/items/zelazny_miecz.png" : ["main_hand","player.current_player.weapon += 10","player.current_player.weapon -= 10","Żelazny Miecz  |   BROŃ\nObrażenia +10",50],
-            "graphics/items/miecz_z_brazu.png" : ["main_hand","player.current_player.weapon += 5","player.current_player.weapon -= 5","Miecz z brązu    |   BROŃ\nObrażenia +5",10],
-            "graphics/items/miecz_poltorareczny.png" : ["main_hand","player.current_player.weapon += 15","player.current_player.weapon -= 15","Półtorak    |   BROŃ\nObrażenia +15",300],
-            "graphics/items/laska_maga.png" : ["main_hand","player.current_player.weapon += 5\nplayer.current_player.INT +=5","player.current_player.weapon -= 5\nplayer.current_player.INT -=5","Laska Maga    |   BROŃ\nObrażenia +5  Iteligencja +5",450],
-            "graphics/items/majcher_lotra.png" : ["main_hand","player.current_player.weapon += 8\nplayer.current_player.DEX +=5","player.current_player.weapon -= 8\nplayer.current_player.DEX -=5","Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5",450],
+            #"graphics/items/zelazny_miecz.png" : ["main_hand","player.current_player.weapon += 10","player.current_player.weapon -= 10","Żelazny Miecz  |   BROŃ\nObrażenia +10",50],
+            #"graphics/items/miecz_z_brazu.png" : ["main_hand","player.current_player.weapon += 5","player.current_player.weapon -= 5","Miecz z brązu    |   BROŃ\nObrażenia +5",10],
+            #"graphics/items/miecz_poltorareczny.png" : ["main_hand","player.current_player.weapon += 15","player.current_player.weapon -= 15","Półtorak    |   BROŃ\nObrażenia +15",300],
+            #"graphics/items/laska_maga.png" : ["main_hand","player.current_player.weapon += 5\nplayer.current_player.INT +=5","player.current_player.weapon -= 5\nplayer.current_player.INT -=5","Laska Maga    |   BROŃ\nObrażenia +5  Iteligencja +5",450],
+            #"graphics/items/majcher_lotra.png" : ["main_hand","player.current_player.weapon += 8\nplayer.current_player.DEX +=5","player.current_player.weapon -= 8\nplayer.current_player.DEX -=5","Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5",450],
             #off_hand
-            "graphics/items/drewniany_puklerz.png" : ["off_hand","player.current_player.defence += 5","player.current_player.defence -= 5","Drewniany Puklerz   |   DRUGA RĘKA\nPancerz +5",300],
-            "graphics/items/ksiega_czarow.png" : ["off_hand","player.current_player.INT += 5","player.current_player.INT -= 5","Księga Czarów   |   DRUGA RĘKA\nInteligencja +5",300],
+            #"graphics/items/drewniany_puklerz.png" : ["off_hand","player.current_player.defence += 5","player.current_player.defence -= 5","Drewniany Puklerz   |   DRUGA RĘKA\nPancerz +5",300],
+            #"graphics/items/ksiega_czarow.png" : ["off_hand","player.current_player.INT += 5","player.current_player.INT -= 5","Księga Czarów   |   DRUGA RĘKA\nInteligencja +5",300],
             #armor
-            "graphics/items/skorzany_pancerz.png" : ["armor","player.current_player.defence += 5","player.current_player.defence -= 5 ","Skórzany Pancerz   |   PANCERZ\nPancerz +5",1000],
-            "graphics/items/szata_maga.png" : ["armor","player.current_player.defence += 5\nplayer.current_player.INT += 5","player.current_player.defence -= 5\nplayer.current_player.INT -= 5","Szata Maga   |   PANCERZ\nPancerz +5  Inteligencja +5",2000],
-            "graphics/items/zbroja_plytowa.png" : ["armor","player.current_player.defence += 10\nplayer.current_player.HP += 30\nplayer.current_player.MAX_HP += 30","player.current_player.defence -= 10\nplayer.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30","Zbroja Płytowa   |   PANCERZ\nPancerz +10  Zdrowie +30",2000],
-            "graphics/items/kaftan_zlodzieja.png" : ["armor","player.current_player.defence += 7\nplayer.current_player.weapon += 5","player.current_player.defence -= 7\nplayer.current_player.weapon -= 5","Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5",2000],
+            #"graphics/items/skorzany_pancerz.png" : ["armor","player.current_player.defence += 5","player.current_player.defence -= 5 ","Skórzany Pancerz   |   PANCERZ\nPancerz +5",1000],
+            #"graphics/items/szata_maga.png" : ["armor","player.current_player.defence += 5\nplayer.current_player.INT += 5","player.current_player.defence -= 5\nplayer.current_player.INT -= 5","Szata Maga   |   PANCERZ\nPancerz +5  Inteligencja +5",2000],
+            #"graphics/items/zbroja_plytowa.png" : ["armor","player.current_player.defence += 10\nplayer.current_player.HP += 30\nplayer.current_player.MAX_HP += 30","player.current_player.defence -= 10\nplayer.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30","Zbroja Płytowa   |   PANCERZ\nPancerz +10  Zdrowie +30",2000],
+            #"graphics/items/kaftan_zlodzieja.png" : ["armor","player.current_player.defence += 7\nplayer.current_player.weapon += 5","player.current_player.defence -= 7\nplayer.current_player.weapon -= 5","Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5",2000],
             
             #accessory
-            "graphics/items/pierscien_sily.png" : ["accessory","player.current_player.STR += 5","player.current_player.STR -= 5","Pierścień Siły    |   AKCESORIA\nSiła +5",10],
-            "graphics/items/pierscien_zrecznosci.png" : ["accessory","player.current_player.DEX += 5","player.current_player.DEX -= 5","Pierścień Zręczności    |   AKCESORIA\nZręczność +5",100],
-            "graphics/items/pierscien_inteligencji.png" : ["accessory","player.current_player.INT += 5","player.current_player.INT -= 5","Pierścień Inteligencji   |   AKCESORIA\nInteligencja +5",100],
-            "graphics/items/pierscien_zdrowia.png" : ["accessory","player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20","player.current_player.HP -= 20\nplayer.current_player.MAX_HP += 20","Pierścień Zdrowia    |   AKCESORIA\nZdrowie +20",100],
-            "graphics/items/pierscien_many.png" : ["accessory","player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10","player.current_player.MP -= 10\nplayer.current_player.MAX_MP += 10","Pierścień Many    |   AKCESORIA\nMana +10",100]
-
+            #"graphics/items/pierscien_sily.png" : ["accessory","player.current_player.STR += 5","player.current_player.STR -= 5","Pierścień Siły    |   AKCESORIA\nSiła +5",10],
+            #"graphics/items/pierscien_zrecznosci.png" : ["accessory","player.current_player.DEX += 5","player.current_player.DEX -= 5","Pierścień Zręczności    |   AKCESORIA\nZręczność +5",100],
+            #"graphics/items/pierscien_inteligencji.png" : ["accessory","player.current_player.INT += 5","player.current_player.INT -= 5","Pierścień Inteligencji   |   AKCESORIA\nInteligencja +5",100],
+            #"graphics/items/pierscien_zdrowia.png" : ["accessory","player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20","player.current_player.HP -= 20\nplayer.current_player.MAX_HP += 20","Pierścień Zdrowia    |   AKCESORIA\nZdrowie +20",100],
+            #"graphics/items/pierscien_many.png" : ["accessory","player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10","player.current_player.MP -= 10\nplayer.current_player.MAX_MP += 10","Pierścień Many    |   AKCESORIA\nMana +10",100]
         }
 
     def equip(self):
@@ -183,5 +184,25 @@ class Items(Widget):
         exec(self.item_list[player.current_player.inventory["accessory"][2]][2])
         UI.ui.stats_refresh(player.current_player)
 
+    def load_items(self):
+        data =["","","","","",0]
+        count = 0
+        with codecs.open("items_list.txt",'r','utf-8') as f:
+            while True:
+                line = f.readline()
+                if not line:
+                    break
+                if line[0] == "_":
+                    pass 
+                else:
+                    data[count] = line.strip().replace(r'\n','\n')
+                    count+=1             
+                    if count == 6: # <--- amout of separated data for one item/skill/status, change appropriately
+                        self.item_list[data[0]] = [data[1],data[2],data[3],data[4],int(data[5])]
+                        count=0
+        f.close()
+        
+
 inventory = {}
 items = Items()
+items.load_items()

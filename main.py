@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
+from kivy.uix.button import Button
 
 class StageProgressBar(ProgressBar):
     pass
@@ -18,9 +19,16 @@ class Menu(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.setup_window()
+
+    def change_window(self,window_name):
+        self.manager.current = window_name
+
     def setup_window(self):
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 2"
+        self.tooltip = tt.Tooltip()
+        self.add_widget(self.tooltip)
+        self.add_widget(tt.Tooltip_Button("Sklep",pos=(500,500), size_hint=(0.1,0.133), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
         
     def start_main_fight(self):
         enemy.enemy_team.clear()
@@ -72,14 +80,12 @@ class Menu(Screen):
         f.write("fight.current_stage="+str(fight.current_stage))
         f.close()
         Clock.schedule_once(tp.clear_pop_up,2)
-        
 
+        
 class Game_Over(Screen):
     pass
-
 class End(Screen):
     pass
-
 class Main_Menu(Screen):
     def exit(self):
         quit()
@@ -89,7 +95,6 @@ class Main_Menu(Screen):
             line = f.readline()
             if not line:
                 break
-            print(line.strip())
             exec(line.strip())
         f.close()
         self.manager.current = "menu"

@@ -1,0 +1,136 @@
+_ 1. items graphics path and list key name
+_ 2. type of item
+_ 3. stat increace when equiping item
+_ 4. stat decrease when taking off item
+_ 5. description
+_ 6. buy price (10% sell price)
+____________EMPTY SLOT____________
+graphics/items/empty_slot.png
+none
+ 
+ 
+ 
+0
+_
+_
+____________MAIN HAND ITEMS____________
+graphics/items/zelazny_miecz.png
+main_hand
+player.current_player.weapon += 10
+player.current_player.weapon -= 10
+Żelazny Miecz  |   BROŃ\nObrażenia +10
+50
+_______________________________________
+graphics/items/miecz_z_brazu.png
+main_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Miecz z brązu    |   BROŃ\nObrażenia +5
+10
+_______________________________________
+graphics/items/miecz_poltorareczny.png
+main_hand
+player.current_player.weapon += 15
+player.current_player.weapon -= 15
+Półtorak    |   BROŃ\nObrażenia +15
+300
+_______________________________________
+graphics/items/laska_maga.png
+main_hand
+player.current_player.weapon += 5\nplayer.current_player.INT +=5
+player.current_player.weapon -= 5\nplayer.current_player.INT -=5
+Laska Maga    |   BROŃ\nObrażenia +5  Iteligencja +5
+450
+_______________________________________
+graphics/items/majcher_lotra.png
+main_hand
+player.current_player.weapon += 8\nplayer.current_player.DEX +=5
+player.current_player.weapon -= 8\nplayer.current_player.DEX -=5
+Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5
+450
+_
+_
+_________OFF HAND ITEMS ____________
+graphics/items/drewniany_puklerz.png
+off_hand
+player.current_player.defence += 5
+player.current_player.defence -= 5
+Drewniany Puklerz   |   DRUGA RĘKA\nPancerz +5
+300
+_______________________________________
+graphics/items/ksiega_czarow.png
+off_hand
+player.current_player.INT += 5
+player.current_player.INT -= 5
+Księga Czarów   |   DRUGA RĘKA\nInteligencja +5
+300
+_______________________________________
+_
+_
+______________ARMORS __________________
+graphics/items/skorzany_pancerz.png
+armor
+player.current_player.defence += 5
+player.current_player.defence -= 5
+Skórzany Pancerz   |   PANCERZ\nPancerz +5
+1000
+_______________________________________
+graphics/items/szata_maga.png
+armor
+player.current_player.defence += 5\nplayer.current_player.INT += 5
+player.current_player.defence -= 5\nplayer.current_player.INT -= 5
+Szata Maga   |   PANCERZ\nPancerz +5  Inteligencja +5
+2000
+_______________________________________
+graphics/items/zbroja_plytowa.png
+armor
+player.current_player.defence += 10\nplayer.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
+player.current_player.defence -= 10\nplayer.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30
+Zbroja Płytowa   |   PANCERZ\nPancerz +10  Zdrowie +30
+2000
+_______________________________________
+graphics/items/kaftan_zlodzieja.png
+armor
+player.current_player.defence += 7\nplayer.current_player.weapon += 5
+player.current_player.defence -= 7\nplayer.current_player.weapon -= 5
+Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5
+2000
+_______________________________________
+_
+_
+_____________ACCESSORY_________________
+graphics/items/pierscien_sily.png
+accessory
+player.current_player.STR += 5
+player.current_player.STR -= 5
+Pierścień Siły    |   AKCESORIA\nSiła +5
+10
+_______________________________________
+graphics/items/pierscien_zrecznosci.png
+accessory
+player.current_player.DEX += 5
+player.current_player.DEX -= 5
+Pierścień Zręczności    |   AKCESORIA\nZręczność +5
+100
+_______________________________________
+graphics/items/pierscien_inteligencji.png
+accessory
+player.current_player.INT += 5
+player.current_player.INT -= 5
+Pierścień Inteligencji   |   AKCESORIA\nInteligencja +5
+100
+_______________________________________
+graphics/items/pierscien_zdrowia.png
+accessory
+player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20
+player.current_player.HP -= 20\nplayer.current_player.MAX_HP -= 20
+Pierścień Zdrowia    |   AKCESORIA\nZdrowie +20
+100
+_______________________________________
+graphics/items/pierscien_many.png
+accessory
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10
+Pierścień Many    |   AKCESORIA\nMana +10
+100
+_______________________________________
