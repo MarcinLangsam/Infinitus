@@ -26,8 +26,8 @@ def set_tooltip_status(tooltip,t,p):
         Color(0.8,0.8,0.8,1)
 
 def set_tooltip_skill(tooltip,t,p):
-    tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0]+50,p[1]-50)
     tooltip.text = t
+    tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0]+50,p[1]-50)
     with tooltip.canvas.before:
         Color(0.8,0.8,0.8,1)
 
@@ -44,17 +44,19 @@ class Tooltip_Button(Button):
         super().__init__(**kwargs)
         self.description = description
         Window.bind(mouse_pos=self.on_mouse_pos)
+        self.p = (0,0)
+        self.t = ""
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
             return
         Clock.unschedule(self.display_tooltip)
         self.close_tooltip()
         if self.collide_point(*self.to_widget(*pos)):
-                self.t = self.description
-                self.p = (self.pos[0],self.pos[1])
-        Clock.schedule_once(self.display_tooltip, 0.5)
+            self.t = self.description
+            self.p = (self.pos[0],self.pos[1]+170)
+            Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):
         clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        set_tooltip_skill(self.parent.tooltip,self.t, self.p)
+        set_tooltip(self.parent.tooltip, self.t, self.p)

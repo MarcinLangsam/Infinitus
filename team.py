@@ -12,9 +12,9 @@ class Switch_Character_Button(Button):
 class Team(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.main_player_sprite = player.Character_Sprite(player.main_player,pos=(768-90,432-65))
-        self.companion1_sprite = player.Character_Sprite(player.companion1,pos=(768-90,432-65))
-        self.companion2_sprite = player.Character_Sprite(player.companion2, pos=(768-90,432-65))
+        self.main_player_sprite = player.Character_Sprite(player.main_player, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], pos=(520,432-65))
+        self.companion1_sprite = player.Character_Sprite(player.companion1, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], pos=(520,432-65))
+        self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], pos=(520,432-65))
         self.current_sprite = self.main_player_sprite
         self.main_player_button = Switch_Character_Button(text=player.team[0].name, pos=(550,800), on_press = lambda y:self.change_character_menu(player.main_player))
         self.companion1_button = Switch_Character_Button(text=player.team[1].name, pos=(730,800), on_press = lambda y:self.change_character_menu(player.companion1))
@@ -79,10 +79,10 @@ class Team(Screen):
             
             
 
-            self.add_widget(Label(text="Broń",font_size=18,pos=(-145,-15)))
-            self.add_widget(Label(text="Druga ręka",font_size=18,pos=(120,-15)))
-            self.add_widget(Label(text="Pancerz",font_size=18,pos=(-15,140)))
-            self.add_widget(Label(text="Akcesoria",font_size=18,pos=(-15,-160)))
+            self.add_widget(Label(text="Broń",font_size=18,pos=(-165,-15)))
+            self.add_widget(Label(text="Druga ręka",font_size=18,pos=(165,-15)))
+            self.add_widget(Label(text="Pancerz",font_size=18,pos=(0,165)))
+            self.add_widget(Label(text="Akcesoria",font_size=18,pos=(0,-195)))
             self.add_widget(self.tooltip)
             self.refresh_items()
             
@@ -107,7 +107,8 @@ class Team(Screen):
     
     def refresh_items(self):
         self.remove_widget(self.current_sprite)
-        self.current_sprite.set_sprite()
+        self.current_sprite.set_sprite(im.items.item_list[player.current_player.inventory["main_hand"][2]][0])
+        #self.current_sprite.set_sprite()
         self.current_sprite.set_sprite_weapon()
         self.add_widget(self.current_sprite)
         self.remove_widget(self.tooltip)

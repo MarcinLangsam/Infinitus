@@ -1,4 +1,4 @@
-import player, enemy, skill_record as sk, status_effect as se, tooltip as tt,random, text_pop as tp
+import player, enemy, skill_record as sk, status_effect as se, tooltip as tt,random, text_pop as tp, inventory_manager as im
 from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
 from kivy.uix.button import Button
@@ -80,7 +80,7 @@ class Fight(Screen):
         self.player_sprites.clear()
         self.enemy_sprites.clear()
         if len(player.team) >=1:
-            self.player_sprites.append([player.Character_Sprite(player.main_player,pos=(410,380)),
+            self.player_sprites.append([player.Character_Sprite(player.main_player,im.items.item_list[player.main_player.inventory["main_hand"][2]][0],pos=(310,380)),
                                         HPBar(pos=(30,80), max=player.team[0].MAX_HP, value=player.team[0].HP, size_hint=(0.18,0.1)),
                                         MPBar(pos=(30,60), max=player.team[0].MAX_MP, value=player.team[0].MP, size_hint=(0.18,0.1)),
                                         Label(text=(("HP: ") + str(player.team[0].HP) + ("/") + str(player.team[0].MAX_HP)),pos=(-600,-310)),
@@ -88,7 +88,7 @@ class Fight(Screen):
                                         Label(text=player.team[0].name,pos=(-600,-290))
                                         ])
         if len(player.team) >=2:
-            self.player_sprites.append([player.Character_Sprite(player.companion1,pos=(205,490)),
+            self.player_sprites.append([player.Character_Sprite(player.companion1,im.items.item_list[player.companion1.inventory["main_hand"][2]][0],pos=(105,490)),
                                         HPBar(pos=(30,140), max=player.team[1].MAX_HP, value=player.team[1].HP, size_hint=(0.18,0.1)),
                                         MPBar(pos=(30,120), max=player.team[1].MAX_MP, value=player.team[1].MP, size_hint=(0.18,0.1)),
                                         Label(text=(("HP: ") + str(player.team[1].HP) + ("/") + str(player.team[1].MAX_HP)),pos=(-600,-250)),
@@ -96,7 +96,7 @@ class Fight(Screen):
                                         Label(text=player.team[1].name,pos=(-600,-230))
                                         ])
         if len(player.team) >=3:
-            self.player_sprites.append([player.Character_Sprite(player.companion2,pos=(260,200)),
+            self.player_sprites.append([player.Character_Sprite(player.companion2,im.items.item_list[player.companion2.inventory["main_hand"][2]][0],pos=(160,200)),
                                         HPBar(pos=(30,20), max=player.team[2].MAX_HP, value=player.team[2].HP, size_hint=(0.18,0.1)),
                                         MPBar(pos=(30,0), max=player.team[2].MAX_MP, value=player.team[2].MP, size_hint=(0.18,0.1)),
                                         Label(text=(("HP: ") + str(player.team[2].HP) + ("/") + str(player.team[2].MAX_HP)),pos=(-600,-370)),
@@ -391,9 +391,9 @@ class Fight(Screen):
 
         if self.distance == "melee":
             if self.current_turn in player.team:
-                self.create_movement_animation(self.sprite, self.target_option[target][1][0]-100, self.target_option[target][1][1])
+                self.create_movement_animation(self.sprite, self.target_option[target][1][0]-250, self.target_option[target][1][1])
             else: 
-                self.create_movement_animation(self.sprite, self.chose_sprite(self.current_target).pos[0]+100,self.chose_sprite(self.current_target).pos[1])
+                self.create_movement_animation(self.sprite, self.chose_sprite(self.current_target).pos[0]+250,self.chose_sprite(self.current_target).pos[1])
             self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
         elif self.distance == "ranged":
@@ -523,7 +523,7 @@ class Fight(Screen):
                 
         ### if player turn, set pointer ###
         if e in enemy.player_team_alive:            
-            self.pointer.pos = (self.chose_sprite(self.current_turn).pos[0]-685,self.chose_sprite(self.current_turn).pos[1]-205)
+            self.pointer.pos = (self.chose_sprite(self.current_turn).pos[0]-500,self.chose_sprite(self.current_turn).pos[1]-205)
             
     def next_turn(self):
         self.check_for_victory_or_defeat()

@@ -8,7 +8,6 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
-from kivy.uix.button import Button
 
 class StageProgressBar(ProgressBar):
     pass
@@ -23,13 +22,22 @@ class Menu(Screen):
     def change_window(self,window_name):
         self.manager.current = window_name
 
+    def reset_tooltip(self):
+        tt.clear_tooltip(self.tooltip)
+
     def setup_window(self):
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 2"
         self.tooltip = tt.Tooltip()
         self.add_widget(self.tooltip)
-        self.add_widget(tt.Tooltip_Button("Sklep",pos=(500,500), size_hint=(0.1,0.133), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        
+        self.add_widget(tt.Tooltip_Button("Sklep",pos=(110,350), size_hint=(0.1,0.133), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
+        self.add_widget(tt.Tooltip_Button("Walka treningowa",pos=(380,510), size_hint=(0.1,0.133), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
+        self.add_widget(tt.Tooltip_Button("Walka główna",pos=(1175,540), size_hint=(0.1,0.133), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
+        self.add_widget(tt.Tooltip_Button("Drużyna",pos=(200,0), size_hint=(0.1,0.133), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
+        self.add_widget(tt.Tooltip_Button("Umiejętności",pos=(400,0), size_hint=(0.1,0.133), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
+        self.add_widget(tt.Tooltip_Button("Zapis gry",pos=(1000,0), size_hint=(0.1,0.133), background_normal="graphics/save_button.png", on_press = lambda y:self.save_game()))
+        self.add_widget(tt.Tooltip_Button("Wyjście do menu",pos=(1200,0), size_hint=(0.1,0.133), background_normal="graphics/exit_button.png", on_press = lambda y:self.change_window("main_menu")))
+
     def start_main_fight(self):
         enemy.enemy_team.clear()
         fight.is_random_fight = False

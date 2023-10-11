@@ -6,7 +6,7 @@ _ 5. description
 _ 6. buy price (10% sell price)
 ____________EMPTY SLOT____________
 graphics/items/empty_slot.png
-none
+one_hand
  
  
  
@@ -48,6 +48,27 @@ player.current_player.weapon += 8\nplayer.current_player.DEX +=5
 player.current_player.weapon -= 8\nplayer.current_player.DEX -=5
 Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5
 450
+_______________________________________
+graphics/items/miecz_jednoreczny.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Miecz jednoręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/miecz_dwureczny.png
+two_hand_sword
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Miecz dwuręczny    |   BROŃ DWÓRĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/mlot.png
+two_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Młot    |   BROŃ DWURĘCZNA\nObrażenia +5
+10
 _
 _
 _________OFF HAND ITEMS ____________
@@ -95,6 +116,13 @@ player.current_player.defence += 7\nplayer.current_player.weapon += 5
 player.current_player.defence -= 7\nplayer.current_player.weapon -= 5
 Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5
 2000
+_______________________________________
+graphics/items/test_armor.png
+armor
+player.current_player.defence += 5
+player.current_player.defence -= 5
+Pancerz Testowy   |   PANCERZ\nPancerz +5
+1000
 _______________________________________
 _
 _

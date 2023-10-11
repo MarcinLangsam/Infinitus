@@ -65,47 +65,13 @@ WindowManger:
 <Menu>:
     name: "menu"
     on_pre_enter: root.setup_window()
+    on_leave: root.reset_tooltip()
     Image:
         size_hint: None,None
         allow_stretch: True
         size: 1540,950
         source: "graphics/stage1_background.png"
         pos: 0,0
-    Button:
-        on_release: app.root.current = "shop"
-        pos: 110,350    
-        size_hint: 0.1,0.133
-        background_normal: "graphics/shop_button.png"
-    Button:
-        on_release: root.start_main_fight()
-        pos: 1175,540
-        size_hint: 0.1,0.133
-        background_normal: "graphics/main_fight_button.png"
-    Button:
-        on_release: root.start_random_fight()
-        pos: 380,510     
-        size_hint: 0.1,0.133  
-        background_normal: "graphics/random_fight_button.png"    
-    Button:
-        on_release: app.root.current = "team"
-        pos: 200,0
-        size_hint: 0.1,0.133
-        background_normal: "graphics/team_button.png"
-    Button:
-        on_release: app.root.current = "skills"
-        pos: 400,0
-        size_hint: 0.1,0.133
-        background_normal: "graphics/skills_button.png"
-    Button:
-        on_release: root.save_game()
-        pos: 1000,0
-        size_hint: 0.1,0.133
-        background_normal: "graphics/save_button.png"
-    Button:
-        on_release: app.root.current = "main_menu"
-        pos: 1200,0
-        size_hint: 0.1,0.133
-        background_normal: "graphics/exit_button.png"
     StageProgressBar:
         max: 2
         value: root.bar
@@ -557,7 +523,7 @@ WindowManger:
     height: self.texture_size[1]
     font_size: 23
     color: 0,0,0,1
-    width: 400
+    width: 450
     canvas.before:
         Color:
             rgba: 0.8,0.8,0.8,1

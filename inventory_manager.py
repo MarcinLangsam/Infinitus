@@ -78,7 +78,18 @@ class ItemSlot(DragBehavior, Widget):
                         self.switch_items_in_invetory()
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory"]: #zakładnie przedmitów
-                        if items.item_list[player.current_player.inventory[self.select][2]][0] == player.current_player.inventory[self.drop][3] or player.current_player.inventory[self.drop][3] == "item":
+                        if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword"]:
+                            inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                            tp.text_pop.text = "Używasz broni dwuręcznej!"
+                        elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
+                            inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                            tp.text_pop.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
+                        elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword"] and player.current_player.inventory[self.drop][3] == "main_hand":
+                            items.unequip()
+                            self.switch_items_in_invetory()
+                            items.equip()
+                            self.parent.refresh_items()
+                        elif items.item_list[player.current_player.inventory[self.select][2]][0] == player.current_player.inventory[self.drop][3] or player.current_player.inventory[self.drop][3] == "item":
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()

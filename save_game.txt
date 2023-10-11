@@ -1,43 +1,25 @@
 player.main_player.name = "Gracz Pierwszy"
 player.main_player.lv = 1
-player.main_player.MAX_HP = 130
+player.main_player.MAX_HP = 100
 player.main_player.MAX_MP = 100
-player.main_player.HP = 130
+player.main_player.HP = 100
 player.main_player.MP = 100
-player.main_player.STR = 15
-player.main_player.DEX = 20
-player.main_player.INT = 15
-player.main_player.weapon = 15
-player.main_player.damage = 30
-player.main_player.defence = 15
-player.main_player.crit_chance = 0.2
-player.main_player.dodge_chance = 0.4
-player.main_player.EXP_boost = 0.15
+player.main_player.STR = 10
+player.main_player.DEX = 10
+player.main_player.INT = 10
+player.main_player.weapon = 5
+player.main_player.damage = 15
+player.main_player.defence = 5
+player.main_player.crit_chance = 0.1
+player.main_player.dodge_chance = 0.2
+player.main_player.EXP_boost = 0.1
 player.main_player.EXP = 0
 player.main_player.EXP_To_Lv = 100
-player.main_player.stat_points = 15
-player.main_player.skill_points = 0
-player.main_player.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
-player.main_player.skill["rozp³atanie"] = ["self.final_damage = self.current_target.HP*0.2",30,"graphics/skills/rozplatanie.png","Rozp³atanie\nPotê¿ny cios zadaj¹cy:\naktualne 20% zrowia przeciwnika\nKoszt MP: 30","active","melee","on_enemy"]
-player.main_player.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
-player.main_player.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
-player.main_player.skill["si³a byka"] = ["player.current_player.STR += 5",0,"graphics/skills/sila_byka.png","Si³a byka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e si³ê o 5","passive","",""]
-player.main_player.skill["ostateczny oso¹d"] = ["self.final_damage = self.current_turn.STR*10",50,"graphics/skills/ostateczny_osad.png","Ostateczny oso¹d\nCios k³ad¹cy ka¿dego na kolana zadaje:\nSTR*10\nKoszt MP: 50","active","melee","on_enemy"]
-player.main_player.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
-player.main_player.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
-player.main_player.skill["oœwiecenie"] = ["player.current_player.INT += 5",0,"graphics/skills/oswiecenie.png","Oœwiecenie\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e inteligencje o 5","passive","",""]
-player.main_player.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
-player.main_player.skill["zamro¿enie"] = ["self.final_damage = self.current_turn.INT\nself.action_status = 'zamro¿enie'",60,"graphics/skills/zamrozenie.png","Zamro¿enie\nMr¹¿¹ce zakêcie,powduje zamro¿enie\nCzas trwania: 2 tury Pomija turê, \ni zabiera 10% zdrowia Koszt MP: 60","active","ranged","on_enemy"]
-player.main_player.skill["medytacja"] = ["self.current_target.MP += 50",0,"graphics/skills/medytacja.png","Medytacja\nStan pozwalaj¹cy odzyskaæ czêœæ si³\nOdnawia 50 MP\nKoszt MP: 0","active","ranged","on_character"]
-player.main_player.skill["ciche ciêcie"] = ["self.final_damage = 5+self.current_turn.DEX*4",15,"graphics/skills/ciche_ciêcie.png","Ciche Ciêcie\nAtak z zaskoczenia zadaje:\n5+DEX*4\nKoszt MP: 15","active","melee","on_enemy"]
-player.main_player.skill["piorun"] = ["self.final_damage = self.current_turn.INT*3 + self.current_turn.DEX*4",20,"graphics/skills/piorun.png","Piorun\nPo³¹czenie magi i techniki zadaje:\nINT*3 + DEX*4\nKoszt MP: 20","active","ranged","on_enemy"]
-player.main_player.skill["rozgrzewka"] = ["self.final_damage = 0\nself.action_status = 'rozgrzewka'",30,"graphics/skills/rozgrzewka.png","Rozgrzewka\nNa chwilê zwiêksza zrêcznoœæ\nCzas trwania: 3 tury, DEX+20%\nKoszt MP: 30","active","status","on_characters"]
-player.main_player.skill["akrobatyka"] = ["player.current_player.DEX += 5",0,"graphics/skills/akrobatyka.png","Akrobatyka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e zrêcznoœæ o 5","passive","",""]
-player.main_player.skill["os³abienie"] = ["self.final_damage = self.current_turn.DEX\nself.action_status = 'os³abienie'",40,"graphics/skills/oslabienie.png","Os³abienie\nOs³abiaj¹cy cios w czu³y punkt\nCzas trwania: 3 tury, Przeciwnik zadaje,\npo³owê obra¿eñ Koszt MP: 40","active","melee","on_enemy"]
-player.main_player.skill["zabójca idealny"] = ["self.final_damage = 0\nself.action_status = 'zabójca idealny'",50,"graphics/skills/zabojca_idealny.png","ZABÓJCA IDEALNY\nJeden cios jeden trup\nNa 1 turê mno¿y zrêcznoœæ razy 20\nKoszt MP: 50","active","status","on_character"]
-player.main_player.inventory["main_hand"][2] = "graphics/items/miecz_poltorareczny.png"
-player.main_player.inventory["off_hand"][2] = "graphics/items/drewniany_puklerz.png"
-player.main_player.inventory["armor"][2] = "graphics/items/zbroja_plytowa.png"
+player.main_player.stat_points = 20
+player.main_player.skill_points = 18
+player.main_player.inventory["main_hand"][2] = "graphics/items/miecz_dwureczny.png"
+player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory["armor"][2] = "graphics/items/test_armor.png"
 player.main_player.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion1.name = "Gracz Drugi"
 player.companion1.lv = 1
@@ -45,40 +27,22 @@ player.companion1.MAX_HP = 100
 player.companion1.MAX_MP = 100
 player.companion1.HP = 100
 player.companion1.MP = 100
-player.companion1.STR = 15
-player.companion1.DEX = 20
-player.companion1.INT = 15
-player.companion1.weapon = 13
-player.companion1.damage = 28
-player.companion1.defence = 7
-player.companion1.crit_chance = 0.2
-player.companion1.dodge_chance = 0.4
-player.companion1.EXP_boost = 0.15
+player.companion1.STR = 10
+player.companion1.DEX = 10
+player.companion1.INT = 10
+player.companion1.weapon = 5
+player.companion1.damage = 15
+player.companion1.defence = 5
+player.companion1.crit_chance = 0.1
+player.companion1.dodge_chance = 0.2
+player.companion1.EXP_boost = 0.1
 player.companion1.EXP = 0
 player.companion1.EXP_To_Lv = 100
 player.companion1.stat_points = 20
-player.companion1.skill_points = 0
-player.companion1.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
-player.companion1.skill["rozp³atanie"] = ["self.final_damage = self.current_target.HP*0.2",30,"graphics/skills/rozplatanie.png","Rozp³atanie\nPotê¿ny cios zadaj¹cy:\naktualne 20% zrowia przeciwnika\nKoszt MP: 30","active","melee","on_enemy"]
-player.companion1.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
-player.companion1.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
-player.companion1.skill["si³a byka"] = ["player.current_player.STR += 5",0,"graphics/skills/sila_byka.png","Si³a byka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e si³ê o 5","passive","",""]
-player.companion1.skill["ostateczny oso¹d"] = ["self.final_damage = self.current_turn.STR*10",50,"graphics/skills/ostateczny_osad.png","Ostateczny oso¹d\nCios k³ad¹cy ka¿dego na kolana zadaje:\nSTR*10\nKoszt MP: 50","active","melee","on_enemy"]
-player.companion1.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
-player.companion1.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
-player.companion1.skill["oœwiecenie"] = ["player.current_player.INT += 5",0,"graphics/skills/oswiecenie.png","Oœwiecenie\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e inteligencje o 5","passive","",""]
-player.companion1.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
-player.companion1.skill["zamro¿enie"] = ["self.final_damage = self.current_turn.INT\nself.action_status = 'zamro¿enie'",60,"graphics/skills/zamrozenie.png","Zamro¿enie\nMr¹¿¹ce zakêcie,powduje zamro¿enie\nCzas trwania: 2 tury Pomija turê, \ni zabiera 10% zdrowia Koszt MP: 60","active","ranged","on_enemy"]
-player.companion1.skill["medytacja"] = ["self.current_target.MP += 50",0,"graphics/skills/medytacja.png","Medytacja\nStan pozwalaj¹cy odzyskaæ czêœæ si³\nOdnawia 50 MP\nKoszt MP: 0","active","ranged","on_character"]
-player.companion1.skill["ciche ciêcie"] = ["self.final_damage = 5+self.current_turn.DEX*4",15,"graphics/skills/ciche_ciêcie.png","Ciche Ciêcie\nAtak z zaskoczenia zadaje:\n5+DEX*4\nKoszt MP: 15","active","melee","on_enemy"]
-player.companion1.skill["piorun"] = ["self.final_damage = self.current_turn.INT*3 + self.current_turn.DEX*4",20,"graphics/skills/piorun.png","Piorun\nPo³¹czenie magi i techniki zadaje:\nINT*3 + DEX*4\nKoszt MP: 20","active","ranged","on_enemy"]
-player.companion1.skill["rozgrzewka"] = ["self.final_damage = 0\nself.action_status = 'rozgrzewka'",30,"graphics/skills/rozgrzewka.png","Rozgrzewka\nNa chwilê zwiêksza zrêcznoœæ\nCzas trwania: 3 tury, DEX+20%\nKoszt MP: 30","active","status","on_characters"]
-player.companion1.skill["akrobatyka"] = ["player.current_player.DEX += 5",0,"graphics/skills/akrobatyka.png","Akrobatyka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e zrêcznoœæ o 5","passive","",""]
-player.companion1.skill["os³abienie"] = ["self.final_damage = self.current_turn.DEX\nself.action_status = 'os³abienie'",40,"graphics/skills/oslabienie.png","Os³abienie\nOs³abiaj¹cy cios w czu³y punkt\nCzas trwania: 3 tury, Przeciwnik zadaje,\npo³owê obra¿eñ Koszt MP: 40","active","melee","on_enemy"]
-player.companion1.skill["zabójca idealny"] = ["self.final_damage = 0\nself.action_status = 'zabójca idealny'",50,"graphics/skills/zabojca_idealny.png","ZABÓJCA IDEALNY\nJeden cios jeden trup\nNa 1 turê mno¿y zrêcznoœæ razy 20\nKoszt MP: 50","active","status","on_character"]
-player.companion1.inventory["main_hand"][2] = "graphics/items/majcher_lotra.png"
+player.companion1.skill_points = 18
+player.companion1.inventory["main_hand"][2] = "graphics/items/mlot.png"
 player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.companion1.inventory["armor"][2] = "graphics/items/kaftan_zlodzieja.png"
+player.companion1.inventory["armor"][2] = "graphics/items/test_armor.png"
 player.companion1.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion2.name = "Gracz Trzeci"
 player.companion2.lv = 1
@@ -86,40 +50,22 @@ player.companion2.MAX_HP = 100
 player.companion2.MAX_MP = 100
 player.companion2.HP = 100
 player.companion2.MP = 100
-player.companion2.STR = 15
-player.companion2.DEX = 15
-player.companion2.INT = 30
+player.companion2.STR = 10
+player.companion2.DEX = 10
+player.companion2.INT = 10
 player.companion2.weapon = 5
-player.companion2.damage = 20
+player.companion2.damage = 15
 player.companion2.defence = 5
-player.companion2.crit_chance = 0.15
-player.companion2.dodge_chance = 0.3
-player.companion2.EXP_boost = 0.3
+player.companion2.crit_chance = 0.1
+player.companion2.dodge_chance = 0.2
+player.companion2.EXP_boost = 0.1
 player.companion2.EXP = 0
 player.companion2.EXP_To_Lv = 100
 player.companion2.stat_points = 20
-player.companion2.skill_points = 0
-player.companion2.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
-player.companion2.skill["rozp³atanie"] = ["self.final_damage = self.current_target.HP*0.2",30,"graphics/skills/rozplatanie.png","Rozp³atanie\nPotê¿ny cios zadaj¹cy:\naktualne 20% zrowia przeciwnika\nKoszt MP: 30","active","melee","on_enemy"]
-player.companion2.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
-player.companion2.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
-player.companion2.skill["si³a byka"] = ["player.current_player.STR += 5",0,"graphics/skills/sila_byka.png","Si³a byka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e si³ê o 5","passive","",""]
-player.companion2.skill["ostateczny oso¹d"] = ["self.final_damage = self.current_turn.STR*10",50,"graphics/skills/ostateczny_osad.png","Ostateczny oso¹d\nCios k³ad¹cy ka¿dego na kolana zadaje:\nSTR*10\nKoszt MP: 50","active","melee","on_enemy"]
-player.companion2.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
-player.companion2.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
-player.companion2.skill["oœwiecenie"] = ["player.current_player.INT += 5",0,"graphics/skills/oswiecenie.png","Oœwiecenie\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e inteligencje o 5","passive","",""]
-player.companion2.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
-player.companion2.skill["zamro¿enie"] = ["self.final_damage = self.current_turn.INT\nself.action_status = 'zamro¿enie'",60,"graphics/skills/zamrozenie.png","Zamro¿enie\nMr¹¿¹ce zakêcie,powduje zamro¿enie\nCzas trwania: 2 tury Pomija turê, \ni zabiera 10% zdrowia Koszt MP: 60","active","ranged","on_enemy"]
-player.companion2.skill["medytacja"] = ["self.current_target.MP += 50",0,"graphics/skills/medytacja.png","Medytacja\nStan pozwalaj¹cy odzyskaæ czêœæ si³\nOdnawia 50 MP\nKoszt MP: 0","active","ranged","on_character"]
-player.companion2.skill["ciche ciêcie"] = ["self.final_damage = 5+self.current_turn.DEX*4",15,"graphics/skills/ciche_ciêcie.png","Ciche Ciêcie\nAtak z zaskoczenia zadaje:\n5+DEX*4\nKoszt MP: 15","active","melee","on_enemy"]
-player.companion2.skill["piorun"] = ["self.final_damage = self.current_turn.INT*3 + self.current_turn.DEX*4",20,"graphics/skills/piorun.png","Piorun\nPo³¹czenie magi i techniki zadaje:\nINT*3 + DEX*4\nKoszt MP: 20","active","ranged","on_enemy"]
-player.companion2.skill["rozgrzewka"] = ["self.final_damage = 0\nself.action_status = 'rozgrzewka'",30,"graphics/skills/rozgrzewka.png","Rozgrzewka\nNa chwilê zwiêksza zrêcznoœæ\nCzas trwania: 3 tury, DEX+20%\nKoszt MP: 30","active","status","on_characters"]
-player.companion2.skill["akrobatyka"] = ["player.current_player.DEX += 5",0,"graphics/skills/akrobatyka.png","Akrobatyka\nUMIEJÊTNOŒÆ PASYWNA\nZwiêksza na sta³e zrêcznoœæ o 5","passive","",""]
-player.companion2.skill["os³abienie"] = ["self.final_damage = self.current_turn.DEX\nself.action_status = 'os³abienie'",40,"graphics/skills/oslabienie.png","Os³abienie\nOs³abiaj¹cy cios w czu³y punkt\nCzas trwania: 3 tury, Przeciwnik zadaje,\npo³owê obra¿eñ Koszt MP: 40","active","melee","on_enemy"]
-player.companion2.skill["zabójca idealny"] = ["self.final_damage = 0\nself.action_status = 'zabójca idealny'",50,"graphics/skills/zabojca_idealny.png","ZABÓJCA IDEALNY\nJeden cios jeden trup\nNa 1 turê mno¿y zrêcznoœæ razy 20\nKoszt MP: 50","active","status","on_character"]
-player.companion2.inventory["main_hand"][2] = "graphics/items/laska_maga.png"
-player.companion2.inventory["off_hand"][2] = "graphics/items/ksiega_czarow.png"
-player.companion2.inventory["armor"][2] = "graphics/items/szata_maga.png"
+player.companion2.skill_points = 18
+player.companion2.inventory["main_hand"][2] = "graphics/items/miecz_jednoreczny.png"
+player.companion2.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.companion2.inventory["armor"][2] = "graphics/items/test_armor.png"
 player.companion2.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[0][2] = "graphics/items/miecz_poltorareczny.png"
 player.main_player.inventory[1][2] = "graphics/items/laska_maga.png"
@@ -134,8 +80,8 @@ player.main_player.inventory[9][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[10][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[11][2] = "graphics/items/zelazny_miecz.png"
 player.main_player.inventory[12][2] = "graphics/items/zelazny_miecz.png"
-player.main_player.inventory[13][2] = "graphics/items/zelazny_miecz.png"
-player.main_player.inventory[14][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[13][2] = "graphics/items/miecz_z_brazu.png"
+player.main_player.inventory[14][2] = "graphics/items/miecz_z_brazu.png"
 player.main_player.inventory[15][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[16][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[17][2] = "graphics/items/empty_slot.png"

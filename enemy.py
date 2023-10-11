@@ -56,7 +56,6 @@ class Enemy(Widget):
         self.actions = list()
 
     def action(self,action,sort_by,value,type,name,distance):
-        print(player_team_alive)
         ok = False
         if type == "on_character" or "attack":
             targets = player_team_alive

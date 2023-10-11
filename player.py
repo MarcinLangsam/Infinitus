@@ -14,24 +14,28 @@ class Character_Sprite(Widget):
     sprite = ObjectProperty("graphics/items/empty_slot_sprite_a.png")
     weapon = ObjectProperty("graphics/items/empty_slot_sprite_w.png")
 
-    def __init__(self,character, **kwargs):
+    def __init__(self,character,type, **kwargs):
         super().__init__(**kwargs)
         self.time = 0.0
         self.rate= 0.02
         self.frame = 1
         self.source = "character_anim"
-        self.frame_sum = 28
+        self.frame_sum = 46
         self.weapon_source = "empty_slot"
         self.character = character
         self.set_sprite_weapon()
-        self.set_sprite()
+        self.set_sprite(type)
         self.set_weapon()
+        self.size_hint = (0.36,0.47)
 
-    def set_sprite(self):
+    def set_sprite(self,type):
         self.sprite = self.character.inventory["armor"][2]
         self.sprite = self.sprite[:-4]
         self.anim = self.sprite[15:]
-        self.sprite = self.sprite + "_sprite_a.png"
+        #self.sprite = self.sprite + "_sprite_a.png"
+        self.sprite = self.sprite + "_sprite_a_"+type+".png"
+        self.anim = self.anim + "_"+type
+        print(self.anim)
     def set_sprite_weapon(self):
         self.weapon = self.character.inventory["main_hand"][2]
         self.weapon = self.weapon[:-4]
@@ -72,10 +76,10 @@ class Character(Widget):
         self.status = list()
 
         self.inventory = {
-            "main_hand" : [768-180,432,"graphics/items/empty_slot.png","main_hand"],
-            "off_hand" : [768+80,432,"graphics/items/empty_slot.png","off_hand"],
-            "armor" : [718,432+150,"graphics/items/empty_slot.png","armor"],
-            "accessory" : [718,432-150,"graphics/items/empty_slot.png","accessory"],
+            "main_hand" : [768-200,432,"graphics/items/empty_slot.png","main_hand"],
+            "off_hand" : [768+130,432,"graphics/items/empty_slot.png","off_hand"],
+            "armor" : [730,432+180,"graphics/items/empty_slot.png","armor"],
+            "accessory" : [730,432-180,"graphics/items/empty_slot.png","accessory"],
             0 : [50,750,"graphics/items/miecz_poltorareczny.png","item"],
             1 : [150,750,"graphics/items/laska_maga.png","item"],
             2 : [250,750,"graphics/items/majcher_lotra.png","item"], 
@@ -91,12 +95,12 @@ class Character(Widget):
             12 : [250,550,"graphics/items/zelazny_miecz.png","item"],
             13 : [350,550,"graphics/items/miecz_z_brazu.png","item"],
             14 : [450,550,"graphics/items/miecz_z_brazu.png","item"],
-            15 : [50,450,"graphics/items/empty_slot.png","item"],
-            16 : [150,450,"graphics/items/empty_slot.png","item"],
-            17 : [250,450,"graphics/items/empty_slot.png","item"],
-            18 : [350,450,"graphics/items/empty_slot.png","item"],
-            19 : [450,450,"graphics/items/empty_slot.png","item"],
-            20 : [50,350,"graphics/items/empty_slot.png","item"],
+            15 : [50,450,"graphics/items/miecz_jednoreczny.png","item"],
+            16 : [150,450,"graphics/items/miecz_dwureczny.png","item"],
+            17 : [250,450,"graphics/items/test_armor.png","item"],
+            18 : [350,450,"graphics/items/test_armor.png","item"],
+            19 : [450,450,"graphics/items/test_armor.png","item"],
+            20 : [50,350,"graphics/items/mlot.png","item"],
             21 : [150,350,"graphics/items/empty_slot.png","item"],
             22 : [250,350,"graphics/items/empty_slot.png","item"],
             23 : [350,350,"graphics/items/empty_slot.png","item"],
