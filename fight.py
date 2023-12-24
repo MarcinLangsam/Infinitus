@@ -222,8 +222,9 @@ class Fight(Screen):
         self.sprite.time += dt
         if (self.sprite.time > self.sprite.rate):
                 self.sprite.time -= self.sprite.rate
-                self.sprite.sprite = "atlas://"+self.sprite.source+"/"+self.sprite.anim + str(self.sprite.frame)
-                self.sprite.weapon = "atlas://weapon_anim/"+self.sprite.weapon_source + str(self.sprite.frame)
+                #self.sprite.head = "atlas://graphics/animations/head1/one_hand" + str(self.sprite.frame)
+                self.sprite.sprite = "atlas://graphics/animations/"+self.sprite.source+"/"+self.sprite.anim + str(self.sprite.frame)
+                self.sprite.weapon = "atlas://graphics/animations/weapon_anim/"+self.sprite.weapon_source + str(self.sprite.frame)
                 self.sprite.frame = self.sprite.frame + 1
                 if (self.sprite.frame > self.sprite.frame_sum):
                     self.sprite.frame = 1
@@ -368,16 +369,18 @@ class Fight(Screen):
         ### roll for critical hit
         if self.crit_roll < self.current_turn.crit_chance and self.distance != "heal" and self.distance != "status":
                 self.final_damage = self.final_damage+(self.final_damage*0.5)
+                self.final_damage = int(self.final_damage)
                 self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = 'TRAFIENIE KRYTYCZNE '+str(self.final_damage)+'!'"
         ### substract defence of the target(can't deal less than 5 points of damage)
         if (self.final_damage - self.current_target.defence) < 5  and self.distance != "heal" and self.distance != "status":    
             self.final_damage = 5
         elif self.distance != "heal" and self.distance != "status":
             self.final_damage -= self.current_target.defence
+            self.final_damage = int(self.final_damage)
         ### roll for dodeging the attack
         if self.dodge_roll < self.current_target.dodge_chance  and self.distance != "heal" and self.distance != "status":
                 self.action = "self.final_damage = 'PUDŁO!'"
-
+    
         exec(self.action)
         if self.action_status != "":
             self.add_status(self.action_status)

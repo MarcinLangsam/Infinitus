@@ -12,6 +12,7 @@ current = 0
 class Enemy_Sprite(Widget):
     sprite = ObjectProperty("")
     weapon = ObjectProperty("")
+    head = ""
 
     def __init__(self,enemy_sprite,**kwargs):
         super().__init__(**kwargs)
@@ -21,6 +22,7 @@ class Enemy_Sprite(Widget):
         self.source = "enemy_anim"
         self.frame_sum = 28
         self.weapon_source = "empty_slot"
+        self.head_source = ""
         self.sprite = enemy_sprite
         self.set_sprite()
                 

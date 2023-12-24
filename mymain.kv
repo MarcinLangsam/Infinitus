@@ -14,6 +14,7 @@ WindowManger:
     game_over: game_over
     battle_result: battle_result
     character_creation: character_creation
+    map: map
     tutorial: tutorial
     end: end
 
@@ -52,6 +53,10 @@ WindowManger:
     Character_Creation:
         id: character_creation
         name: "character_creation"
+        manager: screen_manager
+    Map:
+        id: map
+        name: "map"
         manager: screen_manager
     Tutorial:
         id: tutorial
@@ -192,14 +197,12 @@ WindowManger:
         halign: "center"
 <Character_Creation>:
     name: "character_creation"
-    size_hint: None, None
-    Image:
-        size_hint: None,None
-        allow_stretch: True
-        size: 1540,950
-        source: "graphics/plain_background.png"
-        pos: 0,0
-
+    on_pre_enter: root.setup_window()
+    #size_hint: None, None
+<Map>:
+    name: "map"
+    on_pre_enter: root.setup_window()
+    #size_hint: None, None
 <Main_Menu>:
     name: "main_menu"
     size_hint: None, None
@@ -217,7 +220,7 @@ WindowManger:
         source: "graphics/title.png"
 
     Button:
-        on_release: app.root.current = "menu"
+        on_release: app.root.current = "character_creation"
         pos: 650,460
         size: 200,130
         size_hint: None,None
@@ -319,8 +322,12 @@ WindowManger:
     on_pre_enter: root.setup_window()
         
 <Character_Sprite>:
-    size_hint: 0.17,0.3
+    size_hint: 0.17,0.33
     canvas:
+        Rectangle:
+            source: root.head
+            size: self.size
+            pos: self.pos
         Rectangle:
             source: root.sprite
             size: self.size

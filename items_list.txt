@@ -69,6 +69,28 @@ player.current_player.weapon += 5
 player.current_player.weapon -= 5
 Młot    |   BROŃ DWURĘCZNA\nObrażenia +5
 10
+_______________________________________
+graphics/animations/miedziany_sztylet.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Miedziany Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/animations/mlot_bojowy.png
+two_hand
+player.current_player.weapon += 10
+player.current_player.weapon -= 10
+Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
+10
+_______________________________________
+graphics/animations/pika.png
+two_hand_spear
+player.current_player.weapon += 3
+player.current_player.weapon -= 3
+Pika    |   BROŃ DWURĘCZNA\nObrażenia +3
+10
+_______________________________________
 _
 _
 _________OFF HAND ITEMS ____________
@@ -122,6 +144,13 @@ armor
 player.current_player.defence += 5
 player.current_player.defence -= 5
 Pancerz Testowy   |   PANCERZ\nPancerz +5
+1000
+_______________________________________
+graphics/animations/skorzany_pancerz.png
+armor
+player.current_player.defence += 5
+player.current_player.defence -= 5
+Fura skura i komora   |   PANCERZ\nPancerz +5
 1000
 _______________________________________
 _

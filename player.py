@@ -11,17 +11,19 @@ def level_up(character):
         character.lv += 1
 
 class Character_Sprite(Widget):
-    sprite = ObjectProperty("graphics/items/empty_slot_sprite_a.png")
-    weapon = ObjectProperty("graphics/items/empty_slot_sprite_w.png")
+    sprite = ObjectProperty("graphics/animations/empty_slot_sprite_a.png")
+    weapon = ObjectProperty("graphics/animations/empty_slot_sprite_w.png")
+    head = ObjectProperty("graphics/animations/glowa1_sprite.png")
 
     def __init__(self,character,type, **kwargs):
         super().__init__(**kwargs)
         self.time = 0.0
-        self.rate= 0.02
+        self.rate= 0.0001
         self.frame = 1
         self.source = "character_anim"
         self.frame_sum = 46
         self.weapon_source = "empty_slot"
+        self.head_source = "head1_anim"
         self.character = character
         self.set_sprite_weapon()
         self.set_sprite(type)
@@ -31,11 +33,12 @@ class Character_Sprite(Widget):
     def set_sprite(self,type):
         self.sprite = self.character.inventory["armor"][2]
         self.sprite = self.sprite[:-4]
-        self.anim = self.sprite[15:]
+        self.anim = type
+        self.source = self.sprite
+        self.source = self.sprite[20:]
         #self.sprite = self.sprite + "_sprite_a.png"
         self.sprite = self.sprite + "_sprite_a_"+type+".png"
-        self.anim = self.anim + "_"+type
-        print(self.anim)
+        #self.anim = self.anim + "_"+type
     def set_sprite_weapon(self):
         self.weapon = self.character.inventory["main_hand"][2]
         self.weapon = self.weapon[:-4]
@@ -43,7 +46,7 @@ class Character_Sprite(Widget):
     def set_weapon(self):
         self.weapon_source = self.character.inventory["main_hand"][2]
         self.weapon_source = self.weapon_source[:-4]
-        self.weapon_source = self.weapon_source[15:]
+        self.weapon_source = self.weapon_source[20:]
     def set_anim_parameters(self,time,rate,frame,frame_sum):
         self.time = time
         self.rate = rate
@@ -65,9 +68,9 @@ class Character(Widget):
         self.weapon = 0
         self.damage = self.STR+self.weapon
         self.defence = 0
-        self.crit_chance = 0.01*self.DEX
-        self.dodge_chance = 0.02*self.DEX
-        self.EXP_boost = 0.01*self.INT
+        self.crit_chance = round(0.01*self.DEX,2)
+        self.dodge_chance = round(0.02*self.DEX,2)
+        self.EXP_boost = round(0.01*self.INT,2)
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 20
@@ -76,10 +79,12 @@ class Character(Widget):
         self.status = list()
 
         self.inventory = {
-            "main_hand" : [768-200,432,"graphics/items/empty_slot.png","main_hand"],
-            "off_hand" : [768+130,432,"graphics/items/empty_slot.png","off_hand"],
-            "armor" : [730,432+180,"graphics/items/empty_slot.png","armor"],
-            "accessory" : [730,432-180,"graphics/items/empty_slot.png","accessory"],
+            "main_hand" : [568,542,"graphics/items/empty_slot.png","main_hand"],
+            "off_hand" : [568,432,"graphics/items/empty_slot.png","off_hand"],
+            "armor" : [568,322,"graphics/animations/skorzany_pancerz.png","armor"],
+            "accessory" : [918,542,"graphics/items/empty_slot.png","accessory"],
+            "accessory2" : [918,432,"graphics/items/empty_slot.png","accessory"],
+            "accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
             0 : [50,750,"graphics/items/miecz_poltorareczny.png","item"],
             1 : [150,750,"graphics/items/laska_maga.png","item"],
             2 : [250,750,"graphics/items/majcher_lotra.png","item"], 
@@ -97,13 +102,13 @@ class Character(Widget):
             14 : [450,550,"graphics/items/miecz_z_brazu.png","item"],
             15 : [50,450,"graphics/items/miecz_jednoreczny.png","item"],
             16 : [150,450,"graphics/items/miecz_dwureczny.png","item"],
-            17 : [250,450,"graphics/items/test_armor.png","item"],
-            18 : [350,450,"graphics/items/test_armor.png","item"],
-            19 : [450,450,"graphics/items/test_armor.png","item"],
+            17 : [250,450,"graphics/animations/skorzany_pancerz.png","item"],
+            18 : [350,450,"graphics/animations/skorzany_pancerz.png","item"],
+            19 : [450,450,"graphics/animations/skorzany_pancerz.png","item"],
             20 : [50,350,"graphics/items/mlot.png","item"],
-            21 : [150,350,"graphics/items/empty_slot.png","item"],
-            22 : [250,350,"graphics/items/empty_slot.png","item"],
-            23 : [350,350,"graphics/items/empty_slot.png","item"],
+            21 : [150,350,"graphics/animations/miedziany_sztylet.png","item"],
+            22 : [250,350,"graphics/animations/mlot_bojowy.png","item"],
+            23 : [350,350,"graphics/animations/pika.png","item"],
             24 : [450,350,"graphics/items/empty_slot.png","item"],
             25 : [50,250,"graphics/items/empty_slot.png","item"],
             26 : [150,250,"graphics/items/empty_slot.png","item"],
@@ -162,6 +167,28 @@ class Character(Widget):
             78 : [1250,50,"graphics/items/empty_slot.png","item"],
             79 : [1350,50,"graphics/items/empty_slot.png","item"],
         }
+    def reset_player(self):
+        self.name = "Player"
+        self.lv = 1
+        self.MAX_HP = 100
+        self.MAX_MP = 100
+        self.HP = 100
+        self.MP = 100
+        self.STR = 10
+        self.DEX = 10
+        self.INT = 10
+        self.weapon = 0
+        self.damage = self.STR+self.weapon
+        self.defence = 0
+        self.crit_chance = round(0.01*self.DEX,2)
+        self.dodge_chance = round(0.02*self.DEX,2)
+        self.EXP_boost = round(0.01*self.INT,2)
+        self.EXP = 0
+        self.EXP_To_Lv = 100
+        self.stat_points = 20
+        self.skill_points = 18
+        self.skill = {}
+        self.status = list()
 
 main_player = Character()
 main_player.name = "Gracz Pierwszy"

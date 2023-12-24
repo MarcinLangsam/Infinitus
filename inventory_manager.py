@@ -70,21 +70,21 @@ class ItemSlot(DragBehavior, Widget):
             ##########################
 
             elif self.check_collision is True and self.check_touch is True:
-                if self.select in range (0,40) or self.select in ["main_hand","off_hand","armor","accessory"]:
+                if self.select in range (0,40) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
                     if self.drop in range(39,80) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
                         player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]/10)
                         update_gold()
                         tp.text_pop.text = "Sprzedano przedmiot"
                         self.switch_items_in_invetory()
                     
-                    elif self.drop in ["main_hand","off_hand","armor","accessory"]: #zakładnie przedmitów
-                        if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword"]:
+                    elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]: #zakładnie przedmitów
+                        if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Używasz broni dwuręcznej!"
-                        elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
+                        elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
-                        elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword"] and player.current_player.inventory[self.drop][3] == "main_hand":
+                        elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory[self.drop][3] == "main_hand":
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()
@@ -98,7 +98,7 @@ class ItemSlot(DragBehavior, Widget):
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Nie możesz założyć tutaj tego przedmiotu"
                     elif self.drop in range(0,40):
-                        if self.select in ["main_hand","off_hand","armor","accessory"]:
+                        if self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()
@@ -141,7 +141,7 @@ class ItemSlot(DragBehavior, Widget):
                             if player.current_player.inventory[x][2] == "graphics/items/empty_slot.png":
                                 self.t = ""
                             else:
-                                if x in range(0,40) or x in ["main_hand","off_hand","armor","accessory"]:
+                                if x in range(0,40) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
                                     self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość sprzedarzy: "+ str((items.item_list[player.current_player.inventory[x][2]][4]/10))
                                 else:
                                     self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość kupna: "+ str(items.item_list[player.current_player.inventory[x][2]][4])
@@ -186,6 +186,8 @@ class Items(Widget):
         exec(self.item_list[player.current_player.inventory["off_hand"][2]][1])
         exec(self.item_list[player.current_player.inventory["armor"][2]][1])
         exec(self.item_list[player.current_player.inventory["accessory"][2]][1])
+        exec(self.item_list[player.current_player.inventory["accessory2"][2]][1])
+        exec(self.item_list[player.current_player.inventory["accessory3"][2]][1])
         UI.ui.stats_refresh(player.current_player)
 
     def unequip(self):  
@@ -193,6 +195,8 @@ class Items(Widget):
         exec(self.item_list[player.current_player.inventory["off_hand"][2]][2])
         exec(self.item_list[player.current_player.inventory["armor"][2]][2])
         exec(self.item_list[player.current_player.inventory["accessory"][2]][2])
+        exec(self.item_list[player.current_player.inventory["accessory2"][2]][2])
+        exec(self.item_list[player.current_player.inventory["accessory3"][2]][2])
         UI.ui.stats_refresh(player.current_player)
 
     def load_items(self):

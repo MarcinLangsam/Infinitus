@@ -22,7 +22,6 @@ class Team(Screen):
         self.current_button = self.main_player_button
         self.exp_bar = EXPBar()
         self.tooltip = tt.Tooltip()
-
     def change_screen(self):
         self.clear_widgets()
         self.manager.current = "menu"
@@ -34,10 +33,14 @@ class Team(Screen):
             im.inventory["off_hand"] = im.ItemSlot(pos=(player.current_player.inventory["off_hand"][0],player.current_player.inventory["off_hand"][1]), sprite=(player.current_player.inventory["off_hand"][2]))
             im.inventory["armor"] = im.ItemSlot(pos=(player.current_player.inventory["armor"][0],player.current_player.inventory["armor"][1]), sprite=(player.current_player.inventory["armor"][2]))
             im.inventory["accessory"] = im.ItemSlot(pos=(player.current_player.inventory["accessory"][0],player.current_player.inventory["accessory"][1]), sprite=(player.current_player.inventory["accessory"][2]))
+            im.inventory["accessory2"] = im.ItemSlot(pos=(player.current_player.inventory["accessory2"][0],player.current_player.inventory["accessory2"][1]), sprite=(player.current_player.inventory["accessory2"][2]))
+            im.inventory["accessory3"] = im.ItemSlot(pos=(player.current_player.inventory["accessory3"][0],player.current_player.inventory["accessory3"][1]), sprite=(player.current_player.inventory["accessory3"][2]))
             self.add_widget(im.inventory["main_hand"])
             self.add_widget(im.inventory["off_hand"])
             self.add_widget(im.inventory["armor"])
             self.add_widget(im.inventory["accessory"])
+            self.add_widget(im.inventory["accessory2"])
+            self.add_widget(im.inventory["accessory3"])
             for x in range(0,40):
                 im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
                 self.add_widget(im.inventory[x])
@@ -64,11 +67,11 @@ class Team(Screen):
             for x in list(UI.stats.keys())[0:-1]:
                 UI.stats[x].bind(size=UI.stats[x].setter("text_size"))
                 self.add_widget(UI.stats[x])
-            self.add_widget(am.Stat_Button("HP",pos=(1380,725)))
-            self.add_widget(am.Stat_Button("MP",pos=(1380,680)))
-            self.add_widget(am.Stat_Button("STR",pos=(1380,635)))
-            self.add_widget(am.Stat_Button("DEX",pos=(1380,595)))
-            self.add_widget(am.Stat_Button("INT",pos=(1380,550)))
+            self.add_widget(am.Stat_Button("HP","Zwiększa zdrowię o 15",pos=(1380,725)))
+            self.add_widget(am.Stat_Button("MP","Zwiększa manę o 10",pos=(1380,680)))
+            self.add_widget(am.Stat_Button("STR","Zwiększa obrażenia o 1\nWpływa na umiejętności wojownika",pos=(1380,635)))
+            self.add_widget(am.Stat_Button("DEX","Decyduje o kolejce w walce\nZwiększa szansę na unik i cios krytyczny\nWpływa na umięjętności łotra",pos=(1380,595)))
+            self.add_widget(am.Stat_Button("INT","Zwiększa bonus do doświadczenia\nWływa na umiejętności maga",pos=(1380,550)))
             
             UI.ui.stats_refresh(player.current_player)
             im.check_whitch_screen(self.manager.current)
@@ -79,10 +82,12 @@ class Team(Screen):
             
             
 
-            self.add_widget(Label(text="Broń",font_size=18,pos=(-165,-15)))
-            self.add_widget(Label(text="Druga ręka",font_size=18,pos=(165,-15)))
-            self.add_widget(Label(text="Pancerz",font_size=18,pos=(0,165)))
-            self.add_widget(Label(text="Akcesoria",font_size=18,pos=(0,-195)))
+            self.add_widget(Label(text="Broń",font_size=18,pos=(-165,95)))
+            self.add_widget(Label(text="Druga ręka",font_size=18,pos=(-165,-15)))
+            self.add_widget(Label(text="Pancerz",font_size=18,pos=(-165,-125)))
+            self.add_widget(Label(text="Akcesoria1",font_size=18,pos=(185,95)))
+            self.add_widget(Label(text="Akcesoria2",font_size=18,pos=(185,-15)))
+            self.add_widget(Label(text="Akcesoria3",font_size=18,pos=(185,-125)))
             self.add_widget(self.tooltip)
             self.refresh_items()
             
@@ -110,6 +115,7 @@ class Team(Screen):
         self.current_sprite.set_sprite(im.items.item_list[player.current_player.inventory["main_hand"][2]][0])
         #self.current_sprite.set_sprite()
         self.current_sprite.set_sprite_weapon()
+        self.current_sprite.set_weapon()
         self.add_widget(self.current_sprite)
         self.remove_widget(self.tooltip)
         self.add_widget(self.tooltip)

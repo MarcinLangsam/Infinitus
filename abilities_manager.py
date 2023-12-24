@@ -112,10 +112,27 @@ class Skills():
         f.close()
 
 class Stat_Button(Button):
-    def __init__(self,stat,**kwargs):
+    def __init__(self,stat,description,**kwargs):
         super().__init__(**kwargs)
         self.stat = stat
         self.bind(on_release=self.on_toggle)
+        Window.bind(mouse_pos=self.on_mouse_pos)
+        self.description = description
+
+    def on_mouse_pos(self, window, pos):
+        if not self.get_root_window():
+            return
+        Clock.unschedule(self.display_tooltip)
+        self.close_tooltip()
+        if self.collide_point(*self.to_widget(*pos)):
+            self.t = self.description
+            self.p = (800,550)
+            Clock.schedule_once(self.display_tooltip, 0.5)
+
+    def close_tooltip(self, *args):
+        tt.clear_tooltip(self.parent.tooltip)
+    def display_tooltip(self, *args):
+        tt.set_tooltip(self.parent.tooltip, self.t, self.p)
 
     def on_toggle(self, touch):
         if isinstance(self.last_touch, MouseMotionEvent):
