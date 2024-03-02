@@ -16,7 +16,7 @@ class Shop(Screen):
         self.manager.current = "menu"
     def setup_window(self):
         self.add_widget(Image(source="graphics/plain_background.png", size=(1540,950), pos=(0,0), size_hint=(None,None), allow_stretch=True))
-        for x in range(0,80):
+        for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
 
@@ -32,10 +32,10 @@ class Shop(Screen):
         self.add_widget(self.tooltip)
 
     def set_shop_content(self):
-        for x in range(40,40+len(self.shop_content[current_stage])):
-            im.inventory[x].sprite = str(self.shop_content[current_stage][x-40])
-            player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-40])
+        for x in range(48,48+len(self.shop_content[current_stage])):
+            im.inventory[x].sprite = str(self.shop_content[current_stage][x-48])
+            player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-48])
 
     shop_content={
-        1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png"]
+        1:["graphics/animations/pierscien_many.png","graphics/animations/pierscien_zdrowia.png","graphics/animations/pierscien_sily.png","graphics/animations/pierscien_zrecznosci.png","graphics/animations/pierscien_inteligencji.png"]
     }

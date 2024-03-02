@@ -13,82 +13,42 @@ one_hand
 0
 _
 _
-____________MAIN HAND ITEMS____________
-graphics/items/zelazny_miecz.png
-main_hand
-player.current_player.weapon += 10
-player.current_player.weapon -= 10
-Żelazny Miecz  |   BROŃ\nObrażenia +10
-50
-_______________________________________
-graphics/items/miecz_z_brazu.png
-main_hand
-player.current_player.weapon += 5
-player.current_player.weapon -= 5
-Miecz z brązu    |   BROŃ\nObrażenia +5
-10
-_______________________________________
-graphics/items/miecz_poltorareczny.png
-main_hand
-player.current_player.weapon += 15
-player.current_player.weapon -= 15
-Półtorak    |   BROŃ\nObrażenia +15
-300
-_______________________________________
-graphics/items/laska_maga.png
-main_hand
-player.current_player.weapon += 5\nplayer.current_player.INT +=5
-player.current_player.weapon -= 5\nplayer.current_player.INT -=5
-Laska Maga    |   BROŃ\nObrażenia +5  Iteligencja +5
-450
-_______________________________________
-graphics/items/majcher_lotra.png
-main_hand
-player.current_player.weapon += 8\nplayer.current_player.DEX +=5
-player.current_player.weapon -= 8\nplayer.current_player.DEX -=5
-Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5
-450
-_______________________________________
-graphics/items/miecz_jednoreczny.png
+____________TRASH SLOT____________
+graphics/animations/trash.png
 one_hand
-player.current_player.weapon += 5
-player.current_player.weapon -= 5
-Miecz jednoręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +5
-10
-_______________________________________
-graphics/items/miecz_dwureczny.png
-two_hand_sword
-player.current_player.weapon += 5
-player.current_player.weapon -= 5
-Miecz dwuręczny    |   BROŃ DWÓRĘCZNA\nObrażenia +5
-10
-_______________________________________
-graphics/items/mlot.png
-two_hand
-player.current_player.weapon += 5
-player.current_player.weapon -= 5
-Młot    |   BROŃ DWURĘCZNA\nObrażenia +5
-10
-_______________________________________
-graphics/animations/miedziany_sztylet.png
+ 
+ 
+ 
+0
+_
+_
+____________MAIN HAND ITEMS____________
+graphics/items/miedziany_sztylet.png
 one_hand
 player.current_player.weapon += 5
 player.current_player.weapon -= 5
 Miedziany Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +5
 10
 _______________________________________
-graphics/animations/mlot_bojowy.png
+graphics/items/mlot_bojowy.png
 two_hand
 player.current_player.weapon += 10
 player.current_player.weapon -= 10
 Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
 10
 _______________________________________
-graphics/animations/pika.png
+graphics/items/pika.png
 two_hand_spear
 player.current_player.weapon += 3
 player.current_player.weapon -= 3
 Pika    |   BROŃ DWURĘCZNA\nObrażenia +3
+10
+_______________________________________
+graphics/items/miecz_rycerski.png
+two_hand_sword
+player.current_player.weapon += 15
+player.current_player.weapon -= 15
+Miecz Rycerski    |   BROŃ DWURĘCZNA\nObrażenia +15
 10
 _______________________________________
 _
@@ -101,13 +61,6 @@ player.current_player.defence -= 5
 Drewniany Puklerz   |   DRUGA RĘKA\nPancerz +5
 300
 _______________________________________
-graphics/items/ksiega_czarow.png
-off_hand
-player.current_player.INT += 5
-player.current_player.INT -= 5
-Księga Czarów   |   DRUGA RĘKA\nInteligencja +5
-300
-_______________________________________
 _
 _
 ______________ARMORS __________________
@@ -116,41 +69,6 @@ armor
 player.current_player.defence += 5
 player.current_player.defence -= 5
 Skórzany Pancerz   |   PANCERZ\nPancerz +5
-1000
-_______________________________________
-graphics/items/szata_maga.png
-armor
-player.current_player.defence += 5\nplayer.current_player.INT += 5
-player.current_player.defence -= 5\nplayer.current_player.INT -= 5
-Szata Maga   |   PANCERZ\nPancerz +5  Inteligencja +5
-2000
-_______________________________________
-graphics/items/zbroja_plytowa.png
-armor
-player.current_player.defence += 10\nplayer.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
-player.current_player.defence -= 10\nplayer.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30
-Zbroja Płytowa   |   PANCERZ\nPancerz +10  Zdrowie +30
-2000
-_______________________________________
-graphics/items/kaftan_zlodzieja.png
-armor
-player.current_player.defence += 7\nplayer.current_player.weapon += 5
-player.current_player.defence -= 7\nplayer.current_player.weapon -= 5
-Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5
-2000
-_______________________________________
-graphics/items/test_armor.png
-armor
-player.current_player.defence += 5
-player.current_player.defence -= 5
-Pancerz Testowy   |   PANCERZ\nPancerz +5
-1000
-_______________________________________
-graphics/animations/skorzany_pancerz.png
-armor
-player.current_player.defence += 5
-player.current_player.defence -= 5
-Fura skura i komora   |   PANCERZ\nPancerz +5
 1000
 _______________________________________
 _

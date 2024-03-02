@@ -11,42 +11,48 @@ def level_up(character):
         character.lv += 1
 
 class Character_Sprite(Widget):
-    sprite = ObjectProperty("graphics/animations/empty_slot_sprite_a.png")
-    weapon = ObjectProperty("graphics/animations/empty_slot_sprite_w.png")
-    head = ObjectProperty("graphics/animations/glowa1_sprite.png")
+    sprite = ObjectProperty("graphics/sprites/empty_slot_sprite_a.png")
+    weapon = ObjectProperty("graphics/sprites/empty_slot_sprite_w.png")
+    head = ObjectProperty("graphics/sprites/glowa2_sprite.png")
 
-    def __init__(self,character,type, **kwargs):
+    def __init__(self,character,type,head_source, **kwargs):
         super().__init__(**kwargs)
         self.time = 0.0
-        self.rate= 0.0001
+        self.rate= 0.00001
         self.frame = 1
         self.source = "character_anim"
         self.frame_sum = 46
         self.weapon_source = "empty_slot"
-        self.head_source = "head1_anim"
+        self.head_source = head_source
         self.character = character
+        self.portrait = ""
         self.set_sprite_weapon()
         self.set_sprite(type)
         self.set_weapon()
-        self.size_hint = (0.36,0.47)
-
+        self.set_head()
+        
     def set_sprite(self,type):
-        self.sprite = self.character.inventory["armor"][2]
-        self.sprite = self.sprite[:-4]
+        self.base = self.character.inventory["armor"][2]
+        self.base = self.base[:-4]
+        self.base = self.base[15:]
+        self.source = self.base
+        self.sprite = "graphics/sprites/"+self.base+"_sprite_a_"+type+".png"
         self.anim = type
-        self.source = self.sprite
-        self.source = self.sprite[20:]
-        #self.sprite = self.sprite + "_sprite_a.png"
-        self.sprite = self.sprite + "_sprite_a_"+type+".png"
-        #self.anim = self.anim + "_"+type
     def set_sprite_weapon(self):
-        self.weapon = self.character.inventory["main_hand"][2]
-        self.weapon = self.weapon[:-4]
-        self.weapon = self.weapon + "_sprite_w.png"
+
+        self.base = self.character.inventory["main_hand"][2]
+        self.base = self.base[:-4]
+        self.base = self.base[15:]
+        self.weapon = "graphics/sprites/"+self.base + "_sprite_w.png"
     def set_weapon(self):
-        self.weapon_source = self.character.inventory["main_hand"][2]
-        self.weapon_source = self.weapon_source[:-4]
-        self.weapon_source = self.weapon_source[20:]
+        self.base = self.character.inventory["main_hand"][2]
+        self.base = self.base[:-4]
+        self.base = self.base[15:]
+        self.weapon_source = self.base
+    def set_head(self):
+        self.head = "graphics/sprites/"+self.head_source+"_sprite.png"
+        self.portrait = "graphics/sprites/"+self.head_source+"_portrait.png"
+        print(self.portrait)
     def set_anim_parameters(self,time,rate,frame,frame_sum):
         self.time = time
         self.rate = rate
@@ -63,7 +69,7 @@ class Character(Widget):
         self.HP = 100
         self.MP = 100
         self.STR = 10
-        self.DEX = 10
+        self.DEX = 30
         self.INT = 10
         self.weapon = 0
         self.damage = self.STR+self.weapon
@@ -77,95 +83,112 @@ class Character(Widget):
         self.skill_points = 18
         self.skill = {}
         self.status = list()
+        self.head = "glowa1"
 
         self.inventory = {
             "main_hand" : [568,542,"graphics/items/empty_slot.png","main_hand"],
             "off_hand" : [568,432,"graphics/items/empty_slot.png","off_hand"],
-            "armor" : [568,322,"graphics/animations/skorzany_pancerz.png","armor"],
+            "armor" : [568,322,"graphics/items/empty_slot.png","armor"],
             "accessory" : [918,542,"graphics/items/empty_slot.png","accessory"],
             "accessory2" : [918,432,"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
-            0 : [50,750,"graphics/items/miecz_poltorareczny.png","item"],
-            1 : [150,750,"graphics/items/laska_maga.png","item"],
-            2 : [250,750,"graphics/items/majcher_lotra.png","item"], 
-            3 : [350,750,"graphics/items/zbroja_plytowa.png","item"],
-            4 : [450,750,"graphics/items/kaftan_zlodzieja.png","item"],
-            5 : [50,650,"graphics/items/szata_maga.png","item"],
-            6 : [150,650,"graphics/items/drewniany_puklerz.png","item"],
-            7 : [250,650,"graphics/items/ksiega_czarow.png","item"],
-            8 : [350,650,"graphics/items/skorzany_pancerz.png","item"],
-            9 : [450,650,"graphics/items/skorzany_pancerz.png","item"],
-            10 : [50,550,"graphics/items/skorzany_pancerz.png","item"],
-            11 : [150,550,"graphics/items/zelazny_miecz.png","item"],
-            12 : [250,550,"graphics/items/zelazny_miecz.png","item"],
-            13 : [350,550,"graphics/items/miecz_z_brazu.png","item"],
-            14 : [450,550,"graphics/items/miecz_z_brazu.png","item"],
-            15 : [50,450,"graphics/items/miecz_jednoreczny.png","item"],
-            16 : [150,450,"graphics/items/miecz_dwureczny.png","item"],
-            17 : [250,450,"graphics/animations/skorzany_pancerz.png","item"],
-            18 : [350,450,"graphics/animations/skorzany_pancerz.png","item"],
-            19 : [450,450,"graphics/animations/skorzany_pancerz.png","item"],
-            20 : [50,350,"graphics/items/mlot.png","item"],
-            21 : [150,350,"graphics/animations/miedziany_sztylet.png","item"],
-            22 : [250,350,"graphics/animations/mlot_bojowy.png","item"],
-            23 : [350,350,"graphics/animations/pika.png","item"],
-            24 : [450,350,"graphics/items/empty_slot.png","item"],
-            25 : [50,250,"graphics/items/empty_slot.png","item"],
-            26 : [150,250,"graphics/items/empty_slot.png","item"],
-            27 : [250,250,"graphics/items/empty_slot.png","item"],
-            28 : [350,250,"graphics/items/empty_slot.png","item"],
-            29 : [450,250,"graphics/items/empty_slot.png","item"],
-            30 : [50,150,"graphics/items/empty_slot.png","item"],
-            31 : [150,150,"graphics/items/empty_slot.png","item"],
-            32 : [250,150,"graphics/items/empty_slot.png","item"],
-            33 : [350,150,"graphics/items/empty_slot.png","item"],
-            34 : [450,150,"graphics/items/empty_slot.png","item"],
-            35 : [50,50,"graphics/items/empty_slot.png","item"],
-            36 : [150,50,"graphics/items/empty_slot.png","item"],
-            37 : [250,50,"graphics/items/empty_slot.png","item"],
-            38 : [350,50,"graphics/items/empty_slot.png","item"],
-            39 : [450,50,"graphics/items/empty_slot.png","item"],
+            0 : [120,650,"graphics/items/skorzany_pancerz.png","item"],
+            1 : [190,650,"graphics/items/skorzany_pancerz.png","item"],
+            2 : [260,650,"graphics/items/skorzany_pancerz.png","item"], 
+            3 : [330,650,"graphics/items/miedziany_sztylet.png","item"],
+            4 : [400,650,"graphics/items/mlot_bojowy.png","item"],
+            5 : [470,650,"graphics/items/pika.png","item"],
+            6 : [120,580,"graphics/items/miecz_rycerski.png","item"],
+            7 : [190,580,"graphics/items/empty_slot.png","item"],
+            8 : [260,580,"graphics/items/empty_slot.png","item"],
+            9 : [330,580,"graphics/items/empty_slot.png","item"],
+            10 : [400,580,"graphics/items/empty_slot.png","item"],
+            11 : [470,580,"graphics/items/empty_slot.png","item"],
+            12 : [120,510,"graphics/items/empty_slot.png","item"],
+            13 : [190,510,"graphics/items/empty_slot.png","item"],
+            14 : [260,510,"graphics/items/empty_slot.png","item"],
+            15 : [330,510,"graphics/items/empty_slot.png","item"],
+            16 : [400,510,"graphics/items/empty_slot.png","item"],
+            17 : [470,510,"graphics/items/empty_slot.png","item"],
+            18 : [120,440,"graphics/items/empty_slot.png","item"],
+            19 : [190,440,"graphics/items/empty_slot.png","item"],
+            20 : [260,440,"graphics/items/empty_slot.png","item"],
+            21 : [330,440,"graphics/items/empty_slot.png","item"],
+            22 : [400,440,"graphics/items/empty_slot.png","item"],
+            23 : [470,440,"graphics/items/empty_slot.png","item"],
+            24 : [120,370,"graphics/items/empty_slot.png","item"],
+            25 : [190,370,"graphics/items/empty_slot.png","item"],
+            26 : [260,370,"graphics/items/empty_slot.png","item"],
+            27 : [330,370,"graphics/items/empty_slot.png","item"],
+            28 : [400,370,"graphics/items/empty_slot.png","item"],
+            29 : [470,370,"graphics/items/empty_slot.png","item"],
+            30 : [120,300,"graphics/items/empty_slot.png","item"],
+            31 : [190,300,"graphics/items/empty_slot.png","item"],
+            32 : [260,300,"graphics/items/empty_slot.png","item"],
+            33 : [330,300,"graphics/items/empty_slot.png","item"],
+            34 : [400,300,"graphics/items/empty_slot.png","item"],
+            35 : [470,300,"graphics/items/empty_slot.png","item"],
+            36 : [120,230,"graphics/items/empty_slot.png","item"],
+            37 : [190,230,"graphics/items/empty_slot.png","item"],
+            38 : [260,230,"graphics/items/empty_slot.png","item"],
+            39 : [330,230,"graphics/items/empty_slot.png","item"],
+            40 : [400,230,"graphics/items/empty_slot.png","item"],
+            41 : [470,230,"graphics/items/empty_slot.png","item"],
+            42 : [120,160,"graphics/items/empty_slot.png","item"],
+            43 : [190,160,"graphics/items/empty_slot.png","item"],
+            44 : [260,160,"graphics/items/empty_slot.png","item"],
+            45 : [330,160,"graphics/items/empty_slot.png","item"],
+            46 : [400,160,"graphics/items/empty_slot.png","item"],
+            47 : [470,160,"graphics/items/empty_slot.png","item"],
             #część ekwipunku przeznaczona dla sklepu oraz łupu po walce
-            40 : [950,750,"graphics/items/empty_slot.png","item"],
-            41 : [1050,750,"graphics/items/empty_slot.png","item"],
-            42 : [1150,750,"graphics/items/empty_slot.png","item"], 
-            43 : [1250,750,"graphics/items/empty_slot.png","item"],
-            44 : [1350,750,"graphics/items/empty_slot.png","item"],
-            45 : [950,650,"graphics/items/empty_slot.png","item"],
-            46 : [1050,650,"graphics/items/empty_slot.png","item"],
-            47 : [1150,650,"graphics/items/empty_slot.png","item"],
-            48 : [1250,650,"graphics/items/empty_slot.png","item"],
-            49 : [1350,650,"graphics/items/empty_slot.png","item"],
-            50 : [950,550,"graphics/items/empty_slot.png","item"],
-            51 : [1050,550,"graphics/items/empty_slot.png","item"],
-            52 : [1150,550,"graphics/items/empty_slot.png","item"],
-            53 : [1250,550,"graphics/items/empty_slot.png","item"],
-            54 : [1350,550,"graphics/items/empty_slot.png","item"],
-            55 : [950,450,"graphics/items/empty_slot.png","item"],
-            56 : [1050,450,"graphics/items/empty_slot.png","item"],
-            57 : [1150,450,"graphics/items/empty_slot.png","item"],
-            58 : [1250,450,"graphics/items/empty_slot.png","item"],
-            59 : [1350,450,"graphics/items/empty_slot.png","item"],
-            60 : [950,350,"graphics/items/empty_slot.png","item"],
-            61 : [1050,350,"graphics/items/empty_slot.png","item"],
-            62 : [1150,350,"graphics/items/empty_slot.png","item"],
-            63 : [1250,350,"graphics/items/empty_slot.png","item"],
-            64 : [1350,350,"graphics/items/empty_slot.png","item"],
-            65 : [950,250,"graphics/items/empty_slot.png","item"],
-            66 : [1050,250,"graphics/items/empty_slot.png","item"],
-            67 : [1150,250,"graphics/items/empty_slot.png","item"],
-            68 : [1250,250,"graphics/items/empty_slot.png","item"],
-            69 : [1350,250,"graphics/items/empty_slot.png","item"],
-            70 : [950,150,"graphics/items/empty_slot.png","item"],
-            71 : [1050,150,"graphics/items/empty_slot.png","item"],
-            72 : [1150,150,"graphics/items/empty_slot.png","item"],
-            73 : [1250,150,"graphics/items/empty_slot.png","item"],
-            74 : [1350,150,"graphics/items/empty_slot.png","item"],
-            75 : [950,50,"graphics/items/empty_slot.png","item"],
-            76 : [1050,50,"graphics/items/empty_slot.png","item"],
-            77 : [1150,50,"graphics/items/empty_slot.png","item"],
-            78 : [1250,50,"graphics/items/empty_slot.png","item"],
-            79 : [1350,50,"graphics/items/empty_slot.png","item"],
+            48 : [1050,750,"graphics/items/empty_slot.png","item"],
+            49 : [1120,750,"graphics/items/empty_slot.png","item"],
+            50 : [1190,750,"graphics/items/empty_slot.png","item"], 
+            51 : [1260,750,"graphics/items/empty_slot.png","item"],
+            52 : [1330,750,"graphics/items/empty_slot.png","item"],
+            53 : [1400,750,"graphics/items/empty_slot.png","item"],
+            54 : [1050,680,"graphics/items/empty_slot.png","item"],
+            55 : [1120,680,"graphics/items/empty_slot.png","item"],
+            56 : [1190,680,"graphics/items/empty_slot.png","item"],
+            57 : [1260,680,"graphics/items/empty_slot.png","item"],
+            58 : [1330,680,"graphics/items/empty_slot.png","item"],
+            59 : [1400,680,"graphics/items/empty_slot.png","item"],
+            60 : [1050,610,"graphics/items/empty_slot.png","item"],
+            61 : [1120,610,"graphics/items/empty_slot.png","item"],
+            62 : [1190,610,"graphics/items/empty_slot.png","item"],
+            63 : [1260,610,"graphics/items/empty_slot.png","item"],
+            64 : [1330,610,"graphics/items/empty_slot.png","item"],
+            65 : [1400,610,"graphics/items/empty_slot.png","item"],
+            66 : [1050,540,"graphics/items/empty_slot.png","item"],
+            67 : [1120,540,"graphics/items/empty_slot.png","item"],
+            68 : [1190,540,"graphics/items/empty_slot.png","item"],
+            69 : [1260,540,"graphics/items/empty_slot.png","item"],
+            70 : [1330,540,"graphics/items/empty_slot.png","item"],
+            71 : [1400,540,"graphics/items/empty_slot.png","item"],
+            72 : [1050,470,"graphics/items/empty_slot.png","item"],
+            73 : [1120,470,"graphics/items/empty_slot.png","item"],
+            74 : [1190,470,"graphics/items/empty_slot.png","item"],
+            75 : [1260,470,"graphics/items/empty_slot.png","item"],
+            76 : [1330,470,"graphics/items/empty_slot.png","item"],
+            77 : [1400,470,"graphics/items/empty_slot.png","item"],
+            78 : [1050,400,"graphics/items/empty_slot.png","item"],
+            79 : [1120,400,"graphics/items/empty_slot.png","item"],
+            80 : [1190,400,"graphics/items/empty_slot.png","item"],
+            81 : [1260,400,"graphics/items/empty_slot.png","item"],
+            82 : [1330,400,"graphics/items/empty_slot.png","item"],
+            83 : [1400,400,"graphics/items/empty_slot.png","item"],
+            84 : [1050,330,"graphics/items/empty_slot.png","item"],
+            85 : [1120,330,"graphics/items/empty_slot.png","item"],
+            86 : [1190,330,"graphics/items/empty_slot.png","item"],
+            87 : [1260,330,"graphics/items/empty_slot.png","item"],
+            88 : [1330,330,"graphics/items/empty_slot.png","item"],
+            89 : [1400,330,"graphics/items/empty_slot.png","item"],
+            90 : [1050,260,"graphics/items/empty_slot.png","item"],
+            91 : [1120,260,"graphics/items/empty_slot.png","item"],
+            92 : [1190,260,"graphics/items/empty_slot.png","item"],
+            93 : [1260,260,"graphics/items/empty_slot.png","item"],
+            94 : [1330,260,"graphics/items/empty_slot.png","item"],
+            95 : [1400,260,"graphics/items/empty_slot.png","item"],
         }
     def reset_player(self):
         self.name = "Player"
@@ -197,7 +220,7 @@ companion1 = Character()
 companion1.name = "Gracz Drugi"
 companion2 = Character()
 companion2.name = "Gracz Trzeci"
-
+       
 team = list()
 team.append(main_player)
 team.append(companion1)

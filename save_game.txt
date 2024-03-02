@@ -1,4 +1,4 @@
-player.main_player.name = "Player"
+player.main_player.name = "Bartosz"
 player.main_player.lv = 1
 player.main_player.MAX_HP = 100
 player.main_player.MAX_MP = 100
@@ -7,8 +7,8 @@ player.main_player.MP = 100
 player.main_player.STR = 15
 player.main_player.DEX = 10
 player.main_player.INT = 10
-player.main_player.weapon = 3
-player.main_player.damage = 18
+player.main_player.weapon = 10
+player.main_player.damage = 25
 player.main_player.defence = 5
 player.main_player.crit_chance = 0.1
 player.main_player.dodge_chance = 0.2
@@ -16,10 +16,16 @@ player.main_player.EXP_boost = 0.1
 player.main_player.EXP = 0
 player.main_player.EXP_To_Lv = 100
 player.main_player.stat_points = 20
-player.main_player.skill_points = 18
-player.main_player.inventory["main_hand"][2] = "graphics/animations/pika.png"
+player.main_player.skill_points = 12
+player.main_player.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.main_player.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
+player.main_player.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
+player.main_player.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
+player.main_player.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
+player.main_player.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
+player.main_player.inventory["main_hand"][2] = "graphics/items/mlot_bojowy.png"
 player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory["armor"][2] = "graphics/animations/skorzany_pancerz.png"
+player.main_player.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
@@ -30,21 +36,27 @@ player.companion1.MAX_MP = 100
 player.companion1.HP = 100
 player.companion1.MP = 100
 player.companion1.STR = 10
-player.companion1.DEX = 10
+player.companion1.DEX = 30
 player.companion1.INT = 10
-player.companion1.weapon = 10
-player.companion1.damage = 20
+player.companion1.weapon = 5
+player.companion1.damage = 15
 player.companion1.defence = 5
-player.companion1.crit_chance = 0.1
-player.companion1.dodge_chance = 0.2
+player.companion1.crit_chance = 0.3
+player.companion1.dodge_chance = 0.6
 player.companion1.EXP_boost = 0.1
 player.companion1.EXP = 0
 player.companion1.EXP_To_Lv = 100
 player.companion1.stat_points = 20
-player.companion1.skill_points = 18
-player.companion1.inventory["main_hand"][2] = "graphics/animations/mlot_bojowy.png"
+player.companion1.skill_points = 12
+player.companion1.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.companion1.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
+player.companion1.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
+player.companion1.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
+player.companion1.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
+player.companion1.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
+player.companion1.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
 player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.companion1.inventory["armor"][2] = "graphics/animations/skorzany_pancerz.png"
+player.companion1.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
 player.companion1.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion1.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.companion1.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
@@ -55,45 +67,51 @@ player.companion2.MAX_MP = 100
 player.companion2.HP = 100
 player.companion2.MP = 100
 player.companion2.STR = 10
-player.companion2.DEX = 10
+player.companion2.DEX = 30
 player.companion2.INT = 10
-player.companion2.weapon = 5
-player.companion2.damage = 15
+player.companion2.weapon = 15
+player.companion2.damage = 25
 player.companion2.defence = 5
-player.companion2.crit_chance = 0.1
-player.companion2.dodge_chance = 0.2
+player.companion2.crit_chance = 0.3
+player.companion2.dodge_chance = 0.6
 player.companion2.EXP_boost = 0.1
 player.companion2.EXP = 0
 player.companion2.EXP_To_Lv = 100
 player.companion2.stat_points = 20
-player.companion2.skill_points = 18
-player.companion2.inventory["main_hand"][2] = "graphics/animations/miedziany_sztylet.png"
+player.companion2.skill_points = 12
+player.companion2.skill["zamach"] = ["self.final_damage = 10+self.current_turn.STR*3",20,"graphics/skills/zamach.png","Zamach\nObszerny zamach zadaj¹cy:\n10+STR*3 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.companion2.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rekojescia.png","Og³uszenie\nAtak obuchowy powoduj¹cy og³uszenie\nCzas trwania: 1 tura, Pominiêcie tury\nKoszt MP: 30","active","melee","on_enemy"]
+player.companion2.skill["gniew"] = ["self.final_damage = 0\nself.action_status = 'gniew'",20,"graphics/skills/gniew.png","Gniew\nZwiêkszasz na chwilê swoj¹ si³ê\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","active","status","on_characters"]
+player.companion2.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2",10,"graphics/skills/kula_ognia.png","Kula Ognia\nPrzemiana magi w ogieñ zadaje:\n15+INT*2\nKoszt MP: 10","active","ranged","on_enemy"]
+player.companion2.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",15,"graphics/skills/leczenie.png","Uzdrowienie\nZaklêcie koj¹ce rany leczy:\nINT*10\nKoszt MP: 15","active","heal","on_characters"]
+player.companion2.skill["skupienie"] = ["self.final_damage = 0\nself.action_status = 'skupienie'",20,"graphics/skills/skupienie.png","Skupienie\nZwiêksza na chwilê twoj¹ inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","active","status","on_characters"]
+player.companion2.inventory["main_hand"][2] = "graphics/items/miecz_rycerski.png"
 player.companion2.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.companion2.inventory["armor"][2] = "graphics/animations/skorzany_pancerz.png"
+player.companion2.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
 player.companion2.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion2.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.companion2.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[0][2] = "graphics/items/miecz_poltorareczny.png"
-player.main_player.inventory[1][2] = "graphics/items/laska_maga.png"
-player.main_player.inventory[2][2] = "graphics/items/majcher_lotra.png"
-player.main_player.inventory[3][2] = "graphics/items/zbroja_plytowa.png"
-player.main_player.inventory[4][2] = "graphics/items/kaftan_zlodzieja.png"
-player.main_player.inventory[5][2] = "graphics/items/szata_maga.png"
-player.main_player.inventory[6][2] = "graphics/items/drewniany_puklerz.png"
-player.main_player.inventory[7][2] = "graphics/items/ksiega_czarow.png"
-player.main_player.inventory[8][2] = "graphics/items/skorzany_pancerz.png"
-player.main_player.inventory[9][2] = "graphics/items/skorzany_pancerz.png"
-player.main_player.inventory[10][2] = "graphics/items/skorzany_pancerz.png"
-player.main_player.inventory[11][2] = "graphics/items/zelazny_miecz.png"
-player.main_player.inventory[12][2] = "graphics/items/zelazny_miecz.png"
-player.main_player.inventory[13][2] = "graphics/items/miecz_z_brazu.png"
-player.main_player.inventory[14][2] = "graphics/items/miecz_z_brazu.png"
-player.main_player.inventory[15][2] = "graphics/items/miecz_jednoreczny.png"
-player.main_player.inventory[16][2] = "graphics/items/miecz_dwureczny.png"
+player.main_player.inventory[0][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[1][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[2][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[3][2] = "graphics/items/miedziany_sztylet.png"
+player.main_player.inventory[4][2] = "graphics/items/mlot_bojowy.png"
+player.main_player.inventory[5][2] = "graphics/items/pika.png"
+player.main_player.inventory[6][2] = "graphics/items/miecz_rycerski.png"
+player.main_player.inventory[7][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[8][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[9][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[10][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[11][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[12][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[13][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[14][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[15][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[16][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[17][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[18][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[19][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[20][2] = "graphics/items/mlot.png"
+player.main_player.inventory[20][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[21][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[22][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[23][2] = "graphics/items/empty_slot.png"

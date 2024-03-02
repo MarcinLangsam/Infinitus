@@ -14,10 +14,13 @@ class Skills_Window(Screen):
         self.current_button = self.main_player_button
         self.tooltip = tt.Tooltip()
 
-
     def change_screen(self):
         self.clear_widgets()
         self.manager.current = "menu"
+    def change_window(self,window_name): #TYMCZASOWE OGARNĄĆ TO
+        self.clear_widgets()
+        self.manager.current = window_name
+
     def setup_window(self):
         self.add_widget(Image(source="graphics/skills_background.png", size=(1540,950), pos=(0,0), size_hint=(None,None), allow_stretch=True))
         UI.ui.skill_points_refresh(player.current_player)
@@ -52,6 +55,10 @@ class Skills_Window(Screen):
                 am.skills_objects[x] = am.SkillSlot(pos=(am.skills.skill_list[x][4],am.skills.skill_list[x][5]), sprite=(am.skills.skill_list[x][3]))
                 self.add_widget(am.skills_objects[x])
 
+        self.add_widget(Image(source="graphics/menu_background.png", size=(400,100), pos=(600,0), size_hint=(None,None), allow_stretch=True))
+        self.add_widget(Button(pos=(660,10), size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
+        self.add_widget(Button(pos=(760,10), size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
+        self.add_widget(Button(pos=(860,10), size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
         self.add_widget(self.tooltip)
         
 

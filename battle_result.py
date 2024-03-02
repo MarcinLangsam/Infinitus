@@ -46,7 +46,7 @@ class Battle_Result(Screen):
         self.add_widget(self.gold_gain)
         im.check_whitch_screen(self.manager.current)
         
-        for x in range(0,80):
+        for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos=(player.main_player.inventory[x][0],player.main_player.inventory[x][1]), sprite=(player.main_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
         self.gold_gain.text = "Zdobyte złoto:   +"+str(fight.gold_gain)

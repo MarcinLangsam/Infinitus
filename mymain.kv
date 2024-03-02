@@ -17,6 +17,7 @@ WindowManger:
     map: map
     tutorial: tutorial
     end: end
+    settings_menu: settings_menu
 
     Main_Menu:
         id: main_menu
@@ -65,6 +66,10 @@ WindowManger:
     End:
         id: end
         name: "end"
+        manager: screen_manager
+    Settings_menu:
+        id: settings_menu
+        name: "settings_menu"
         manager: screen_manager
 
 <Menu>:
@@ -251,7 +256,6 @@ WindowManger:
         text: "Wyjście"
         font_size: 25
         background_normal:"graphics/target_button.png"
-
 <Tutorial>:
     name:"tutorial"
     size_hint: None,None
@@ -315,14 +319,61 @@ WindowManger:
         font_size: 20
         halign: "left"
         valign: "middle"
+<Settings_menu>:
+    name: "main_menu"
+    size_hint: None, None
+    Image:
+        size_hint: None,None
+        allow_stretch: True
+        size: 1540,950
+        source: "graphics/plain_background.png"
+        pos: 0,0
+    Image:
+        pos: 450,570
+        size_hint: None,None
+        allow_stretch: True
+        size: 600,300
+        source: "graphics/title.png"
 
+    Button:
+        on_release: app.root.current = "menu"
+        pos: 650,460
+        size: 200,130
+        size_hint: None,None
+        text: "Powrót do gry"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: root.save_game()
+        pos: 650,310
+        size: 200,130
+        size_hint: None,None
+        text: "Zapisz grę"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: app.root.current = "main_menu"
+        pos: 650,160
+        size: 200,130
+        size_hint: None,None
+        text: "Wyjście do menu"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Button:
+        on_release: root.exit()
+        pos: 650,10
+        size: 200,130
+        size_hint: None,None
+        text: "Wyjdź z gry"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
 <Battle_Result>:
     name: "battle_result"
     size_hint: None, None
     on_pre_enter: root.setup_window()
         
 <Character_Sprite>:
-    size_hint: 0.17,0.33
+    size_hint: 0.25,0.41
     canvas:
         Rectangle:
             source: root.head
@@ -338,7 +389,7 @@ WindowManger:
             pos: self.pos
 
 <Enemy_Sprite>:
-    size_hint: 0.17,0.3
+    size_hint: 0.25,0.41
     canvas:
         Rectangle:
             source: root.sprite
@@ -350,7 +401,7 @@ WindowManger:
     drag_timeout: 10000000
     drag_distance: 0
     size_hint: None, None   
-    size: 75,75
+    size: 65,65
     canvas:
         Color: 
             rgba: 1,1,1,1
@@ -403,41 +454,10 @@ WindowManger:
     background_normal: "graphics/stat_up_button.png"
 
 <-HPBar@ProgressBar>:
-    canvas:
-        Color:
-            rgb: 1, 1, 1
-        BorderImage:
-            border: (12, 12, 12, 12)
-            pos: self.x, self.center_y - 12
-            size: self.width, 24
-            source: 'graphics/pb_bg.png'
-        BorderImage:
-            id: border_image
-            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
-            pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
-            source: 'graphics/pb_hp.png'
-
-<-MPBar@ProgressBar>:
-    canvas:
-        Color:
-            rgb: 1, 1, 1
-        BorderImage:
-            border: (12, 12, 12, 12)
-            pos: self.x, self.center_y - 12
-            size: self.width, 24
-            source: 'graphics/pb_bg.png'
-        BorderImage:
-            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
-            pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
-            source: 'graphics/pb_mp.png'
-
-<-EnemyHPBar@ProgressBar>:
     canvas.before:
         PushMatrix
         Rotate:
-            angle: 180
+            angle: 90
             origin: self.center
     canvas.after:
         PopMatrix
@@ -447,12 +467,57 @@ WindowManger:
         BorderImage:
             border: (12, 12, 12, 12)
             pos: self.x, self.center_y - 12
-            size: self.width, 24
+            size: self.width, 48
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            id: border_image
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 48
+            source: 'graphics/pb_hp.png'
+
+<-MPBar@ProgressBar>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 90
+            origin: self.center
+    canvas.after:
+        PopMatrix
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 48
             source: 'graphics/pb_bg.png'
         BorderImage:
             border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
             pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 48
+            source: 'graphics/pb_mp.png'
+
+<-EnemyHPBar@ProgressBar>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 90
+            origin: self.center
+    canvas.after:
+        PopMatrix
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: (12, 12, 12, 12)
+            pos: self.x, self.center_y - 12
+            size: self.width, 48
+            source: 'graphics/pb_bg.png'
+        BorderImage:
+            border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+            pos: self.x, self.center_y - 12
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 48
             source: 'graphics/pb_hp.png'
 
 <-EXPBar@ProgressBar>:
@@ -462,12 +527,12 @@ WindowManger:
         BorderImage:
             border: (12, 12, 12, 12)
             pos: self.x, self.center_y - 12
-            size: self.width, 24
+            size: self.width, 40
             source: 'graphics/pb_bg.png'
         BorderImage:
             border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
             pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+            size: self.width * (self.value / float(self.max)) if self.max else 0, 40
             source: 'graphics/pb_exp.png'
 
 <-StageProgressBar@ProgressBar>:

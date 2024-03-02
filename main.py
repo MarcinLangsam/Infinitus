@@ -1,4 +1,4 @@
-import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map
+import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
+from kivy.uix.image import Image
 
 class StageProgressBar(ProgressBar):
     pass
@@ -20,6 +21,7 @@ class Menu(Screen):
         self.setup_window()
 
     def change_window(self,window_name):
+        self.remove_widget(self.tooltip)
         self.manager.current = window_name
 
     def reset_tooltip(self):
@@ -28,15 +30,17 @@ class Menu(Screen):
     def setup_window(self):
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 2"
+        self.add_widget(Image(source="graphics/menu_background.png", size=(400,100), pos=(600,0), size_hint=(None,None), allow_stretch=True))
         self.tooltip = tt.Tooltip()
         self.add_widget(self.tooltip)
-        self.add_widget(tt.Tooltip_Button("Sklep",pos=(110,350), size_hint=(0.1,0.133), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        self.add_widget(tt.Tooltip_Button("Walka treningowa",pos=(380,510), size_hint=(0.1,0.133), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
-        self.add_widget(tt.Tooltip_Button("Walka główna",pos=(1175,540), size_hint=(0.1,0.133), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
-        self.add_widget(tt.Tooltip_Button("Drużyna",pos=(200,0), size_hint=(0.1,0.133), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
-        self.add_widget(tt.Tooltip_Button("Umiejętności",pos=(400,0), size_hint=(0.1,0.133), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
-        self.add_widget(tt.Tooltip_Button("Zapis gry",pos=(1000,0), size_hint=(0.1,0.133), background_normal="graphics/save_button.png", on_press = lambda y:self.save_game()))
-        self.add_widget(tt.Tooltip_Button("Wyjście do menu",pos=(1200,0), size_hint=(0.1,0.133), background_normal="graphics/exit_button.png", on_press = lambda y:self.change_window("main_menu")))
+        self.add_widget(tt.Tooltip_Button("Sklep",pos=(110,350), size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
+        self.add_widget(tt.Tooltip_Button("Walka treningowa",pos=(380,510), size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
+        self.add_widget(tt.Tooltip_Button("Walka główna",pos=(1175,540), size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
+        self.add_widget(tt.Tooltip_Button("Ekwipunek",pos=(660,10), size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
+        self.add_widget(tt.Tooltip_Button("Umiejętności",pos=(760,10), size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
+        self.add_widget(tt.Tooltip_Button("Podróż",pos=(860,10), size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
+        self.add_widget(tt.Tooltip_Button("Opcje",pos=(1350,10), size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
+        
 
     def start_main_fight(self):
         enemy.enemy_team.clear()
@@ -141,7 +145,7 @@ class Tutorial(Screen):
         self.ids.help_image.source = "graphics/help_fight.png"
     
 class WindowManger(ScreenManager):
-    menu = ObjectProperty(None)
+    menu = ObjectProperty(None) 
     team = ObjectProperty(None)
     shop = ObjectProperty(None)
     skills = ObjectProperty(None)
@@ -149,9 +153,11 @@ class WindowManger(ScreenManager):
     game_over = ObjectProperty(None)
     battle_result = ObjectProperty(None)
     character_creation = ObjectProperty(None)
+    map = ObjectProperty(None)
     main_menu = ObjectProperty(None)
     tutorial = ObjectProperty(None)
     end = ObjectProperty(None)
+    settings_menu = ObjectProperty(None)
 
 screen_manager = WindowManger()
 kv = Builder.load_file("mymain.kv")

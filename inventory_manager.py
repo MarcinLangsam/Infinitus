@@ -33,6 +33,32 @@ class ItemSlot(DragBehavior, Widget):
         self.t = 0
         self.p = 0
 
+    def check_for_empty_slot(self):
+        if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_main_hand.color = [1,1,1,1]
+        else:
+            self.parent.empty_main_hand.color = [0,0,0,0]
+        if player.current_player.inventory["off_hand"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_off_hand.color = [1,1,1,1]
+        else:
+            self.parent.empty_off_hand.color = [0,0,0,0]
+        if player.current_player.inventory["armor"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_armor.color = [1,1,1,1]
+        else:
+            self.parent.empty_armor.color = [0,0,0,0]
+        if player.current_player.inventory["accessory"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_accessory.color = [1,1,1,1]
+        else:
+            self.parent.empty_accessory.color = [0,0,0,0]
+        if player.current_player.inventory["accessory2"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_accessory2.color = [1,1,1,1]
+        else:
+            self.parent.empty_accessory2.color = [0,0,0,0]
+        if player.current_player.inventory["accessory3"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_accessory3.color = [1,1,1,1]
+        else:
+            self.parent.empty_accessory3.color = [0,0,0,0]
+
     def switch_items_in_invetory(self):
         self.temp = inventory[self.select].sprite
         inventory[self.select].sprite = inventory[self.drop].sprite
@@ -40,6 +66,9 @@ class ItemSlot(DragBehavior, Widget):
         inventory[self.drop].sprite = self.temp
         player.current_player.inventory[self.drop][2] = self.temp
         inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+
+        if screen == "team":
+            self.check_for_empty_slot()
 
     def on_touch_down(self, touch):
         if self.pos[0] <= touch.pos[0] <= self.pos[0]+75 and self.pos[1] <= touch.pos[1] <= self.pos[1]+75: 
@@ -52,6 +81,7 @@ class ItemSlot(DragBehavior, Widget):
         return super(ItemSlot, self).on_touch_down(touch)
     
     def on_touch_up(self, touch):
+            #else:
             for x in player.current_player.inventory.keys():
                 if player.current_player.inventory[x][0] <= touch.pos[0] <= player.current_player.inventory[x][0]+75 and player.current_player.inventory[x][1] <= touch.pos[1] <= player.current_player.inventory[x][1]+75:
                     self.drop = x
@@ -60,18 +90,24 @@ class ItemSlot(DragBehavior, Widget):
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])        
+                if 370 <= touch.pos[0] <= 370+90 and 160 <= touch.pos[1] <= 160+90 and screen == "team": ### deleting item
+                    player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
+                    inventory[self.select].sprite = "graphics/items/empty_slot.png"
+                    self.check_for_empty_slot()
+                    inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                else:
+                    inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])        
             if player.current_player.inventory[self.select][2] == "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy wyposażaniu
                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
-            if self.drop in range(39,80) and player.current_player.inventory[self.drop][2] != "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy kupowaniu
+            if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] != "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy kupowaniu
                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
-            if self.drop in range(39,80) and screen != "shop": #naprawia bug z przenoszeniem do sklepu z poziomu drużyny
+            if self.drop in range(48,95) and screen != "shop": #naprawia bug z przenoszeniem do sklepu z poziomu drużyny
                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
             ##########################
 
             elif self.check_collision is True and self.check_touch is True:
-                if self.select in range (0,40) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
-                    if self.drop in range(39,80) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
+                if self.select in range (0,47) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
+                    if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
                         player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]/10)
                         update_gold()
                         tp.text_pop.text = "Sprzedano przedmiot"
@@ -97,7 +133,7 @@ class ItemSlot(DragBehavior, Widget):
                         else:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Nie możesz założyć tutaj tego przedmiotu"
-                    elif self.drop in range(0,40):
+                    elif self.drop in range(0,47):
                         if self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
                             items.unequip()
                             self.switch_items_in_invetory()
@@ -105,8 +141,8 @@ class ItemSlot(DragBehavior, Widget):
                             self.parent.refresh_items()
                         else:
                             self.switch_items_in_invetory()
-                elif self.select in range(39,80):
-                    if self.drop in range(0,40):
+                elif self.select in range(48,95):
+                    if self.drop in range(0,47):
                         if screen == "shop": #kupowanie przedmitów
                             if player.gold >= items.item_list[player.current_player.inventory[self.select][2]][4] and screen == "shop":
                                 player.gold -= items.item_list[player.current_player.inventory[self.select][2]][4]
@@ -118,10 +154,10 @@ class ItemSlot(DragBehavior, Widget):
                                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                         elif screen != "shop":
                             self.switch_items_in_invetory()
-                    elif self.drop in range(39,80): #uniemożliwia przesuwanie przedmitów w sklepie
+                    elif self.drop in range(48,95): #uniemożliwia przesuwanie przedmitów w sklepie
                         inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                  
-                
+
                 self.check_collision = False
                 self.check_touch = False
                 self.select = 0
