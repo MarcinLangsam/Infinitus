@@ -10,6 +10,7 @@ class Map(Screen):
         self.manager.current = screen
     def change_window(self,window_name): #TYMCZASOWE OGARNĄĆ TO
         self.clear_widgets()
+        self.manager.current = window_name
     def setup_window(self):
         self.add_widget(Image(source="graphics/plain_background.png", size=(1540,950), pos=(0,0), size_hint=(None,None), allow_stretch=True)) 
         self.add_widget(Button(pos=(1450,800), size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen("menu")))

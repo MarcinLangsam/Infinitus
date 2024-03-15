@@ -3,8 +3,8 @@ _ 2. name of skill
 _ 3. efect
 _ 4. previous needed skill
 _ 5. path to graphic file
-_ 6. pos x(in skill window)
-_ 7. pos y(in skill window)
+_ 6. pos x(in skill window) jump for icon size(50) + 20
+_ 7. pos y(in skill window) jump for icon size(50) + 20
 _ 8. key name of skill to draw line from
 _ 9. path to graphic file after skill is acquired
 _ 10. MP cost
@@ -15,271 +15,241 @@ _ 14. target(handle if character in battle need to move or just can stand still)
 ____________warrior skill____________
 0
 zamach
-self.final_damage = 10+self.current_turn.STR*3
+self.final_damage = 30+self.current_turn.STR*1.2
 none
 graphics/skills/zamach.png
-300
-70
+235
+170
 none
 graphics/skills/zamach_ok.png
 20
 active
-Zamach\nObszerny zamach zadający:\n10+STR*3 obrażeń\nKoszt MP: 20
+Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpedzoną broń prosto na wroga\n30+STR*1.2 obrażeń\nKoszt MP: 20
 melee
 on_enemy
 _______________________________________
 1
-rozpłatanie
-self.final_damage = self.current_target.HP*0.2
-zamach
-graphics/skills/rozplatanie.png
-250
-270
-0
-graphics/skills/rozplatanie_ok.png
-30
-active
-Rozpłatanie\nPotężny cios zadający:\naktualne 20% zrowia przeciwnika\nKoszt MP: 30
-melee
-on_enemy
-_______________________________________
-2
 cios rękojeścią
 self.final_damage = self.current_turn.STR\nself.action_status = 'ogłuszenie'
 zamach
-graphics/skills/cios_rekojescia.png
-350
-270
+graphics/skills/cios_rękojeścią.png
+235
+240
 0
-graphics/skills/cios_rekojescia_ok.png
+graphics/skills/cios_rękojeścią_ok.png
 30
 active
-Ogłuszenie\nAtak obuchowy powodujący ogłuszenie\nCzas trwania: 1 tura, Pominięcie tury\nKoszt MP: 30
+Ogłuszenie   |   AKTYWA\nZwód wykonywany przy bliskim dystansie, kończący się lekkim wstrząsem przeciwnika\nOgłuszenie 1 tura\nCel traci turę\nKoszt MP: 30
 melee
 on_enemy
 _______________________________________
-3
-siła byka
+2
+zaciekły wojownik
 player.current_player.STR += 5
-rozpłatanie
-graphics/skills/sila_byka.png
-250
-470
+cios rękojeścią
+graphics/skills/zaciekły_wojownik.png
+165
+310
 1
-graphics/skills/sila_byka_ok.png
+graphics/skills/zaciekły_wojownik_ok.png
 0
 passive
-Siła byka\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe siłę o 5
+Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca\nSiła +5
 
 
 _______________________________________
-4
-gniew
-self.final_damage = 0\nself.action_status = 'gniew'
+3
+niestrudzony obrońca
+player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
 cios rękojeścią
-graphics/skills/gniew.png
-350
-470
-2
-graphics/skills/gniew_ok.png
-20
-active
-Gniew\nZwiększasz na chwilę swoją siłę\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20
-status
-on_characters
+graphics/skills/niestrudzony_obrońca.png
+295
+310
+1
+graphics/skills/niestrudzony_obrońca_ok.png
+0
+passive
+Niestrudzony Obrońca\nNie pozwolisz nikogo przepóścić bez walki a \n+30HP
+
+
 _______________________________________
-5
-ostateczny osoąd
-self.final_damage = self.current_turn.STR*10
-gniew
-graphics/skills/ostateczny_osad.png
-350
-670
 4
-graphics/skills/ostateczny_osad_ok.png
-50
+szał
+self.final_damage = 0\nself.action_status = 'szał'
+zaciekły wojownik
+graphics/skills/szał.png
+165
+380
+2
+graphics/skills/szał_ok.png
+40
 active
-Ostateczny osoąd\nCios kładący każdego na kolana zadaje:\nSTR*10\nKoszt MP: 50
-melee
-on_enemy
+Szał   |   AKTYWNA\nWpadasz w nieposkromony szał, który zwiększa twoją siłę ale nie dbasz o obronę\nSzał 4 tury\nSTR+50%, podczas szału pancerz wynosi 0!\nKoszt MP: 20
+status
+on_self
 _____________mage skill________________
-6
+5
 kula ognia
-self.final_damage = 15+self.current_turn.INT*2
+self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
-700
-70
+740
+170
 none
 graphics/skills/kula_ognia_ok.png
 10
 active
-Kula Ognia\nPrzemiana magi w ogień zadaje:\n15+INT*2\nKoszt MP: 10
+Kula Ognia   |   AKTYWNA\nPrzmień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów\nObrażenia: 20+INT*1.5\nPłonięcie 3 tury\nKoszt MP: 10
 ranged
 on_enemy
 _________________________________________
-7
-uzdrowienie
-self.final_damage = -(self.current_turn.INT*10)
-kula ognia
-graphics/skills/leczenie.png
-700
-270
 6
-graphics/skills/leczenie_ok.png
+kamienna skóra
+self.final_damage = 0\nself.action_status = 'kamienna skóra'
+kula ognia
+graphics/skills/kamienna_skóra.png
+740
+240
+5
+graphics/skills/kamienna_skóra_ok.png
 15
 active
-Uzdrowienie\nZaklęcie kojące rany leczy:\nINT*10\nKoszt MP: 15
+Kamienna Skóra\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15
+status
+on_characters
+_________________________________________
+7
+uzdrowienie
+self.final_damage = -(self.current_turn.INT*3)-30
+kamienna skóra
+graphics/skills/uzdrowienie.png
+740
+310
+6
+graphics/skills/uzdrowienie_ok.png
+20
+active
+Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20
 heal
 on_characters
 _________________________________________
 8
-skupienie
-self.final_damage = 0\nself.action_status = 'skupienie'
-uzdrowienie
-graphics/skills/skupienie.png
-700
-470
-7
-graphics/skills/skupienie_ok.png
-20
-active
-Skupienie\nZwiększa na chwilę twoją inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20
-status
-on_characters
-_________________________________________
-9
-oświecenie
-player.current_player.INT += 5
-uzdrowienie
-graphics/skills/oswiecenie.png
-600
-270
-7
-graphics/skills/oswiecenie_ok.png
-0
-passive
-Oświecenie\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe inteligencje o 5
-
-
-_________________________________________
-10
 zamrożenie
 self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'
-skupienie
-graphics/skills/zamrozenie.png
-800
-470
-8
-graphics/skills/zamrozenie_ok.png
-60
-active
-Zamrożenie\nMrążące zakęcie,powduje zamrożenie\nCzas trwania: 2 tury Pomija turę, \ni zabiera 10% zdrowia Koszt MP: 60
-ranged
-on_enemy
-_________________________________________
-11
-medytacja
-self.current_target.MP += 50
-skupienie
-graphics/skills/medytacja.png
-700
+uzdrowienie
+graphics/skills/zamrożenie.png
 670
-8
-graphics/skills/medytacja_ok.png
-0
-active
-Medytacja\nStan pozwalający odzyskać część sił\nOdnawia 50 MP\nKoszt MP: 0
-ranged
-on_character
-_____________rouge skill________________
-12
-ciche cięcie
-self.final_damage = 5+self.current_turn.DEX*4
-none
-graphics/skills/ciche_cięcie.png
-1100
-70
-none
-graphics/skills/ciche_cięcie_ok.png
-15
-active
-Ciche Cięcie\nAtak z zaskoczenia zadaje:\n5+DEX*4\nKoszt MP: 15
-melee
-on_enemy
-_________________________________________
-13
-piorun
-self.final_damage = self.current_turn.INT*3 + self.current_turn.DEX*4
-ciche cięcie
-graphics/skills/piorun.png
-1100
-270
-12
-graphics/skills/piorun_ok.png
-20
-active
-Piorun\nPołączenie magi i techniki zadaje:\nINT*3 + DEX*4\nKoszt MP: 20
-ranged
-on_enemy
-_________________________________________
-14
-akrobatyka
-player.current_player.DEX += 5
-piorun
-graphics/skills/akrobatyka.png
-1050
-470
-13
-graphics/skills/akrobatyka_ok.png
-0
-passive
-Akrobatyka\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe zręczność o 5
-
-
-_________________________________________
-15
-rozgrzewka
-self.final_damage = 0\nself.action_status = 'rozgrzewka'
-piorun
-graphics/skills/rozgrzewka.png
-1150
-470
-13
-graphics/skills/rozgrzewka_ok.png
+310
+7
+graphics/skills/zamrożenie_ok.png
 30
 active
-Rozgrzewka\nNa chwilę zwiększa zręczność\nCzas trwania: 3 tury, DEX+20%\nKoszt MP: 30
-status
-on_characters
+Zamrożenie   |   AKTWNA\nZamyka przeciwnika w twardej jak skała bryle lodu nie pozwalając mu na ruch ale też ciężko go trafić\nZamrożenie 3 tury\nCel traci turę, Pancerz +100\nKoszt MP: 30
+ranged
+on_enemy
 _________________________________________
-16
-osłabienie
-self.final_damage = self.current_turn.DEX\nself.action_status = 'osłabienie'
-akrobatyka
-graphics/skills/oslabienie.png
-1050
-670
-14
-graphics/skills/oslabienie_ok.png
-40
+9
+deszcz ognia
+self.final_damage = self.current_turn.INT*100
+uzdrowienie
+graphics/skills/deszcz_ognia.png
+810
+310
+7
+graphics/skills/deszcz_ognia_ok.png
+30
 active
-Osłabienie\nOsłabiający cios w czuły punkt\nCzas trwania: 3 tury, Przeciwnik zadaje,\npołowę obrażeń Koszt MP: 40
+Deszcz Ognia   |   AKTWNA\nTest umiejętności na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30
+ranged
+on_all_enemy
+_________________________________________
+10
+masowe uzdrowienie
+self.final_damage = -(self.current_turn.INT*10)
+deszcz ognia
+graphics/skills/masowe_uzdrowienie.png
+880
+310
+9
+graphics/skills/masowe_uzdrowienie_ok.png
+30
+active
+Masowe Uzdrowienie   |   AKTWNA\nTest umiejętności na wszystkich sojuszników\nUzdrawia INT wszystkim sojusznikom\nKoszt MP: 30
+heal
+on_all_character
+_____________rouge skill________________
+11
+zatrute ostrze
+self.final_damage = 0\nself.action_status = 'zatrute ostrze'
+none
+graphics/skills/zatrute_ostrze.png
+1260
+170
+none
+graphics/skills/zatrute_ostrze_ok.png
+35
+active
+Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę\nZatrute ostrze 4 tury\nDodaj do obrażeń wartoś swojej zręcznośći\nKoszt MP: 35
+status
+on_self
+_________________________________________
+12
+głębokie rany
+self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawiene'
+zatrute ostrze
+graphics/skills/głębokie_rany.png
+1260
+240
+11
+graphics/skills/głębokie_rany_ok.png
+30
+active
+Głębokie Rany   |   AKTYWNA\nBezlitosne prznięcie pozostawiające krwawiącą ranę\nKrwawienie 5 tur\nObrażenie: 30 co turę\nKoszt MP: 30
 melee
 on_enemy
 _________________________________________
-17
-zabójca idealny
-self.final_damage = 0\nself.action_status = 'zabójca idealny'
-akrobatyka
-graphics/skills/zabojca_idealny.png
-1150
-670
-14
-graphics/skills/zabojca_idealny_ok.png
-50
+13
+uderzenie pioruna
+self.final_damage = self.current_turn.DEX*2.2+self.current_turn.INT*1.8
+głębokie rany
+graphics/skills/uderzenie_pioruna.png
+1190
+310
+12
+graphics/skills/uderzenie_pioruna_ok.png
+40
 active
-ZABÓJCA IDEALNY\nJeden cios jeden trup\nNa 1 turę mnoży zręczność razy 20\nKoszt MP: 50
+Uderzenie Pioruna   |   AKTYWNA\nWstrząsa wybrany celem aż do kości\nZadaje: DEX*2.2+INT*1.8\nKoszt MP: 40
+ranged
+on_enemy
+_________________________________________
+14
+precyzja
+player.current_player.crit_chance += 3
+głębokie rany
+graphics/skills/precyzja.png
+1330
+310
+12
+graphics/skills/precyzja_ok.png
+0
+passive
+Precyzja   |   PASYWNA\nTwoje częściej trafiają w czułe punkty\nSzansa na trafienie krytyczne +3%
+
+
+_________________________________________
+15
+łaska hermesa
+self.final_damage = 0\nself.action_status = 'łaska hermesa'
+precyzja
+graphics/skills/łaska_hermesa.png
+1330
+380
+14
+graphics/skills/łaska_hermesa_ok.png
+10
+active
+Łaska Hermesa   |   AKTYWNA\nTest status na wszystkich sojuszników\nDaje wszysktim sojusznkom łaskę hermesa
 status
-on_character
+on_all_character
 _________________________________________

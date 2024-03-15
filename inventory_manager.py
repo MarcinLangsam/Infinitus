@@ -15,9 +15,9 @@ def check_whitch_screen(s):
     global screen
     screen = s
 
-gold_on_screen = Label(pos=(-40,-300), text=("Złoto: "+str(player.gold)), font_size=30, halign="right", valign="middle")
+gold_on_screen = Label(pos_hint={'x':-0.34,'y':-0.378}, font_size=33,halign="left", valign="middle", text="{0:g}".format(player.gold), outline_width = 1)
 def update_gold():
-    gold_on_screen.text = "Złoto: "+str(player.gold)
+    gold_on_screen.text = "{0:g}".format(player.gold)
 
 class ItemSlot(DragBehavior, Widget):
     sprite = StringProperty("")
@@ -178,9 +178,9 @@ class ItemSlot(DragBehavior, Widget):
                                 self.t = ""
                             else:
                                 if x in range(0,40) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3"]:
-                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość sprzedarzy: "+ str((items.item_list[player.current_player.inventory[x][2]][4]/10))
+                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość sprzedarzy: "+ "{:.2f}".format((items.item_list[player.current_player.inventory[x][2]][4]/10))
                                 else:
-                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość kupna: "+ str(items.item_list[player.current_player.inventory[x][2]][4])
+                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość kupna: "+ "{:.2f}".format(items.item_list[player.current_player.inventory[x][2]][4])
                                 self.p = (player.current_player.inventory[x][0]+40,player.current_player.inventory[x][1]+40)
                                 Clock.schedule_once(self.display_tooltip, 0.5)
 

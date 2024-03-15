@@ -13,9 +13,9 @@ class Switch_Character_Button(Button):
 class Team(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.main_player_sprite = player.Character_Sprite(player.main_player, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], player.main_player.head, pos=(590,432-65))
-        self.companion1_sprite = player.Character_Sprite(player.companion1, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], player.companion1.head, pos=(590,432-65))
-        self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.current_player.inventory["main_hand"][2]][0], player.companion2.head, pos=(590,432-65))
+        self.main_player_sprite = player.Character_Sprite(player.main_player, im.items.item_list[player.main_player.inventory["main_hand"][2]][0], player.main_player.head, pos=(590,432-65))
+        self.companion1_sprite = player.Character_Sprite(player.companion1, im.items.item_list[player.companion1.inventory["main_hand"][2]][0], player.companion1.head, pos=(590,432-65))
+        self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.companion2.inventory["main_hand"][2]][0], player.companion2.head, pos=(590,432-65))
         
         self.current_sprite = self.main_player_sprite
         self.main_player_button = Button(pos=(140,730), size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))

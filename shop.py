@@ -3,7 +3,6 @@ from fight import current_stage
 import tooltip as tt
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
-from kivy.uix.label import Label
 from kivy.uix.image import Image
 
 class Shop(Screen):
@@ -16,6 +15,10 @@ class Shop(Screen):
         self.manager.current = "menu"
     def setup_window(self):
         self.add_widget(Image(source="graphics/plain_background.png", size=(1540,950), pos=(0,0), size_hint=(None,None), allow_stretch=True))
+        self.add_widget(Image(source="graphics/menu_background.png", size=(550,90), pos=(5,60), size_hint=(None,None), allow_stretch=True)) #gold widget
+        self.add_widget(Image(source="graphics/trash.png", size=(90,90), pos=(440,60), size_hint=(None,None), allow_stretch=True))
+        self.add_widget(Image(source="graphics/shop_button.png", size=(60,60), pos=(130,80), size_hint=(None,None), allow_stretch=True))
+        
         for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
@@ -26,8 +29,6 @@ class Shop(Screen):
         im.check_whitch_screen(self.manager.current)
         self.add_widget(tp.text_pop)
 
-        self.add_widget(Label(text="EKWPUNEK", pos=(-490,415), font_size=40))
-        self.add_widget(Label(text="SKLEP", pos=(440,415), font_size=40))
         self.set_shop_content()
         self.add_widget(self.tooltip)
 
@@ -37,5 +38,5 @@ class Shop(Screen):
             player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-48])
 
     shop_content={
-        1:["graphics/animations/pierscien_many.png","graphics/animations/pierscien_zdrowia.png","graphics/animations/pierscien_sily.png","graphics/animations/pierscien_zrecznosci.png","graphics/animations/pierscien_inteligencji.png"]
+        1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png"]
     }

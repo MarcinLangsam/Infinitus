@@ -16,25 +16,34 @@ def adjust_tooltip_to_screen(tooltip,pos_x,pos_y): #prewent tooltips to go over 
 def set_tooltip(tooltip,t,p):
     tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0]+50,p[1]-50)
     tooltip.text = t
-    with tooltip.canvas.before:
-        Color(0.8,0.8,0.8,1)
+    tooltip.color = (1,1,1,1)
+    tooltip.outline_width = 1
+    tooltip.markup=True
+    #with tooltip.canvas.before:
+    #    Color(0.2,0.6,0.6,1)
 
 def set_tooltip_status(tooltip,t,p):
     tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0],p[1]+30)
     tooltip.text = t
-    with tooltip.canvas.before:
-        Color(0.8,0.8,0.8,1)
+    tooltip.color = (1,1,1,1)
+    tooltip.outline_width = 1
+    tooltip.markup=True
+    #with tooltip.canvas.before:
+    #    Color(0.2,0.6,0.6,1)
 
 def set_tooltip_skill(tooltip,t,p):
     tooltip.text = t
+    tooltip.color = (1,1,1,1)
+    tooltip.outline_width = 1
+    tooltip.markup=True
     tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0]+50,p[1]-50)
-    with tooltip.canvas.before:
-        Color(0.8,0.8,0.8,1)
+    #with tooltip.canvas.before:
+    #    Color(0.2,0.6,0.6,1)
 
 def clear_tooltip(tooltip):
     tooltip.text = ""
-    with tooltip.canvas.before:
-        Color(0,0,0,0)
+    #with tooltip.canvas.before:
+    #    Color(0.2,0.6,0.6,1)
 
 class Tooltip(Label):
     pass

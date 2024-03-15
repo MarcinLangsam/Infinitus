@@ -8,4 +8,4 @@ def clear_pop_up(dt):
         text_pop.text = ""
         return False
 
-text_pop = Label(pos=(0,320), font_size=24)
+text_pop = Label(pos=(0,320), font_size=24, outline_width = 1)

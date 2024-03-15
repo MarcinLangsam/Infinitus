@@ -59,7 +59,7 @@ Mroczna Potega
 self.final_damage = 0\nself.action_status = 'mroczna potega'
 by_status
 mroczna potega
-on_enemy
+on_self
 status
 _______________________________________
 uderzenie_smierci
@@ -85,4 +85,20 @@ by_status
 osłabienie
 on_character
 status
+_______________________________________
+fala_śmierci
+Fala Śmierci
+self.final_damage = 10
+0
+0
+on_all_character
+ranged
+_______________________________________
+kojące_dźwięki
+Kojące Dźwięki
+self.final_damage = -100
+0
+0
+on_all_enemy
+ranged
 _______________________________________

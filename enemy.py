@@ -62,28 +62,29 @@ class Enemy(Widget):
 
     def action(self,action,sort_by,value,type,name,distance):
         ok = False
-        if type == "on_character" or "attack":
+        if type in ["on_character","attack","on_all_character"]:
             targets = player_team_alive
-        if type == "on_enemy":
+        if type == "on_enemy" or "on_all_enemy":
             targets = enemy_team_alive
         if type == "on_self":
             targets = current
         
+
         if sort_by == "by_HP":
             if type == "on_self":
                 if targets.HP <= targets.MAX_HP*value:
-                    self.actions.append([targets,action,name,distance])
+                    self.actions.append([targets,action,name,distance,type])
             else:
                 for x in targets:
                     if x.HP >= x.MAX_HP*value:
-                        self.actions.append([x,action,name,distance])
+                        self.actions.append([x,action,name,distance,type])
         if sort_by == "by_status":
             if type == "on_self":
                     for x in targets.status:
                         if se.status_effect.status_list[value][0] == x[0][0]:
                             ok = True
                     if ok == False:
-                        self.actions.append([targets,action,name,distance])
+                        self.actions.append([targets,action,name,distance,type])
             else:
                 for x in targets:
                     ok = False
@@ -91,25 +92,41 @@ class Enemy(Widget):
                         if se.status_effect.status_list[value][0] == y[0][0]:
                             ok = True
                     if ok == False:
-                        self.actions.append([x,action,name,distance])
+                        self.actions.append([x,action,name,distance,type])
 
         ###################################################################
-        if type == "attack":
+        if type in ["attack","on_all_character"]:
             chanse = random.randint(0,100)
             if len(targets) == 1:
-                self.actions.append([player_team_alive[0],action,"",distance])
+                self.actions.append([player_team_alive[0],action,"",distance,type])
             if len(targets) == 2:
                 if chanse >=0 and chanse <= 40:
-                    self.actions.append([player_team_alive[0],action,"",distance])
+                    self.actions.append([player_team_alive[0],action,"",distance,type])
                 elif chanse > 40 and chanse <= 100:
-                    self.actions.append([player_team_alive[1],action,"",distance])
+                    self.actions.append([player_team_alive[1],action,"",distance,type])
             if len(targets) == 3:
                 if chanse >=0 and chanse <= 20:
-                    self.actions.append([player_team_alive[0],action,"",distance])
+                    self.actions.append([player_team_alive[0],action,"",distance,type])
                 elif chanse > 20 and chanse <= 70:
-                    self.actions.append([player_team_alive[1],action,"",distance])
+                    self.actions.append([player_team_alive[1],action,"",distance,type])
                 elif chanse > 70 and chanse <= 100:
-                    self.actions.append([player_team_alive[2],action,"",distance])
+                    self.actions.append([player_team_alive[2],action,"",distance,type])
+        elif type == "on_all_enemy":
+            chanse = random.randint(0,100)
+            if len(targets) == 1:
+                self.actions.append([enemy_team_alive[0],action,"",distance,type])
+            if len(targets) == 2:
+                if chanse >=0 and chanse <= 40:
+                    self.actions.append([enemy_team_alive[0],action,"",distance,type])
+                elif chanse > 40 and chanse <= 100:
+                    self.actions.append([enemy_team_alive[1],action,"",distance,type])
+            if len(targets) == 3:
+                if chanse >=0 and chanse <= 20:
+                    self.actions.append([enemy_team_alive[0],action,"",distance,type])
+                elif chanse > 20 and chanse <= 70:
+                    self.actions.append([enemy_team_alive[1],action,"",distance,type])
+                elif chanse > 70 and chanse <= 100:
+                    self.actions.append([enemy_team_alive[2],action,"",distance,type])
                     
         
     def set_actions(self):
@@ -117,6 +134,7 @@ class Enemy(Widget):
         for x in self.AI:
             self.action(enemy_skills[x][1],enemy_skills[x][2],enemy_skills[x][3],enemy_skills[x][4],enemy_skills[x][0],enemy_skills[x][5])
         chose = random.randint(0,len(self.actions)-1)
+        print(self.actions[chose])
         return self.actions[chose]
 
     def drop_mashine(self):
@@ -172,9 +190,14 @@ load_enemy_skill()
 skeleton = Enemy("Szkielet",1,50,20,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png","szkielet")
 skeleton2 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png","szkielet")
 skeleton3 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png","szkielet")
-death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+
+#death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+#death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+#death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+
+death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
 
 #skeleton_priest = Enemy("Duch Wojownika",2,150,20,5,10,20,10,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 #skeleton_warrior = Enemy("Upadły kapłan",3,70,5,20,30,5,5,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
@@ -187,8 +210,9 @@ enemy_team_alive = list()
 
 story_fight = {
     1:{
-        1:[skeleton,skeleton2,skeleton3],
-        2:[death_knight],
+        #1:[skeleton,skeleton2,skeleton3],
+        1:[death_knight,death_knight2,death_knight3],
+        2:[death_knight,death_knight2,death_knight3],
         3:[death_knight,death_knight2,death_knight3]
     }
 }

@@ -78,34 +78,34 @@ graphics/items/pierscien_sily.png
 accessory
 player.current_player.STR += 5
 player.current_player.STR -= 5
-Pierścień Siły    |   AKCESORIA\nSiła +5
+Pierścień Siły    |   AKCESORIA\n[color=#de8833]Siła +5[/color]
 10
 _______________________________________
 graphics/items/pierscien_zrecznosci.png
 accessory
 player.current_player.DEX += 5
 player.current_player.DEX -= 5
-Pierścień Zręczności    |   AKCESORIA\nZręczność +5
+Pierścień Zręczności    |   AKCESORIA\n[color=#00ff00]Zręczność +5[/color]
 100
 _______________________________________
 graphics/items/pierscien_inteligencji.png
 accessory
 player.current_player.INT += 5
 player.current_player.INT -= 5
-Pierścień Inteligencji   |   AKCESORIA\nInteligencja +5
+Pierścień Inteligencji   |   AKCESORIA\n[color=#00f7ff]Inteligencja +5[/color]
 100
 _______________________________________
 graphics/items/pierscien_zdrowia.png
 accessory
 player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20
 player.current_player.HP -= 20\nplayer.current_player.MAX_HP -= 20
-Pierścień Zdrowia    |   AKCESORIA\nZdrowie +20
+Pierścień Zdrowia    |   AKCESORIA\n[color=#ff0000]Zdrowie +20[/color]
 100
 _______________________________________
 graphics/items/pierscien_many.png
 accessory
 player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10
 player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10
-Pierścień Many    |   AKCESORIA\nMana +10
+Pierścień Many    |   AKCESORIA\n[color=#0000ff]Mana +10[/color]
 100
 _______________________________________
