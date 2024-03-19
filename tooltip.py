@@ -68,6 +68,5 @@ class Tooltip_Button(Button):
     def close_tooltip(self, *args):
         clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        print(self.parent)
         set_tooltip(self.parent.tooltip, self.t, self.p)
 

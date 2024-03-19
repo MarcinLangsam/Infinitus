@@ -204,10 +204,24 @@ class Fight(Screen):
         self.take_action(self.turn_order[self.turn_number]) 
 
     def battle_over(self):
+        print("PO WALCE\n")
         for x in player.team:
+            if len(x.status) != 0:
+                print(x)
+                for y in x.status:
+                    self.remove_widget(y[1])
+                    self.remove_widget(y[2])
+                    exec(y[0][7])
+                x.status.clear()
             x.HP = x.MAX_HP
             x.MP = x.MAX_MP
         for x in enemy.enemy_team:
+            if len(x.status) != 0:
+                for y in x.status:
+                    self.remove_widget(y[1])
+                    self.remove_widget(y[2])
+                    exec(y[0][7])
+                x.status.clear()
             x.HP = x.MAX_HP
         self.clear_after_battle()
         self.battle_end = True
@@ -487,8 +501,7 @@ class Fight(Screen):
         for y in range(0,len(self.enemy_sprites)):
             self.enemy_sprites[y][3].value = enemy.enemy_team[y].HP
             self.enemy_sprites[y][4].text = str(enemy.enemy_team[y].HP)
-
-
+            
     def calculate_damage(self,target):
         self.dodge_roll = random.randint(0,100)
         self.crit_roll = random.randint(0,100)
@@ -514,6 +527,8 @@ class Fight(Screen):
         if self.action_status != "":
             self.add_status(self.action_status)
             self.start_status()
+            print(self.current_turn)
+            print(self.current_target)
             if self.final_damage == 0:
                 self.final_damage = self.action_status.upper()
             else:
@@ -608,6 +623,7 @@ class Fight(Screen):
             self.run_animation()
             self.action_status = ""
         else:
+            print(target)
             self.target = target
 
             ### activate skills and decide targets 
@@ -621,7 +637,8 @@ class Fight(Screen):
                 self.target_sprite = self.chose_sprite(self.current_target)
             
             self.calculate_damage(target)
-            
+            print(self.current_turn)
+            print(self.current_target)
             for x in self.target_option:
                 self.remove_widget(self.target_option[x][0])
             self.remove_widget(self.skill_list_pop_up)

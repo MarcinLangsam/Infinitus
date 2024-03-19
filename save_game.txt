@@ -4,11 +4,11 @@ player.main_player.MAX_HP = 100
 player.main_player.MAX_MP = 100
 player.main_player.HP = 100
 player.main_player.MP = 100
-player.main_player.STR = 15
+player.main_player.STR = 20
 player.main_player.DEX = 10
 player.main_player.INT = 10
 player.main_player.weapon = 10
-player.main_player.damage = 25
+player.main_player.damage = 30
 player.main_player.defence = 5
 player.main_player.crit_chance = 0.1
 player.main_player.dodge_chance = 0.2
@@ -16,8 +16,12 @@ player.main_player.EXP_boost = 0.1
 player.main_player.EXP = 0
 player.main_player.EXP_To_Lv = 100
 player.main_player.stat_points = 20
-player.main_player.skill_points = 14
-player.main_player.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2self.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
+player.main_player.skill_points = 10
+player.main_player.skill["zamach"] = ["self.final_damage = 30+self.current_turn.STR*1.2",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadz¹ca rozpedzon¹ broñ prosto na wroga\n30+STR*1.2 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.main_player.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rêkojeœci¹.png","Og³uszenie   |   AKTYWA\nZwód wykonywany przy bliskim dystansie, koñcz¹cy siê lekkim wstrz¹sem przeciwnika\nOg³uszenie 1 tura\nCel traci turê\nKoszt MP: 30","active","melee","on_enemy"]
+player.main_player.skill["zaciek³y wojownik"] = ["player.current_player.STR += 5",0,"graphics/skills/zaciek³y_wojownik.png","Zaciek³y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siê do boju i walczysz do samego koñca\nSi³a +5","passive","",""]
+player.main_player.skill["sza³"] = ["self.final_damage = 0\nself.action_status = 'sza³'",40,"graphics/skills/sza³.png","Sza³   |   AKTYWNA\nWpadasz w nieposkromony sza³, który zwiêksza twoj¹ si³ê ale nie dbasz o obronê\nSza³ 4 tury\nSTR+50%, podczas sza³u pancerz wynosi 0!\nKoszt MP: 20","active","status","on_self"]
+player.main_player.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
 player.main_player.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
 player.main_player.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
 player.main_player.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
@@ -33,23 +37,27 @@ player.companion1.MAX_HP = 100
 player.companion1.MAX_MP = 100
 player.companion1.HP = 100
 player.companion1.MP = 100
-player.companion1.STR = 10
+player.companion1.STR = 20
 player.companion1.DEX = 30
 player.companion1.INT = 10
 player.companion1.weapon = 10
-player.companion1.damage = 20
+player.companion1.damage = 30
 player.companion1.defence = 5
 player.companion1.crit_chance = 0.3
 player.companion1.dodge_chance = 0.6
 player.companion1.EXP_boost = 0.1
 player.companion1.EXP = 0
 player.companion1.EXP_To_Lv = 100
-player.companion1.stat_points = 20
-player.companion1.skill_points = 14
-player.companion1.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2self.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
+player.companion1.stat_points = 15
+player.companion1.skill_points = 10
+player.companion1.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
 player.companion1.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
 player.companion1.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
 player.companion1.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
+player.companion1.skill["zamach"] = ["self.final_damage = 30+self.current_turn.STR*1.2",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadz¹ca rozpedzon¹ broñ prosto na wroga\n30+STR*1.2 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.companion1.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rêkojeœci¹.png","Og³uszenie   |   AKTYWA\nZwód wykonywany przy bliskim dystansie, koñcz¹cy siê lekkim wstrz¹sem przeciwnika\nOg³uszenie 1 tura\nCel traci turê\nKoszt MP: 30","active","melee","on_enemy"]
+player.companion1.skill["zaciek³y wojownik"] = ["player.current_player.STR += 5",0,"graphics/skills/zaciek³y_wojownik.png","Zaciek³y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siê do boju i walczysz do samego koñca\nSi³a +5","passive","",""]
+player.companion1.skill["sza³"] = ["self.final_damage = 0\nself.action_status = 'sza³'",40,"graphics/skills/sza³.png","Sza³   |   AKTYWNA\nWpadasz w nieposkromony sza³, który zwiêksza twoj¹ si³ê ale nie dbasz o obronê\nSza³ 4 tury\nSTR+50%, podczas sza³u pancerz wynosi 0!\nKoszt MP: 20","active","status","on_self"]
 player.companion1.inventory["main_hand"][2] = "graphics/items/mlot_bojowy.png"
 player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
 player.companion1.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
@@ -62,24 +70,28 @@ player.companion2.MAX_HP = 100
 player.companion2.MAX_MP = 100
 player.companion2.HP = 100
 player.companion2.MP = 100
-player.companion2.STR = 10
+player.companion2.STR = 20
 player.companion2.DEX = 30
 player.companion2.INT = 10
-player.companion2.weapon = 3
-player.companion2.damage = 13
+player.companion2.weapon = 15
+player.companion2.damage = 35
 player.companion2.defence = 5
 player.companion2.crit_chance = 0.3
 player.companion2.dodge_chance = 0.6
 player.companion2.EXP_boost = 0.1
 player.companion2.EXP = 0
 player.companion2.EXP_To_Lv = 100
-player.companion2.stat_points = 20
-player.companion2.skill_points = 14
-player.companion2.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2self.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
+player.companion2.stat_points = 15
+player.companion2.skill_points = 10
+player.companion2.skill["zamach"] = ["self.final_damage = 30+self.current_turn.STR*1.2",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadz¹ca rozpedzon¹ broñ prosto na wroga\n30+STR*1.2 obra¿eñ\nKoszt MP: 20","active","melee","on_enemy"]
+player.companion2.skill["cios rêkojeœci¹"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og³uszenie'",30,"graphics/skills/cios_rêkojeœci¹.png","Og³uszenie   |   AKTYWA\nZwód wykonywany przy bliskim dystansie, koñcz¹cy siê lekkim wstrz¹sem przeciwnika\nOg³uszenie 1 tura\nCel traci turê\nKoszt MP: 30","active","melee","on_enemy"]
+player.companion2.skill["zaciek³y wojownik"] = ["player.current_player.STR += 5",0,"graphics/skills/zaciek³y_wojownik.png","Zaciek³y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siê do boju i walczysz do samego koñca\nSi³a +5","passive","",""]
+player.companion2.skill["sza³"] = ["self.final_damage = 0\nself.action_status = 'sza³'",40,"graphics/skills/sza³.png","Sza³   |   AKTYWNA\nWpadasz w nieposkromony sza³, który zwiêksza twoj¹ si³ê ale nie dbasz o obronê\nSza³ 4 tury\nSTR+50%, podczas sza³u pancerz wynosi 0!\nKoszt MP: 20","active","status","on_self"]
+player.companion2.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
 player.companion2.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
 player.companion2.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
 player.companion2.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
-player.companion2.inventory["main_hand"][2] = "graphics/items/pika.png"
+player.companion2.inventory["main_hand"][2] = "graphics/items/miecz_rycerski.png"
 player.companion2.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
 player.companion2.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
 player.companion2.inventory["accessory"][2] = "graphics/items/empty_slot.png"
@@ -90,8 +102,8 @@ player.main_player.inventory[1][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[2][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[3][2] = "graphics/items/miedziany_sztylet.png"
 player.main_player.inventory[4][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[5][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[6][2] = "graphics/items/miecz_rycerski.png"
+player.main_player.inventory[5][2] = "graphics/items/pika.png"
+player.main_player.inventory[6][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[7][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[8][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[9][2] = "graphics/items/empty_slot.png"

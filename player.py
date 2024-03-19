@@ -52,7 +52,6 @@ class Character_Sprite(Widget):
     def set_head(self):
         self.head = "graphics/sprites/"+self.head_source+"_sprite.png"
         self.portrait = "graphics/sprites/"+self.head_source+"_portrait.png"
-        print(self.portrait)
     def set_anim_parameters(self,time,rate,frame,frame_sum):
         self.time = time
         self.rate = rate

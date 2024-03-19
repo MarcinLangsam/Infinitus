@@ -134,7 +134,6 @@ class Enemy(Widget):
         for x in self.AI:
             self.action(enemy_skills[x][1],enemy_skills[x][2],enemy_skills[x][3],enemy_skills[x][4],enemy_skills[x][0],enemy_skills[x][5])
         chose = random.randint(0,len(self.actions)-1)
-        print(self.actions[chose])
         return self.actions[chose]
 
     def drop_mashine(self):

@@ -1,11 +1,12 @@
 _ 1. status name and list key name
 _ 2. name for tooltip
 _ 3. efect
-_ 4. duration time(in turns) +1 beceouse of first turn active
+_ 4. duration time(in turns) +1 becouse of first turn active
 _ 5. path for icon graphics
 _ 6. type of status(one-time buff or triggerd every turn[poison])
 _ 7. code to clear efect
 _ 8. description for tooltip
+_ 9. code to clear efect after battle
 ____________player status____________
 szał
 szał
@@ -13,8 +14,9 @@ self.current_target.STR *= 1.5\nself.current_target.damage = self.current_target
 5
 graphics/icons/szał_status.png
 one_time
-self.current_turn.STR /= 1/5\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
+self.current_turn.STR /= 1.5\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Szał\nSiła zwiększona o 50%
+x.STR /= 1.5\nx.damage = x.STR+x.weapon
 _______________________________________
 ogłuszenie
 ogłuszenie
@@ -24,6 +26,7 @@ graphics/icons/ogłuszenie_status.png
 stun
 
 Ogłuszenie\nCel pomija swoją turę
+
 ________________________________________
 płonięcie
 płonięcie
@@ -33,6 +36,7 @@ graphics/icons/płonięcie_status.png
 dmg_ot
 
 Płonięcie\nCel traci 5% HP co turę
+
 ________________________________________
 kamienna skóra
 kamienna skóra
@@ -42,6 +46,7 @@ graphics/icons/kamenna_skóra_status.png
 one_time
 self.current_target.defence-=15
 Kamienna Skóra\nPancerz zwiększony o 15
+x.defence-=15
 _______________________________________
 zamrożenie
 zamrożenie
@@ -51,6 +56,7 @@ graphics/icons/zamrożenie_status.png
 stun
 self.current_target.defence -= 500
 Zamrożenie\nCel traci swoją turę ale zwyskuje 500 Pancerza
+x.defence -= 500
 ________________________________________
 zatrute ostrze
 zatrute ostrze
@@ -60,6 +66,7 @@ graphics/icons/zatrute_ostrze_status.png
 one_time
 self.current_target.damage = self.current_target.STR+self.current_target.weapon
 Zatrute Ostrze\nDodaje statystykę zręczności do wartośći obrażeń
+x.damage = x.STR+x.weapon
 ________________________________________
 krwawienie
 krwawienie
@@ -69,6 +76,7 @@ graphics/icons/krwawienie_status.png
 dmg_ot
 
 Krwawienie\nCel traci 5% HP co turę
+
 ________________________________________
 łaska hermesa
 łaska hermesa
@@ -78,6 +86,7 @@ graphics/icons/łaska_hermesa_status.png
 one_time
 self.current_target.DEX/=2
 Łaska Hermesa\nPodwaja wartość zręczności
+
 ________________________________________
 _
 _
@@ -90,6 +99,7 @@ graphics/icons/ogluszenie_status.png
 stun
 
 Obezwładnienie\nCel pomija swoją turę
+
 ________________________________________
 trucizna
 trucizna
@@ -99,6 +109,7 @@ graphics/icons/trucizna_status.png
 dmg_ot
 
 Trucizna\nCel traci 5% HP co turę
+
 ________________________________________
 osłabienie
 osłabienie
@@ -108,6 +119,7 @@ graphics/icons/oslabienie_status.png
 one_time
 self.current_turn.damage *= 2
 Osłabienie\nObrażenie od ataków zmniejszone o połowę
+x.damage *= 2
 ________________________________________
 _
 _
@@ -120,6 +132,7 @@ graphics/icons/zemsta_status.png
 one_time
 self.current_target.damage/=1.5\nself.current_target.STR/=1.5
 Zemsta\nObrażenia od ataków zwiększone 1.5-ra
+x.damage/=1.5\nx.STR/=1.5
 ________________________________________
 mroczna potega
 mroczna potega
@@ -129,4 +142,5 @@ graphics/icons/zemsta_status.png
 one_time
 self.current_target.damage/=2\nself.current_target.STR/=2\nself.current_target.defence += 20
 Mroczna Potęga\nZadaje podwójne obrażenia ale traci cały pancerz
+x.damage/=2\nx.STR/=2\nx += 20
 ________________________________________
