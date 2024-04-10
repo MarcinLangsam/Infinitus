@@ -11,6 +11,7 @@ class Settings_menu(Screen):
         f = open("save_game.txt","w")
         characters = ["player.main_player","player.companion1","player.companion2"]
         for x in range(0,len(player.team)):
+           f.write(characters[x]+'.head = "'+str(player.team[x].head)+'"\n')
            f.write(characters[x]+'.name = "'+str(player.team[x].name)+'"\n')
            f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
            f.write(characters[x]+'.MAX_HP = '+str(player.team[x].MAX_HP)+'\n')

@@ -83,6 +83,9 @@ class Character(Widget):
         self.skill = {}
         self.status = list()
         self.head = "glowa1"
+        self.potions = 0
+        self.potion_effect = ""
+        self.current_potions = 0
 
         self.inventory = {
             "main_hand" : [568,542,"graphics/items/empty_slot.png","main_hand"],
@@ -91,6 +94,7 @@ class Character(Widget):
             "accessory" : [918,542,"graphics/items/empty_slot.png","accessory"],
             "accessory2" : [918,432,"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
+            "potion" : [918,222,"graphics/items/empty_slot.png","potion"],
             0 : [120,650,"graphics/items/skorzany_pancerz.png","item"],
             1 : [190,650,"graphics/items/skorzany_pancerz.png","item"],
             2 : [260,650,"graphics/items/skorzany_pancerz.png","item"], 
@@ -98,9 +102,9 @@ class Character(Widget):
             4 : [400,650,"graphics/items/mlot_bojowy.png","item"],
             5 : [470,650,"graphics/items/pika.png","item"],
             6 : [120,580,"graphics/items/miecz_rycerski.png","item"],
-            7 : [190,580,"graphics/items/empty_slot.png","item"],
-            8 : [260,580,"graphics/items/empty_slot.png","item"],
-            9 : [330,580,"graphics/items/empty_slot.png","item"],
+            7 : [190,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
+            8 : [260,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
+            9 : [330,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
             10 : [400,580,"graphics/items/empty_slot.png","item"],
             11 : [470,580,"graphics/items/empty_slot.png","item"],
             12 : [120,510,"graphics/items/empty_slot.png","item"],
@@ -211,6 +215,10 @@ class Character(Widget):
         self.skill_points = 18
         self.skill = {}
         self.status = list()
+        self.head = "glowa1"
+        self.potions = 0
+        self.potion_effect = ""
+        self.current_potions = 0
 
 main_player = Character()
 main_player.name = "Gracz Pierwszy"

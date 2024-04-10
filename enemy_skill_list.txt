@@ -100,5 +100,5 @@ self.final_damage = -100
 0
 0
 on_all_enemy
-ranged
+heal
 _______________________________________

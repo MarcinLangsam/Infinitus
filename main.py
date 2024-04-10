@@ -59,7 +59,8 @@ class Menu(Screen):
         f = open("save_game.txt","w")
         characters = ["player.main_player","player.companion1","player.companion2"]
         for x in range(0,len(player.team)):
-           f.write(characters[x]+'.name = "'+str(player.team[x].name)+'"\n')
+           f.write(characters[x]+'.head = "'+str(player.team[x].head)+'"\n')
+           f.write(characters[x]+'.name = "'+str(player.team[x].head)+'"\n')
            f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
            f.write(characters[x]+'.MAX_HP = '+str(player.team[x].MAX_HP)+'\n')
            f.write(characters[x]+'.MAX_MP = '+str(player.team[x].MAX_MP)+'\n')
@@ -88,7 +89,8 @@ class Menu(Screen):
            f.write(characters[x]+'.inventory["accessory"][2] = "'+str(player.team[x].inventory["accessory"][2])+'"\n')
            f.write(characters[x]+'.inventory["accessory2"][2] = "'+str(player.team[x].inventory["accessory2"][2])+'"\n')
            f.write(characters[x]+'.inventory["accessory3"][2] = "'+str(player.team[x].inventory["accessory3"][2])+'"\n')
-        for x in range(0,40):
+           f.write(characters[x]+'.inventory["potion"][2] = "'+str(player.team[x].inventory["potion"][2])+'"\n')
+        for x in range(0,40): #!!!! coś tu jest za dużo sprawdzić to
             f.write('player.main_player.inventory['+str(x)+'][2] = "'+(player.current_player.inventory[x][2])+'"\n')
         f.write("fight.current_fight="+str(fight.current_fight)+"\n")
         f.write("fight.current_stage="+str(fight.current_stage))

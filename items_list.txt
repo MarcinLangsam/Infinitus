@@ -109,3 +109,12 @@ player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10
 Pierścień Many    |   AKCESORIA\n[color=#0000ff]Mana +10[/color]
 100
 _______________________________________
+_
+_
+_______________POTIONS_________________
+graphics/items/mała_mikstura_zdrowia.png
+potion
+player.current_player.potion_effect = 'self.final_damage -= 100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura zdrowia    |   MIKSTURA\nLeczy 100 HP\nUżycia: 1
+100

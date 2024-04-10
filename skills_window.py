@@ -15,9 +15,11 @@ class Skills_Window(Screen):
         self.tooltip = tt.Tooltip()
 
     def change_screen(self):
+        self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = "menu"
     def change_window(self,window_name): #TYMCZASOWE OGARNĄĆ TO
+        self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = window_name
 

@@ -117,18 +117,26 @@ WindowManger:
     Button:
         id: attack
         on_release: root.action_attack()
-        pos: 600,0
-        size_hint: 0.09,0.113
+        pos: 50,200
+        size_hint: 0.065,0.10
         background_normal: "graphics/attack_button.png"
         background_disabled_normal: "graphics/attack_button_disabled.png"
 
     Button:
         id: spells
         on_release: root.action_spells()
-        pos: 760,0
-        size_hint: 0.09,0.113
+        pos: 50,320
+        size_hint: 0.065,0.10
         background_normal: "graphics/magic_button.png"
         background_disabled_normal: "graphics/magic_button_disabled.png"
+
+    Button:
+        id: potion
+        on_release: root.action_potion()
+        pos: 50,440
+        size_hint: 0.065,0.10
+        background_normal: "graphics/potion_button.png"
+        background_disabled_normal: "graphics/potion_button_disabled.png"
 
 <Game_Over>:
     name: "game_over"
@@ -203,11 +211,9 @@ WindowManger:
 <Character_Creation>:
     name: "character_creation"
     on_pre_enter: root.setup_window()
-    #size_hint: None, None
 <Map>:
     name: "map"
     on_pre_enter: root.setup_window()
-    #size_hint: None, None
 <Main_Menu>:
     name: "main_menu"
     size_hint: None, None
