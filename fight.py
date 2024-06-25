@@ -605,6 +605,12 @@ class Fight(Screen):
             self.current_target.MP = self.current_target.MAX_MP
         if self.current_target.HP > self.current_target.MAX_HP:
             self.current_target.HP = self.current_target.MAX_HP
+
+        if self.current_turn in player.team and self.current_turn.MP > self.current_turn.MAX_MP:
+            self.current_turn.MP = self.current_turn.MAX_MP
+        if self.current_turn.HP > self.current_turn.MAX_HP:
+            self.current_turn.HP = self.current_turn.MAX_HP
+    
     def add_status(self,status):
         self.current_target.status.append([se.status_effect.status_list[status].copy(),se.Status_Icon(se.status_effect.status_list[status][3],se.status_effect.status_list[status][6]),Label(font_size = 22)])
         

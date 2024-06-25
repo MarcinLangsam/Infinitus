@@ -38,17 +38,23 @@ class Character_Sprite(Widget):
         self.source = self.base
         self.sprite = "graphics/sprites/"+self.base+"_sprite_a_"+type+".png"
         self.anim = type
-    def set_sprite_weapon(self):
+        #print(self.sprite)
+        #print(self.anim)
+        #print(self.source)
 
+    def set_sprite_weapon(self):
         self.base = self.character.inventory["main_hand"][2]
         self.base = self.base[:-4]
         self.base = self.base[15:]
         self.weapon = "graphics/sprites/"+self.base + "_sprite_w.png"
+        #print(self.weapon)
     def set_weapon(self):
         self.base = self.character.inventory["main_hand"][2]
         self.base = self.base[:-4]
         self.base = self.base[15:]
         self.weapon_source = self.base
+        #print(self.weapon_source)
+        #print("TUTAJ JEDNO SIĘ KOŃCZY\n")
     def set_head(self):
         self.head = "graphics/sprites/"+self.head_source+"_sprite.png"
         self.portrait = "graphics/sprites/"+self.head_source+"_portrait.png"
@@ -95,6 +101,8 @@ class Character(Widget):
             "accessory2" : [918,432,"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
             "potion" : [918,222,"graphics/items/empty_slot.png","potion"],
+            #"accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
+            #"potion" : [918,222,"graphics/items/empty_slot.png","potion"],
             0 : [120,650,"graphics/items/skorzany_pancerz.png","item"],
             1 : [190,650,"graphics/items/skorzany_pancerz.png","item"],
             2 : [260,650,"graphics/items/skorzany_pancerz.png","item"], 
@@ -105,27 +113,27 @@ class Character(Widget):
             7 : [190,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
             8 : [260,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
             9 : [330,580,"graphics/items/mała_mikstura_zdrowia.png","item"],
-            10 : [400,580,"graphics/items/empty_slot.png","item"],
-            11 : [470,580,"graphics/items/empty_slot.png","item"],
-            12 : [120,510,"graphics/items/empty_slot.png","item"],
-            13 : [190,510,"graphics/items/empty_slot.png","item"],
-            14 : [260,510,"graphics/items/empty_slot.png","item"],
-            15 : [330,510,"graphics/items/empty_slot.png","item"],
-            16 : [400,510,"graphics/items/empty_slot.png","item"],
-            17 : [470,510,"graphics/items/empty_slot.png","item"],
-            18 : [120,440,"graphics/items/empty_slot.png","item"],
-            19 : [190,440,"graphics/items/empty_slot.png","item"],
-            20 : [260,440,"graphics/items/empty_slot.png","item"],
-            21 : [330,440,"graphics/items/empty_slot.png","item"],
-            22 : [400,440,"graphics/items/empty_slot.png","item"],
-            23 : [470,440,"graphics/items/empty_slot.png","item"],
-            24 : [120,370,"graphics/items/empty_slot.png","item"],
-            25 : [190,370,"graphics/items/empty_slot.png","item"],
-            26 : [260,370,"graphics/items/empty_slot.png","item"],
-            27 : [330,370,"graphics/items/empty_slot.png","item"],
-            28 : [400,370,"graphics/items/empty_slot.png","item"],
-            29 : [470,370,"graphics/items/empty_slot.png","item"],
-            30 : [120,300,"graphics/items/empty_slot.png","item"],
+            10 : [400,580,"graphics/items/dwureczny_topor_rzeznika.png","item"],
+            11 : [470,580,"graphics/items/gladius.png","item"],
+            12 : [120,510,"graphics/items/grzech_kaplana.png","item"],
+            13 : [190,510,"graphics/items/kostur_maga.png","item"],
+            14 : [260,510,"graphics/items/maczuga_zolnierska.png","item"],
+            15 : [330,510,"graphics/items/miecz_poltorareczny.png","item"],
+            16 : [400,510,"graphics/items/miecz_z_brazu.png","item"],
+            17 : [470,510,"graphics/items/rozczka_z_krysztalem_blyskawicy.png","item"],
+            18 : [120,440,"graphics/items/rytualny_sztylet.png","item"],
+            19 : [190,440,"graphics/items/siewca_smierci.png","item"],
+            20 : [260,440,"graphics/items/stalowy_miecz.png","item"],
+            21 : [330,440,"graphics/items/topor_wojownika.png","item"],
+            22 : [400,440,"graphics/items/wlocznia_straznicza.png","item"],
+            23 : [470,440,"graphics/items/kolczuga.png","item"],
+            24 : [120,370,"graphics/items/pikowany_pancerz.png","item"],
+            25 : [190,370,"graphics/items/szata_maga.png","item"],
+            26 : [260,370,"graphics/items/przyszywanica.png","item"],
+            27 : [330,370,"graphics/items/kolczuga.png","item"],
+            28 : [400,370,"graphics/items/kolczuga.png","item"],
+            29 : [470,370,"graphics/items/szata_maga.png","item"],
+            30 : [120,300,"graphics/items/szata_maga.png","item"],
             31 : [190,300,"graphics/items/empty_slot.png","item"],
             32 : [260,300,"graphics/items/empty_slot.png","item"],
             33 : [330,300,"graphics/items/empty_slot.png","item"],

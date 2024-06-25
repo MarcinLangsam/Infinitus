@@ -1,7 +1,7 @@
 _ 1. status name and list key name
 _ 2. name for tooltip
 _ 3. efect
-_ 4. duration time(in turns) +1 becouse of first turn active
+_ 4. duration time(in turns) +1 because of first turn active
 _ 5. path for icon graphics
 _ 6. type of status(one-time buff or triggerd every turn[poison])
 _ 7. code to clear efect
@@ -15,7 +15,7 @@ self.current_target.STR *= 1.5\nself.current_target.damage = self.current_target
 graphics/icons/szał_status.png
 one_time
 self.current_turn.STR /= 1.5\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
-Szał\nSiła zwiększona o 50%
+Szał\nSiła zwiększona o 50%, Brak Pancerza!
 x.STR /= 1.5\nx.damage = x.STR+x.weapon
 _______________________________________
 ogłuszenie
@@ -27,6 +27,36 @@ stun
 
 Ogłuszenie\nCel pomija swoją turę
 
+_______________________________________
+zew bojowy
+zew bojowy
+self.current_target.STR *= 1.25\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
+6
+graphics/icons/zew_bojowy_status.png
+one_time
+self.current_turn.STR /= 1.25\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
+Zew Bojowy\nSiła zwiększona o 25%
+x.STR /= 1.25\nx.damage = x.STR+x.weapon
+_______________________________________
+zew bojowy ulepszony
+zew bojowy ulepszony
+self.current_target.STR *= 1.35\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
+7
+graphics/icons/ogłuszenie_status.png
+one_time
+self.current_turn.STR /= 1.35\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
+Okrzyk Bojowy\nSiła zwiększona o 35%
+x.STR /= 1.35\nx.damage = x.STR+x.weapon
+_______________________________________
+precyzyjne ciosy
+precyzyjne ciosy
+self.current_target.crit_chance += 20
+6
+graphics/icons/precyzyjne_ciosy_status.png
+one_time
+self.current_turn.STR -= 20
+Precyzyje Ciosy\nSzansza na trafienie krytyczne zwiększona o 20%
+x.crit_chance -= 20
 ________________________________________
 płonięcie
 płonięcie
@@ -57,6 +87,16 @@ stun
 self.current_target.defence -= 500
 Zamrożenie\nCel traci swoją turę ale zwyskuje 500 Pancerza
 x.defence -= 500
+________________________________________
+runiczna klinga
+runiczna klinga
+self.current_target.damage = self.current_target.STR+self.current_target.weapon+self.current_target.INT
+6
+graphics/icons/runiczna_klinga_status.png
+one_time
+self.current_target.damage = self.current_target.STR+self.current_target.weapon
+Runiczna Klinga\nDodaje statystykę inteligencji do wartośći obrażeń
+x.damage = x.STR+x.weapon
 ________________________________________
 zatrute ostrze
 zatrute ostrze

@@ -10,22 +10,17 @@ player.main_player.DEX = 10
 player.main_player.INT = 10
 player.main_player.weapon = 10
 player.main_player.damage = 25
-player.main_player.defence = 5
+player.main_player.defence = 3
 player.main_player.crit_chance = 0.1
 player.main_player.dodge_chance = 0.2
 player.main_player.EXP_boost = 0.1
 player.main_player.EXP = 0
 player.main_player.EXP_To_Lv = 100
 player.main_player.stat_points = 20
-player.main_player.skill_points = 13
-player.main_player.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
-player.main_player.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
-player.main_player.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
-player.main_player.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
-player.main_player.skill["masowe uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",30,"graphics/skills/masowe_uzdrowienie.png","Masowe Uzdrowienie   |   AKTWNA\nTest umiejêtnoœci na wszystkich sojuszników\nUzdrawia INT wszystkim sojusznikom\nKoszt MP: 30","active","heal","on_all_character"]
+player.main_player.skill_points = 18
 player.main_player.inventory["main_hand"][2] = "graphics/items/mlot_bojowy.png"
 player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory["armor"][2] = "graphics/items/szata_maga.png"
 player.main_player.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
@@ -41,22 +36,17 @@ player.companion1.DEX = 30
 player.companion1.INT = 10
 player.companion1.weapon = 3
 player.companion1.damage = 13
-player.companion1.defence = 5
+player.companion1.defence = 3
 player.companion1.crit_chance = 0.3
 player.companion1.dodge_chance = 0.6
 player.companion1.EXP_boost = 0.1
 player.companion1.EXP = 0
 player.companion1.EXP_To_Lv = 100
 player.companion1.stat_points = 20
-player.companion1.skill_points = 13
-player.companion1.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
-player.companion1.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
-player.companion1.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
-player.companion1.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
-player.companion1.skill["masowe uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",30,"graphics/skills/masowe_uzdrowienie.png","Masowe Uzdrowienie   |   AKTWNA\nTest umiejêtnoœci na wszystkich sojuszników\nUzdrawia INT wszystkim sojusznikom\nKoszt MP: 30","active","heal","on_all_character"]
+player.companion1.skill_points = 18
 player.companion1.inventory["main_hand"][2] = "graphics/items/pika.png"
 player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.companion1.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
+player.companion1.inventory["armor"][2] = "graphics/items/szata_maga.png"
 player.companion1.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion1.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.companion1.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
@@ -72,28 +62,23 @@ player.companion2.DEX = 30
 player.companion2.INT = 10
 player.companion2.weapon = 15
 player.companion2.damage = 25
-player.companion2.defence = 5
+player.companion2.defence = 3
 player.companion2.crit_chance = 0.3
 player.companion2.dodge_chance = 0.6
 player.companion2.EXP_boost = 0.1
 player.companion2.EXP = 0
 player.companion2.EXP_To_Lv = 100
 player.companion2.stat_points = 20
-player.companion2.skill_points = 13
-player.companion2.skill["kula ognia"] = ["self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzmieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów\nObra¿enia: 20+INT*1.5\nP³oniêcie 3 tury\nKoszt MP: 10","active","ranged","on_enemy"]
-player.companion2.skill["kamienna skóra"] = ["self.final_damage = 0\nself.action_status = 'kamienna skóra'",15,"graphics/skills/kamienna_skóra.png","Kamienna Skóra\nTwoja skóra staje siê twarda niczym kamieñ dziêki czemu mo¿esz wytrzymaæ wiêcej ciosów\nKamienna skora 4 tury\nPancerz +15\nKoszt MP: 15","active","status","on_characters"]
-player.companion2.skill["uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*3)-30",20,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce poierzchowne rany\nLeczy: 30+INT*3\nKoszt MP: 20","active","heal","on_characters"]
-player.companion2.skill["deszcz ognia"] = ["self.final_damage = self.current_turn.INT*100",30,"graphics/skills/deszcz_ognia.png","Deszcz Ognia   |   AKTWNA\nTest umiejêtnoœci na wszystkich wrogów\nZadaje INT wszystkim wrogom\nKoszt MP: 30","active","ranged","on_all_enemy"]
-player.companion2.skill["masowe uzdrowienie"] = ["self.final_damage = -(self.current_turn.INT*10)",30,"graphics/skills/masowe_uzdrowienie.png","Masowe Uzdrowienie   |   AKTWNA\nTest umiejêtnoœci na wszystkich sojuszników\nUzdrawia INT wszystkim sojusznikom\nKoszt MP: 30","active","heal","on_all_character"]
+player.companion2.skill_points = 18
 player.companion2.inventory["main_hand"][2] = "graphics/items/miecz_rycerski.png"
 player.companion2.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-player.companion2.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
+player.companion2.inventory["armor"][2] = "graphics/items/szata_maga.png"
 player.companion2.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.companion2.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.companion2.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[0][2] = "graphics/items/skorzany_pancerz.png"
-player.main_player.inventory[1][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[2][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[1][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[2][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[3][2] = "graphics/items/miedziany_sztylet.png"
 player.main_player.inventory[4][2] = "graphics/items/mlot_bojowy.png"
 player.main_player.inventory[5][2] = "graphics/items/empty_slot.png"
@@ -101,26 +86,26 @@ player.main_player.inventory[6][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[7][2] = "graphics/items/ma³a_mikstura_zdrowia.png"
 player.main_player.inventory[8][2] = "graphics/items/ma³a_mikstura_zdrowia.png"
 player.main_player.inventory[9][2] = "graphics/items/ma³a_mikstura_zdrowia.png"
-player.main_player.inventory[10][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[11][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[12][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[13][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[14][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[15][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[16][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[17][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[18][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[19][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[20][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[21][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[22][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[23][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[24][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[10][2] = "graphics/items/dwureczny_topor_rzeznika.png"
+player.main_player.inventory[11][2] = "graphics/items/gladius.png"
+player.main_player.inventory[12][2] = "graphics/items/grzech_kaplana.png"
+player.main_player.inventory[13][2] = "graphics/items/kostur_maga.png"
+player.main_player.inventory[14][2] = "graphics/items/maczuga_zolnierska.png"
+player.main_player.inventory[15][2] = "graphics/items/miecz_poltorareczny.png"
+player.main_player.inventory[16][2] = "graphics/items/miecz_z_brazu.png"
+player.main_player.inventory[17][2] = "graphics/items/rozczka_z_krysztalem_blyskawicy.png"
+player.main_player.inventory[18][2] = "graphics/items/rytualny_sztylet.png"
+player.main_player.inventory[19][2] = "graphics/items/siewca_smierci.png"
+player.main_player.inventory[20][2] = "graphics/items/stalowy_miecz.png"
+player.main_player.inventory[21][2] = "graphics/items/topor_wojownika.png"
+player.main_player.inventory[22][2] = "graphics/items/wlocznia_straznicza.png"
+player.main_player.inventory[23][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[24][2] = "graphics/items/pikowany_pancerz.png"
 player.main_player.inventory[25][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[26][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[27][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[28][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory[29][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[26][2] = "graphics/items/przyszywanica.png"
+player.main_player.inventory[27][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[28][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[29][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[30][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[31][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[32][2] = "graphics/items/empty_slot.png"

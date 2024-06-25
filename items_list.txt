@@ -51,6 +51,97 @@ player.current_player.weapon -= 15
 Miecz Rycerski    |   BROŃ DWURĘCZNA\nObrażenia +15
 10
 _______________________________________
+graphics/items/dwureczny_topor_rzeznika.png
+two_hand
+player.current_player.weapon += 30
+player.current_player.weapon -= 30
+Dwóręczny Topór Rzeźnika    |   BROŃ DWURĘCZNA\nObrażenia +30
+10
+_______________________________________
+graphics/items/gladius.png
+one_hand
+player.current_player.weapon += 30
+player.current_player.weapon -= 30
+Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +30
+10
+_______________________________________
+graphics/items/grzech_kaplana.png
+two_hand_spear
+player.current_player.weapon += 20
+player.current_player.weapon -= 20
+Grzech Kapłana    |   BROŃ DWURĘCZNA\nObrażenia +20
+10
+_______________________________________
+graphics/items/kostur_maga.png
+two_hand_spear
+player.current_player.weapon += 25
+player.current_player.weapon -= 25
+Kostur Maga    |   BROŃ DWURĘCZNA\nObrażenia +25
+10
+_______________________________________
+graphics/items/maczuga_zolnierska.png
+one_hand
+player.current_player.weapon += 30
+player.current_player.weapon -= 30
+Maczuga Żołnierska    |   BROŃ JEDNORĘCZNA\nObrażenia +30
+10
+_______________________________________
+graphics/items/miecz_poltorareczny.png
+one_hand
+player.current_player.weapon += 35
+player.current_player.weapon -= 35
+Miecz Półtoraręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +35
+10
+_______________________________________
+graphics/items/miecz_z_brazu.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Miecz z Brązu    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/rozczka_z_krysztalem_blyskawicy.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Różczka z Kryształem Błyskawicy    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/rytualny_sztylet.png
+one_hand
+player.current_player.weapon += 15
+player.current_player.weapon -= 15
+Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +15
+10
+_______________________________________
+graphics/items/siewca_smierci.png
+one_hand
+player.current_player.weapon += 45
+player.current_player.weapon -= 45
+Siewca Śmierci    |   BROŃ JEDNORĘCZNA\nObrażenia +45
+10
+_______________________________________
+graphics/items/stalowy_miecz.png
+one_hand
+player.current_player.weapon += 10
+player.current_player.weapon -= 10
+Stalowy Miecz    |   BROŃ JEDNORĘCZNA\nObrażenia +10
+10
+_______________________________________
+graphics/items/topor_wojownika.png
+one_hand
+player.current_player.weapon += 20
+player.current_player.weapon -= 20
+Topór Wojownika    |   BROŃ JEDNORĘCZNA\nObrażenia +20
+10
+_______________________________________
+graphics/items/wlocznia_straznicza.png
+two_hand_spear
+player.current_player.weapon += 20
+player.current_player.weapon -= 20
+Topór Wojownika    |   BROŃ DWÓRĘCZNA\nObrażenia +20
+10
+_______________________________________
 _
 _
 _________OFF HAND ITEMS ____________
@@ -69,6 +160,34 @@ armor
 player.current_player.defence += 5
 player.current_player.defence -= 5
 Skórzany Pancerz   |   PANCERZ\nPancerz +5
+1000
+_______________________________________
+graphics/items/pikowany_pancerz.png
+armor
+player.current_player.defence += 8
+player.current_player.defence -= 8
+Pikowany Pancerz   |   PANCERZ\nPancerz +8
+1000
+_______________________________________
+graphics/items/szata_maga.png
+armor
+player.current_player.defence += 3
+player.current_player.defence -= 3
+Szata Maga   |   PANCERZ\nPancerz +3
+1000
+_______________________________________
+graphics/items/przyszywanica.png
+armor
+player.current_player.defence += 7
+player.current_player.defence -= 7
+Przyszywanica   |   PANCERZ\nPancerz +7
+1000
+_______________________________________
+graphics/items/kolczuga.png
+armor
+player.current_player.defence += 10
+player.current_player.defence -= 10
+Kolczuga   |   PANCERZ\nPancerz +10
 1000
 _______________________________________
 _

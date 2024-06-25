@@ -57,6 +57,7 @@ class Team(Screen):
             self.empty_accessory3.color = [1,1,1,1]
         else:
             self.empty_accessory3.color = [0,0,0,0]
+        
         if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
             self.empty_potion.color = [1,1,1,1]
         else:
@@ -154,7 +155,7 @@ class Team(Screen):
         self.add_widget(self.empty_accessory)
         self.add_widget(self.empty_accessory2) 
         self.add_widget(self.empty_accessory3)
-        #self.add_widget(self.empty_potion)
+        self.add_widget(self.empty_potion)
         
         self.refresh_items()
             
@@ -183,6 +184,7 @@ class Team(Screen):
         self.current_sprite.set_sprite_weapon()
         self.current_sprite.set_weapon()
         self.add_widget(self.current_sprite)
+        print(self.current_sprite.base)
         self.remove_widget(self.tooltip)
         self.add_widget(self.tooltip)
  

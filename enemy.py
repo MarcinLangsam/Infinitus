@@ -30,6 +30,10 @@ class Enemy_Sprite(Widget):
         self.sprite = self.sprite
         #self.anim = self.sprite[15:-4]
         self.anim = self.source
+        #print(self.sprite)
+        #print(self.anim)
+        #print(self.weapon_source)
+        #print(self.head_source)
         
     def set_anim_parameters(self,time,rate,frame,frame_sum):
         self.time = time
@@ -190,13 +194,10 @@ skeleton = Enemy("Szkielet",1,50,20,10,10,20,0,50,10,{"atak":enemy_skills["atak"
 skeleton2 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png","szkielet")
 skeleton3 = Enemy("Szkielet",1,50,10,10,10,20,0,50,10,{"atak":enemy_skills["atak"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png","szkielet")
 
-#death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-#death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-#death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"atak":enemy_skills["atak"],"mroczna_potega":enemy_skills["mroczna_potega"],"uderzenie_smierci":enemy_skills["uderzenie_smierci"],"obezwładnienie":enemy_skills["obezwładnienie"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-
-death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
-death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/szkielet_sprite.png","szkielet")
+death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci")
+death_knight2 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci")
+death_knight3 = Enemy("Rycerz Śmierci",3,500,50,20,35,30,20,500,1000,{"atak":enemy_skills["atak"],"fala_śmierci":enemy_skills["fala_śmierci"],"kojące_dźwięki":enemy_skills["kojące_dźwięki"]},{},"graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci")
+zjawa = Enemy("Zjawa",2,150,20,30,25,20,5,100,30,{"atak":enemy_skills["atak"]},{},"graphics/sprites/zjawa_sprite.png","zjawa")
 
 #skeleton_priest = Enemy("Duch Wojownika",2,150,20,5,10,20,10,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
 #skeleton_warrior = Enemy("Upadły kapłan",3,70,5,20,30,5,5,50,100,{"atak":enemy_skills["atak"],"leczenie":enemy_skills["leczenie"],"szarża":enemy_skills["szarża"]},{"graphics/items/pierscien_sily.png":50},"graphics/items/skeleton.png")
