@@ -10,6 +10,8 @@ from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 
+#TEST
+
 class StageProgressBar(ProgressBar):
     pass
 class Menu(Screen):
