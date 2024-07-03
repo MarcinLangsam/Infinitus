@@ -78,10 +78,15 @@ class Character(Widget):
         self.INT = 10
         self.weapon = 0
         self.damage = self.STR+self.weapon
+        self.damage_bonus = 0
+        self.damage_special_effect = ""
         self.defence = 0
-        self.crit_chance = round(0.01*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX,2)
         self.dodge_chance = round(0.02*self.DEX,2)
-        self.EXP_boost = round(0.01*self.INT,2)
+        self.EXP_boost = round(0.1*self.INT,2)
+        self.crit_chance_bonus = 0
+        self.dodge_chance_bonus = 0
+        self.EXP_boost_bonus = 0
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 20
@@ -101,8 +106,6 @@ class Character(Widget):
             "accessory2" : [918,432,"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
             "potion" : [918,222,"graphics/items/empty_slot.png","potion"],
-            #"accessory3" : [918,322,"graphics/items/empty_slot.png","accessory"],
-            #"potion" : [918,222,"graphics/items/empty_slot.png","potion"],
             0 : [120,650,"graphics/items/skorzany_pancerz.png","item"],
             1 : [190,650,"graphics/items/skorzany_pancerz.png","item"],
             2 : [260,650,"graphics/items/skorzany_pancerz.png","item"], 
@@ -213,10 +216,15 @@ class Character(Widget):
         self.INT = 10
         self.weapon = 0
         self.damage = self.STR+self.weapon
+        self.damage_bonus = 0
+        self.damage_special_effect = ""
         self.defence = 0
-        self.crit_chance = round(0.01*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX,2)
         self.dodge_chance = round(0.02*self.DEX,2)
-        self.EXP_boost = round(0.01*self.INT,2)
+        self.EXP_boost = round(0.1*self.INT,2)
+        self.crit_chance_bonus = 0
+        self.dodge_chance_bonus = 0
+        self.EXP_boost_bonus = 0
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 20
@@ -227,6 +235,20 @@ class Character(Widget):
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+    def printBattleStats(self):
+        print("STR "+str(self.STR))
+        print("DEX "+str(self.DEX))
+        print("INT "+str(self.INT))
+        print("Weapon Damage "+str(self.weapon))
+        print("Final Damage "+str(self.damage))
+        print("Defence "+str(self.defence))
+        print("Crit Chance "+str(self.crit_chance))
+        print("Dodge Chance "+str(self.dodge_chance))
+        print("EXP Boost "+str(self.EXP_boost))
+        print("Skills:")
+        for x in self.skill:
+            print(x)
+            print(self.skill[x])
 
 main_player = Character()
 main_player.name = "Gracz Pierwszy"

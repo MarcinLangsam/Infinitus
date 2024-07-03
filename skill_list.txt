@@ -99,13 +99,13 @@ graphics/skills/zew_bojowy.png
 graphics/skills/zew_bojowy_ok.png
 50
 active
-Zew Bojowy   |   AKTYWA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
 status
 on_self
 ______________________________________
 7
 okrzyk bojowy
-player.current_player.skill[6][6] = "on_all_characters"\nplayer.current_player.skill[6][2] = "graphics/skills/okrzyk_bojowy.png"
+player.current_player.skill["zew bojowy"][6] = "on_all_character"\nplayer.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
 zew bojowy
 graphics/skills/okrzyk_bojowy.png
 165
@@ -114,13 +114,13 @@ graphics/skills/okrzyk_bojowy.png
 graphics/skills/okrzyk_bojowy_ok.png
 0
 passive
-Okrzyk Bojowy   |   PASYWNA\nUlepszony Zew Bojowy, sprawia, że Zew Bojowy działa na [color=#e45eff]WSZYSTKICH SOJUSZNIKÓW[/color]
+Okrzyk Bojowy   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz na wszystkich sojuszników.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
 ______________________________________
 8
 siła w głosie
-player.current_player.skill[6][1] = "self.final_damage = 0\nself.action_status = 'zew bojowy_ulepszony'"\nplayer.current_player.skill[6][2] = "graphics/skills/siła_w_głosie.png"
+player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"""\nplayer.current_player.skill["zew bojowy"][2] = 'graphics/skills/siła_w_głosie.png'
 okrzyk bojowy
 graphics/skills/siła_w_głosie.png
 95
@@ -129,7 +129,7 @@ graphics/skills/siła_w_głosie.png
 graphics/skills/siła_w_głosie_ok.png
 0
 passive
-Siła w Głosie   |   PASYWNA\nZew bojowy działa teraz 6 tur oraz zwiększa [color=#de8833]siłę o 35%[/color]
+Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz 6 tur i zwieksza sile o 35%.\n\nNakłada: Zew Bojowy 6 tur - [color=#de8833]+35%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
 ______________________________________
@@ -165,13 +165,13 @@ on_character
 ______________________________________
 11
 końskie zdrowie
-self.current_player.HP += 60\nself.current_player.MAX_HP += 60
-nakładanie rąk
+player.current_player.HP += 60\nplayer.current_player.MAX_HP += 60
+boski grzmot
 graphics/skills/końskie_zdrowie.png
 375
 380
 9
-graphics/skills/końskie zdrowie_ok.png
+graphics/skills/końskie_zdrowie_ok.png
 0
 passive
 Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+60 zdrowia[/color]
@@ -285,7 +285,7 @@ on_self
 _________________________________________
 45
 trening maga I
-self.current_player.INT += 4\nself.current_player.MP += 20\nself.current_player.MAX_MP +=20
+player.current_player.INT += 4\nplayer.current_player.MP += 20\nplayer.current_player.MAX_MP +=20
 uzdrowienie
 graphics/skills/trening_maga.png
 740
@@ -315,7 +315,7 @@ on_enemy
 _________________________________________
 47
 szybka nauka
-self.current_player.EXP_boost += 5
+player.current_player.EXP_boost_bonus += 5 
 kamienna skóra
 graphics/skills/szybka_nauka.png
 810
@@ -390,7 +390,7 @@ on_self
 _________________________________________
 82
 głębokie rany
-self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawiene'
+self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawienie'
 zatrute ostrze
 graphics/skills/głębokie_rany.png
 1260
@@ -420,7 +420,7 @@ Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polep
 _________________________________________
 84
 precyzja
-player.current_player.crit_chance += 3
+player.current_player.crit_chance_bonus += 3
 nadzwyczajna zwinność
 graphics/skills/precyzja.png
 1330
@@ -465,7 +465,7 @@ on_self
 _________________________________________
 87
 dziedziczenie krwi
-player.current_player.skill[6][1] = "self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"\nplayer.current_player.skill[6][6] = on_character
+player.current_player.skill["krwiopijca"][0] = """self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"""\nplayer.current_player.skill["krwiopijca"][6] = "on_character"
 krwiopijca
 graphics/skills/dziedziczenie_krwi.png
 1190
@@ -474,7 +474,7 @@ graphics/skills/dziedziczenie_krwi.png
 graphics/skills/dziedziczenie_krwi_ok.png
 0
 passive
-Dziedziczenie Krwi   |   PASYWNA\nCzas działania kropijcy zostaje wydłużony do 4 tur oraz moższna nałożyć go na [color=#e45eff]DOWOLNEGO SOJUSZNIKA[/color]
+Krwiopijca   |   AKTYWNA\nULEPSZENIE\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]
 
 
 _________________________________________
@@ -504,13 +504,13 @@ graphics/skills/rozbrojenie.png
 graphics/skills/rozbrojenie_ok.png
 30
 active
-Rozbrojenie   |   AKTYWNA\nOsłabia przeciwnika utrudniając mu korzystanie z broni.\n\nNadaje: Rozbrojenie 3 tury - [color=#fdff80]zmniejsza siłę o obrażenia celu o 50%[/color]\nKoszt MP: [color=#0000ff]30[/color]
+Rozbrojenie   |   AKTYWNA\nOsłabia przeciwnika utrudniając mu korzystanie z broni.\n\nNadaje: Rozbrojenie 3 tury - [color=#fdff80]zmniejsza siłę i obrażenia celu o 50%[/color]\nKoszt MP: [color=#0000ff]30[/color]
 status
 on_enemy
 _________________________________________
 90
 trening łotra I
-player.current_player.DEX += 3\nplayer.current_player.STR += 2\nplayer.current_player.dodge_chance += 3
+player.current_player.DEX += 3\nplayer.current_player.STR += 2\nplayer.current_player.dodge_chance_bonus += 3
 krwiopijca
 graphics/skills/trening_łotra.png
 1260

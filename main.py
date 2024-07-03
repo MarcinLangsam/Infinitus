@@ -10,8 +10,6 @@ from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 
-#TEST
-
 class StageProgressBar(ProgressBar):
     pass
 class Menu(Screen):
@@ -25,7 +23,6 @@ class Menu(Screen):
     def change_window(self,window_name):
         self.remove_widget(self.tooltip)
         self.manager.current = window_name
-
     def reset_tooltip(self):
         tt.clear_tooltip(self.tooltip)
 

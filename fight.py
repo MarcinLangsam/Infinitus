@@ -11,6 +11,7 @@ from kivy.uix.boxlayout import BoxLayout
 
 current_stage = 1
 current_fight = 2
+
 gold_gain = 0
 is_random_fight = False
 
@@ -392,10 +393,10 @@ class Fight(Screen):
         if len(enemy.enemy_team_alive) <= 0:
             self.battle_over()
             self.get_loot_and_exp()
-            if current_fight < 3 and is_random_fight == False:
+            if current_fight < 10 and is_random_fight == False:
                 current_fight=current_fight+1
-            if current_fight == 3:
-                self.manager.current = "end"
+            #if current_fight == 3:
+            #    self.manager.current = "end"
             else:
                 self.manager.current = "battle_result"
         if len(enemy.player_team_alive) <= 0:
@@ -523,6 +524,8 @@ class Fight(Screen):
                 self.if_critical_or_miss = True
     
         exec(self.action)
+        if self.current_turn.damage_special_effect != "":
+            exec(self.current_turn.damage_special_effect)
         if self.action_status != "":
             self.add_status(self.action_status)
             self.start_status()
@@ -530,9 +533,14 @@ class Fight(Screen):
                 self.final_damage = self.action_status.upper()
             else:
                 self.final_damage = str(self.final_damage) + " " + self.action_status.upper()
+        
+        
 
         self.check_for_exceed_HP_MP()
-
+        print("OBECNA TURA")
+        self.current_turn.printBattleStats()
+        print("CEL")
+        self.current_target.printBattleStats()
         if(self.if_all_targets == False):
             self.action_status = ""
 
@@ -682,17 +690,16 @@ class Fight(Screen):
             self.remove_widget(self.skill_list_pop_up)
             self.remove_widget(self.resign_button)
             self.run_animation()
-        
         if self.current_turn in player.team:
             self.current_turn.MP -= self.MP_cost
 
     def action_attack(self):
         self.disable_control()
-        self.final_damage = self.current_turn.damage
+        self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus
         self.MP_cost = 0
         self.distance = "melee"
         self.target_type = "on_enemy"
-        self.action = "self.final_damage = self.current_turn.damage"
+        self.action = "self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus"
         self.add_widget(self.resign_button)
         self.chose_target("on_enemy")
 

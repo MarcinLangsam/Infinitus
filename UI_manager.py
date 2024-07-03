@@ -41,9 +41,9 @@ class UI():
         
     def stats_refresh(self,character):
         character.damage = character.STR+character.weapon
-        character.crit_chance = 0.1*character.DEX
-        character.dodge_chance = 0.02*character.DEX
-        character.EXP_boost = 0.1*character.INT
+        character.crit_chance = 0.1*character.DEX+character.crit_chance_bonus
+        character.dodge_chance = 0.02*character.DEX+character.dodge_chance_bonus
+        character.EXP_boost = 0.1*character.INT+character.EXP_boost_bonus
 
         stats["lv"].text = str(character.lv)
         stats["HP"].text = str(character.HP) + ("/") + str(character.MAX_HP)

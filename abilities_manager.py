@@ -33,7 +33,7 @@ class SkillSlot(Widget):
                                     skills_objects[x].sprite=(skills.skill_list[x][7])
                                     player.current_player.skill_points-=1
                                     UI.ui.skill_points_refresh(player.current_player)
-                                    print(player.current_player.skill)
+                                    player.current_player.printBattleStats()
                                 else:
                                     tp.text_pop.text = "Poptrzeba wcześniejszych umiejętności"
                             else:

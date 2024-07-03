@@ -42,7 +42,7 @@ zew bojowy ulepszony
 zew bojowy ulepszony
 self.current_target.STR *= 1.35\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
 7
-graphics/icons/ogłuszenie_status.png
+graphics/icons/zew_bojowy_status.png
 one_time
 self.current_turn.STR /= 1.35\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Okrzyk Bojowy\nSiła zwiększona o 35%
@@ -60,7 +60,7 @@ x.crit_chance -= 20
 ________________________________________
 płonięcie
 płonięcie
-self.current_turn.HP -= self.current_turn.MAX_HP*0.05
+self.current_turn.HP -= int(self.current_turn.MAX_HP*0.05)
 4
 graphics/icons/płonięcie_status.png
 dmg_ot
@@ -72,7 +72,7 @@ kamienna skóra
 kamienna skóra
 self.current_target.defence+=15
 5
-graphics/icons/kamenna_skóra_status.png
+graphics/icons/kamienna_skóra_status.png
 one_time
 self.current_target.defence-=15
 Kamienna Skóra\nPancerz zwiększony o 15
@@ -90,23 +90,23 @@ x.defence -= 500
 ________________________________________
 runiczna klinga
 runiczna klinga
-self.current_target.damage = self.current_target.STR+self.current_target.weapon+self.current_target.INT
+self.current_target.damage_bonus += self.current_target.INT
 6
 graphics/icons/runiczna_klinga_status.png
 one_time
-self.current_target.damage = self.current_target.STR+self.current_target.weapon
-Runiczna Klinga\nDodaje statystykę inteligencji do wartośći obrażeń
-x.damage = x.STR+x.weapon
+self.current_target.damage_bonus -= self.current_target.INT
+Runiczna Klinga\nDodaje statystykę inteligencji do wartości obrażeń
+x.damage_bonus -= x.INT
 ________________________________________
 zatrute ostrze
 zatrute ostrze
-self.current_target.damage = self.current_target.STR+self.current_target.weapon+self.current_target.DEX
+self.current_target.damage_bonus += self.current_target.DEX
 5
 graphics/icons/zatrute_ostrze_status.png
 one_time
-self.current_target.damage = self.current_target.STR+self.current_target.weapon
-Zatrute Ostrze\nDodaje statystykę zręczności do wartośći obrażeń
-x.damage = x.STR+x.weapon
+self.current_target.damage_bonus -= self.current_target.DEX
+Zatrute Ostrze\nDodaje statystykę zręczności do wartości obrażeń
+x.damage_bonus -= x.DEX
 ________________________________________
 krwawienie
 krwawienie
@@ -115,8 +115,38 @@ self.current_turn.HP -= 30
 graphics/icons/krwawienie_status.png
 dmg_ot
 
-Krwawienie\nCel traci 5% HP co turę
+Krwawienie\nCel traci 30 zdrowia co turę
 
+________________________________________
+krwiopijca
+krwiopijca
+self.current_target.damage_special_effect = "self.current_turn.HP += self.final_damage"
+4
+graphics/icons/krwiopijca_status.png
+one_time
+self.current_target.damage_special_effect = ""
+Krwiopijca\nZwraca 50% zadanych obrażen jako zdrowie
+x.damage_special_effect = ""
+________________________________________
+krwiopijca_ulepszony
+krwiopijca_ulepszony
+self.current_target.damage_special_effect = "self.current_turn.HP += self.final_damage"
+5
+graphics/icons/krwiopijca_status.png
+one_time
+self.current_target.damage_special_effect = ""
+Krwiopijca\nZwraca 50% zadanych obrażen jako zdrowie
+x.damage_special_effect = ""
+________________________________________
+rozbrojenie
+rozbrojenie
+self.current_target.STR *= 0.5\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
+4
+graphics/icons/krwiopijca_status.png
+one_time
+self.current_turn.STR /= 0.5\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
+Rozbrojenie\nSiła i obrażenia zmniejszone o 50%
+x.STR /= 0.5\nx.damage = x.STR+x.weapon
 ________________________________________
 łaska hermesa
 łaska hermesa
@@ -164,6 +194,46 @@ ________________________________________
 _
 _
 _____________enemy status______________
+blok
+blok
+self.current_target.defence+=20
+2
+graphics/icons/zemsta_status.png
+one_time
+self.current_target.defence-=20
+Blok\nDo nastepnej tury dostaje 20 pancerza
+x.defence-=20
+________________________________________
+klatwa
+klatwa
+self.current_target.STR*=0.9\nself.current_target.DEX*=0.9\nself.current_target.INT*=0.9
+5
+graphics/icons/zemsta_status.png
+one_time
+self.current_target.STR/=0.9\nself.current_target.DEX/=0.9\nself.current_target.INT/=0.9
+Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 10%
+x.STR/=0.9\nx.DEX/=0.9\nx.INT/*=0.9
+________________________________________
+duch
+duch
+self.current_target.dodge_chance+=30
+4
+graphics/icons/zemsta_status.png
+one_time
+self.current_target.dodge_chance-=30
+Duch\nSzansza na unik zwiększona o 30%
+x.dodge_chance-=30
+________________________________________
+zimny jak lód
+zimny jak lód
+self.current_target.DEX*=0.5\nself.current_target.INT*=0.9\nself.current_target.STR*=0.9
+7
+graphics/icons/zemsta_status.png
+one_time
+self.current_target.DEX/=0.5\nself.current_target.INT/=0.9\nself.current_target.STR/=0.9
+Zimny jak lód\nZręcznośc zmniejszona o 50%, siła i inteligencji o 10%
+x.DEX/=0.5\nx.INT/=0.9\nx.STR/=0.9
+________________________________________
 zemsta
 zemsta
 self.current_target.damage*=1.5\nself.current_target.STR*=1.5
