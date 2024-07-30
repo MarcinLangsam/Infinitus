@@ -10,10 +10,21 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 current_stage = 1
-current_fight = 2
+current_fight = 1
+
+stage1_progress = 1
+stage2_progress = 1
 
 gold_gain = 0
 is_random_fight = False
+
+def update_stages_progression(current):
+    if current == 1:
+        stage1_progress += 1
+    if current == 2:
+        stage2_progress += 1
+
+
 
 def text_pop_up(t,pos_x,pos_y):
     text_pop = Label(pos=(pos_x,pos_y), text=t, font_size=24)
@@ -65,6 +76,7 @@ class Fight(Screen):
         self.tooltip = tt.Tooltip()
         self.if_critical_or_miss = False
         self.if_all_targets = False
+        self.effect = ""
 
     def send_tooltip():
         return Fight.tooltip
@@ -281,7 +293,11 @@ class Fight(Screen):
                 self.sprite.head = "atlas://graphics/animations/"+self.sprite.head_source+"/"+self.sprite.anim + self.animation_type + str(self.sprite.frame)
                 self.sprite.sprite = "atlas://graphics/animations/"+self.sprite.source+"/"+self.sprite.anim + self.animation_type + str(self.sprite.frame)
                 self.sprite.weapon = "atlas://graphics/animations/"+self.sprite.weapon_source+"/"+self.sprite.weapon_source + self.animation_type + str(self.sprite.frame)
+                if(self.target_sprite==self.sprite):
+                    self.sprite.effect = "atlas://graphics/effects/"+self.sprite.effect_source+"/effect" + str(self.sprite.frame)
                 self.sprite.frame = self.sprite.frame + 1
+
+                            
 
                 if(self.if_all_targets == True and self.distance not in ["status","heal"]):
                     if self.current_target in player.team:
@@ -290,26 +306,31 @@ class Fight(Screen):
                             self.chose_sprite(x).head = "atlas://graphics/animations/"+self.chose_sprite(x).head_source+"/"+self.chose_sprite(x).anim + "_hit" + str(self.chose_sprite(x).frame)
                             self.chose_sprite(x).sprite = "atlas://graphics/animations/"+self.chose_sprite(x).source+"/"+self.chose_sprite(x).anim + "_hit" + str(self.chose_sprite(x).frame)
                             self.chose_sprite(x).weapon = "atlas://graphics/animations/"+self.chose_sprite(x).weapon_source+"/"+self.chose_sprite(x).weapon_source + "_hit" + str(self.chose_sprite(x).frame)
+                            self.chose_sprite(x).effect = "atlas://graphics/effects/"+self.chose_sprite(x).effect_source+"/effect" + str(self.target_sprite.frame)
                             self.chose_sprite(x).frame = self.chose_sprite(x).frame + 1
+                
                     else:
                         for x in enemy.enemy_team:
                             self.chose_sprite(x).time -= self.chose_sprite(x).rate
                             self.chose_sprite(x).head = "atlas://graphics/animations/"+self.chose_sprite(x).head_source+"/"+self.chose_sprite(x).anim + "_hit" + str(self.chose_sprite(x).frame)
                             self.chose_sprite(x).sprite = "atlas://graphics/animations/"+self.chose_sprite(x).source+"/"+self.chose_sprite(x).anim + "_hit" + str(self.chose_sprite(x).frame)
                             self.chose_sprite(x).weapon = "atlas://graphics/animations/"+self.chose_sprite(x).weapon_source+"/"+self.chose_sprite(x).weapon_source + "_hit" + str(self.chose_sprite(x).frame)
+                            self.chose_sprite(x).effect = "atlas://graphics/effects/"+self.chose_sprite(x).effect_source+"/effect" + str(self.target_sprite.frame)
                             self.chose_sprite(x).frame = self.chose_sprite(x).frame + 1
+                
                 elif(self.target_sprite!=self.sprite and self.distance not in ["status","heal"]):
                     self.target_sprite.time -= self.target_sprite.rate
                     self.target_sprite.head = "atlas://graphics/animations/"+self.target_sprite.head_source+"/"+self.target_sprite.anim + "_hit" + str(self.target_sprite.frame)
                     self.target_sprite.sprite = "atlas://graphics/animations/"+self.target_sprite.source+"/"+self.target_sprite.anim + "_hit" + str(self.target_sprite.frame)
                     self.target_sprite.weapon = "atlas://graphics/animations/"+self.target_sprite.weapon_source+"/"+self.target_sprite.weapon_source + "_hit" + str(self.target_sprite.frame)
+                    self.target_sprite.effect = "atlas://graphics/effects/"+self.target_sprite.effect_source+"/effect" + str(self.target_sprite.frame)
                     self.target_sprite.frame = self.target_sprite.frame + 1
-                
-                
+            
+
 
                 if (self.sprite.frame > self.sprite.frame_sum):
                     self.sprite.frame = 1
-
+                    
                     if self.if_all_targets == True:
                         if self.current_target in player.team:
                             for x in player.team:
@@ -394,9 +415,14 @@ class Fight(Screen):
             self.battle_over()
             self.get_loot_and_exp()
             if current_fight < 10 and is_random_fight == False:
-                current_fight=current_fight+1
+                #WLACZENIE I WYLOCZNEIE PROGRESJI PO WALCE
+                #current_fight=current_fight+1
+                pass
             #if current_fight == 3:
             #    self.manager.current = "end"
+            if enemy.story_fight[current_stage][current_fight][1] == "character":
+                #TUTAJ DODAC DODAWANIE KOLEJNEJ POSTACI DO DRUZYNY
+                pass
             else:
                 self.manager.current = "battle_result"
         if len(enemy.player_team_alive) <= 0:
@@ -466,8 +492,8 @@ class Fight(Screen):
                     self.current_turn.status[x][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-30+x*30,self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]+130)
                     self.current_turn.status[x][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-790+x*30,self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-290)
                 else:
-                    self.current_turn.status[x][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-30+-x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-40)
-                    self.current_turn.status[x][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-790-x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-461)
+                    self.current_turn.status[x][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-30+x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-40)
+                    self.current_turn.status[x][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-790+x*30,self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1]-461)
                 self.current_turn.status[x][2].text = str(self.current_turn.status[x][0][2])
                 self.add_widget(self.current_turn.status[x][1],-1)
                 self.add_widget(self.current_turn.status[x][2],-2)
@@ -481,8 +507,8 @@ class Fight(Screen):
                     self.current_target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]+130)
                     self.current_target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-290)
                 else:
-                    self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30-(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-40)
-                    self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790-(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-461)
+                    self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-40)
+                    self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-461)
                 self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
                 if self.current_target.status[-1][0][4] == "one_time":
                     exec(self.current_target.status[-1][0][1])
@@ -522,7 +548,7 @@ class Fight(Screen):
         if self.dodge_roll < self.current_target.dodge_chance  and self.distance != "heal" and self.distance != "status":
                 self.action = "self.final_damage = 'PUDŁO!'"
                 self.if_critical_or_miss = True
-    
+                
         exec(self.action)
         if self.current_turn.damage_special_effect != "":
             exec(self.current_turn.damage_special_effect)
@@ -537,10 +563,10 @@ class Fight(Screen):
         
 
         self.check_for_exceed_HP_MP()
-        print("OBECNA TURA")
-        self.current_turn.printBattleStats()
-        print("CEL")
-        self.current_target.printBattleStats()
+        #print("OBECNA TURA")
+        #self.current_turn.printBattleStats()
+        #print("CEL")
+        #self.current_target.printBattleStats()
         if(self.if_all_targets == False):
             self.action_status = ""
 
@@ -604,8 +630,8 @@ class Fight(Screen):
                 self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
             
-        #if self.current_turn in player.team:
-        #    self.current_turn.MP -= self.MP_cost
+        print(self.effect)
+        print(self.target_sprite.effect)
     
 
     def check_for_exceed_HP_MP(self):
@@ -639,6 +665,7 @@ class Fight(Screen):
                 self.target = x
                 self.current_target = enemy.enemy_team[self.target]
                 self.target_sprite = self.chose_sprite(self.current_target)
+                self.target_sprite.effect_source = self.effect
                 if self.distance == "status":
                     self.final_damage = final_damage_base
                 self.calculate_damage(target)
@@ -662,6 +689,7 @@ class Fight(Screen):
                 self.target = x
                 self.current_target = player.team[self.target]
                 self.target_sprite = self.chose_sprite(self.current_target)
+                self.target_sprite.effect_source = self.effect
                 if self.distance == "status":
                     self.final_damage = final_damage_base
                 self.calculate_damage(target)
@@ -679,10 +707,12 @@ class Fight(Screen):
             if self.target_type == "on_enemy":
                 self.current_target = enemy.enemy_team[self.target]
                 self.target_sprite = self.chose_sprite(self.current_target)
+                self.target_sprite.effect_source = self.effect
             else:
                 self.current_target = player.team[self.target]
                 self.target_sprite = self.chose_sprite(self.current_target)
-            
+                self.target_sprite.effect_source = self.effect
+
             self.add_animation(target)
             self.calculate_damage(target)
             for x in self.target_option:
@@ -700,6 +730,7 @@ class Fight(Screen):
         self.distance = "melee"
         self.target_type = "on_enemy"
         self.action = "self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus"
+        self.effect = "no_effect"
         self.add_widget(self.resign_button)
         self.chose_target("on_enemy")
 
@@ -728,7 +759,7 @@ class Fight(Screen):
         self.remove_widget(self.resign_button)
         self.restore_control()
 
-    def chosen_skill(self,skill,MP,distance,target):
+    def chosen_skill(self,skill,MP,distance,target,effect_source):
 
         if self.current_turn.MP < MP:
             self.resign_action()
@@ -741,6 +772,7 @@ class Fight(Screen):
             self.MP_cost = MP
             self.distance = distance
             self.target_type = target
+            self.effect = effect_source
             self.chose_target(target)
     def action_spells(self):
         self.disable_control()
@@ -748,8 +780,7 @@ class Fight(Screen):
         self.skill_list_pop_up.list.clear_widgets()
         for x in self.current_turn.skill:
             if self.current_turn.skill[x][4] != "passive":
-                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6]))))
-                pass
+                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6],self.current_turn.skill[x][7]))))
         self.add_widget(self.skill_list_pop_up)
         
     
@@ -759,7 +790,7 @@ class Fight(Screen):
             
             exec(temp[1])
             self.distance = temp[3]
-            if temp[2] != "":
+            if temp[2] != "atak":
                 tp.text_pop.text = self.current_turn.name+" używa: "+temp[2]
             Clock.schedule_interval(tp.clear_pop_up,2)
 
@@ -768,6 +799,7 @@ class Fight(Screen):
                 for x in range(0,len(player.team)):
                     self.current_target = player.team[x]
                     self.target_sprite = self.chose_sprite(self.current_target)
+                    self.target_sprite.effect_source = temp[5]
                     self.calculate_damage(x)
                 self.add_animation(0)
 
@@ -776,12 +808,14 @@ class Fight(Screen):
                 for x in range(0,len(enemy.enemy_team)):
                     self.current_target = enemy.enemy_team[x]
                     self.target_sprite = self.chose_sprite(self.current_target)
+                    self.target_sprite.effect_source = temp[5]
                     self.calculate_damage(x)
                 self.add_animation(3)
                 
             else:
                 self.current_target = temp[0]
                 self.target_sprite = self.chose_sprite(self.current_target)
+                self.target_sprite.effect_source = temp[5]
                 self.add_animation(temp[0])
                 self.calculate_damage(temp[0])
             self.run_animation()

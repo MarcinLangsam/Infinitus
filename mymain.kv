@@ -83,7 +83,7 @@ WindowManger:
         source: "graphics/stage1_background.png"
         pos: 0,0
     StageProgressBar:
-        max: 2
+        max: 10
         value: root.bar
     Label:
         pos: 595,0
@@ -393,12 +393,20 @@ WindowManger:
             source: root.weapon
             size: self.size
             pos: self.pos
+        Rectangle:
+            source: root.effect
+            size: self.size
+            pos: self.pos
 
 <Enemy_Sprite>:
     size_hint: 0.25,0.41
     canvas:
         Rectangle:
             source: root.sprite
+            size: self.size
+            pos: self.pos
+        Rectangle:
+            source: root.effect
             size: self.size
             pos: self.pos
 

@@ -61,7 +61,7 @@ ________________________________________
 płonięcie
 płonięcie
 self.current_turn.HP -= int(self.current_turn.MAX_HP*0.05)
-4
+3
 graphics/icons/płonięcie_status.png
 dmg_ot
 
@@ -198,7 +198,7 @@ blok
 blok
 self.current_target.defence+=20
 2
-graphics/icons/zemsta_status.png
+graphics/icons/blok_status.png
 one_time
 self.current_target.defence-=20
 Blok\nDo nastepnej tury dostaje 20 pancerza
@@ -208,7 +208,7 @@ klatwa
 klatwa
 self.current_target.STR*=0.9\nself.current_target.DEX*=0.9\nself.current_target.INT*=0.9
 5
-graphics/icons/zemsta_status.png
+graphics/icons/klatwa_status.png
 one_time
 self.current_target.STR/=0.9\nself.current_target.DEX/=0.9\nself.current_target.INT/=0.9
 Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 10%
@@ -218,7 +218,7 @@ duch
 duch
 self.current_target.dodge_chance+=30
 4
-graphics/icons/zemsta_status.png
+graphics/icons/duch_status.png
 one_time
 self.current_target.dodge_chance-=30
 Duch\nSzansza na unik zwiększona o 30%
@@ -228,11 +228,71 @@ zimny jak lód
 zimny jak lód
 self.current_target.DEX*=0.5\nself.current_target.INT*=0.9\nself.current_target.STR*=0.9
 7
-graphics/icons/zemsta_status.png
+graphics/icons/zimny_jak_lod_status.png
 one_time
 self.current_target.DEX/=0.5\nself.current_target.INT/=0.9\nself.current_target.STR/=0.9
 Zimny jak lód\nZręcznośc zmniejszona o 50%, siła i inteligencji o 10%
 x.DEX/=0.5\nx.INT/=0.9\nx.STR/=0.9
+________________________________________
+magiczna_wlocznia
+magiczna_wlocznia
+self.current_target.damage*=2.0
+4
+graphics/icons/magiczna_wlocznia.png
+one_time
+self.current_target.damage/=2.0
+Magiczna Wlócznia\nObrażenia zwiększone dwukrotnie.
+x.damage/=2.0
+________________________________________
+szal_wojownika
+Szał Wojownika
+self.current_target.damage*=1.1
+16
+graphics/icons/szal.png
+dmg_ot
+self.current_target.damage = 25
+Szał Wojownika\nCo ture obrażenia zwiększane o 10% kumulacyjnie.
+x.damage = 25
+________________________________________
+tortury
+Tortury
+self.current_target.STR*=0.8\nself.current_target.DEX*=0.8
+6
+graphics/icons/szal.png
+one_time
+self.current_target.STR/=0.8\nself.current_target.DEX/=0.8
+Tortury\nSiła i Zręcznośc obniżoneo 20%.
+x.STR/=0.8\nx.DEX/=0.8
+________________________________________
+swad_smierci
+Swad Smierci
+self.current_target.defence*=0.5
+6
+graphics/icons/szal.png
+one_time
+self.current_target.defence/=0.5
+Swad Smierci\nPancerz obniżony o 50%.
+x.defence/=0.5
+________________________________________
+trujace_opary
+Trujace Opary
+self.current_turn.HP -= 15
+99
+graphics/icons/szal.png
+dmg_ot
+
+Trujace Opary\nCel traci 15 zdrowia co ture.
+
+________________________________________
+zarodniki
+Zarodniki
+self.current_turn.HP += 15
+99
+graphics/icons/szal.png
+dmg_ot
+
+Zarodniki\nCel leczy 15 zdrowia co ture.
+
 ________________________________________
 zemsta
 zemsta

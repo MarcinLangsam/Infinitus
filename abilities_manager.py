@@ -26,7 +26,8 @@ class SkillSlot(Widget):
                         else:
                             if player.current_player.skill_points > 0:
                                 if skills.skill_list[x][2] in player.current_player.skill or skills.skill_list[x][2]=="none":
-                                    player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12]]
+                                    player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12],skills.skill_list[x][13]]
+                                    print(player.current_player.skill[skills.skill_list[x][0]])
                                     if skills.skill_list[x][9] == "passive":
                                         exec(skills.skill_list[x][1])
                                     tp.text_pop.text = "Dodano umiejętność"
@@ -60,39 +61,13 @@ class SkillSlot(Widget):
         tt.set_tooltip_skill(self.parent.tooltip,self.t, self.p)
     
 class Skills():
-    skill_list={
-        #nazwa(0)   efekt(1)   czego wymaga(2)    ścierzka do pliku(3)   pozycja x(4)   pozycja y(5)   od którego ma być linia(6)    ścierzka po nauczeniu(7)    koszt MP(8)    aktywa/pasywna(9)      opis(10)    zasieg(11)      cel(12)
-        #umiejętności wojownika
-        #0:["zamach","self.final_damage = 10+self.current_turn.STR*3","none","graphics/skills/zamach.png",300,70,"none","graphics/skills/zamach_ok.png",20,"active","Zamach\nObszerny zamach zadający:\n10+STR*3 obrażeń\nKoszt MP: 20","melee","on_enemy"],
-        #1:["rozpłatanie","self.final_damage = self.current_target.HP*0.2","zamach","graphics/skills/rozplatanie.png",250,270,0,"graphics/skills/rozplatanie_ok.png",30,"active","Rozpłatanie\nPotężny cios zadający:\naktualne 20% zrowia przeciwnika\nKoszt MP: 30","melee","on_enemy"],
-        #2:["cios rękojeścią","self.final_damage = self.current_turn.STR\nself.action_status = 'ogłuszenie'","zamach","graphics/skills/cios_rekojescia.png",350,270,0,"graphics/skills/cios_rekojescia_ok.png",30,"active","Ogłuszenie\nAtak obuchowy powodujący ogłuszenie\nCzas trwania: 1 tura, Pominięcie tury\nKoszt MP: 30","melee","on_enemy"],
-        #3:["siła byka","player.current_player.STR += 5","rozpłatanie","graphics/skills/sila_byka.png",250,470,1,"graphics/skills/sila_byka_ok.png",0,"passive","Siła byka\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe siłę o 5","",""],
-        #4:["gniew","self.final_damage = 0\nself.action_status = 'gniew'","cios rękojeścią","graphics/skills/gniew.png",350,470,2,"graphics/skills/gniew_ok.png",20,"active","Gniew\nZwiększasz na chwilę swoją siłę\nCzas trawania: 3 tury, STR+20%\nKoszt MP: 20","status","on_characters"],
-        #5:["ostateczny osoąd","self.final_damage = self.current_turn.STR*10","gniew","graphics/skills/ostateczny_osad.png",350,670,4,"graphics/skills/ostateczny_osad_ok.png",50,"active","Ostateczny osoąd\nCios kładący każdego na kolana zadaje:\nSTR*10\nKoszt MP: 50","melee","on_enemy"],
-        
-        #umiejętności maga
-        #6:["kula ognia","self.final_damage = 15+self.current_turn.INT*2","none","graphics/skills/kula_ognia.png",700,70,"none","graphics/skills/kula_ognia_ok.png",10,"active","Kula Ognia\nPrzemiana magi w ogień zadaje:\n15+INT*2\nKoszt MP: 10","ranged","on_enemy"],
-        #7:["uzdrowienie","self.final_damage = -(self.current_turn.INT*10)","kula ognia","graphics/skills/leczenie.png",700,270,6,"graphics/skills/leczenie_ok.png",15,"active","Uzdrowienie\nZaklęcie kojące rany leczy:\nINT*10\nKoszt MP: 15","heal","on_characters"],
-        #8:["skupienie","self.final_damage = 0\nself.action_status = 'skupienie'","uzdrowienie","graphics/skills/skupienie.png",700,470,7,"graphics/skills/skupienie_ok.png",20,"active","Skupienie\nZwiększa na chwilę twoją inteligencje\nCzas trwania: 3 tury, INT+20%\nKoszt MP: 20","status","on_characters"],  
-        #9:["oświecenie","player.current_player.INT += 5","uzdrowienie","graphics/skills/oswiecenie.png",600,270,7,"graphics/skills/oswiecenie_ok.png",0,"passive","Oświecenie\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe inteligencje o 5","",""],
-        #10:["zamrożenie","self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'","skupienie","graphics/skills/zamrozenie.png",800,470,8,"graphics/skills/zamrozenie_ok.png",60,"active","Zamrożenie\nMrążące zakęcie,powduje zamrożenie\nCzas trwania: 2 tury Pomija turę, \ni zabiera 10% zdrowia Koszt MP: 60","ranged","on_enemy"],
-        #11:["medytacja","self.current_target.MP += 50","skupienie","graphics/skills/medytacja.png",700,670,8,"graphics/skills/medytacja_ok.png",0,"active","Medytacja\nStan pozwalający odzyskać część sił\nOdnawia 50 MP\nKoszt MP: 0","ranged","on_character"],
-        
-        #umiejętności łotrzyka
-        #12:["ciche cięcie","self.final_damage = 5+self.current_turn.DEX*4","none","graphics/skills/ciche_cięcie.png",1100,70,"none","graphics/skills/ciche_cięcie_ok.png",15,"active","Ciche Cięcie\nAtak z zaskoczenia zadaje:\n5+DEX*4\nKoszt MP: 15","melee","on_enemy"],
-        #13:["piorun","self.final_damage = self.current_turn.INT*3 + self.current_turn.DEX*4","ciche cięcie","graphics/skills/piorun.png",1100,270,12,"graphics/skills/piorun_ok.png",20,"active","Piorun\nPołączenie magi i techniki zadaje:\nINT*3 + DEX*4\nKoszt MP: 20","ranged","on_enemy"],
-        #14:["akrobatyka","player.current_player.DEX += 5","piorun","graphics/skills/akrobatyka.png",1050,470,13,"graphics/skills/akrobatyka_ok.png",0,"passive","Akrobatyka\nUMIEJĘTNOŚĆ PASYWNA\nZwiększa na stałe zręczność o 5","",""],
-        #15:["rozgrzewka","self.final_damage = 0\nself.action_status = 'rozgrzewka'","piorun","graphics/skills/rozgrzewka.png",1150,470,13,"graphics/skills/rozgrzewka_ok.png",30,"active","Rozgrzewka\nNa chwilę zwiększa zręczność\nCzas trwania: 3 tury, DEX+20%\nKoszt MP: 30","status","on_characters"],
-        #16:["osłabienie","self.final_damage = self.current_turn.DEX\nself.action_status = 'osłabienie'","akrobatyka","graphics/skills/oslabienie.png",1050,670,14,"graphics/skills/oslabienie_ok.png",40,"active","Osłabienie\nOsłabiający cios w czuły punkt\nCzas trwania: 3 tury, Przeciwnik zadaje,\npołowę obrażeń Koszt MP: 40","melee","on_enemy"],
-        #17:["zabójca idealny","self.final_damage = 0\nself.action_status = 'zabójca idealny'","akrobatyka","graphics/skills/zabojca_idealny.png",1150,670,14,"graphics/skills/zabojca_idealny_ok.png",50,"active","ZABÓJCA IDEALNY\nJeden cios jeden trup\nNa 1 turę mnoży zręczność razy 20\nKoszt MP: 50","status","on_character"]
-        
-    }
+    skill_list={}
 
     def __init__(self):
         self.load_skills()
 
     def load_skills(self):
-        data =["","","","","","","","","","","","","",""]
+        data =["","","","","","","","","","","","","","",""]
         count = 0
         with codecs.open("skill_list.txt",'r','utf-8') as f:
             while True:
@@ -106,8 +81,8 @@ class Skills():
                     if count == 7 and data[count] != "none":
                         data[count] = int(data[count])
                     count+=1             
-                    if count == 14: # <--- amout of separated data for one item/skill/status, change appropriately
-                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],int(data[5]),int(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13]]
+                    if count == 15: # <--- amout of separated data for one item/skill/status, change appropriately
+                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],int(data[5]),int(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14]]
                         count=0
         
         f.close()

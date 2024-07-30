@@ -12,8 +12,9 @@ class Character_Creation(Screen):
         self.tooltip = tt.Tooltip()
         self.weapon_description = ""
         self.skill_description = ""
-        self.weapon_label = Label(pos=(600,220), text=self.weapon_description , size_hint=(None,None), font_size=25)
-        self.skill_label = Label(pos=(850,220), text=self.skill_description , size_hint=(None,None), font_size=25)
+        self.weapon_label = Label(pos=(600,240), text=self.weapon_description , size_hint=(None,None), font_size=25)
+        self.skill_label = Label(pos=(850,240), text=self.skill_description , size_hint=(None,None), font_size=25)
+        self.class_label = Label(pos=(200,40), text=self.skill_description , size_hint=(None,None), font_size=25)
         self.weapon_image = Image(pos=(600,120), size=(100,100), source="", allow_stretch=True ,size_hint=(None,None))
         self.skill_image = Image(pos=(800,120), size=(100,100), source="", allow_stretch=True, size_hint=(None,None))
         self.warrior_class = Button(pos=(50,150), size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.main_player,"warrior"), background_normal="graphics/warrior_class_disabled.png")
@@ -54,29 +55,47 @@ class Character_Creation(Screen):
         self.thief_class.background_normal = "graphics/thief_class_disabled.png"
         
         if class_type == "warrior":
+            p.HP = 60
+            p.MAX_HP = 60
+            p.MP = 40
+            p.MAX_MP = 40
             p.STR = 15
-            self.weapon_description = "Młot Bojowy\nObrażenia +10"
-            self.skill_description = "Zamach\nZadaje: 10+STR*3\nKoszt MP: 20"
-            self.weapon_image.source = "graphics/items/mlot_bojowy.png"
+            self.weapon_description = "Miecz z Brązu\nObrażenia +3"
+            self.skill_description = "Zamach\nZadaje: Obrażenia+STR\nKoszt MP: 20"
+            self.weapon_image.source = "graphics/items/miecz_z_brazu.png"
             self.skill_image.source = "graphics/skills/zamach.png"
-            p.inventory["main_hand"][2] = "graphics/items/mlot_bojowy.png"
+            p.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
+            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect"]
             self.warrior_class.background_normal = "graphics/warrior_class.png"
+            self.class_label.text = "+Bonus do siły\n+Bonus do zdrowia\n-Kara do many"
         elif class_type == "mage":
+            p.HP = 40
+            p.MAX_HP = 40
+            p.MP = 60
+            p.MAX_MP = 60
             p.INT = 15
-            self.weapon_description = "Pika\nObrażenia +1"
-            self.skill_description = "Kula Ognia\nZadaje: 15+INT*2\nKoszt MP: 10"
+            self.weapon_description = "Pika\nObrażenia +1\nMana +10"
+            self.skill_description = "Kula Ognia\nZadaje: 10+INT\nNakłada: Płonięcie\nKoszt MP: 20"
             self.weapon_image.source = "graphics/items/pika.png"
             self.skill_image.source = "graphics/skills/kula_ognia.png"
             p.inventory["main_hand"][2] = "graphics/items/pika.png"
+            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'",20,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5'%' obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","ranged","on_enemy","kula_ognia_effect"]
             self.mage_class.background_normal = "graphics/mage_class.png"
+            self.class_label.text = "+Bonus do inteligencji\n+Bonus do many\n-Kara do zdrowia"
         elif class_type == "rouge":
+            p.HP = 50
+            p.MAX_HP = 50
+            p.MP = 50
+            p.MAX_MP = 50
             p.DEX = 15
-            self.weapon_description = "Miedziany sztylet\nObrażenia +3"
-            self.skill_description = "Ciche cięcie\nZadaje: 5+DEX*4\nKoszt MP: 15"
+            self.weapon_description = "Miedziany sztylet\nObrażenia +2\nZręczność +1"
+            self.skill_description = "Zatrute Ostrze\nDodaje DEX do obrażeń\nKoszt MP: 20"
             self.weapon_image.source = "graphics/items/miedziany_sztylet.png"
-            self.skill_image.source = "graphics/skills/ciche_cięcie.png"
+            self.skill_image.source = "graphics/skills/zatrute_ostrze.png"
             p.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
-            self.thief_class.background_normal = "graphics/thief_class_disabled.png"
+            p.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect"]
+            self.thief_class.background_normal = "graphics/thief_class.png"
+            self.class_label.text = "+Bonus do zręczności"
 
         p.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
         p.head = "glowa"+str(self.current_portrait)
@@ -99,7 +118,7 @@ class Character_Creation(Screen):
         self.add_widget(self.portarit)
         self.add_widget(self.enter_name)
 
-        #self.add_widget(Button(pos=(50,720), size=(180,90), font_size= 25, text="Wróc do menu!", size_hint=(None,None), background_normal="graphics/target_button.png", on_press = lambda y:self.change_screen("main_menu")))
+        self.add_widget(Button(pos=(1350,795), size=(160,60), font_size= 20, text="Wróc do menu", size_hint=(None,None), background_normal="graphics/target_button.png", on_press = lambda y:self.change_screen("main_menu")))
         self.add_widget(Button(pos=(500,30), size=(500,70), font_size= 40, text="Rozpocznij Grę!", size_hint=(None,None), background_normal="graphics/target_button.png", on_press = lambda y:self.change_screen("menu")))
         
         self.add_widget(Label(pos=(210,710), text="Imię: ", font_size=35, size_hint=(None,None)))
@@ -115,6 +134,7 @@ class Character_Creation(Screen):
         self.add_widget(self.skill_image)
         self.add_widget(self.weapon_label)
         self.add_widget(self.skill_label)
+        self.add_widget(self.class_label)
 
         for x in list(UI.stats.keys())[0:-4]:
             UI.stats[x].bind(size=UI.stats[x].setter("text_size"))

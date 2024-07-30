@@ -30,7 +30,7 @@ class Team(Screen):
         self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(918,542), size_hint=(None,None))
         self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(918,432), size_hint=(None,None))
         self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(918,322), size_hint=(None,None))
-        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size=(65,65), pos=(918,222), size_hint=(None,None))
+        #self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size=(65,65), pos=(918,222), size_hint=(None,None))
         
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -58,10 +58,10 @@ class Team(Screen):
         else:
             self.empty_accessory3.color = [0,0,0,0]
         
-        if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
-            self.empty_potion.color = [1,1,1,1]
-        else:
-            self.empty_potion.color = [0,0,0,0]
+        #if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
+        #    self.empty_potion.color = [1,1,1,1]
+        #else:
+        #    self.empty_potion.color = [0,0,0,0]
         
     def change_screen(self):
         self.change_character_menu(player.main_player)
@@ -155,7 +155,7 @@ class Team(Screen):
         self.add_widget(self.empty_accessory)
         self.add_widget(self.empty_accessory2) 
         self.add_widget(self.empty_accessory3)
-        self.add_widget(self.empty_potion)
+        #self.add_widget(self.empty_potion)
         
         self.refresh_items()
             

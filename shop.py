@@ -38,5 +38,7 @@ class Shop(Screen):
             player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-48])
 
     shop_content={
-        1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png"]
+        1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",
+           "graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png"
+           ]
     }

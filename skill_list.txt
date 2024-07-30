@@ -12,10 +12,11 @@ _ 11. is skill pasive or active
 _ 12. description
 _ 13. range(on who can be cast)
 _ 14. target(handle if character in battle need to move or just can stand still)
+_ 15. skill effect source
 ____________warrior skill____________
 1
 zamach
-self.final_damage = self.current_turn.damage+self.current_turn.STR*1.2
+self.final_damage = self.current_turn.damage+self.current_turn.STR
 none
 graphics/skills/zamach.png
 235
@@ -24,9 +25,10 @@ none
 graphics/skills/zamach_ok.png
 20
 active
-Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR*1.2[/color]\nKoszt MP: [color=#0000ff]20[/color]
+Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]
 melee
 on_enemy
+zamach_effect
 _______________________________________
 2
 szał
@@ -42,6 +44,7 @@ active
 Szał   |   AKTYWNA\nWpadasz w nieposkromony szał, który zwiększa twoją siłę ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+50%STR[/color], podczas szału pancerz wynosi 0 [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_self
+szal_effect
 ______________________________________
 3
 cios rękojeścią
@@ -57,6 +60,7 @@ active
 Cios Rękojeścią   |   AKTYWNA\nZwód wykonywany przy bliskim dystansie, kończący się uderzeniem rękojeścią.\n\nZadaje: [color=#de8833]STR[/color]\nNakłada: Ogłuszenie 1 tura - [color=#fdff80]Cel traci turę[/color]\nKoszt MP: [color=#0000ff]30[/color]
 melee
 on_enemy
+ogluszenie_effect
 _______________________________________
 4
 zaciekły wojownik
@@ -72,6 +76,7 @@ passive
 Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca.\n\n[color=#de8833]+5 siły[/color]
 
 
+no_effect
 _______________________________________
 5
 niestrudzony obrońca
@@ -87,6 +92,7 @@ passive
 Niestrudzony Obrońca   |   PASYWNA\nNie pozwolisz nikogo przepóścić bez walki.\n\n[color=#ff0000]+30 zdrowia[/color]
 
 
+no_effect
 ______________________________________
 6
 zew bojowy
@@ -102,6 +108,7 @@ active
 Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
 status
 on_self
+szal_effect
 ______________________________________
 7
 okrzyk bojowy
@@ -117,6 +124,7 @@ passive
 Okrzyk Bojowy   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz na wszystkich sojuszników.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
+szal_effect
 ______________________________________
 8
 siła w głosie
@@ -132,6 +140,7 @@ passive
 Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz 6 tur i zwieksza sile o 35%.\n\nNakłada: Zew Bojowy 6 tur - [color=#de8833]+35%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
+szal_effect
 ______________________________________
 9
 boski grzmot
@@ -147,6 +156,7 @@ active
 Boski Grzmot   |   AKTYWNA\nPrzekierowujesz cały swój gniew sprawiedliwości na przeciwnika.\n\nZadaje: [color=#fdff80]50[/color]+[color=#de8833]STR*1.3[/color]+[color=#00f7ff]INT*1.7[/color]\nKoszt MP: [color=#0000ff]30[/color]
 melee
 on_enemy
+boski_grzmot_effect
 ______________________________________
 10
 nakładanie rąk
@@ -162,6 +172,7 @@ active
 Nakładanie Rąk   |   AKTYWNA\nProste zaklęcie leczące kojące nerwy i rany.\n\nLeczy: [color=#fdff80]50[/color]+[color=#00f7ff]INT*1.5[/color]\nKoszt MP: [color=#0000ff]50[/color]
 heal
 on_character
+leczenie_effect
 ______________________________________
 11
 końskie zdrowie
@@ -177,6 +188,7 @@ passive
 Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+60 zdrowia[/color]
 
 
+no_effect
 ______________________________________
 12
 trening wojownika I
@@ -192,6 +204,7 @@ passive
 Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+3 siły[/color] [color=#00ff00]+2 zręczności[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
+no_effect
 ______________________________________
 13
 precyzyjne ciosy
@@ -205,13 +218,14 @@ graphics/skills/precyzyjne_ciosy_ok.png
 45
 active
 Precyzyjne Ciosy   |   AKTYWNA\nNa pewnien czas skupiasz się na swoich atakch tak aby jak najczęściej trafiać w czułe punkty.\n\nNakłada: Precyzyjne Ciosy 5 tur - [color=#fdff80]+20% Szansy na trafienie krytyczne[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]45[/color]
-
-
+status
+on_self
+obrazenia_buff_effect
 ______________________________________
 14
 rozplatanie
-self.final_damage = self.current_turn.damage+self.current_target.HP*0.1
-precyzyje ciosy
+self.final_damage = self.current_turn.damage+self.current_turn.HP*0.1
+precyzyjne ciosy
 graphics/skills/rozplatanie.png
 235
 520
@@ -219,24 +233,26 @@ graphics/skills/rozplatanie.png
 graphics/skills/rozplatanie_ok.png
 50
 active
-Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 10% obecnego zdrowia przeciwnika[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 10% swojego obecnego zdrowia [/color]\nKoszt MP: [color=#0000ff]50[/color]
 melee
 on_enemy
+rozplatanie_effect
 _____________mage skill________________
 41
 kula ognia
-self.final_damage = 15+self.current_turn.INT*2\nself.action_status = 'płonięcie'
+self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
 740
 170
 none
 graphics/skills/kula_ognia_ok.png
-10
+20
 active
-Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT*1.5[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5% obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]10[/color]
+Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5% obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]
 ranged
 on_enemy
+kula_ognia_effect
 _________________________________________
 42
 kamienna skóra
@@ -252,6 +268,7 @@ active
 Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 4 tury - [color=#fdff80]Pancerz +15[/color]\nKoszt MP: [color=#0000ff]15[/color]
 status
 on_characters
+obrona_buff_effect
 _________________________________________
 43
 uzdrowienie
@@ -267,6 +284,7 @@ active
 Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color]+[color=#00f7ff]INT*3[/color]\nKoszt MP: [color=#0000ff]20[/color]
 heal
 on_characters
+leczenie_effect
 _________________________________________
 44
 runiczna klinga
@@ -282,6 +300,7 @@ active
 Runiczna Klinga   |   AKTYWNA\nNasyczasz swoją broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje wartość inteligencji do ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_self
+obrazenia_buff_effect
 _________________________________________
 45
 trening maga I
@@ -297,6 +316,7 @@ passive
 Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+20 many[/color]
 
 
+no_effect
 _________________________________________
 46
 zamrożenie
@@ -312,6 +332,7 @@ active
 Zamrożenie   |   AKTYWNA\nZamyka przeciwnika w twardej jak skała bryle lodu nie pozwalając mu na ruch ale też ciężko go trafić\n\nZamrożenie 3 tury - [color=#fdff80]Cel traci turę, Pancerz +100[/color]\nKoszt MP: [color=#0000ff]30[/color]
 ranged
 on_enemy
+zamrozenie_effect
 _________________________________________
 47
 szybka nauka
@@ -327,6 +348,7 @@ passive
 Szybka nauka   |   PASYWNA\nDoskonale interpretujesz nowe otoczenie i chłoniesz z niego wiedzę jak gąbka\n[color=#fdff80]+5% Bonus do doświadczenia[/color]
 
 
+no_effect
 _________________________________________
 48
 syfon
@@ -342,6 +364,7 @@ active
 Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotknięcie aby wyssać moc magiczną z twojego celu.\n\nZadaje: [color=#fdff80]Obrażenia, wartość obrażeń jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]
 melee
 on_enemy
+syfon_effect
 _________________________________________
 _9
 _deszcz ognia
@@ -382,11 +405,12 @@ graphics/skills/zatrute_ostrze.png
 170
 none
 graphics/skills/zatrute_ostrze_ok.png
-35
+20
 active
-Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 4 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]35[/color]
+Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]
 status
 on_self
+obrazenia_buff_effect
 _________________________________________
 82
 głębokie rany
@@ -402,6 +426,7 @@ active
 Głębokie Rany   |   AKTYWNA\nBezlitosne pchnięcie pozostawiające krwawiącą ranę.\n\nZadaje: [color=#fdff80]Obrażenia[/color]+[color=#de8833]STR[/color]\nNakłada: Krwawienie 5 tur - [color=#fdff80]30 obrażeń co turę[/color]\nKoszt MP: [color=#0000ff]30[/color]
 melee
 on_enemy
+glebokie_rany_effect
 _________________________________________
 83
 nadzwyczajna zwinność
@@ -417,6 +442,7 @@ passive
 Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+5 zwinności[/color]
 
 
+no_effect
 _________________________________________
 84
 precyzja
@@ -432,6 +458,7 @@ passive
 Precyzja   |   PASYWNA\nTwoje ataki częściej trafiają w czułe punkty.\n\n[color=#fdff80]+3% Szansy na trafienie krytyczne[/color]
 
 
+no_effect
 _________________________________________
 85
 uderzenie pioruna
@@ -447,6 +474,7 @@ active
 Uderzenie Pioruna   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#00ff00]DEX*2[/color]+[color=#00f7ff]INT*1.7[/color]\nKoszt MP: [color=#0000ff]40[/color]
 ranged
 on_enemy
+piorun_effect
 _________________________________________
 86
 krwiopijca
@@ -462,6 +490,7 @@ active
 Krwiopijca   |   AKTYWNA\nKrew i ból twoich przeciwników napełnia cię enrgią życiową.\n\nNakłada: Krwiopijca 3 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_self
+krwiopijca_effect
 _________________________________________
 87
 dziedziczenie krwi
@@ -477,6 +506,7 @@ passive
 Krwiopijca   |   AKTYWNA\nULEPSZENIE\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]
 
 
+krwiopijca_effect
 _________________________________________
 88
 zew krwi
@@ -492,6 +522,7 @@ active
 Zew Krwi   |   AKTYWNA\nWszyscy sojusznicy są głodniu krwi i krzyków swoich wrogów.\n\nNadaje: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]WSZYSCY SOJUSZNICY[/color]\nKoszt MP: [color=#0000ff]60[/color]
 status
 on_all_characters
+krwiopijca_effect
 _________________________________________
 89
 rozbrojenie
@@ -507,6 +538,7 @@ active
 Rozbrojenie   |   AKTYWNA\nOsłabia przeciwnika utrudniając mu korzystanie z broni.\n\nNadaje: Rozbrojenie 3 tury - [color=#fdff80]zmniejsza siłę i obrażenia celu o 50%[/color]\nKoszt MP: [color=#0000ff]30[/color]
 status
 on_enemy
+obrazenia_debuff_effect
 _________________________________________
 90
 trening łotra I
@@ -522,6 +554,7 @@ passive
 Trening Łotra I   |   AKTYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w łotrostwa i sprytu.\n\n[color=#00ff00]+3 zręczności[/color] [color=#de8833]+2 siły[/color] [color=#fdff80]+3% szansy na unik[/color]
 
 
+no_effect
 _________________________________________
 _85
 _łaska hermesa

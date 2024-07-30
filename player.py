@@ -14,6 +14,7 @@ class Character_Sprite(Widget):
     sprite = ObjectProperty("graphics/sprites/empty_slot_sprite_a.png")
     weapon = ObjectProperty("graphics/sprites/empty_slot_sprite_w.png")
     head = ObjectProperty("graphics/sprites/glowa2_sprite.png")
+    effect = ObjectProperty("graphics/effects/no_effect.png")
 
     def __init__(self,character,type,head_source, **kwargs):
         super().__init__(**kwargs)
@@ -23,6 +24,7 @@ class Character_Sprite(Widget):
         self.source = "character_anim"
         self.frame_sum = 46
         self.weapon_source = "empty_slot"
+        self.effect_source = ""
         self.head_source = head_source
         self.character = character
         self.portrait = ""
@@ -89,8 +91,8 @@ class Character(Widget):
         self.EXP_boost_bonus = 0
         self.EXP = 0
         self.EXP_To_Lv = 100
-        self.stat_points = 20
-        self.skill_points = 18
+        self.stat_points = 0
+        self.skill_points = 3
         self.skill = {}
         self.status = list()
         self.head = "glowa1"
@@ -227,8 +229,8 @@ class Character(Widget):
         self.EXP_boost_bonus = 0
         self.EXP = 0
         self.EXP_To_Lv = 100
-        self.stat_points = 20
-        self.skill_points = 18
+        self.stat_points = 0
+        self.skill_points = 3
         self.skill = {}
         self.status = list()
         self.head = "glowa1"
@@ -260,6 +262,6 @@ companion2.name = "Gracz Trzeci"
        
 team = list()
 team.append(main_player)
-team.append(companion1)
-team.append(companion2)
+#team.append(companion1)
+#team.append(companion2)
 gold = 1000

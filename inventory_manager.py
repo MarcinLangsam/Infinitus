@@ -59,10 +59,10 @@ class ItemSlot(DragBehavior, Widget):
         else:
             self.parent.empty_accessory3.color = [0,0,0,0]
 
-        if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
-            self.parent.empty_potion.color = [1,1,1,1]
-        else:
-            self.parent.empty_potion.color = [0,0,0,0]
+        #if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
+        #    self.parent.empty_potion.color = [1,1,1,1]
+        #else:
+        #    self.parent.empty_potion.color = [0,0,0,0]
 
     def switch_items_in_invetory(self):
         self.temp = inventory[self.select].sprite
@@ -95,7 +95,7 @@ class ItemSlot(DragBehavior, Widget):
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                if 370 <= touch.pos[0] <= 370+90 and 160 <= touch.pos[1] <= 160+90 and screen == "team": ### deleting item
+                if 440 <= touch.pos[0] <= 440+90 and 60 <= touch.pos[1] <= 60+90 and screen == "team": ### deleting item
                     player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
                     inventory[self.select].sprite = "graphics/items/empty_slot.png"
                     self.check_for_empty_slot()
@@ -144,6 +144,7 @@ class ItemSlot(DragBehavior, Widget):
                             self.switch_items_in_invetory()
                             items.equip()
                             self.parent.refresh_items()
+                        #if touch.pos[0]>440 and touch.pos[0]<440+90 and
                         else:
                             self.switch_items_in_invetory()
                 elif self.select in range(48,95):
