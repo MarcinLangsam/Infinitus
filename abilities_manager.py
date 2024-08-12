@@ -26,7 +26,7 @@ class SkillSlot(Widget):
                         else:
                             if player.current_player.skill_points > 0:
                                 if skills.skill_list[x][2] in player.current_player.skill or skills.skill_list[x][2]=="none":
-                                    player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12],skills.skill_list[x][13]]
+                                    player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12],skills.skill_list[x][13],skills.skill_list[x][14]]
                                     print(player.current_player.skill[skills.skill_list[x][0]])
                                     if skills.skill_list[x][9] == "passive":
                                         exec(skills.skill_list[x][1])
@@ -67,7 +67,7 @@ class Skills():
         self.load_skills()
 
     def load_skills(self):
-        data =["","","","","","","","","","","","","","",""]
+        data =["","","","","","","","","","","","","","","",""]
         count = 0
         with codecs.open("skill_list.txt",'r','utf-8') as f:
             while True:
@@ -81,8 +81,8 @@ class Skills():
                     if count == 7 and data[count] != "none":
                         data[count] = int(data[count])
                     count+=1             
-                    if count == 15: # <--- amout of separated data for one item/skill/status, change appropriately
-                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],int(data[5]),int(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14]]
+                    if count == 16: # <--- amout of separated data for one item/skill/status, change appropriately
+                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],int(data[5]),int(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14],data[15]]
                         count=0
         
         f.close()
@@ -117,11 +117,11 @@ class Stat_Button(Button):
     def increase_stat(self):
         if player.current_player.stat_points > 0:
             if self.stat == "HP":
-                player.current_player.MAX_HP += 15
-                player.current_player.HP +=15
+                player.current_player.MAX_HP += 10
+                player.current_player.HP +=10
             elif self.stat == "MP":
-                player.current_player.MAX_MP += 10
-                player.current_player.MP +=10
+                player.current_player.MAX_MP += 5
+                player.current_player.MP +=5
             elif self.stat == "STR":
                 player.current_player.STR +=1
             elif self.stat == "DEX":

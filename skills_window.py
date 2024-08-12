@@ -32,6 +32,12 @@ class Skills_Window(Screen):
         self.add_widget(Image(source="graphics/menu_background.png", size=(550,100), pos=(1010,15), size_hint=(None,None), allow_stretch=True)) #skill points widget
         self.add_widget(Image(source="graphics/main_fight_button.png", size=(60,60), pos=(1130,35), size_hint=(None,None), allow_stretch=True))
 
+
+        self.main_player_button.background_normal ="graphics/sprites/"+player.main_player.head+"_portrait.png"
+        self.companion1_button.background_normal ="graphics/sprites/"+player.companion1.head+"_portrait.png"
+        self.companion2_button.background_normal ="graphics/sprites/"+player.companion2.head+"_portrait.png"
+
+
         UI.ui.skill_points_refresh(player.current_player)
         self.add_widget(UI.stats["skill_points"])
         self.add_widget(tp.text_pop)

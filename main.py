@@ -1,4 +1,4 @@
-import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu
+import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
@@ -117,6 +117,7 @@ class WindowManger(ScreenManager):
     game_over = ObjectProperty(None)
     battle_result = ObjectProperty(None)
     character_creation = ObjectProperty(None)
+    add_new_charater = ObjectProperty(None)
     map = ObjectProperty(None)
     main_menu = ObjectProperty(None)
     tutorial = ObjectProperty(None)

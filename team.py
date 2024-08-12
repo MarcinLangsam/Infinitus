@@ -137,8 +137,8 @@ class Team(Screen):
         for x in list(UI.stats.keys())[0:-1]:
             UI.stats[x].bind(size=UI.stats[x].setter("text_size"))
             self.add_widget(UI.stats[x])
-        self.add_widget(am.Stat_Button("HP","Zwiększa zdrowię o 15",pos=(1380,635)))
-        self.add_widget(am.Stat_Button("MP","Zwiększa manę o 10",pos=(1380,590)))
+        self.add_widget(am.Stat_Button("HP","Zwiększa zdrowię o 10",pos=(1380,635)))
+        self.add_widget(am.Stat_Button("MP","Zwiększa manę o 5",pos=(1380,590)))
         self.add_widget(am.Stat_Button("STR","Zwiększa obrażenia o 1\nWpływa na umiejętności wojownika",pos=(1380,545)))
         self.add_widget(am.Stat_Button("DEX","Decyduje o kolejce w walce\nZwiększa szansę na unik i cios krytyczny\nWpływa na umięjętności łotra",pos=(1380,505)))
         self.add_widget(am.Stat_Button("INT","Zwiększa bonus do doświadczenia\nWływa na umiejętności maga",pos=(1380,460)))

@@ -110,12 +110,12 @@ x.damage_bonus -= x.DEX
 ________________________________________
 krwawienie
 krwawienie
-self.current_turn.HP -= 30
-6
+self.current_turn.HP -= 15
+4
 graphics/icons/krwawienie_status.png
 dmg_ot
 
-Krwawienie\nCel traci 30 zdrowia co turę
+Krwawienie\nCel traci 15 zdrowia co turę
 
 ________________________________________
 krwiopijca
@@ -206,13 +206,13 @@ x.defence-=20
 ________________________________________
 klatwa
 klatwa
-self.current_target.STR*=0.9\nself.current_target.DEX*=0.9\nself.current_target.INT*=0.9
+self.current_target.STR*=0.75\nself.current_target.DEX*=0.75\nself.current_target.INT*=0.75
 5
 graphics/icons/klatwa_status.png
 one_time
-self.current_target.STR/=0.9\nself.current_target.DEX/=0.9\nself.current_target.INT/=0.9
-Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 10%
-x.STR/=0.9\nx.DEX/=0.9\nx.INT/*=0.9
+self.current_target.STR/=0.75\nself.current_target.DEX/=0.75\nself.current_target.INT/=0.75
+Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 25%
+x.STR/=0.75\nx.DEX/=0.75\nx.INT/*=0.75
 ________________________________________
 duch
 duch

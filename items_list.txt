@@ -67,9 +67,9 @@ Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +30
 _______________________________________
 graphics/items/grzech_kaplana.png
 two_hand_spear
-player.current_player.weapon += 20
-player.current_player.weapon -= 20
-Grzech Kapłana    |   BROŃ DWURĘCZNA\nObrażenia +20
+player.current_player.weapon += 10\nplayer.current_player.MAX_MP += 30\nplayer.current_player.MP += 30\nplayer.current_player.INT+=2
+player.current_player.weapon -= 10\nplayer.current_player.MAX_MP -= 30\nplayer.current_player.MP -= 30\nplayer.current_player.INT-=2
+Grzech Kapłana    |   BROŃ DWURĘCZNA\nObrażenia +10\n[color=#0000ff]Mana +30[/color]\n[color=#00f7ff]Inteligencja +2[/color]
 10
 _______________________________________
 graphics/items/kostur_maga.png

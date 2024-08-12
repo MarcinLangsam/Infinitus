@@ -1,4 +1,4 @@
-import player, tooltip as tt, inventory_manager as im, UI_manager as UI, abilities_manager as am
+import player, tooltip as tt, inventory_manager as im, UI_manager as UI, abilities_manager as am, fight
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -65,7 +65,7 @@ class Character_Creation(Screen):
             self.weapon_image.source = "graphics/items/miecz_z_brazu.png"
             self.skill_image.source = "graphics/skills/zamach.png"
             p.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
-            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect"]
+            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
             self.warrior_class.background_normal = "graphics/warrior_class.png"
             self.class_label.text = "+Bonus do siły\n+Bonus do zdrowia\n-Kara do many"
         elif class_type == "mage":
@@ -79,7 +79,7 @@ class Character_Creation(Screen):
             self.weapon_image.source = "graphics/items/pika.png"
             self.skill_image.source = "graphics/skills/kula_ognia.png"
             p.inventory["main_hand"][2] = "graphics/items/pika.png"
-            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'",20,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5'%' obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","ranged","on_enemy","kula_ognia_effect"]
+            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'",20,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5'%' obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
             self.mage_class.background_normal = "graphics/mage_class.png"
             self.class_label.text = "+Bonus do inteligencji\n+Bonus do many\n-Kara do zdrowia"
         elif class_type == "rouge":
@@ -93,7 +93,7 @@ class Character_Creation(Screen):
             self.weapon_image.source = "graphics/items/miedziany_sztylet.png"
             self.skill_image.source = "graphics/skills/zatrute_ostrze.png"
             p.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
-            p.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect"]
+            p.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect","graphics/sounds/positive_effect_1.wav"]
             self.thief_class.background_normal = "graphics/thief_class.png"
             self.class_label.text = "+Bonus do zręczności"
 
@@ -112,6 +112,15 @@ class Character_Creation(Screen):
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):
+        player.main_player.reset_player()
+        player.companion1.reset_player()
+        player.companion2.reset_player()
+        player.current_player = player.main_player
+
+        fight.current_fight = 1
+        fight.current_stage = 1
+
+
         self.add_widget(Image(source="graphics/team_background.png", size=(1540,950), pos=(0,0), size_hint=(None,None), allow_stretch=True))
         self.add_widget(Image(source="graphics/stat_background.png", size=(430,2000), pos=(1040,-590), size_hint=(None,None), allow_stretch=True))
         self.add_widget(self.sprite)

@@ -6,6 +6,7 @@ _ 5. stat multiplyer(4+5 = use skill from 50% target HP)
 _ 6. type(on who skill will be used)
 _ 7. distance(decide that enemy will be moving while using skill)
 _ 8. skill effect source
+_ 9. sound effect source
 ____________enemy skills____________
 atak
 atak
@@ -15,6 +16,7 @@ self.final_damage = self.current_turn.damage
 attack
 melee
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 szarża
 Szarża
@@ -24,6 +26,7 @@ self.final_damage = (self.current_turn.damage*2)
 attack
 melee
 ogluszenie_effect
+graphics/sounds/hit3.wav
 _______________________________________
 blok
 Blok
@@ -33,24 +36,27 @@ by_HP
 on_self
 status
 obrona_buff_effect
+graphics/sounds/positivew_effect_3.wav
 _______________________________________
 leczenie
 Leczenie
 self.final_damage = -(self.current_turn.INT)
 0
 0
-attack
-status
+on_enemy
+ranged
 no_effect
+graphics/sounds/heal.wav
 _______________________________________
 klatwa
-Klatwa
+Klątwa
 self.final_damage = 0\nself.action_status = 'klatwa'
 by_status
 klatwa
 on_character
 status
 no_effect
+graphics/sounds/negative_effect_3.wav
 _______________________________________
 szał
 Szał
@@ -60,6 +66,7 @@ by_HP
 on_self
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 zimny jak lód
 Zimny jak lód
@@ -69,6 +76,7 @@ by_HP_alter
 on_character
 melee
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 duch
 Duch
@@ -78,6 +86,7 @@ by_HP
 on_character
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 bisekcja
 Bisekcja
@@ -87,6 +96,7 @@ by_HP_alter
 on_character
 melee
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 magiczna wlócznia
 Magiczna wlócznia
@@ -96,6 +106,7 @@ by_HP_alter
 on_self
 status
 obrazenia_buff_effect
+graphics/sounds/hit.wav
 _______________________________________
 szal wojownika
 Szał Wojownika
@@ -105,6 +116,7 @@ szal_wojownika
 on_self
 status
 siła_buff_effect
+graphics/sounds/hit.wav
 _______________________________________
 kat
 Kat
@@ -114,6 +126,7 @@ self.final_damage = self.current_turn.STR+self.current_turn.damage
 attack
 melee
 rozplatanie_effect
+graphics/sounds/hit.wav
 _______________________________________
 tortury
 Tortury
@@ -123,6 +136,7 @@ tortury
 on_character
 melee
 rozplatanie_effect
+graphics/sounds/hit.wav
 _______________________________________
 swad_smierci
 Swad Smierci
@@ -132,6 +146,7 @@ by_HP
 on_all_character
 status
 rozplatanie_effect
+graphics/sounds/hit.wav
 _______________________________________
 trujace_opary
 Trujace Opary
@@ -141,6 +156,7 @@ trujace_opary
 on_all_character
 status
 rozplatanie_effect
+graphics/sounds/hit.wav
 _______________________________________
 zemsta
 Zemsta
@@ -150,6 +166,7 @@ by_HP
 on_self
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 zatrucie
 Zatrucie
@@ -159,6 +176,7 @@ trucizna
 on_charcter
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 mroczny_pocisk
 Mroczny Pocisk
@@ -168,6 +186,7 @@ self.final_damage = self.current_turn.INT
 attack
 ranged
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 mroczna_potega
 Mroczna Potega
@@ -177,6 +196,7 @@ mroczna potega
 on_self
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 uderzenie_smierci
 Uderzenie Smierci
@@ -186,6 +206,7 @@ by_HP
 on_character
 melee
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 obezwładnienie
 Obezwładnienie
@@ -195,6 +216,7 @@ obezwładnienie
 on_character
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 niemoc
 Niemoc
@@ -204,6 +226,7 @@ osłabienie
 on_character
 status
 no_effect
+graphics/sounds/hit.wav
 _______________________________________
 fala_śmierci
 Fala Śmierci
@@ -213,6 +236,7 @@ self.final_damage = 10
 on_all_character
 ranged
 test_effect
+graphics/sounds/hit.wav
 _______________________________________
 kojące_dźwięki
 Kojące Dźwięki
@@ -222,4 +246,5 @@ self.final_damage = -100
 on_all_enemy
 heal
 test_effect
+graphics/sounds/hit.wav
 _______________________________________

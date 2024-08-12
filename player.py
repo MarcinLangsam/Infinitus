@@ -4,6 +4,7 @@ from kivy.properties import ObjectProperty
 global current_player
 
 def level_up(character):
+        print("HALOO")
         character.EXP = 0
         character.EXP_To_Lv += 100
         character.stat_points += 5

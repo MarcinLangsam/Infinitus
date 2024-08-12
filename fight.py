@@ -8,6 +8,7 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.core.audio import SoundLoader
 
 current_stage = 1
 current_fight = 1
@@ -77,6 +78,7 @@ class Fight(Screen):
         self.if_critical_or_miss = False
         self.if_all_targets = False
         self.effect = ""
+        self.skill_sound_effect = SoundLoader.load("graphics/sounds/hit.wav")
 
     def send_tooltip():
         return Fight.tooltip
@@ -276,6 +278,9 @@ class Fight(Screen):
         self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18,size_hint=(0.115,0.08), pos=(290+1*130,210), on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(player.team[self.chose_enemy_index(self.current_turn)]).pos]
 
 
+    def set_sound_effect(self,sound_source):
+        self.skill_sound_effect.unload()
+        self.skill_sound_effect = SoundLoader.load(sound_source)
     def clear_pop_up(self,dt):
         self.text_pop.text = ""
         return False
@@ -287,7 +292,8 @@ class Fight(Screen):
         elif(self.target_sprite!=self.sprite):
             self.target_sprite.time += dt
         
-
+        if self.skill_sound_effect and self.sprite.frame==30:
+            self.skill_sound_effect.play()
         if (self.sprite.time > self.sprite.rate):
                 self.sprite.time -= self.sprite.rate
                 self.sprite.head = "atlas://graphics/animations/"+self.sprite.head_source+"/"+self.sprite.anim + self.animation_type + str(self.sprite.frame)
@@ -378,6 +384,9 @@ class Fight(Screen):
             self.if_critical_or_miss = False
         else:
             self.anim_queue.append((widget, Animation(x=x_pos, y=y_pos, duration=0.5, t="in_out_quad")))
+    def create_death_animation(self, widget,x_pos, y_pos):
+        self.anim_queue.append((widget, Animation(x=x_pos, y=y_pos, duration=0.2, t="in_out_elastic")))
+
     def animation_complete(self):
         if self.if_attack == True:
             Clock.schedule_interval(self.sprite_animation,0.02)
@@ -416,24 +425,27 @@ class Fight(Screen):
             self.get_loot_and_exp()
             if current_fight < 10 and is_random_fight == False:
                 #WLACZENIE I WYLOCZNEIE PROGRESJI PO WALCE
-                #current_fight=current_fight+1
+                current_fight=current_fight+1
                 pass
-            #if current_fight == 3:
-            #    self.manager.current = "end"
             if enemy.story_fight[current_stage][current_fight][1] == "character":
                 #TUTAJ DODAC DODAWANIE KOLEJNEJ POSTACI DO DRUZYNY
-                pass
+                self.manager.current = "add_new_character"
             else:
                 self.manager.current = "battle_result"
         if len(enemy.player_team_alive) <= 0:
             self.battle_over()
             self.manager.current = "game_over" 
     
+    def do_actual_remove(self, anim, wid):
+        self.remove_widget(self.chose_sprite(self.current_target))
+
     def check_for_death(self):
         if self.current_target.HP <= 0:
             if self.current_target in self.turn_order:
                 self.turn_order[self.get_turn_index(self.current_target)] = "dead"
-                self.remove_widget(self.chose_sprite(self.current_target))
+                self.anim_queue.append((self.chose_sprite(self.current_target), Animation(opacity=0, duration=1.3, t="in_out_elastic")))
+                #if len(self.anim_queue) == 1:
+                #    self.run_animation() 
                 if self.current_target in player.team:
                     enemy.player_team_alive.remove(self.current_target)
                 else:
@@ -501,21 +513,29 @@ class Fight(Screen):
                 if self.current_turn.status[x][0][4] != "one_time":
                     exec(self.current_turn.status[x][0][1])
 
-    def start_status(self):
-            if len(self.current_target.status) != 0:
-                if self.current_target in enemy.player_team_alive:
-                    self.current_target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]+130)
-                    self.current_target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-290)
-                else:
-                    self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-40)
-                    self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-461)
-                self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
-                if self.current_target.status[-1][0][4] == "one_time":
-                    exec(self.current_target.status[-1][0][1])
-                
-                self.add_widget(self.current_target.status[-1][1],-1)
-                self.add_widget(self.current_target.status[-1][2],-2)
+    def start_status(self,new_status):
+            ok_to_add = True
+            for x in range(0,len(self.current_target.status)):
+                if new_status == self.current_target.status[x][0][0]:
+                    self.current_target.status[x][0][2] = se.status_effect.status_list[new_status][2]
+                    ok_to_add = False
+            if ok_to_add == True:
+                self.current_target.status.append([se.status_effect.status_list[new_status].copy(),se.Status_Icon(se.status_effect.status_list[new_status][3],se.status_effect.status_list[new_status][6]),Label(font_size = 22)])
+                if len(self.current_target.status) != 0:
+                    if self.current_target in enemy.player_team_alive:
+                        self.current_target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]+130)
+                        self.current_target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-290)
+                    else:
+                        self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-30+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-40)
+                        self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-790+(len(self.current_target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1]-461)
+                    self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
+                    if self.current_target.status[-1][0][4] == "one_time":
+                        exec(self.current_target.status[-1][0][1])
+                    
+                    self.add_widget(self.current_target.status[-1][1],-1)
+                    self.add_widget(self.current_target.status[-1][2],-2)
 
+            
     def update_status(self):
         for x in range(0,len(self.player_sprites)):
             self.player_sprites[x][3].value = player.team[x].HP
@@ -553,8 +573,7 @@ class Fight(Screen):
         if self.current_turn.damage_special_effect != "":
             exec(self.current_turn.damage_special_effect)
         if self.action_status != "":
-            self.add_status(self.action_status)
-            self.start_status()
+            self.start_status(self.action_status)
             if self.final_damage == 0:
                 self.final_damage = self.action_status.upper()
             else:
@@ -629,10 +648,6 @@ class Fight(Screen):
             else:
                 self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-635,self.chose_sprite(self.current_target).pos[1]-205)
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
-            
-        print(self.effect)
-        print(self.target_sprite.effect)
-    
 
     def check_for_exceed_HP_MP(self):
         if self.current_target in player.team and self.current_target.MP > self.current_target.MAX_MP:
@@ -644,10 +659,7 @@ class Fight(Screen):
             self.current_turn.MP = self.current_turn.MAX_MP
         if self.current_turn.HP > self.current_turn.MAX_HP:
             self.current_turn.HP = self.current_turn.MAX_HP
-    
-    def add_status(self,status):
-        self.current_target.status.append([se.status_effect.status_list[status].copy(),se.Status_Icon(se.status_effect.status_list[status][3],se.status_effect.status_list[status][6]),Label(font_size = 22)])
-        
+
     def attack(self,target):
         if target == 3: #all enemys
             final_damage_base = self.final_damage
@@ -731,6 +743,7 @@ class Fight(Screen):
         self.target_type = "on_enemy"
         self.action = "self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus"
         self.effect = "no_effect"
+        self.set_sound_effect("graphics/sounds/hit.wav")
         self.add_widget(self.resign_button)
         self.chose_target("on_enemy")
 
@@ -745,6 +758,7 @@ class Fight(Screen):
             self.distance = "heal"
             self.target_type = "on_self"
             self.action = self.current_turn.potion_effect
+            self.set_sound_effect("graphics/sounds/potion.wav")
             exec(self.current_turn.potion_effect)
             self.add_widget(self.resign_button)
             self.chose_target("on_self")
@@ -759,8 +773,7 @@ class Fight(Screen):
         self.remove_widget(self.resign_button)
         self.restore_control()
 
-    def chosen_skill(self,skill,MP,distance,target,effect_source):
-
+    def chosen_skill(self,skill,MP,distance,target,effect_source,sound):
         if self.current_turn.MP < MP:
             self.resign_action()
             tp.text_pop.text = "Nie masz wystarczająco many!"
@@ -773,6 +786,7 @@ class Fight(Screen):
             self.distance = distance
             self.target_type = target
             self.effect = effect_source
+            self.set_sound_effect(sound)
             self.chose_target(target)
     def action_spells(self):
         self.disable_control()
@@ -780,7 +794,8 @@ class Fight(Screen):
         self.skill_list_pop_up.list.clear_widgets()
         for x in self.current_turn.skill:
             if self.current_turn.skill[x][4] != "passive":
-                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6],self.current_turn.skill[x][7]))))
+                print(self.current_turn.skill[x][8])
+                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6],self.current_turn.skill[x][7],self.current_turn.skill[x][8]))))
         self.add_widget(self.skill_list_pop_up)
         
     
@@ -800,6 +815,7 @@ class Fight(Screen):
                     self.current_target = player.team[x]
                     self.target_sprite = self.chose_sprite(self.current_target)
                     self.target_sprite.effect_source = temp[5]
+                    self.set_sound_effect(temp[6])
                     self.calculate_damage(x)
                 self.add_animation(0)
 
@@ -809,6 +825,7 @@ class Fight(Screen):
                     self.current_target = enemy.enemy_team[x]
                     self.target_sprite = self.chose_sprite(self.current_target)
                     self.target_sprite.effect_source = temp[5]
+                    self.set_sound_effect(temp[6])
                     self.calculate_damage(x)
                 self.add_animation(3)
                 
@@ -817,6 +834,7 @@ class Fight(Screen):
                 self.target_sprite = self.chose_sprite(self.current_target)
                 self.target_sprite.effect_source = temp[5]
                 self.add_animation(temp[0])
+                self.set_sound_effect(temp[6])
                 self.calculate_damage(temp[0])
             self.run_animation()
 

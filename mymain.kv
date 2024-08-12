@@ -14,6 +14,7 @@ WindowManger:
     game_over: game_over
     battle_result: battle_result
     character_creation: character_creation
+    add_new_character: add_new_character
     map: map
     tutorial: tutorial
     end: end
@@ -54,6 +55,10 @@ WindowManger:
     Character_Creation:
         id: character_creation
         name: "character_creation"
+        manager: screen_manager
+    Add_New_Character:
+        id: add_new_character
+        name: "add_new_character"
         manager: screen_manager
     Map:
         id: map
@@ -210,6 +215,9 @@ WindowManger:
         halign: "center"
 <Character_Creation>:
     name: "character_creation"
+    on_pre_enter: root.setup_window()
+<Add_New_Character>:
+    name: "add_new_character"
     on_pre_enter: root.setup_window()
 <Map>:
     name: "map"
