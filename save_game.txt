@@ -1,31 +1,69 @@
-player.main_player.head = "glowa4"
-player.main_player.name = "Bob"
-player.main_player.lv = 2
-player.main_player.MAX_HP = 50
+player.main_player.head = "glowa2"
+player.main_player.name = "John"
+player.main_player.lv = 3
+player.main_player.MAX_HP = 110
 player.main_player.MAX_MP = 50
-player.main_player.HP = 50
+player.main_player.HP = 110
 player.main_player.MP = 50
-player.main_player.STR = 10
-player.main_player.DEX = 18
-player.main_player.INT = 10
-player.main_player.weapon = 2
-player.main_player.damage = 12
-player.main_player.defence = 5
-player.main_player.crit_chance = 0.18
-player.main_player.dodge_chance = 0.36
+player.main_player.STR = 24.0
+player.main_player.DEX = 13.0
+player.main_player.INT = 10.0
+player.main_player.weapon = 9
+player.main_player.damage = 33.0
+player.main_player.defence = 7.0
+player.main_player.crit_chance = 0.13
+player.main_player.dodge_chance = 0.26
 player.main_player.EXP_boost = 0.1
-player.main_player.EXP = 0
-player.main_player.EXP_To_Lv = 200
-player.main_player.stat_points = 5
+player.main_player.EXP = 110.0
+player.main_player.EXP_To_Lv = 300
+player.main_player.stat_points = 0
 player.main_player.skill_points = 3
-player.main_player.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoj¹ broñ trucizn¹ aby wykonywa³a wiêksz¹ szkodê.\n\nNak³ada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartoœæ zrêcznoœci od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect","graphics/sounds/positive_effect_1.wav"]
-player.main_player.skill["g³êbokie rany"] = ["self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawienie'",30,"graphics/skills/g³êbokie_rany.png","G³êbokie Rany   |   AKTYWNA\nBezlitosne pchniêcie pozostawiaj¹ce krwawi¹c¹ ranê.\n\nZadaje: [color=#fdff80]Obra¿enia[/color]+[color=#de8833]STR[/color]\nNak³ada: Krwawienie 3 tur - [color=#fdff80]15 obra¿eñ co turê[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","glebokie_rany_effect","graphics/sounds/hit3.wav"]
-player.main_player.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
-player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.main_player.potions = 1
+player.main_player.potion_effect = "self.final_damage = -100"
+player.main_player.current_potions = 1
+player.main_player.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.6",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadz¹ca rozpêdzon¹ broñ prosto we wroga.\n\nZadaje: [color=#fdff80]Obra¿enia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
+player.main_player.skill["sza³"] = ["self.final_damage = 0\nself.action_status = 'sza³'",30,"graphics/skills/sza³.png","Sza³   |   AKTYWNA\nWpadasz w nieposkromony sza³, który zwiêksza twoj¹ si³ê ale nie dbasz o obronê.\n\nNak³ada: Sza³ 3 tury - [color=#de8833]+30%STR[/color], podczas sza³u pancerz wynosi 0 [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","status","on_self","szal_effect","graphics/sounds/positive_effect_1.wav"]
+player.main_player.skill["trening wojownika I"] = ["player.current_player.STR += 2\nplayer.current_player.DEX += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10",0,"graphics/skills/trening_si³y.png","Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz siê do cie¿kich warunków lochu szlifuj¹c swoje umiejêtnoœci w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 si³y[/color] [color=#00ff00]+2 zrêcznoœci[/color] [color=#ff0000]+10 zdrowia[/color]","passive","","","no_effect",""]
+player.main_player.inventory["main_hand"][2] = "graphics/items/topor_wojownika.png"
+player.main_player.inventory["off_hand"][2] = "graphics/items/drewniana_tarcza.png"
 player.main_player.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory["accessory"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory["potion"][2] = "graphics/items/ma³a_mikstura_zdrowia.png"
+player.companion1.head = "glowa4"
+player.companion1.name = "Podaj imiê..."
+player.companion1.lv = 3
+player.companion1.MAX_HP = 90
+player.companion1.MAX_MP = 80
+player.companion1.HP = 90
+player.companion1.MP = 80
+player.companion1.STR = 10
+player.companion1.DEX = 10
+player.companion1.INT = 22
+player.companion1.weapon = 1
+player.companion1.damage = 11
+player.companion1.defence = 5
+player.companion1.crit_chance = 0.1
+player.companion1.dodge_chance = 0.2
+player.companion1.EXP_boost = 0.22
+player.companion1.EXP = 122.0
+player.companion1.EXP_To_Lv = 300
+player.companion1.stat_points = 0
+player.companion1.skill_points = 3
+player.companion1.potions = 0
+player.companion1.potion_effect = ""
+player.companion1.current_potions = 0
+player.companion1.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'p³oniêcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemieñ pok³ady swojej magicznej energi w ¿ywy ogien pal¹cy twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNak³ada: P³oniêcie 3 tury - [color=#fdff80]5 obra¿eñ na turê[/color]\nKoszt MP: [color=#0000ff]10[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
+player.companion1.skill["syfon"] = ["self.final_damage = self.current_turn.damage\nself.current_turn.MP+=self.current_turn.damage*3",0,"graphics/skills/syfon.png","Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotkniêcie aby wyssaæ moc magiczn¹ z twojego celu.\n\nZadaje: [color=#fdff80]Obra¿enia, wartoœæ obra¿eñ x3 jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]","active","melee","on_enemy","syfon_effect","graphics/sounds/negative_effect_3.wav"]
+player.companion1.skill["uzdrowienie"] = ["self.final_damage = int(-(self.current_turn.INT*1.5)-30)",30,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKoj¹ce zaklêcia zasklepiaj¹ce powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]150%INT[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","heal","on_characters","leczenie_effect","graphics/sounds/heal.wav"]
+player.companion1.inventory["main_hand"][2] = "graphics/items/pika.png"
+player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.companion1.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
+player.companion1.inventory["accessory"][2] = "graphics/items/empty_slot.png"
+player.companion1.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
+player.companion1.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
+player.companion1.inventory["potion"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[0][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[1][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[2][2] = "graphics/items/skorzany_pancerz.png"
@@ -57,7 +95,7 @@ player.main_player.inventory[27][2] = "graphics/items/kolczuga.png"
 player.main_player.inventory[28][2] = "graphics/items/kolczuga.png"
 player.main_player.inventory[29][2] = "graphics/items/szata_maga.png"
 player.main_player.inventory[30][2] = "graphics/items/szata_maga.png"
-player.main_player.inventory[31][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[31][2] = "graphics/items/kolczuga.png"
 player.main_player.inventory[32][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[33][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[34][2] = "graphics/items/empty_slot.png"
@@ -66,5 +104,14 @@ player.main_player.inventory[36][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[37][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[38][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[39][2] = "graphics/items/empty_slot.png"
-fight.current_fight=2
+player.main_player.inventory[40][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[41][2] = "graphics/items/miecz_z_brazu.png"
+player.main_player.inventory[42][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[43][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[44][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[45][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[46][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory[47][2] = "graphics/items/empty_slot.png"
+fight.current_fight=6
 fight.current_stage=1
+player.team.append(player.companion1)

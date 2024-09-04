@@ -11,6 +11,7 @@ class Settings_menu(Screen):
         f = open("save_game.txt","w")
         characters = ["player.main_player","player.companion1","player.companion2"]
         for x in range(0,len(player.team)):
+           print(characters[x]+"\n"+str(x))
            f.write(characters[x]+'.head = "'+str(player.team[x].head)+'"\n')
            f.write(characters[x]+'.name = "'+str(player.team[x].name)+'"\n')
            f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
@@ -31,6 +32,9 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.EXP_To_Lv = '+str(player.team[x].EXP_To_Lv)+'\n')
            f.write(characters[x]+'.stat_points = '+str(player.team[x].stat_points)+'\n')
            f.write(characters[x]+'.skill_points = '+str(player.team[x].skill_points)+'\n')
+           f.write(characters[x]+'.potions = '+str(player.team[x].potions)+'\n')
+           f.write(characters[x]+'.potion_effect = "'+str(player.team[x].potion_effect)+'"\n')
+           f.write(characters[x]+'.current_potions = '+str(player.team[x].current_potions)+'\n')
            for y in player.team[x].skill:
                temp = str(player.team[x].skill[y][3]).replace("\n","\\n")
                temp2 = str(player.team[x].skill[y][0]).replace("\n","\\n")
@@ -41,9 +45,14 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.inventory["accessory"][2] = "'+str(player.team[x].inventory["accessory"][2])+'"\n')
            f.write(characters[x]+'.inventory["accessory2"][2] = "'+str(player.team[x].inventory["accessory2"][2])+'"\n')
            f.write(characters[x]+'.inventory["accessory3"][2] = "'+str(player.team[x].inventory["accessory3"][2])+'"\n')
-        for x in range(0,40):
+           f.write(characters[x]+'.inventory["potion"][2] = "'+str(player.team[x].inventory["potion"][2])+'"\n')
+        for x in range(0,48):
             f.write('player.main_player.inventory['+str(x)+'][2] = "'+(player.current_player.inventory[x][2])+'"\n')
         f.write("fight.current_fight="+str(fight.current_fight)+"\n")
-        f.write("fight.current_stage="+str(fight.current_stage))
+        f.write("fight.current_stage="+str(fight.current_stage)+"\n")
+        if len(player.team)==2:
+            f.write("player.team.append(player.companion1)\n")
+        if len(player.team)==3:
+            f.write("player.team.append(player.companion2)")
         f.close()
         Clock.schedule_once(tp.clear_pop_up,2)

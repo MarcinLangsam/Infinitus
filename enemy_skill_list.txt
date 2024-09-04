@@ -7,6 +7,7 @@ _ 6. type(on who skill will be used)
 _ 7. distance(decide that enemy will be moving while using skill)
 _ 8. skill effect source
 _ 9. sound effect source
+_10. what status use as condition
 ____________enemy skills____________
 atak
 atak
@@ -17,6 +18,7 @@ attack
 melee
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 szarża
 Szarża
@@ -27,136 +29,216 @@ attack
 melee
 ogluszenie_effect
 graphics/sounds/hit3.wav
+
 _______________________________________
 blok
 Blok
 self.final_damage = 0\nself.action_status = 'blok'
-by_HP
+by_stauts_and_HP
 0.5
 on_self
 status
 obrona_buff_effect
 graphics/sounds/positivew_effect_3.wav
+blok
 _______________________________________
 leczenie
 Leczenie
 self.final_damage = -(self.current_turn.INT)
-0
-0
+by_HP
+0.6
 on_enemy
-ranged
-no_effect
+heal
+leczenie_effect
 graphics/sounds/heal.wav
+
 _______________________________________
 klatwa
 Klątwa
-self.final_damage = 0\nself.action_status = 'klatwa'
+self.final_damage = 0\nself.action_status = 'klątwa'
 by_status
-klatwa
+klątwa
 on_character
 status
-no_effect
+klatwa_effect
 graphics/sounds/negative_effect_3.wav
-_______________________________________
-szał
-Szał
-self.final_damage = 0\nself.action_status = 'szał'
-by_HP
-0.3
-on_self
-status
-no_effect
-graphics/sounds/hit.wav
+
 _______________________________________
 zimny jak lód
-Zimny jak lód
+zimny jak lód
 self.final_damage = 10\nself.action_status = 'zimny jak lód'
 by_HP_alter
-0.7
+0.4
 on_character
 melee
-no_effect
-graphics/sounds/hit.wav
+obrona_debuff_effect
+graphics/sounds/negative_effect_1.wav
+
 _______________________________________
-duch
-Duch
-self.final_damage = 0\nself.action_status = 'duch'
-by_HP
-1
-on_character
+eteryczny
+Eteryczny
+self.final_damage = 0\nself.action_status = 'eteryczny'
+by_status
+eteryczny
+on_self
 status
-no_effect
-graphics/sounds/hit.wav
+eteryczny_effect
+graphics/sounds/positive_effect_1.wav
+
 _______________________________________
 bisekcja
 Bisekcja
-self.final_damage = self.current_turn.INT*2
+self.final_damage = self.current_turn.INT*1.8
 by_HP_alter
-0.5
+0.2
 on_character
 melee
-no_effect
-graphics/sounds/hit.wav
+bisekcja_effect
+graphics/sounds/bisekcja.wav
+
 _______________________________________
-magiczna wlócznia
-Magiczna wlócznia
-self.final_damage = 0\nself.action_status = 'magiczna_wlocznia'
-by_HP_alter
+magiczna włócznia
+magiczna włócznia
+self.final_damage = 0\nself.action_status = 'magiczna włócznia'
+by_stauts_and_HP
 0.35
 on_self
 status
 obrazenia_buff_effect
-graphics/sounds/hit.wav
+graphics/sounds/positivew_effect_3.wav
+magiczna włócznia
 _______________________________________
-szal wojownika
-Szał Wojownika
-self.final_damage = 0\nself.action_status = 'szal_wojownika'
+skowyt banshee
+skowyt banshee
+self.final_damage = self.current_turn.INT*0.75\nself.action_status = 'skowyt banshee'
 by_status
-szal_wojownika
+skowyt banshee
+on_all_character
+ranged
+obrazenia_debuff_effect
+graphics/sounds/magic.wav
+
+_______________________________________
+szał wojownika
+szał wojownika
+self.final_damage = 0\nself.action_status = 'szał wojownika'
+must_have
+szał wojownika
 on_self
 status
-siła_buff_effect
-graphics/sounds/hit.wav
+sila_buff_effect
+graphics/sounds/positive_effect_1.wav
+
+_______________________________________
+niezłomny
+niezłomny
+self.final_damage -= 50\nself.action_status = 'niezłomny'
+by_HP_must_have
+0.3
+on_self
+status
+leczenie_effect
+graphics/sounds/heal.wav
+niezłomny
 _______________________________________
 kat
 Kat
-self.final_damage = self.current_turn.STR+self.current_turn.damage
+self.final_damage = self.current_turn.STR*0.4+self.current_turn.damage
 0
 0
 attack
 melee
 rozplatanie_effect
-graphics/sounds/hit.wav
+graphics/sounds/hit2.wav
+
 _______________________________________
 tortury
 Tortury
-self.final_damage = self.current_turn.STR\nself.action_status = 'tortury'
+self.final_damage = 10\nself.action_status = 'tortury'
 by_status
 tortury
-on_character
+on_enemy
+ranged
+glebokie_rany_effect
+graphics/sounds/lighting.wav
+
+_______________________________________
+gdzie moi słudzy
+gdzie moi słudzy
+self.final_damage = 0\nself.action_status = 'gdzie moi słudzy'
+by_team_must_have
+gdzie moi słudzy
+on_self
+status
+obrona_debuff_effect
+graphics/sounds/negative_effect_1.wav
+
+_______________________________________
+Jestem nie pokonany
+Jestem nie pokonany
+self.final_damage = 0\nself.action_status = 'jestem nie pokonany'
+must_have
+jestem nie pokonany
+on_self
+status
+leczenie_effect
+graphics/sounds/heal.wav
+
+_______________________________________
+trujące opary
+trujące opary
+self.final_damage = 0\nself.action_status = 'trujące opary'
+must_have
+trujące opary
+on_all_character
+status
+trujace_opary_effect
+graphics/sounds/magic3.wav
+
+_______________________________________
+zarodniki
+zarodniki
+self.final_damage = 0\nself.action_status = 'zarodniki'
+must_have
+zarodniki
+on_all_enemy
+status
+leczenie_effect
+graphics/sounds/heal.wav
+
+_______________________________________
+grzmotnięcie
+Grzmotnięcie
+self.final_damage = self.current_turn.damage*1.2\nself.action_status = 'grzmotnięcie'
+0
+0
+attack
 melee
-rozplatanie_effect
-graphics/sounds/hit.wav
+zamach_effect
+graphics/sounds/hit2.wav
+
 _______________________________________
-swad_smierci
-Swad Smierci
-self.final_damage = 0\nself.action_status = 'swad_smierci'
-by_HP
-0.4
-on_all_character
-status
-rozplatanie_effect
+podcięcie
+Podcięcie
+self.final_damage = self.current_turn.damage*1.2\nself.action_status = 'podcięcie'
+0
+0
+attack
+melee
+zamach_effect
 graphics/sounds/hit.wav
+
 _______________________________________
-trujace_opary
-Trujace Opary
-self.final_damage = 0\nself.action_status = 'trujace_opary'
-by_status
-trujace_opary
-on_all_character
-status
-rozplatanie_effect
-graphics/sounds/hit.wav
+walnięcie
+Walnięcie
+self.final_damage = self.current_turn.damage*1.2\nself.action_status = 'walnięcie'
+0
+0
+attack
+melee
+zamach_effect
+graphics/sounds/hit3.wav
+
 _______________________________________
 zemsta
 Zemsta
@@ -167,6 +249,7 @@ on_self
 status
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 zatrucie
 Zatrucie
@@ -177,6 +260,7 @@ on_charcter
 status
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 mroczny_pocisk
 Mroczny Pocisk
@@ -187,6 +271,7 @@ attack
 ranged
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 mroczna_potega
 Mroczna Potega
@@ -197,6 +282,7 @@ on_self
 status
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 uderzenie_smierci
 Uderzenie Smierci
@@ -207,6 +293,7 @@ on_character
 melee
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 obezwładnienie
 Obezwładnienie
@@ -217,6 +304,7 @@ on_character
 status
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 niemoc
 Niemoc
@@ -227,6 +315,7 @@ on_character
 status
 no_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 fala_śmierci
 Fala Śmierci
@@ -237,6 +326,7 @@ on_all_character
 ranged
 test_effect
 graphics/sounds/hit.wav
+
 _______________________________________
 kojące_dźwięki
 Kojące Dźwięki
@@ -247,4 +337,5 @@ on_all_enemy
 heal
 test_effect
 graphics/sounds/hit.wav
+
 _______________________________________

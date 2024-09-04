@@ -6,6 +6,7 @@ from kivy.properties import StringProperty, ListProperty
 from kivy.clock import Clock
 from kivy.core.window import Window 
 from kivy.input.providers.mouse import MouseMotionEvent
+from kivy.core.audio import SoundLoader
 
 class Skill_line(Widget):
     points = ListProperty([])
@@ -16,6 +17,8 @@ class SkillSlot(Widget):
         super().__init__(**kwargs)
         self.t = 0
         self.p = 0
+        self.new_skill_sound = SoundLoader.load("graphics/sounds/new_skill.wav")
+        self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
 
     def on_touch_down(self, touch):
         if self.pos[0] <= touch.pos[0] <= self.pos[0]+50 and self.pos[1] <= touch.pos[1] <= self.pos[1]+50: 
@@ -23,6 +26,7 @@ class SkillSlot(Widget):
                     if self.pos[0] == skills.skill_list[x][4] and self.pos[1] == skills.skill_list[x][5]:
                         if skills.skill_list[x][0] in player.current_player.skill:
                             tp.text_pop.text = "Już masz tę umiejętność"
+                            self.error_sound.play()
                         else:
                             if player.current_player.skill_points > 0:
                                 if skills.skill_list[x][2] in player.current_player.skill or skills.skill_list[x][2]=="none":
@@ -34,11 +38,14 @@ class SkillSlot(Widget):
                                     skills_objects[x].sprite=(skills.skill_list[x][7])
                                     player.current_player.skill_points-=1
                                     UI.ui.skill_points_refresh(player.current_player)
-                                    player.current_player.printBattleStats()
+                                    #player.current_player.printBattleStats()
+                                    self.new_skill_sound.play()
                                 else:
                                     tp.text_pop.text = "Poptrzeba wcześniejszych umiejętności"
+                                    self.error_sound.play()
                             else:
                                 tp.text_pop.text = "Nie masz punktów umiejętności"
+                                self.error_sound.play()
                         Clock.schedule_interval(tp.clear_pop_up,3)
         else:
             pass

@@ -7,6 +7,7 @@ from kivy.core.window import Window
 from kivy.uix.behaviors import DragBehavior
 from kivy.properties import StringProperty
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 
 global screen
 screen = ""
@@ -32,6 +33,10 @@ class ItemSlot(DragBehavior, Widget):
         self.temp = ""
         self.t = 0
         self.p = 0
+        self.pick_up_sound = SoundLoader.load("graphics/sounds/pick_up.wav")
+        self.put_down_sound = SoundLoader.load("graphics/sounds/put_down.wav")
+        self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
+        self.shop_sound = SoundLoader.load("graphics/sounds/shop.wav")
 
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -81,12 +86,12 @@ class ItemSlot(DragBehavior, Widget):
                     if self.pos[0] == player.current_player.inventory[x][0] and self.pos[1] == player.current_player.inventory[x][1]:
                         self.select = x
                         self.check_touch = True
+                        self.pick_up_sound.play()
         else:
             pass
         return super(ItemSlot, self).on_touch_down(touch)
     
     def on_touch_up(self, touch):
-            #else:
             for x in player.current_player.inventory.keys():
                 if player.current_player.inventory[x][0] <= touch.pos[0] <= player.current_player.inventory[x][0]+75 and player.current_player.inventory[x][1] <= touch.pos[1] <= player.current_player.inventory[x][1]+75:
                     self.drop = x
@@ -111,55 +116,65 @@ class ItemSlot(DragBehavior, Widget):
             ##########################
 
             elif self.check_collision is True and self.check_touch is True:
-                if self.select in range (0,47) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
+                if self.select in range (0,48) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                     if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
                         player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]/10)
                         update_gold()
                         tp.text_pop.text = "Sprzedano przedmiot"
+                        self.shop_sound.play()
                         self.switch_items_in_invetory()
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]: #zakładnie przedmitów
                         if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Używasz broni dwuręcznej!"
+                            self.error_sound.play()
                         elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
+                            self.error_sound.play()
                         elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory[self.drop][3] == "main_hand":
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()
                             self.parent.refresh_items()
+                            self.put_down_sound.play()
                         elif items.item_list[player.current_player.inventory[self.select][2]][0] == player.current_player.inventory[self.drop][3] or player.current_player.inventory[self.drop][3] == "item":
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()
                             self.parent.refresh_items()
+                            self.put_down_sound.play()
                         else:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                             tp.text_pop.text = "Nie możesz założyć tutaj tego przedmiotu"
-                    elif self.drop in range(0,47):
+                            self.error_sound.play()
+                    elif self.drop in range(0,48):
                         if self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                             items.unequip()
                             self.switch_items_in_invetory()
                             items.equip()
                             self.parent.refresh_items()
-                        #if touch.pos[0]>440 and touch.pos[0]<440+90 and
+                            self.put_down_sound.play()
                         else:
                             self.switch_items_in_invetory()
+                            self.put_down_sound.play()
                 elif self.select in range(48,95):
-                    if self.drop in range(0,47):
+                    if self.drop in range(0,48):
                         if screen == "shop": #kupowanie przedmitów
                             if player.gold >= items.item_list[player.current_player.inventory[self.select][2]][4] and screen == "shop":
                                 player.gold -= items.item_list[player.current_player.inventory[self.select][2]][4]
                                 update_gold()
                                 self.switch_items_in_invetory()
                                 tp.text_pop.text = "Kupiono przedmiot"
+                                self.shop_sound.play()
                             else:
                                 tp.text_pop.text = "Nie masz wsytarczająco złota"
+                                self.error_sound.play()
                                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                         elif screen != "shop":
                             self.switch_items_in_invetory()
+                            self.put_down_sound.play()
                     elif self.drop in range(48,95): #uniemożliwia przesuwanie przedmitów w sklepie
                         inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                  
@@ -197,31 +212,7 @@ class ItemSlot(DragBehavior, Widget):
 
 class Items(Widget):
     def __init__(self):
-        self.item_list={
-            # type(0), stat increase on equip(1), stat decrease on take off(2), description(3), price(4)
-            #"graphics/items/empty_slot.png" : ["none","","","",0],
-            #main_hand
-            #"graphics/items/zelazny_miecz.png" : ["main_hand","player.current_player.weapon += 10","player.current_player.weapon -= 10","Żelazny Miecz  |   BROŃ\nObrażenia +10",50],
-            #"graphics/items/miecz_z_brazu.png" : ["main_hand","player.current_player.weapon += 5","player.current_player.weapon -= 5","Miecz z brązu    |   BROŃ\nObrażenia +5",10],
-            #"graphics/items/miecz_poltorareczny.png" : ["main_hand","player.current_player.weapon += 15","player.current_player.weapon -= 15","Półtorak    |   BROŃ\nObrażenia +15",300],
-            #"graphics/items/laska_maga.png" : ["main_hand","player.current_player.weapon += 5\nplayer.current_player.INT +=5","player.current_player.weapon -= 5\nplayer.current_player.INT -=5","Laska Maga    |   BROŃ\nObrażenia +5  Iteligencja +5",450],
-            #"graphics/items/majcher_lotra.png" : ["main_hand","player.current_player.weapon += 8\nplayer.current_player.DEX +=5","player.current_player.weapon -= 8\nplayer.current_player.DEX -=5","Majcher Łotra    |   BROŃ\nObrażenia +8  Zręczność +5",450],
-            #off_hand
-            #"graphics/items/drewniany_puklerz.png" : ["off_hand","player.current_player.defence += 5","player.current_player.defence -= 5","Drewniany Puklerz   |   DRUGA RĘKA\nPancerz +5",300],
-            #"graphics/items/ksiega_czarow.png" : ["off_hand","player.current_player.INT += 5","player.current_player.INT -= 5","Księga Czarów   |   DRUGA RĘKA\nInteligencja +5",300],
-            #armor
-            #"graphics/items/skorzany_pancerz.png" : ["armor","player.current_player.defence += 5","player.current_player.defence -= 5 ","Skórzany Pancerz   |   PANCERZ\nPancerz +5",1000],
-            #"graphics/items/szata_maga.png" : ["armor","player.current_player.defence += 5\nplayer.current_player.INT += 5","player.current_player.defence -= 5\nplayer.current_player.INT -= 5","Szata Maga   |   PANCERZ\nPancerz +5  Inteligencja +5",2000],
-            #"graphics/items/zbroja_plytowa.png" : ["armor","player.current_player.defence += 10\nplayer.current_player.HP += 30\nplayer.current_player.MAX_HP += 30","player.current_player.defence -= 10\nplayer.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30","Zbroja Płytowa   |   PANCERZ\nPancerz +10  Zdrowie +30",2000],
-            #"graphics/items/kaftan_zlodzieja.png" : ["armor","player.current_player.defence += 7\nplayer.current_player.weapon += 5","player.current_player.defence -= 7\nplayer.current_player.weapon -= 5","Kaftan Złodzieja   |   PANCERZ\nPancerz +7  Obrażenia +5",2000],
-            
-            #accessory
-            #"graphics/items/pierscien_sily.png" : ["accessory","player.current_player.STR += 5","player.current_player.STR -= 5","Pierścień Siły    |   AKCESORIA\nSiła +5",10],
-            #"graphics/items/pierscien_zrecznosci.png" : ["accessory","player.current_player.DEX += 5","player.current_player.DEX -= 5","Pierścień Zręczności    |   AKCESORIA\nZręczność +5",100],
-            #"graphics/items/pierscien_inteligencji.png" : ["accessory","player.current_player.INT += 5","player.current_player.INT -= 5","Pierścień Inteligencji   |   AKCESORIA\nInteligencja +5",100],
-            #"graphics/items/pierscien_zdrowia.png" : ["accessory","player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20","player.current_player.HP -= 20\nplayer.current_player.MAX_HP += 20","Pierścień Zdrowia    |   AKCESORIA\nZdrowie +20",100],
-            #"graphics/items/pierscien_many.png" : ["accessory","player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10","player.current_player.MP -= 10\nplayer.current_player.MAX_MP += 10","Pierścień Many    |   AKCESORIA\nMana +10",100]
-        }
+        self.item_list={}
 
     def equip(self):
         exec(self.item_list[player.current_player.inventory["main_hand"][2]][1])

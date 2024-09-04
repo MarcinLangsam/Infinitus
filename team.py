@@ -3,6 +3,7 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
+from kivy.core.audio import SoundLoader
 
 
 class EXPBar(ProgressBar):
@@ -12,10 +13,11 @@ class Switch_Character_Button(Button):
 class Team(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
+        self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
         self.main_player_sprite = player.Character_Sprite(player.main_player, im.items.item_list[player.main_player.inventory["main_hand"][2]][0], player.main_player.head, pos=(590,432-65))
         self.companion1_sprite = player.Character_Sprite(player.companion1, im.items.item_list[player.companion1.inventory["main_hand"][2]][0], player.companion1.head, pos=(590,432-65))
         self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.companion2.inventory["main_hand"][2]][0], player.companion2.head, pos=(590,432-65))
-        
+
         self.current_sprite = self.main_player_sprite
         self.main_player_button = Button(pos=(140,730), size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))
         self.companion1_button = Button(pos=(280,730), size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion1.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion1))
@@ -64,10 +66,12 @@ class Team(Screen):
         #    self.empty_potion.color = [0,0,0,0]
         
     def change_screen(self):
+        self.accept_sound.play()
         self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = "menu"
     def change_window(self,window_name): #TYMCZASOWE OGARNĄĆ TO
+        self.accept_sound.play()
         self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = window_name

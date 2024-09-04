@@ -4,13 +4,16 @@ import tooltip as tt
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.image import Image
+from kivy.core.audio import SoundLoader
 
 class Shop(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.tooltip = tt.Tooltip()
+        self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
 
     def change_screen(self):
+        self.accept_sound.play()
         self.clear_widgets()
         self.manager.current = "menu"
     def setup_window(self):
@@ -39,6 +42,8 @@ class Shop(Screen):
 
     shop_content={
         1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",
-           "graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png"
+           "graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
+           "graphics/items/srebrny_pierscien.png","graphics/items/zloty_pierscien.png","graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/drewniana_tarcza.png","graphics/items/stalowa_tarcza.png","graphics/items/magicza_ksiega.png","graphics/items/podstepny_majcher.png","graphics/items/zelazna_rekawica.png",
+           "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png","graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png"
            ]
     }

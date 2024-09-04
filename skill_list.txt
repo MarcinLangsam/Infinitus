@@ -16,7 +16,7 @@ _ 15. skill effect source
 ____________warrior skill____________
 1
 zamach
-self.final_damage = self.current_turn.damage+self.current_turn.STR
+self.final_damage = self.current_turn.damage+self.current_turn.STR*0.6
 none
 graphics/skills/zamach.png
 235
@@ -25,7 +25,7 @@ none
 graphics/skills/zamach_ok.png
 20
 active
-Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]
+Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]
 melee
 on_enemy
 zamach_effect
@@ -40,9 +40,9 @@ graphics/skills/szał.png
 240
 1
 graphics/skills/szał_ok.png
-40
+30
 active
-Szał   |   AKTYWNA\nWpadasz w nieposkromony szał, który zwiększa twoją siłę ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+50%STR[/color], podczas szału pancerz wynosi 0 [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Szał   |   AKTYWNA\nWpadasz w nieposkromony szał, który zwiększa twoją siłę ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+30%STR[/color], podczas szału pancerz wynosi 0 [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]30[/color]
 status
 on_self
 szal_effect
@@ -57,9 +57,9 @@ graphics/skills/cios_rękojeścią.png
 240
 2
 graphics/skills/cios_rękojeścią_ok.png
-30
+20
 active
-Cios Rękojeścią   |   AKTYWNA\nZwód wykonywany przy bliskim dystansie, kończący się uderzeniem rękojeścią.\n\nZadaje: [color=#de8833]STR[/color]\nNakłada: Ogłuszenie 1 tura - [color=#fdff80]Cel traci turę[/color]\nKoszt MP: [color=#0000ff]30[/color]
+Cios Rękojeścią   |   AKTYWNA\nZwód wykonywany przy bliskim dystansie, kończący się uderzeniem rękojeścią.\n\nZadaje: [color=#de8833]STR[/color]\nNakłada: Ogłuszenie 1 tura - [color=#fdff80]Cel traci turę[/color]\nKoszt MP: [color=#0000ff]20[/color]
 melee
 on_enemy
 ogluszenie_effect
@@ -67,7 +67,7 @@ graphics/sounds/ogluszenie.wav
 _______________________________________
 4
 zaciekły wojownik
-player.current_player.STR += 5
+player.current_player.STR += 3
 szał
 graphics/skills/zaciekły_wojownik.png
 165
@@ -76,7 +76,7 @@ graphics/skills/zaciekły_wojownik.png
 graphics/skills/zaciekły_wojownik_ok.png
 0
 passive
-Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca.\n\n[color=#de8833]+5 siły[/color]
+Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca.\n\n[color=#de8833]+3 siły[/color]
 
 
 no_effect
@@ -84,7 +84,7 @@ no_effect
 _______________________________________
 5
 niestrudzony obrońca
-player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
+player.current_player.HP += 15\nplayer.current_player.MAX_HP += 15
 szał
 graphics/skills/niestrudzony_obrońca.png
 305
@@ -93,7 +93,7 @@ graphics/skills/niestrudzony_obrońca.png
 graphics/skills/niestrudzony_obrońca_ok.png
 0
 passive
-Niestrudzony Obrońca   |   PASYWNA\nNie pozwolisz nikogo przepóścić bez walki.\n\n[color=#ff0000]+30 zdrowia[/color]
+Niestrudzony Obrońca   |   PASYWNA\nNie pozwolisz nikogo przepóścić bez walki.\n\n[color=#ff0000]+15 zdrowia[/color]
 
 
 no_effect
@@ -110,15 +110,15 @@ graphics/skills/zew_bojowy.png
 graphics/skills/zew_bojowy_ok.png
 50
 active
-Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 3 tur - [color=#de8833]+20%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
-on_self
+on_all_character
 szal_effect
 graphics/sounds/positive_effect_1.wav
 ______________________________________
 7
 okrzyk bojowy
-player.current_player.skill["zew bojowy"][6] = "on_all_character"\nplayer.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
+player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"""\nplayer.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
 zew bojowy
 graphics/skills/okrzyk_bojowy.png
 165
@@ -127,7 +127,7 @@ graphics/skills/okrzyk_bojowy.png
 graphics/skills/okrzyk_bojowy_ok.png
 0
 passive
-Okrzyk Bojowy   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz na wszystkich sojuszników.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+25%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Okrzyk Bojowy   |   AKTYWNA\nULEPSZENIE\nZew zwieksza siłe o 60%.\n\nNakłada: Zew Bojowy 3 tur - [color=#de8833]+40%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]40[/color]
 
 
 szal_effect
@@ -135,7 +135,7 @@ graphics/sounds/positive_effect_1.wav
 ______________________________________
 8
 siła w głosie
-player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"""\nplayer.current_player.skill["zew bojowy"][2] = 'graphics/skills/siła_w_głosie.png'
+player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy mistrz'"""\nplayer.current_player.skill["zew bojowy"][2] = 'graphics/skills/siła_w_głosie.png'
 okrzyk bojowy
 graphics/skills/siła_w_głosie.png
 95
@@ -144,7 +144,7 @@ graphics/skills/siła_w_głosie.png
 graphics/skills/siła_w_głosie_ok.png
 0
 passive
-Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz 6 tur i zwieksza sile o 35%.\n\nNakłada: Zew Bojowy 6 tur - [color=#de8833]+35%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew bojowy działa teraz 5.\n\nNakłada: Zew Bojowy 5 tur - [color=#de8833]+40%STR[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]40[/color]
 
 
 szal_effect
@@ -169,7 +169,7 @@ graphics/sounds/lighting.wav
 ______________________________________
 10
 nakładanie rąk
-self.final_damage = -(self.current_turn.INT*1.5)-50
+self.final_damage = int(-(self.current_turn.INT*1.5)-50)
 boski grzmot
 graphics/skills/nakładanie_rąk.png
 305
@@ -186,7 +186,7 @@ graphics/sounds/heal.wav
 ______________________________________
 11
 końskie zdrowie
-player.current_player.HP += 60\nplayer.current_player.MAX_HP += 60
+player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
 boski grzmot
 graphics/skills/końskie_zdrowie.png
 375
@@ -195,7 +195,7 @@ graphics/skills/końskie_zdrowie.png
 graphics/skills/końskie_zdrowie_ok.png
 0
 passive
-Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+60 zdrowia[/color]
+Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+30 zdrowia[/color]
 
 
 no_effect
@@ -203,7 +203,7 @@ no_effect
 ______________________________________
 12
 trening wojownika I
-player.current_player.STR += 3\nplayer.current_player.DEX += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
+player.current_player.STR += 2\nplayer.current_player.DEX += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
 szał
 graphics/skills/trening_siły.png
 235
@@ -212,7 +212,7 @@ graphics/skills/trening_siły.png
 graphics/skills/trening_siły_ok.png
 0
 passive
-Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+3 siły[/color] [color=#00ff00]+2 zręczności[/color] [color=#ff0000]+10 zdrowia[/color]
+Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 siły[/color] [color=#00ff00]+2 zręczności[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
 no_effect
@@ -254,50 +254,50 @@ graphics/sounds/rozplatanie.wav
 _____________mage skill________________
 41
 kula ognia
-self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'
+self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
 740
 170
 none
 graphics/skills/kula_ognia_ok.png
-20
+10
 active
-Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5% obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]
+Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]10[/color]
 ranged
 on_enemy
 kula_ognia_effect
 graphics/sounds/kula_ognia.wav
 _________________________________________
 42
-kamienna skóra
-self.final_damage = 0\nself.action_status = 'kamienna skóra'
+syfon
+self.final_damage = self.current_turn.damage\nself.current_turn.MP+=int(self.current_turn.damage*3)
 kula ognia
-graphics/skills/kamienna_skóra.png
+graphics/skills/syfon.png
 740
 240
 41
-graphics/skills/kamienna_skóra_ok.png
-15
+graphics/skills/syfon_ok.png
+0
 active
-Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 4 tury - [color=#fdff80]Pancerz +15[/color]\nKoszt MP: [color=#0000ff]15[/color]
-status
-on_characters
-obrona_buff_effect
-graphics/sounds/positivew_effect_3.wav
+Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotknięcie aby wyssać moc magiczną z twojego celu.\n\nZadaje: [color=#fdff80]Obrażenia, wartość obrażeń x3 jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]
+melee
+on_enemy
+syfon_effect
+graphics/sounds/negative_effect_3.wav
 _________________________________________
 43
 uzdrowienie
-self.final_damage = -(self.current_turn.INT*3)-30
-kamienna skóra
+self.final_damage = int(-(self.current_turn.INT*1.3)-30)
+syfon
 graphics/skills/uzdrowienie.png
 740
 310
 42
 graphics/skills/uzdrowienie_ok.png
-20
+30
 active
-Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color]+[color=#00f7ff]INT*3[/color]\nKoszt MP: [color=#0000ff]20[/color]
+Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]130%INT[/color]\nKoszt MP: [color=#0000ff]30[/color]
 heal
 on_characters
 leczenie_effect
@@ -314,15 +314,15 @@ graphics/skills/runiczna_klinga.png
 graphics/skills/runiczna_klinga_ok.png
 40
 active
-Runiczna Klinga   |   AKTYWNA\nNasyczasz swoją broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje wartość inteligencji do ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje wartość inteligencji do ataku[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
-on_self
+on_character
 obrazenia_buff_effect
 graphics/sounds/positive_effect_1.wav
 _________________________________________
 45
 trening maga I
-player.current_player.INT += 4\nplayer.current_player.MP += 20\nplayer.current_player.MAX_MP +=20
+player.current_player.INT += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
 uzdrowienie
 graphics/skills/trening_maga.png
 740
@@ -331,7 +331,7 @@ graphics/skills/trening_maga.png
 graphics/skills/trening_maga_ok.png
 0
 passive
-Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+20 many[/color]
+Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]
 
 
 no_effect
@@ -372,21 +372,21 @@ no_effect
 
 _________________________________________
 48
-syfon
-self.final_damage = self.current_turn.damage\nself.current_turn.MP+=self.current_turn.damage
+kamienna skóra
+self.final_damage = 0\nself.action_status = 'kamienna skóra'
 uzdrowienie
-graphics/skills/syfon.png
+graphics/skills/kamienna_skóra.png
 810
 380
 43
-graphics/skills/syfon_ok.png
-0
+graphics/skills/kamienna_skóra_ok.png
+15
 active
-Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotknięcie aby wyssać moc magiczną z twojego celu.\n\nZadaje: [color=#fdff80]Obrażenia, wartość obrażeń jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]
-melee
-on_enemy
-syfon_effect
-graphics/sounds/negative_effect_3.wav
+Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Pancerz +15[/color]\nKoszt MP: [color=#0000ff]15[/color]
+status
+on_characters
+obrona_buff_effect
+graphics/sounds/positivew_effect_3.wav
 _________________________________________
 _9
 _deszcz ognia
@@ -454,7 +454,7 @@ graphics/sounds/hit3.wav
 _________________________________________
 83
 nadzwyczajna zwinność
-player.current_player.DEX += 5
+player.current_player.DEX += 3
 głębokie rany
 graphics/skills/nadzwyczajna_zwinność.png
 1260
@@ -463,7 +463,7 @@ graphics/skills/nadzwyczajna_zwinność.png
 graphics/skills/nadzwyczajna_zwinność_ok.png
 0
 passive
-Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+5 zwinności[/color]
+Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+3 zwinności[/color]
 
 
 no_effect
@@ -573,7 +573,7 @@ graphics/sounds/negative_effect_3.wav
 _________________________________________
 90
 trening łotra I
-player.current_player.DEX += 3\nplayer.current_player.STR += 2\nplayer.current_player.dodge_chance_bonus += 3
+player.current_player.DEX += 2\nplayer.current_player.STR += 1\nplayer.current_player.dodge_chance_bonus += 3
 krwiopijca
 graphics/skills/trening_łotra.png
 1260
@@ -582,7 +582,7 @@ graphics/skills/trening_łotra.png
 graphics/skills/trening_łotra_ok.png
 0
 passive
-Trening Łotra I   |   AKTYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w łotrostwa i sprytu.\n\n[color=#00ff00]+3 zręczności[/color] [color=#de8833]+2 siły[/color] [color=#fdff80]+3% szansy na unik[/color]
+Trening Łotra I   |   AKTYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w łotrostwa i sprytu.\n\n[color=#00ff00]+2 zręczności[/color] [color=#de8833]+1 siły[/color] [color=#fdff80]+3% szansy na unik[/color]
 
 
 no_effect

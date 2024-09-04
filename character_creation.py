@@ -61,11 +61,11 @@ class Character_Creation(Screen):
             p.MAX_MP = 40
             p.STR = 15
             self.weapon_description = "Miecz z Brązu\nObrażenia +3"
-            self.skill_description = "Zamach\nZadaje: Obrażenia+STR\nKoszt MP: 20"
+            self.skill_description = "Zamach\nZadaje: Obrażenia+50%STR\nKoszt MP: 20"
             self.weapon_image.source = "graphics/items/miecz_z_brazu.png"
             self.skill_image.source = "graphics/skills/zamach.png"
             p.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
-            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
+            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.6",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
             self.warrior_class.background_normal = "graphics/warrior_class.png"
             self.class_label.text = "+Bonus do siły\n+Bonus do zdrowia\n-Kara do many"
         elif class_type == "mage":
@@ -75,11 +75,11 @@ class Character_Creation(Screen):
             p.MAX_MP = 60
             p.INT = 15
             self.weapon_description = "Pika\nObrażenia +1\nMana +10"
-            self.skill_description = "Kula Ognia\nZadaje: 10+INT\nNakłada: Płonięcie\nKoszt MP: 20"
+            self.skill_description = "Kula Ognia\nZadaje: 10+75%INT\nNakłada: Płonięcie\nKoszt MP: 10"
             self.weapon_image.source = "graphics/items/pika.png"
             self.skill_image.source = "graphics/skills/kula_ognia.png"
             p.inventory["main_hand"][2] = "graphics/items/pika.png"
-            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT\nself.action_status = 'płonięcie'",20,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]20[/color]+[color=#00f7ff]INT[/color]\nNakłada: Płonięcie 2 tury - [color=#fdff80]5'%' obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
+            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.6\nself.action_status = 'płonięcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]10[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
             self.mage_class.background_normal = "graphics/mage_class.png"
             self.class_label.text = "+Bonus do inteligencji\n+Bonus do many\n-Kara do zdrowia"
         elif class_type == "rouge":

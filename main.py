@@ -9,6 +9,8 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
+from kivy.core.audio import SoundLoader
+from kivy.uix.button import Button
 
 class StageProgressBar(ProgressBar):
     pass
@@ -18,27 +20,24 @@ class Menu(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
+        self.accept_sound = SoundLoader.load("graphics/sound/accept.wav")
         self.setup_window()
 
     def change_window(self,window_name):
-        self.remove_widget(self.tooltip)
+        self.accept_sound.play()
         self.manager.current = window_name
-    def reset_tooltip(self):
-        tt.clear_tooltip(self.tooltip)
 
     def setup_window(self):
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 10"
         self.add_widget(Image(source="graphics/menu_background.png", size=(400,100), pos=(600,0), size_hint=(None,None), allow_stretch=True))
-        self.tooltip = tt.Tooltip()
-        self.add_widget(self.tooltip)
-        self.add_widget(tt.Tooltip_Button("Sklep",pos=(110,350), size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        self.add_widget(tt.Tooltip_Button("Walka treningowa",pos=(380,510), size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
-        self.add_widget(tt.Tooltip_Button("Walka główna",pos=(1175,540), size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
-        self.add_widget(tt.Tooltip_Button("Ekwipunek",pos=(660,10), size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
-        self.add_widget(tt.Tooltip_Button("Umiejętności",pos=(760,10), size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
-        self.add_widget(tt.Tooltip_Button("Podróż",pos=(860,10), size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
-        self.add_widget(tt.Tooltip_Button("Opcje",pos=(1350,10), size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
+        self.add_widget(Button(pos=(110,350), size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
+        self.add_widget(Button(pos=(380,510), size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
+        self.add_widget(Button(pos=(1175,540), size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
+        self.add_widget(Button(pos=(660,10), size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
+        self.add_widget(Button(pos=(760,10), size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
+        self.add_widget(Button(pos=(860,10), size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
+        self.add_widget(Button(pos=(1350,10), size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         
 
     def start_main_fight(self):

@@ -2,6 +2,7 @@ import player, abilities_manager as am, UI_manager as UI, text_pop as tp, toolti
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
+from kivy.core.audio import SoundLoader
 
 class Switch_Character_Button(Button):
      pass
@@ -13,12 +14,15 @@ class Skills_Window(Screen):
         self.companion2_button = Button(pos=(410,15), size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion2.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion2))
         self.current_button = self.main_player_button
         self.tooltip = tt.Tooltip()
+        self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
 
     def change_screen(self):
+        self.accept_sound.play()
         self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = "menu"
     def change_window(self,window_name): #TYMCZASOWE OGARNĄĆ TO
+        self.accept_sound.play()
         self.change_character_menu(player.main_player)
         self.clear_widgets()
         self.manager.current = window_name

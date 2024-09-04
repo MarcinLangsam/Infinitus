@@ -7,7 +7,7 @@ def level_up(character):
         print("HALOO")
         character.EXP = 0
         character.EXP_To_Lv += 100
-        character.stat_points += 5
+        character.stat_points += 7
         character.skill_points += 1
         character.lv += 1
 
@@ -238,6 +238,15 @@ class Character(Widget):
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+        self.inventory["main_hand"][2] = "graphics/items/empty_slot.png"
+        self.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+        self.inventory["armor"][2] = "graphics/items/empty_slot.png"
+        self.inventory["accessory"][2] = "graphics/items/empty_slot.png"
+        self.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
+        self.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
+        self.inventory["potion"][2] = "graphics/items/empty_slot.png"
+
+
     def printBattleStats(self):
         print("STR "+str(self.STR))
         print("DEX "+str(self.DEX))
