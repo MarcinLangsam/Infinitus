@@ -130,11 +130,11 @@ class Stat_Button(Button):
                 player.current_player.MAX_MP += 5
                 player.current_player.MP +=5
             elif self.stat == "STR":
-                player.current_player.STR +=1
+                player.current_player.STR_base +=1
             elif self.stat == "DEX":
-                player.current_player.DEX +=1
+                player.current_player.DEX_base +=1
             elif self.stat == "INT":
-                player.current_player.INT +=1   
+                player.current_player.INT_base +=1   
             player.current_player.stat_points -=1
             UI.ui.stats_refresh(player.current_player)
         else:

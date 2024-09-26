@@ -67,7 +67,7 @@ graphics/sounds/ogluszenie.wav
 _______________________________________
 4
 zaciekły wojownik
-player.current_player.STR += 3
+player.current_player.STR_base += 3
 szał
 graphics/skills/zaciekły_wojownik.png
 165
@@ -203,7 +203,7 @@ no_effect
 ______________________________________
 12
 trening wojownika I
-player.current_player.STR += 2\nplayer.current_player.DEX += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
+player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
 szał
 graphics/skills/trening_siły.png
 235
@@ -227,9 +227,9 @@ graphics/skills/precyzyjne_ciosy.png
 420
 12
 graphics/skills/precyzyjne_ciosy_ok.png
-45
+40
 active
-Precyzyjne Ciosy   |   AKTYWNA\nNa pewnien czas skupiasz się na swoich atakch tak aby jak najczęściej trafiać w czułe punkty.\n\nNakłada: Precyzyjne Ciosy 5 tur - [color=#fdff80]+20% Szansy na trafienie krytyczne[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]45[/color]
+Precyzyjne Ciosy   |   AKTYWNA\nNa pewnien czas skupiasz się na swoich atakch tak aby jak najczęściej trafiać w czułe punkty.\n\nNakłada: Precyzyjne Ciosy 4 tur - [color=#fdff80]+20% Szansy na trafienie krytyczne[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_self
 obrazenia_buff_effect
@@ -322,7 +322,7 @@ graphics/sounds/positive_effect_1.wav
 _________________________________________
 45
 trening maga I
-player.current_player.INT += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
+player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
 uzdrowienie
 graphics/skills/trening_maga.png
 740
@@ -382,7 +382,7 @@ graphics/skills/kamienna_skóra.png
 graphics/skills/kamienna_skóra_ok.png
 15
 active
-Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Pancerz +15[/color]\nKoszt MP: [color=#0000ff]15[/color]
+Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Pancerz +50%[/color]\nKoszt MP: [color=#0000ff]15[/color]
 status
 on_characters
 obrona_buff_effect
@@ -454,7 +454,7 @@ graphics/sounds/hit3.wav
 _________________________________________
 83
 nadzwyczajna zwinność
-player.current_player.DEX += 3
+player.current_player.DEX_base += 3
 głębokie rany
 graphics/skills/nadzwyczajna_zwinność.png
 1260
@@ -573,7 +573,7 @@ graphics/sounds/negative_effect_3.wav
 _________________________________________
 90
 trening łotra I
-player.current_player.DEX += 2\nplayer.current_player.STR += 1\nplayer.current_player.dodge_chance_bonus += 3
+player.current_player.DEX_base += 2\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
 krwiopijca
 graphics/skills/trening_łotra.png
 1260

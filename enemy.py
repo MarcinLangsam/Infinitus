@@ -45,13 +45,36 @@ class Enemy(Widget):
         self.lv = lv
         self.MAX_HP = MAX_HP
         self.HP = MAX_HP
+
         self.STR = STR
         self.DEX = DEX
         self.INT = INT
+
+        self.STR_base = STR
+        self.DEX_base = DEX
+        self.INT_base = INT
+        self.damage_base = damage
+        self.defence_base = defence
+
+        self.STR_modifier = 1
+        self.DEX_modifier = 1
+        self.INT_modifier = 1
+        self.damage_modifier = 1
+        self.defence_modifier = 1
+        self.crit_chance_modifier = 0
+        self.dodge_chance_modifier = 0
+        self.damage_reduction = 1
+
+
         self.defence = defence
-        self.crit_chance = DEX*0.1
-        self.dodge_chance = DEX*0.1
-        self.damage = damage
+        self.crit_chance_base = round(0.1*self.DEX,2)
+        self.dodge_chance_base = round(0.02*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX,2)
+        self.dodge_chance = round(0.02*self.DEX,2)
+        self.damage = self.damage_base
+        self.weapon = 0
+        self.crit_chance_bonus = 0
+        self.dodge_chance_bonus = 0
         self.damage_bonus = 0
         self.damage_special_effect = ""
         self.exp_gain = exp_gain
@@ -62,6 +85,23 @@ class Enemy(Widget):
         self.status = list()
         self.actions = list()
         self.source = source
+
+        self.blok = False
+
+    def printBattleStats(self):
+        print("STR "+str(self.STR))
+        print("DEX "+str(self.DEX))
+        print("INT "+str(self.INT))
+        print("Final Damage "+str(self.damage))
+        print("Defence "+str(self.defence))
+        
+        print("Damage modifier "+str(self.damage_modifier))
+        print("STR modifier "+str(self.STR_modifier))
+        print("DEX modifier "+str(self.DEX_modifier))
+        print("INT modifier "+str(self.INT_modifier))
+        print("Defence modifier "+str(self.defence_modifier))
+        print("Damage modifier "+str(self.damage_modifier))
+        print("Dodge: "+str(self.dodge_chance))
 
     def action(self,action,sort_by,value,type,name,distance,effect,sound,status):
         ok = False
@@ -175,6 +215,18 @@ class Enemy(Widget):
                     if ok == False:
                         self.actions.append([x,action,name,distance,type,effect,sound])
 
+        if sort_by == "by_status_on":
+            if type == "on_self":
+                for x in targets.status:
+                    if se.status_effect.status_list[value][0] == x[0][0]:
+                        self.actions.clear()
+                        self.actions.append([targets,action,name,distance,type,effect,sound])
+            else:
+                for x in targets:
+                    for y in x.status:
+                        if se.status_effect.status_list[value][0] == y[0][0]:
+                            self.actions.clear()
+                            self.actions.append([x,action,name,distance,type,effect,sound])
 
         if sort_by == "by_stauts_and_HP":
             if type == "on_self":
@@ -191,8 +243,26 @@ class Enemy(Widget):
                         if se.status_effect.status_list[status][0] == y[0][0]:
                             ok = True
                     if ok == False:
-                        if targets.HP <= targets.MAX_HP*value:
+                        if x.HP <= x.MAX_HP*value:
+                            self.actions.append([x,action,name,distance,type,effect,sound])
+
+        if sort_by == "by_stauts_and_HP_alter":
+            if type == "on_self":
+                    for x in targets.status:
+                        if se.status_effect.status_list[status][0] == x[0][0]:
+                            ok = True
+                    if ok == False:
+                        if targets.HP >= targets.MAX_HP*value:
                             self.actions.append([targets,action,name,distance,type,effect,sound])
+            else:
+                for x in targets:
+                    ok = False
+                    for y in x.status:
+                        if se.status_effect.status_list[status][0] == y[0][0]:
+                            ok = True
+                    if ok == False:
+                        if x.HP >= x.MAX_HP*value:
+                            self.actions.append([x,action,name,distance,type,effect,sound])
 
         if sort_by == "by_team_must_have": #use this ability 100% when alone
             if type == "on_self":
@@ -251,11 +321,11 @@ class Enemy(Widget):
                         if targets.HP <= targets.MAX_HP*value:
                             self.actions.clear()
                             self.actions.append([targets,action,name,distance,type,effect,sound])
-
+ 
 
 
         ###################################################################
-        if type in ["attack","on_all_character"]:
+        if type in ["attack"]:
             chanse = random.randint(0,100)
             if len(targets) == 1:
                 self.actions.append([player_team_alive[0],action,name,distance,type,effect,sound])
@@ -335,13 +405,13 @@ def load_enemy_skill():
 load_enemy_skill()
 
                 #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
-first_enemy = Enemy("Szkielet",1,60,5,1,1,8,0,100,100,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/mała_mikstura_zdrowia.png":100},"graphics/sprites/szkielet_sprite.png","szkielet")
+first_enemy = Enemy("Szkielet",1,60,5,1,1,8,1,100,100,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/mała_mikstura_zdrowia.png":100},"graphics/sprites/szkielet_sprite.png","szkielet")
 
-skeleton1 = Enemy("Szkielet",2,70,5,1,5,10,0,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton2 = Enemy("Szkielet",2,70,5,1,5,10,0,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton3 = Enemy("Szkielet",2,70,5,1,5,10,0,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton1 = Enemy("Szkielet",2,60,5,1,5,10,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton2 = Enemy("Szkielet",2,60,5,1,5,10,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton3 = Enemy("Szkielet",2,60,5,1,5,10,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
 
-skeleton_priest = Enemy("Upadły kapłan",3,85,10,20,15,15,0,80,20,{
+skeleton_priest = Enemy("Upadły kapłan",3,80,10,20,13,15,0,80,20,{
                                                             "atak":enemy_skills["atak"],
                                                             "leczenie":enemy_skills["leczenie"],
                                                             "leczenie":enemy_skills["leczenie"],
@@ -363,7 +433,7 @@ skeleton_priest2 = Enemy("Upadły kapłan",3,85,10,20,15,15,0,80,20,{
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80,"graphics/items/magicza_ksiega.png":15},
                                                             "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan")
                                         
-lost_soul = Enemy("Zagubiona Dusza",4,200,20,20,20,20,5,0,0,{
+lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,20,5,0,0,{
                                                             "atak":enemy_skills["atak"]
                                                             ,"atak":enemy_skills["atak"]
                                                             ,"eteryczny":enemy_skills["eteryczny"]
@@ -375,7 +445,7 @@ lost_soul = Enemy("Zagubiona Dusza",4,200,20,20,20,20,5,0,0,{
                                                             {},
                                                             "graphics/sprites/zagubiona_dusza_sprite.png","zagubiona_dusza")
 
-zjawa = Enemy("Zjawa",4,170,10,30,25,15,0,50,30,{"atak":enemy_skills["atak"],
+zjawa = Enemy("Zjawa",4,125,10,30,25,19,0,50,30,{"atak":enemy_skills["atak"],
                                                 "eteryczny":enemy_skills["eteryczny"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
@@ -385,19 +455,19 @@ zjawa = Enemy("Zjawa",4,170,10,30,25,15,0,50,30,{"atak":enemy_skills["atak"],
                                                 {"graphics/items/amulet_precyzji.png":40,"graphics/items/wlocznia_straznicza.png":20,"graphics/items/srebrny_pierscien.png":60,"graphics/items/mała_mikstura_zdrowia.png":40},
                                                 "graphics/sprites/zjawa_sprite.png","zjawa")
 
-skeleton_warrior = Enemy("Szkielet Wojownik",4,200,23,5,1,23,5,50,35,{
+skeleton_warrior = Enemy("Szkielet Wojownik",4,145,23,5,1,23,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":100,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
-skeleton_warrior2 = Enemy("Szkielet Wojownik",4,200,25,5,1,20,5,50,35,{
+skeleton_warrior2 = Enemy("Szkielet Wojownik",4,135,25,5,1,20,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":80,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
-skeleton_warrior3 = Enemy("Szkielet Wojownik",4,200,25,5,1,20,5,50,35,{
+skeleton_warrior3 = Enemy("Szkielet Wojownik",4,135,25,5,1,20,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
@@ -416,7 +486,7 @@ rzeznik = Enemy("Rzeznik",5,170,30,20,10,30,120,200,100,{
                                                     {"graphics/items/mała_mikstura_many.png":100,"graphics/items/dwureczny_topor_rzeznika.png":100,"graphics/items/pikowany_pancerz.png":100},
                                                     "graphics/sprites/rzeznik_sprite.png","rzeznik")
 
-zombie = Enemy("Zombie",5,200,30,10,20,30,0,60,40,{
+zombie = Enemy("Zombie",5,150,30,10,20,30,0,60,40,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                             "podcięcie":enemy_skills["podcięcie"],
@@ -425,7 +495,7 @@ zombie = Enemy("Zombie",5,200,30,10,20,30,0,60,40,{
                                             "trujące opary":enemy_skills["trujące opary"]},
                                             {"graphics/items/pikowany_pancerz.png":35,"graphics/items/maczuga_zolnierska.png":30,"graphics/items/amulet_precyzji.png":15},
                                             "graphics/sprites/zombie_sprite.png","zombie")
-zombie2 = Enemy("Zombie",5,200,25,10,20,25,5,60,40,{
+zombie2 = Enemy("Zombie",5,130,25,10,20,25,5,60,40,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                             "podcięcie":enemy_skills["podcięcie"],
@@ -436,11 +506,16 @@ zombie2 = Enemy("Zombie",5,200,25,10,20,25,5,60,40,{
                                             "graphics/sprites/zombie_sprite.png","zombie")
 
  
-death_knight = Enemy("Rycerz Śmierci",3,500,50,20,35,30,0,500,1000,{
+death_knight = Enemy("Rycerz Śmierci",6,450,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
-                                                            "fala_śmierci":enemy_skills["fala_śmierci"],
-                                                            "kojące_dźwięki":enemy_skills["kojące_dźwięki"]},
-                                                            {},
+                                                            "mroczne ugodzenie":enemy_skills["mroczne ugodzenie"],
+                                                            "aura śmierci":enemy_skills["aura śmierci"],
+                                                            "horror":enemy_skills["horror"],
+                                                            "inkantacja":enemy_skills["inkantacja"],
+                                                            "zagłada":enemy_skills["zagłada"],
+                                                            "łaska chaosu":enemy_skills["łaska chaosu"]
+                                                            },
+                                                            {"graphics/items/siewca_smierci.png":100,"graphics/items/pierscien_mrocznych_mocy.png":100},
                                                             "graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci")
 
 enemy_team = list()

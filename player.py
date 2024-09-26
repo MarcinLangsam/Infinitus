@@ -76,17 +76,40 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
+
         self.STR = 10
-        self.DEX = 30
+        self.DEX = 10
         self.INT = 10
+
+
+        self.STR_base = 10
+        self.DEX_base = 10
+        self.INT_base = 10
+
         self.weapon = 0
         self.damage = self.STR+self.weapon
         self.damage_bonus = 0
         self.damage_special_effect = ""
-        self.defence = 0
-        self.crit_chance = round(0.1*self.DEX,2)
-        self.dodge_chance = round(0.02*self.DEX,2)
-        self.EXP_boost = round(0.1*self.INT,2)
+        self.damage_base = self.STR_base+self.weapon
+        self.defence_base = 0
+
+        
+        self.defence = self.defence_base
+        self.crit_chance_base = round(0.1*self.DEX,2)
+        self.dodge_chance_base = round(0.02*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX_base,2)
+        self.dodge_chance = round(0.02*self.DEX_base,2)
+        self.EXP_boost = round(0.1*self.INT_base,2)
+
+        self.STR_modifier = 1
+        self.DEX_modifier = 1
+        self.INT_modifier = 1
+        self.damage_modifier = 1
+        self.defence_modifier = 1
+        self.crit_chance_modifier = 0
+        self.dodge_chance_modifier = 0
+        self.damage_reduction = 1
+
         self.crit_chance_bonus = 0
         self.dodge_chance_bonus = 0
         self.EXP_boost_bonus = 0
@@ -94,12 +117,15 @@ class Character(Widget):
         self.EXP_To_Lv = 100
         self.stat_points = 0
         self.skill_points = 3
+
         self.skill = {}
         self.status = list()
         self.head = "glowa1"
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+
+        self.blok = False
 
         self.inventory = {
             "main_hand" : [568,542,"graphics/items/empty_slot.png","main_hand"],
@@ -217,11 +243,28 @@ class Character(Widget):
         self.STR = 10
         self.DEX = 10
         self.INT = 10
+
+        self.STR_base = 10
+        self.DEX_base = 10
+        self.INT_base = 10
+        self.damage_base = self.STR_base+self.weapon
+        self.defence_base = 0
+
+        self.STR_modifier = 1
+        self.DEX_modifier = 1
+        self.INT_modifier = 1
+        self.damage_modifier = 1
+        self.defence_modifier = 1
+        self.crit_chance_modifier = 0
+        self.dodge_chance_modifier = 0
+
         self.weapon = 0
         self.damage = self.STR+self.weapon
         self.damage_bonus = 0
         self.damage_special_effect = ""
         self.defence = 0
+        self.crit_chance_base = round(0.1*self.DEX,2)
+        self.dodge_chance_base = round(0.02*self.DEX,2)
         self.crit_chance = round(0.1*self.DEX,2)
         self.dodge_chance = round(0.02*self.DEX,2)
         self.EXP_boost = round(0.1*self.INT,2)
@@ -246,6 +289,8 @@ class Character(Widget):
         self.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
         self.inventory["potion"][2] = "graphics/items/empty_slot.png"
 
+        self.blok = False
+
 
     def printBattleStats(self):
         print("STR "+str(self.STR))
@@ -254,13 +299,14 @@ class Character(Widget):
         print("Weapon Damage "+str(self.weapon))
         print("Final Damage "+str(self.damage))
         print("Defence "+str(self.defence))
-        print("Crit Chance "+str(self.crit_chance))
-        print("Dodge Chance "+str(self.dodge_chance))
-        print("EXP Boost "+str(self.EXP_boost))
-        print("Skills:")
-        for x in self.skill:
-            print(x)
-            print(self.skill[x])
+        
+        print("Damage modifier "+str(self.damage_modifier))
+        print("STR modifier "+str(self.STR_modifier))
+        print("DEX modifier "+str(self.DEX_modifier))
+        print("INT modifier "+str(self.INT_modifier))
+        print("Defence modifier "+str(self.defence_modifier))
+        print("Damage modifier "+str(self.damage_modifier))
+        
 
 main_player = Character()
 main_player.name = "Gracz Pierwszy"
@@ -272,6 +318,4 @@ companion2.name = "Gracz Trzeci"
        
 team = list()
 team.append(main_player)
-#team.append(companion1)
-#team.append(companion2)
 gold = 1000

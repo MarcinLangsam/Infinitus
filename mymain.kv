@@ -135,9 +135,17 @@ WindowManger:
         background_disabled_normal: "graphics/magic_button_disabled.png"
 
     Button:
+        id: defend
+        on_release: root.action_defend()
+        pos: 50,440
+        size_hint: 0.065,0.10
+        background_normal: "graphics/defend_button.png"
+        background_disabled_normal: "graphics/defend_button_disabled.png"
+    
+    Button:
         id: potion
         on_release: root.action_potion()
-        pos: 50,440
+        pos: 50,560
         size_hint: 0.065,0.10
         background_normal: "graphics/potion_button.png"
         background_disabled_normal: "graphics/potion_button_disabled.png"

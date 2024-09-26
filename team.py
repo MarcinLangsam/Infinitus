@@ -167,7 +167,7 @@ class Team(Screen):
         self.clear_widgets()
         UI.ui.stats_refresh(character)
         player.current_player = character
-        for x in range(0,47):
+        for x in range(0,48):
             character.inventory[x][2] = im.inventory[x].sprite
         
         if character == player.main_player:

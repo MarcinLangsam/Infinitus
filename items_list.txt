@@ -25,23 +25,100 @@ _
 ____________MAIN HAND ITEMS____________
 graphics/items/miedziany_sztylet.png
 one_hand
-player.current_player.weapon += 2\nplayer.current_player.DEX += 1
-player.current_player.weapon -= 2\nplayer.current_player.DEX -= 1
+player.current_player.weapon += 2\nplayer.current_player.DEX_base += 1
+player.current_player.weapon -= 2\nplayer.current_player.DEX_base -= 1
 Miedziany Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +2\n[color=#00ff00]Zręczność +1[/color]
-10
-_______________________________________
-graphics/items/mlot_bojowy.png
-two_hand
-player.current_player.weapon += 10
-player.current_player.weapon -= 10
-Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
-10
+50
 _______________________________________
 graphics/items/pika.png
 two_hand_spear
 player.current_player.weapon += 1\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
 player.current_player.weapon -= 1\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10
 Pika    |   BROŃ DWURĘCZNA\nObrażenia +1\n[color=#0000ff]Mana +10[/color]
+50
+_______________________________________
+graphics/items/dwureczny_topor_rzeznika.png
+two_hand
+player.current_player.weapon += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.HP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
+player.current_player.weapon -= 10\nplayer.current_player.MAX_HP -= 10\nplayer.current_player.HP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10
+Dwóręczny Topór Rzeźnika    |   BROŃ DWURĘCZNA\nObrażenia +10\n[color=#ff0000]Zdrowie +10[/color]\n[color=#0000ff]Mana +10[/color]
+300
+_______________________________________
+graphics/items/grzech_kaplana.png
+two_hand_spear
+player.current_player.weapon += 4\nplayer.current_player.MAX_MP += 15\nplayer.current_player.MP += 15\nplayer.current_player.INT_base+=2
+player.current_player.weapon -= 4\nplayer.current_player.MAX_MP -= 15\nplayer.current_player.MP -= 15\nplayer.current_player.INT_base-=2
+Grzech Kapłana    |   BROŃ DWURĘCZNA\nObrażenia +4\n[color=#0000ff]Mana +15[/color]\n[color=#00f7ff]Inteligencja +2[/color]
+200
+_______________________________________
+graphics/items/kostur_maga.png
+two_hand_spear
+player.current_player.weapon += 3\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base+=2
+player.current_player.weapon -= 3\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10\nplayer.current_player.INT_base-=2
+Kostur Maga    |   BROŃ DWURĘCZNA\nObrażenia +3\n[color=#0000ff]Mana +10[/color]\n[color=#00f7ff]Inteligencja +2[/color]
+160
+_______________________________________
+graphics/items/maczuga_zolnierska.png
+one_hand
+player.current_player.weapon += 7\nplayer.current_player.DEX_base+=2\nplayer.current_player.STR_base+=2\nplayer.current_player.INT_base+=3
+player.current_player.weapon -= 7\nplayer.current_player.DEX_base-=2\nplayer.current_player.STR_base-=2\nplayer.current_player.INT_base-=3
+Maczuga Żołnierska    |   BROŃ JEDNORĘCZNA\nObrażenia +7\n[color=#de8833]Siła +2[/color]\n[color=#00ff00]Zręczność +2[/color]\n[color=#00f7ff]Inteligencja +3[/color]
+200
+_______________________________________
+graphics/items/miecz_z_brazu.png
+one_hand
+player.current_player.weapon += 3
+player.current_player.weapon -= 3
+Miecz z Brązu    |   BROŃ JEDNORĘCZNA\nObrażenia +3
+50
+_______________________________________
+graphics/items/rytualny_sztylet.png
+one_hand
+player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus += 1
+player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus -= 1
+Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +4[color=#00ff00]Zręczność +4[/color]\n[color=#d9d764]nSzansa na trafienie krytyczne +1[/color]
+160
+_______________________________________
+graphics/items/siewca_smierci.png
+one_hand
+player.current_player.STR_base += 13\nplayer.current_player.MAX_HP -= 15\nplayer.current_player.HP -= 15
+player.current_player.STR_base -= 13\nplayer.current_player.MAX_HP += 15\nplayer.current_player.HP += 15
+Siewca Śmierci    |   BROŃ JEDNORĘCZNA\n[color=#ba4949]KARA Zdrowie -15[/color]\n[color=#de8833]Siła +13[/color]
+1000
+_______________________________________
+graphics/items/stalowy_miecz.png
+one_hand
+player.current_player.weapon += 6
+player.current_player.weapon -= 6
+Stalowy Miecz    |   BROŃ JEDNORĘCZNA\nObrażenia +6
+100
+_______________________________________
+graphics/items/topor_wojownika.png
+one_hand
+player.current_player.weapon += 9
+player.current_player.weapon -= 9
+Topór Wojownika    |   BROŃ JEDNORĘCZNA\nObrażenia +9
+200
+_______________________________________
+graphics/items/wlocznia_straznicza.png
+two_hand_spear
+player.current_player.weapon += 5\nplayer.current_player.DEX_base+=4
+player.current_player.weapon -= 5\nplayer.current_player.DEX_base+=4
+Topór Wojownika    |   BROŃ DWÓRĘCZNA\nObrażenia +5\n[color=#00ff00]Zręczność +4[/color]
+200
+_______________________________________
+graphics/items/mlot_bojowy.png
+two_hand
+player.current_player.weapon += 10
+player.current_player.weapon -= 10
+Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
+160
+_______________________________________
+graphics/items/gladius.png
+one_hand
+player.current_player.weapon += 30
+player.current_player.weapon -= 30
+Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +30
 10
 _______________________________________
 graphics/items/miecz_rycerski.png
@@ -51,55 +128,6 @@ player.current_player.weapon -= 15
 Miecz Rycerski    |   BROŃ DWURĘCZNA\nObrażenia +15
 10
 _______________________________________
-graphics/items/dwureczny_topor_rzeznika.png
-two_hand
-player.current_player.weapon += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.HP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
-player.current_player.weapon -= 10\nplayer.current_player.MAX_HP -= 10\nplayer.current_player.HP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10
-Dwóręczny Topór Rzeźnika    |   BROŃ DWURĘCZNA\nObrażenia +10\n[color=#ff0000]Zdrowie +10[/color]\n[color=#0000ff]Mana +10[/color]
-10
-_______________________________________
-graphics/items/gladius.png
-one_hand
-player.current_player.weapon += 30
-player.current_player.weapon -= 30
-Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +30
-10
-_______________________________________
-graphics/items/grzech_kaplana.png
-two_hand_spear
-player.current_player.weapon += 4\nplayer.current_player.MAX_MP += 15\nplayer.current_player.MP += 15\nplayer.current_player.INT+=2
-player.current_player.weapon -= 4\nplayer.current_player.MAX_MP -= 15\nplayer.current_player.MP -= 15\nplayer.current_player.INT-=2
-Grzech Kapłana    |   BROŃ DWURĘCZNA\nObrażenia +4\n[color=#0000ff]Mana +15[/color]\n[color=#00f7ff]Inteligencja +2[/color]
-10
-_______________________________________
-graphics/items/kostur_maga.png
-two_hand_spear
-player.current_player.weapon += 25
-player.current_player.weapon -= 25
-Kostur Maga    |   BROŃ DWURĘCZNA\nObrażenia +25
-10
-_______________________________________
-graphics/items/maczuga_zolnierska.png
-one_hand
-player.current_player.weapon += 7\nplayer.current_player.DEX+=2\nplayer.current_player.STR+=2\nplayer.current_player.INT+=3
-player.current_player.weapon -= 7\nplayer.current_player.DEX-=2\nplayer.current_player.STR-=2\nplayer.current_player.INT-=3
-Maczuga Żołnierska    |   BROŃ JEDNORĘCZNA\nObrażenia +7\n[color=#de8833]Siła +2[/color]\n[color=#00ff00]Zręczność +2[/color]\n[color=#00f7ff]Inteligencja +3[/color]
-10
-_______________________________________
-graphics/items/miecz_poltorareczny.png
-one_hand
-player.current_player.weapon += 35
-player.current_player.weapon -= 35
-Miecz Półtoraręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +35
-10
-_______________________________________
-graphics/items/miecz_z_brazu.png
-one_hand
-player.current_player.weapon += 3
-player.current_player.weapon -= 3
-Miecz z Brązu    |   BROŃ JEDNORĘCZNA\nObrażenia +3
-10
-_______________________________________
 graphics/items/rozczka_z_krysztalem_blyskawicy.png
 one_hand
 player.current_player.weapon += 5
@@ -107,39 +135,11 @@ player.current_player.weapon -= 5
 Różczka z Kryształem Błyskawicy    |   BROŃ JEDNORĘCZNA\nObrażenia +5
 10
 _______________________________________
-graphics/items/rytualny_sztylet.png
+graphics/items/miecz_poltorareczny.png
 one_hand
-player.current_player.weapon += 15
-player.current_player.weapon -= 15
-Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +15
-10
-_______________________________________
-graphics/items/siewca_smierci.png
-one_hand
-player.current_player.weapon += 45
-player.current_player.weapon -= 45
-Siewca Śmierci    |   BROŃ JEDNORĘCZNA\nObrażenia +45
-10
-_______________________________________
-graphics/items/stalowy_miecz.png
-one_hand
-player.current_player.weapon += 6
-player.current_player.weapon -= 6
-Stalowy Miecz    |   BROŃ JEDNORĘCZNA\nObrażenia +6
-10
-_______________________________________
-graphics/items/topor_wojownika.png
-one_hand
-player.current_player.weapon += 9
-player.current_player.weapon -= 9
-Topór Wojownika    |   BROŃ JEDNORĘCZNA\nObrażenia +9
-10
-_______________________________________
-graphics/items/wlocznia_straznicza.png
-two_hand_spear
-player.current_player.weapon += 5\nplayer.current_player.DEX+=4
-player.current_player.weapon -= 5\nplayer.current_player.DEX+=4
-Topór Wojownika    |   BROŃ DWÓRĘCZNA\nObrażenia +5\n[color=#00ff00]Zręczność +4[/color]
+player.current_player.weapon += 5\nplayer.current_player.MAX_HP += 5\nplayer.current_player.HP += 5\nplayer.current_player.STR_base += 5
+player.current_player.weapon -= 5\nplayer.current_player.MAX_HP -= 5\nplayer.current_player.HP -= 5\nplayer.current_player.STR_base -= 5
+Miecz Półtoraręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +35
 10
 _______________________________________
 _
@@ -147,67 +147,67 @@ _
 _________OFF HAND ITEMS ____________
 graphics/items/drewniana_tarcza.png
 off_hand
-player.current_player.defence += 2
-player.current_player.defence -= 2
+player.current_player.defence_base += 2
+player.current_player.defence_base -= 2
 Drewniana Tarcza   |   DRUGA RĘKA\nPancerz +2
-300
+130
 _______________________________________
 graphics/items/stalowa_tarcza.png
 off_hand
-player.current_player.defence += 3player.current_player.HP += 5\nplayer.current_player.MAX_HP += 5
-player.current_player.defence -= 3player.current_player.HP -= 5\nplayer.current_player.MAX_HP -= 5
+player.current_player.defence_base += 3player.current_player.HP += 5\nplayer.current_player.MAX_HP += 5
+player.current_player.defence_base -= 3player.current_player.HP -= 5\nplayer.current_player.MAX_HP -= 5
 Stalowa Tarcza   |   DRUGA RĘKA\nPancerz +3\n[color=#ff0000]Zdrowie +5[/color]
 300
 _______________________________________
 graphics/items/podstepny_majcher.png
 off_hand
-player.current_player.damage += 2player.current_player.DEX += 1
-player.current_player.damage -= 2player.current_player.DEX -= 1
+player.current_player.damage_base += 2player.current_player.DEX_base += 1
+player.current_player.damage_base -= 2player.current_player.DEX_base -= 1
 Podstępny Majcher   |   DRUGA RĘKA\nObrażenia +2\n[color=#00ff00]Zręczność +1[/color]
-300
+130
 _______________________________________
 graphics/items/magicza_ksiega.png
 off_hand
-player.current_player.MP += 5\nplayer.current_player.MAX_MP += 5\nplayer.current_player.INT += 1
-player.current_player.MP -= 5\nplayer.current_player.MAX_MP -= 5\nplayer.current_player.INT -= 1
+player.current_player.MP += 5\nplayer.current_player.MAX_MP += 5\nplayer.current_player.INT_base += 1
+player.current_player.MP -= 5\nplayer.current_player.MAX_MP -= 5\nplayer.current_player.INT_base -= 1
 Magicza Księga   |   DRUGA RĘKA\n[color=#0000ff]Mana +5[/color]\n[color=#00f7ff]Inteligencja +1[/color]
-300
+130
 _______________________________________
 _
 _
 ______________ARMORS __________________
 graphics/items/skorzany_pancerz.png
 armor
-player.current_player.defence += 5
-player.current_player.defence -= 5
+player.current_player.defence_base += 5
+player.current_player.defence_base -= 5
 Skórzany Pancerz   |   PANCERZ\nPancerz +5
-1000
+200
 _______________________________________
 graphics/items/pikowany_pancerz.png
 armor
-player.current_player.defence += 8
-player.current_player.defence -= 8
+player.current_player.defence_base += 8
+player.current_player.defence_base -= 8
 Pikowany Pancerz   |   PANCERZ\nPancerz +8
-1000
+400
 _______________________________________
 graphics/items/szata_maga.png
 armor
-player.current_player.defence += 3
-player.current_player.defence -= 3
+player.current_player.defence_base += 3
+player.current_player.defence_base -= 3
 Szata Maga   |   PANCERZ\nPancerz +3
 1000
 _______________________________________
 graphics/items/przyszywanica.png
 armor
-player.current_player.defence += 7
-player.current_player.defence -= 7
+player.current_player.defence_base += 7
+player.current_player.defence_base -= 7
 Przyszywanica   |   PANCERZ\nPancerz +7
 1000
 _______________________________________
 graphics/items/kolczuga.png
 armor
-player.current_player.defence += 10
-player.current_player.defence -= 10
+player.current_player.defence_base += 10
+player.current_player.defence_base -= 10
 Kolczuga   |   PANCERZ\nPancerz +10
 1000
 _______________________________________
@@ -216,22 +216,22 @@ _
 _____________ACCESSORY_________________
 graphics/items/pierscien_sily.png
 accessory
-player.current_player.STR += 3
-player.current_player.STR -= 3
+player.current_player.STR_base += 3
+player.current_player.STR_base -= 3
 Pierścień Siły    |   AKCESORIA\n[color=#de8833]Siła +3[/color]
-10
+100
 _______________________________________
 graphics/items/pierscien_zrecznosci.png
 accessory
-player.current_player.DEX += 3
-player.current_player.DEX -= 3
+player.current_player.DEX_base += 3
+player.current_player.DEX_base -= 3
 Pierścień Zręczności    |   AKCESORIA\n[color=#00ff00]Zręczność +3[/color]
 100
 _______________________________________
 graphics/items/pierscien_inteligencji.png
 accessory
-player.current_player.INT += 3
-player.current_player.INT -= 3
+player.current_player.INT_base += 3
+player.current_player.INT_base -= 3
 Pierścień Inteligencji   |   AKCESORIA\n[color=#00f7ff]Inteligencja +3[/color]
 100
 _______________________________________
@@ -251,22 +251,22 @@ Większy Pierścień Many    |   AKCESORIA\n[color=#0000ff]Mana +10[/color]
 _______________________________________
 graphics/items/wiekszy_pierscien_sily.png
 accessory
-player.current_player.STR += 6
-player.current_player.STR -= 6
+player.current_player.STR_base += 6
+player.current_player.STR_base -= 6
 Większy Pierścień Siły    |   AKCESORIA\n[color=#de8833]Siła +6[/color]
 10
 _______________________________________
 graphics/items/wiekszy_pierscien_zrecznosci.png
 accessory
-player.current_player.DEX += 6
-player.current_player.DEX -= 6
+player.current_player.DEX_base += 6
+player.current_player.DEX_base -= 6
 Większy Pierścień Zręczności    |   AKCESORIA\n[color=#00ff00]Zręczność +6[/color]
 100
 _______________________________________
 graphics/items/wiekszy_pierscien_inteligencji.png
 accessory
-player.current_player.INT += 6
-player.current_player.INT -= 6
+player.current_player.INT_base += 6
+player.current_player.INT_base -= 6
 Większy Pierścień Inteligencji   |   AKCESORIA\n[color=#00f7ff]Inteligencja +6[/color]
 100
 _______________________________________
@@ -286,38 +286,45 @@ Większy Pierścień Many    |   AKCESORIA\n[color=#0000ff]Mana +20[/color]
 _______________________________________
 graphics/items/srebrny_pierscien.png
 accessory
-player.current_player.defence += 1
-player.current_player.defence -= 1
+player.current_player.defence_base += 1
+player.current_player.defence_base -= 1
 Srebrny Pierścień    |   AKCESORIA\nPancerz +1
 100
 _______________________________________
 graphics/items/zloty_pierscien.png
 accessory
-player.current_player.defence += 2
-player.current_player.defence -= 2
+player.current_player.defence_base += 2
+player.current_player.defence_base -= 2
 Złoty Pierścień    |   AKCESORIA\nPancerz +2
 100
 _______________________________________
 graphics/items/amulet_precyzji.png
 accessory
-player.current_player.crit_chance += 4
-player.current_player.crit_chance -= 4
-Amulet Precyzji    |   AKCESORIA\nSzansa na trafienie krytyczne +4
-100
+player.current_player.crit_chance_bonus += 3
+player.current_player.crit_chance_bonus -= 3
+Amulet Precyzji    |   AKCESORIA\n[color=#d9d764]Szansa na trafienie krytyczne +3[/color]
+150
 _______________________________________
 graphics/items/amulet_predkosci.png
 accessory
-player.current_player.dodge_chance += 3
-player.current_player.dodge_chance -= 3
-Amulet Prędkości    |   AKCESORIA\nSzansa na unik +3
-100
+player.current_player.dodge_chance_bonus += 2
+player.current_player.dodge_chance_bonus -= 2
+Amulet Prędkości    |   AKCESORIA\n[color=#d9d764]Szansa na unik +2[/color]
+150
 _______________________________________
 graphics/items/zelazna_rekawica.png
 accessory
-player.current_player.damage += 4
-player.current_player.damage -= 4
+player.current_player.damage_base += 4
+player.current_player.damage_base -= 4
 Żelazna Rękawica    |   AKCESORIA\nObrażenia +4
 100
+_______________________________________
+graphics/items/pierscien_mrocznych_mocy.png
+accessory
+player.current_player.DEX_base += 5\nplayer.current_player.INT_base += 5\nplayer.current_player.MAX_HP -= 20\nplayer.current_player.HP -= 20
+player.current_player.DEX_base -= 5\nplayer.current_player.INT_base -= 5\nplayer.current_player.MAX_HP += 20\nplayer.current_player.HP += 20
+Pierścień Mrocznych Mocy    |   AKCESORIA\n[color=#ba4949]KARA Zdrowie -20[/color]\n[color=#00ff00]Zręczność +5[/color]\n[color=#00f7ff]Inteligencja +5[/color]
+500
 _______________________________________
 _
 _
@@ -327,14 +334,14 @@ potion
 player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nLeczy 100 HP\nUżycia: 1
-100
+300
 _______________________________________
 graphics/items/mała_mikstura_many.png
 potion
 player.current_player.potion_effect = "self.current_turn.MP+=50"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nOdnawia 50 MP\nUżycia: 1
-100
+300
 _______________________________________
 graphics/items/srednia_mikstura_zdrowia.png
 potion

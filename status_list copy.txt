@@ -7,25 +7,15 @@ _ 6. type of status(one-time buff or triggerd every turn[poison])
 _ 7. code to clear efect
 _ 8. description for tooltip
 _ 9. code to clear efect after battle
-________________defend_______________
-obrona
-obrona
-self.current_target.damage_reduction = 0.1
-1
-graphics/icons/blok_status.png
-one_time
-self.current_target.damage_reduction = 1
-Obrona\nZmniejsza obrażenia o 90% do następnej tury
-x.damage_reduction = 1
 ____________player status____________
 szał
 szał
-self.current_target.STR_modifier += 0.3\nself.current_target.defence_modifier -= 0.99
+self.current_target.STR_modifier -= 0.3\nself.current_target.defence_modifier -= 0.99
 4
 graphics/icons/szał_status.png
 one_time
-self.current_turn.STR_modifier -= 0.3\nself.current_turn.defence_modifier += 0.99
-Szał\nSiła zwiększona o 30%
+self.current_target.STR_modifier += 0.3\nself.current_target.defence_modifier += 0.99
+Szał\nSiła zwiększona o 30%, Brak Pancerza!
 x.STR /= 1.3\nx.damage = x.STR+x.weapon
 _______________________________________
 ogłuszenie
@@ -40,41 +30,41 @@ Ogłuszenie\nCel pomija swoją turę
 _______________________________________
 zew bojowy
 zew bojowy
-self.current_target.STR_modifier += 0.2
+self.current_target.STR *= 1.2\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
 4
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.2
+self.current_turn.STR /= 1.2\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Zew Bojowy\nSiła zwiększona o 20%
 x.STR /= 1.2\nx.damage = x.STR+x.weapon
 _______________________________________
 zew bojowy ulepszony
 zew bojowy ulepszony
-self.current_target.STR_modifier += 0.4
+self.current_target.STR *= 1.4\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
 4
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.4
+self.current_turn.STR /= 1.4\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Okrzyk Bojowy\nSiła zwiększona o 40%
 x.STR /= 1.4\nx.damage = x.STR+x.weapon
 _______________________________________
 zew bojowy mistrz
 zew bojowy mistrz
-self.current_target.STR_modifier += 0.4
+self.current_target.STR *= 1.4\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
 6
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.4
+self.current_turn.STR /= 1.4\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Okrzyk Bojowy\nSiła zwiększona o 40%
 x.STR /= 1.4\nx.damage = x.STR+x.weapon
 _______________________________________
 precyzyjne ciosy
 precyzyjne ciosy
-self.current_target.crit_chance_modifier += 20
-5
+self.current_target.crit_chance += 20
+6
 graphics/icons/precyzyjne_ciosy_status.png
 one_time
-self.current_turn.crit_chance_modifier -= 20
+self.current_turn.STR -= 20
 Precyzyje Ciosy\nSzansza na trafienie krytyczne zwiększona o 20%
 x.crit_chance -= 20
 ________________________________________
@@ -90,22 +80,22 @@ Płonięcie\nCel traci 5 HP co turę
 ________________________________________
 kamienna skóra
 kamienna skóra
-self.current_target.defence_modifier += 0.5
+self.current_target.defence+=15
 4
 graphics/icons/kamienna_skóra_status.png
 one_time
-self.current_turn.defence_modifier -= 0.5
-Kamienna Skóra\nPancerz zwiększony o 50%
+self.current_target.defence-=15
+Kamienna Skóra\nPancerz zwiększony o 15
 x.defence-=15
 _______________________________________
 zamrożenie
 zamrożenie
-self.current_target.defence_modifier += 10.0
+self.current_target.defence += 500
 4
 graphics/icons/zamrożenie_status.png
 stun
-self.current_turn.defence_modifier -= 10.0
-Zamrożenie\nCel traci swoją turę ale zwyskuje 1000% Pancerza
+self.current_target.defence -= 500
+Zamrożenie\nCel traci swoją turę ale zwyskuje 500 Pancerza
 x.defence -= 500
 ________________________________________
 runiczna klinga
@@ -114,7 +104,7 @@ self.current_target.damage_bonus += self.current_target.INT
 6
 graphics/icons/runiczna_klinga_status.png
 one_time
-self.current_turn.damage_bonus -= self.current_turn.INT
+self.current_target.damage_bonus -= self.current_target.INT
 Runiczna Klinga\nDodaje statystykę inteligencji do wartości obrażeń
 x.damage_bonus -= x.INT
 ________________________________________
@@ -124,7 +114,7 @@ self.current_target.damage_bonus += self.current_target.DEX
 5
 graphics/icons/zatrute_ostrze_status.png
 one_time
-self.current_turn.damage_bonus -= self.current_turn.DEX
+self.current_target.damage_bonus -= self.current_target.DEX
 Zatrute Ostrze\nDodaje statystykę zręczności do wartości obrażeń
 x.damage_bonus -= x.DEX
 ________________________________________
@@ -144,7 +134,7 @@ self.current_target.damage_special_effect = "self.current_turn.HP += self.final_
 4
 graphics/icons/krwiopijca_status.png
 one_time
-self.current_turn.damage_special_effect = ""
+self.current_target.damage_special_effect = ""
 Krwiopijca\nZwraca 50% zadanych obrażen jako zdrowie
 x.damage_special_effect = ""
 ________________________________________
@@ -154,92 +144,123 @@ self.current_target.damage_special_effect = "self.current_turn.HP += self.final_
 5
 graphics/icons/krwiopijca_status.png
 one_time
-self.current_turn.damage_special_effect = ""
+self.current_target.damage_special_effect = ""
 Krwiopijca\nZwraca 50% zadanych obrażen jako zdrowie
 x.damage_special_effect = ""
 ________________________________________
 rozbrojenie
 rozbrojenie
-self.current_target.STR_modifier -= 0.5
+self.current_target.STR *= 0.5\nself.current_target.damage = self.current_target.STR+self.current_target.weapon
 4
 graphics/icons/krwiopijca_status.png
 one_time
-self.current_turn.STR_modifier += 0.5
+self.current_turn.STR /= 0.5\nself.current_turn.damage = self.current_turn.STR+self.current_turn.weapon
 Rozbrojenie\nSiła i obrażenia zmniejszone o 50%
 x.STR /= 0.5\nx.damage = x.STR+x.weapon
 ________________________________________
 łaska hermesa
 łaska hermesa
-self.current_target.DEX_modifier += 2.0
+self.current_target.DEX*=2
 5
 graphics/icons/łaska_hermesa_status.png
 one_time
-self.current_turn.DEX_modifier -= 2.0
+self.current_target.DEX/=2
 Łaska Hermesa\nPodwaja wartość zręczności
 
 ________________________________________
 _
 _
+____________status for all_____________
+obezwładnienie
+obezwładnienie
+
+3
+graphics/icons/ogluszenie_status.png
+stun
+
+Obezwładnienie\nCel pomija swoją turę
+
+________________________________________
+trucizna
+trucizna
+self.current_turn.HP -= self.current_turn.MAX_HP*0.05
+4
+graphics/icons/trucizna_status.png
+dmg_ot
+
+Trucizna\nCel traci 5% HP co turę
+
+________________________________________
+osłabienie
+osłabienie
+self.current_target.damage /= 2
+4
+graphics/icons/oslabienie_status.png
+one_time
+self.current_turn.damage *= 2
+Osłabienie\nObrażenie od ataków zmniejszone o połowę
+x.damage *= 2
+________________________________________
 _
 _
 _____________enemy status______________
 blok
 blok
-self.current_target.defence_modifier += 15
+self.current_target.defence+=15
 2
 graphics/icons/blok_status.png
 one_time
-self.current_turn.defence_modifier -= 15
+self.current_target.defence-=15
 Blok\nZwiększa pancerz o 15
 x.defence-=15
 ________________________________________
 klątwa
 klątwa
-self.current_target.STR_modifier -= 0.3\nself.current_target.DEX_modifier -= 0.30\nself.current_target.INT_modifier -= 0.30
+self.current_target.STR*=0.70\nself.current_target.DEX*=0.70\nself.current_target.INT*=0.70\nself.current_target.damage*=0.70
 4
 graphics/icons/klatwa_status.png
 one_time
-self.current_turn.STR_modifier += 0.3\nself.current_turn.DEX_modifier += 0.30\nself.current_turn.INT_modifier += 0.30
+self.current_target.STR/=0.70\nself.current_target.DEX/=0.70\nself.current_target.INT/=0.70\nself.current_target.damage/=0.70
 Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 30%
 x.STR/=0.70\nx.DEX/=0.70\nx.INT/=0.70\nx.damage/=0.70
 ________________________________________
 eteryczny
 eteryczny
-self.current_target.dodge_chance_modifier += 30
+self.current_target.dodge_chance+=30
 3
 graphics/icons/eteryczny_status.png
 one_time
-self.current_turn.dodge_chance_modifier -= 30
+self.current_target.dodge_chance-=30
 Eteryczny\nSzansza na unik zwiększona o 30%
 x.dodge_chance-=30
 ________________________________________
 zimny jak lód
 zimny jak lód
-self.current_target.damage_modifier -=0.2
+self.current_target.damage*=0.8\nself.current_target.defence*=0.01
 7
 graphics/icons/zimny_jak_lod_status.png
 one_time
-self.current_turn.damage_modifier +=0.2
-Zimny jak lód\nObrażenia zmniejszona o 20%
+self.current_target.damage/=0.8\nself.current_target.defence/=0.01
+Zimny jak lód\nObrażenia zmniejszona o 20%, Utrata Pacnerza
 x.damage/=0.8\nx.defence/=0.01
 ________________________________________
 magiczna włócznia
 magiczna włócznia
-self.current_target.damage_modifier += 1.0
+self.current_target.damage*=2.0
 4
 graphics/icons/magiczna_wlócznia_status.png
 one_time
-self.current_turn.damage_modifier -= 1.0
+self.current_target.damage/=2.0
 Magiczna Włócznia\nObrażenia zwiększone dwukrotnie.
 x.damage/=2.0
 ________________________________________
 skowyt banshee
 skowyt banshee
-self.current_target.damage_modifier -= 0.2
+self.current_target.damage*=0.8
 4
 graphics/icons/skowyt_banshee_status.png
 one_time
-self.current_turn.damage_modifier += 0.2
+self.current_target.damage/=0.8
 Skowyt Banshee\nObrażenia zmniejszone o 20%.
 x.damage/=0.8
 ________________________________________
@@ -265,31 +286,31 @@ x.damage = 25
 ________________________________________
 tortury
 tortury
-self.current_target.damage_modifier += 0.3
+self.current_target.damage*=1.3
 4
 graphics/icons/tortury_status.png
 one_time
-self.current_turn.damage_modifier -= 0.3
+self.current_target.damage/=2
 Tortury\nObrażenia zwiększone o 30% kosztem zdrowia.
 x.damage/=2
 ________________________________________
 gdzie moi słudzy
 gdzie moi słudzy
-self.current_target.defence_modifier -= 0.99
+self.current_target.defence*=0.01
 99
 graphics/icons/szał_status.png
 one_time
-self.current_turn.defence_modifier += 0.99
+self.current_target.defence/=0.01
 Gdzie Moi Słudzy\nAtakuj! Rzeźnik opuscił swoja gardę
 x.defence/=0.01
 ________________________________________
 jestem nie pokonany
 jestem nie pokonany
-self.current_target.defence_modifier += 0
+self.current_target.defence*=1
 99
 graphics/icons/blok_status.png
 one_time
-self.current_turn.defence_modifier -= 0
+self.current_target.defence/=1
 Jestem nie pokonany\nChyba trzeba najpierw pozbyć się tych kapłanów
 x.defence/=1
 ________________________________________
@@ -314,82 +335,52 @@ Zarodniki\nCel leczy 10 zdrowia co ture.
 
 ________________________________________
 grzmotnięcie
-grzmotnięcie
-self.current_target.INT_modifier -= 0.2
+Grzmotnięcie
+self.current_target.INT*=0.8
 4
 graphics/icons/inteligencja_debuff_status.png
 one_time
-self.current_turn.INT_modifier += 0.2
+self.current_target.INT/=0.8
 Grzmotnięcie\nInteligencja zmniejszona o 20%.
 x.INT/=0.8
 ________________________________________
 podcięcie
-podcięcie
-self.current_target.DEX_modifier -=0.2
+Podcięcie
+self.current_target.DEX*=0.8
 4
 graphics/icons/zrecznosc_debuff_status.png
 one_time
-self.current_turn.DEX_modifier +=0.2
+self.current_target.DEX/=0.8
 Grzmotnięcie\nZręcznośc zmniejszona o 20%.
 x.INT/=0.8
 ________________________________________
 walnięcie
-walnięcie
-self.current_target.STR_modifier -=0.2
+Walnięcie
+self.current_target.STR*=0.8
 4
 graphics/icons/sila_debuff_status.png
 one_time
-self.current_turn.STR_modifier +=0.2
+self.current_target.STR/=0.8
 Grzmotnięcie\nSiła zmniejszona o 20%.
 x.STR/=0.8
 ________________________________________
-aura śmierci
-aura śmierci
-self.current_target.damage_special_effect = "self.current_turn.HP -= int(self.final_damage*0.3)"
-6
-graphics/icons/sila_debuff_status.png
-one_time
-self.current_target.damage_special_effect = ""
-Aura Śmierci\n30% obrażeń zadanych przeciwnikowi zostanie oddane tobie.
-x.damage_special_effect = ""
-________________________________________
-łaska chaosu
-łaska chaosu
-self.current_target.damage_modifier += 1.3\nself.current_target.defence_base -= 10\nself.current_target.defence -= 10
-99
-graphics/icons/laska_chaosu_status.png
-one_time
-self.current_target.damage_modifier -= 1.3\nself.current_target.defence_base += 10\nself.current_target.defence += 10
-Łaska chaosu\nZwiększa obrażenia o 30% ale traci cały pancerz.
-x.damage_modifier -= 1.3\nx.defence += 10
-________________________________________
-horror
-horror
-self.current_target.MP = 0
-4
-graphics/icons/absorbcja_mocy_status.png
-one_time
-self.current_target.MP += 0
-Horror\nTracisz cała manę. Przynajmniej przez jakiś czas nie ma co tracic...
-x.damage_modifier -= 1.3\nx.defence += 10
-________________________________________
-inkantacja
-inkantacja
-
-2
-graphics/icons/kumulacja_status.png
-stun
-
-Inkantacja\nCzujesz narastająca moc.
-
-________________________________________
-zagłada
-zagłada
-
+zemsta
+zemsta
+self.current_target.damage*=1.5\nself.current_target.STR*=1.5
 3
-graphics/icons/wybuch_status.png
+graphics/icons/zemsta_status.png
 one_time
-
-Zagłada\nTo nie wygląda dobrze.
-
+self.current_target.damage/=1.5\nself.current_target.STR/=1.5
+Zemsta\nObrażenia od ataków zwiększone 1.5-ra
+x.damage/=1.5\nx.STR/=1.5
+________________________________________
+mroczna potega
+mroczna potega
+self.current_target.damage*=2\nself.current_target.STR*=2\nself.current_target.defence -= 20
+6
+graphics/icons/zemsta_status.png
+one_time
+self.current_target.damage/=2\nself.current_target.STR/=2\nself.current_target.defence += 20
+Mroczna Potęga\nZadaje podwójne obrażenia ale traci cały pancerz
+x.damage/=2\nx.STR/=2\nx += 20
 ________________________________________

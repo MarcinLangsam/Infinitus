@@ -216,6 +216,10 @@ class Fight(Screen):
         self.prepare_battle_visuals()
         self.create_turn_order()
         self.create_target_option()
+        for x in player.team:
+            self.aplly_stats_modifier(x)
+        for x in enemy.enemy_team:
+            self.aplly_stats_modifier(x)
         self.take_action(self.turn_order[self.turn_number]) 
 
     def battle_over(self):
@@ -224,7 +228,8 @@ class Fight(Screen):
                 for y in x.status:
                     self.remove_widget(y[1])
                     self.remove_widget(y[2])
-                    exec(y[0][7])
+                    #exec(y[0][7])
+                    self.reset_stats_modifier(x)
                 x.status.clear()
             x.HP = x.MAX_HP
             x.MP = x.MAX_MP
@@ -234,7 +239,8 @@ class Fight(Screen):
                 for y in x.status:
                     self.remove_widget(y[1])
                     self.remove_widget(y[2])
-                    exec(y[0][7])
+                    #exec(y[0][7])
+                    self.reset_stats_modifier(x)
                 x.status.clear()
             x.HP = x.MAX_HP
         self.clear_after_battle()
@@ -243,10 +249,12 @@ class Fight(Screen):
     def disable_control(self):
         self.ids.attack.disabled = True
         self.ids.spells.disabled = True
+        self.ids.defend.disabled = True
         self.ids.potion.disabled = True
     def restore_control(self):
         self.ids.attack.disabled = False
         self.ids.spells.disabled = False
+        self.ids.defend.disabled = False
         self.ids.potion.disabled = False
 
     def sort_by(self,e):
@@ -448,8 +456,8 @@ class Fight(Screen):
             self.battle_over()
             self.manager.current = "game_over" 
     
-    def do_actual_remove(self, anim, wid):
-        self.remove_widget(self.chose_sprite(self.current_target))
+    #def do_actual_remove(self, anim, wid):
+    #    self.remove_widget(self.chose_sprite(self.current_target))
 
     def check_for_death(self):
         if self.current_target.HP <= 0:
@@ -506,7 +514,10 @@ class Fight(Screen):
                 if x[0][2] > 0:
                     temp.append(x)
                 else:
+                    print("TUTAJ")
+                    print(exec(x[0][5]))
                     exec(x[0][5])
+                    self.aplly_stats_modifier(self.current_turn)
             self.current_turn.status = temp
 
             for x in range(0,len(self.current_turn.status)):
@@ -523,11 +534,61 @@ class Fight(Screen):
                 if self.current_turn.status[x][0][4] != "one_time":
                     exec(self.current_turn.status[x][0][1])
 
+    def reset_stats_modifier(self,target):
+        target.STR_modifier = 1
+        target.DEX_modifier = 1
+        target.INT_modifier = 1
+        target.damage_modifier = 1
+        target.defence_modifier = 1
+        target.crit_chance_modifier = 0
+        target.dodge_chance_modifier = 0
+
+        target.damage = target.STR_base + target.weapon
+        target.crit_chance = 0.1*target.DEX_base + target.crit_chance_bonus
+        target.dodge_chance = 0.02*target.DEX_base + target.dodge_chance_bonus
+        target.damage_bonus = 0
+        target.damage_special_effect = ""
+        self.aplly_stats_modifier(target)
+
+    def aplly_stats_modifier(self,target):
+        target.STR = target.STR_base * target.STR_modifier
+        target.DEX = target.DEX_base * target.DEX_modifier
+        target.INT = target.INT_base * target.INT_modifier
+        target.damage = (target.STR+target.weapon) * target.damage_modifier
+        target.defence = target.defence_base * target.defence_modifier
+        target.crit_chance = target.crit_chance_base + target.crit_chance_bonus + target.crit_chance_modifier
+        target.dodge_chance = target.dodge_chance_base + target.dodge_chance_bonus + target.dodge_chance_modifier
+        if target.crit_chance < 0:
+            target.crit_chance = 0
+        if target.dodge_chance < 0:
+            target.dodge_chance = 0
+
+    def start_status_by_target(self,new_status,target):
+            ok_to_add = True
+            for x in range(0,len(target.status)):
+                if new_status == target.status[x][0][0]:
+                    target.status[x][0][2] = se.status_effect.status_list[new_status][2]
+                    ok_to_add = False
+            if ok_to_add == True:
+                target.status.append([se.status_effect.status_list[new_status].copy(),se.Status_Icon(se.status_effect.status_list[new_status][3],se.status_effect.status_list[new_status][6]),Label(font_size = 22)])
+                if len(target.status) != 0:
+                    if target in enemy.player_team_alive:
+                        target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(target)][1].pos[0]-30+(len(target.status)-1)*30,self.player_sprites[self.chose_enemy_index(target)][1].pos[1]+130)
+                        target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(target)][1].pos[0]-790+(len(target.status)-1)*30,self.player_sprites[self.chose_enemy_index(target)][1].pos[1]-290)
+                    else:
+                        target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(target)][1].pos[0]-30+(len(target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(target)][1].pos[1]-40)
+                        target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(target)][1].pos[0]-790+(len(target.status)-1)*30,self.enemy_sprites[self.chose_enemy_index(target)][1].pos[1]-461)
+                    target.status[-1][2].text = str(target.status[-1][0][2])
+                    if target.status[-1][0][4] == "one_time":
+                        exec(target.status[-1][0][1])
+                        self.aplly_stats_modifier(target)
+                    
+                    #self.add_widget(target.status[-1][1],-1)
+                    #self.add_widget(target.status[-1][2],-2)
+
     def start_status(self,new_status):
             ok_to_add = True
-            print("NOWY: "+new_status)
             for x in range(0,len(self.current_target.status)):
-                print("W KOLEJCE: "+self.current_target.status[x][0][0])
                 if new_status == self.current_target.status[x][0][0]:
                     self.current_target.status[x][0][2] = se.status_effect.status_list[new_status][2]
                     ok_to_add = False
@@ -543,6 +604,7 @@ class Fight(Screen):
                     self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
                     if self.current_target.status[-1][0][4] == "one_time":
                         exec(self.current_target.status[-1][0][1])
+                        self.aplly_stats_modifier(self.current_target)
                     
                     self.add_widget(self.current_target.status[-1][1],-1)
                     self.add_widget(self.current_target.status[-1][2],-2)
@@ -564,17 +626,17 @@ class Fight(Screen):
         self.dodge_roll = random.randint(0,100)
         self.crit_roll = random.randint(0,100)
         self.action = "self.current_target.HP -= self.final_damage"
-        ### roll for critical hit
+        ### roll for critical hit'
         if self.crit_roll < self.current_turn.crit_chance and self.distance != "heal" and self.distance != "status":
                 self.final_damage = self.final_damage+(self.final_damage*0.5)
                 self.final_damage = int(self.final_damage)
                 self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = str(self.final_damage)+'!'"
                 self.if_critical_or_miss = True
         ### substract defence of the target(can't deal less than 5 points of damage)
-        if (self.final_damage - self.current_target.defence) < 5  and self.distance != "heal" and self.distance != "status":    
+        if ((self.final_damage - self.current_target.defence) * self.current_target.damage_reduction) < 5  and self.distance != "heal" and self.distance != "status":    
             self.final_damage = 5
         elif self.distance != "heal" and self.distance != "status":
-            self.final_damage -= self.current_target.defence
+            self.final_damage = (self.final_damage - self.current_target.defence) * self.current_target.damage_reduction
             self.final_damage = int(self.final_damage)
         ### roll for dodeging the attack
         if self.dodge_roll < self.current_target.dodge_chance  and self.distance != "heal" and self.distance != "status":
@@ -594,10 +656,12 @@ class Fight(Screen):
         
 
         self.check_for_exceed_HP_MP()
-        #print("OBECNA TURA")
+        #if self.current_turn in player.team:
+        #print("TERAZ DZIALA: "+str(self.current_turn))
         #self.current_turn.printBattleStats()
-        #print("CEL")
+        #print("JEGO CEL"+str(self.current_target))
         #self.current_target.printBattleStats()
+        #print("\n\n")
         if(self.if_all_targets == False):
             self.action_status = ""
 
@@ -753,6 +817,7 @@ class Fight(Screen):
         self.MP_cost = 0
         self.distance = "melee"
         self.target_type = "on_enemy"
+        self.action_status = ""
         self.action = "self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus"
         exec("self.current_turn.MP+=int(self.final_damage)")
         self.effect = "no_effect"
@@ -772,12 +837,27 @@ class Fight(Screen):
             self.distance = "heal"
             self.target_type = "on_self"
             self.action = self.current_turn.potion_effect
+            self.action_status = "" #!!!! jesli chce aby byl status to trza kolejnosc zmenic
             self.effect = "leczenie_effect"
             self.set_sound_effect("graphics/sounds/potion.wav")
             self.final_damage = 0
             exec(self.current_turn.potion_effect)
             self.add_widget(self.resign_button)
             self.chose_target("on_self")
+
+    def action_defend(self):
+        self.disable_control()
+        self.MP_cost = 0
+        self.distance = "status"
+        self.target_type = "on_self"
+        self.action = "self.final_damage = 0\nself.action_status = 'obrona'"
+        self.action_status = "obrona"
+        self.effect = "obrona_buff_effect"
+        self.set_sound_effect("graphics/sounds/positive_effect_1.wav")
+        self.final_damage = 0
+        #exec(self.current_turn.potion_effect)
+        self.add_widget(self.resign_button)
+        self.chose_target("on_self")
 
     def resign_action(self):
         for x in self.skill_list_pop_up.children:
