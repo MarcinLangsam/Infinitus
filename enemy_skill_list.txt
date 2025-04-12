@@ -288,32 +288,32 @@ horror
 horror
 self.final_damage = 0\nself.action_status = 'horror'
 by_stauts_and_HP_alter
-0.51
+0.21
 on_character
 status
 klatwa_effect
-graphics/sounds/positive_effect_1.wav
+graphics/sounds/negative_effect_1.wav
 horror
 _______________________________________
 inkantacja
 inkantacja
-self.final_damage = 0\nself.action_status = 'zagłada'\nself.start_status_by_target("inkantacja",self.current_turn)
+self.final_damage = 0\nself.action_status = 'zagłada'
 by_status
 zagłada
 on_all_character
 status
 klatwa_effect
-graphics/sounds/positive_effect_1.wav
+graphics/sounds/ogluszenie.wav
 
 _______________________________________
 zagłada
 zagłada
-self.final_damage = self.current_turn.damage*2.5
+self.final_damage = self.current_turn.damage*3.5
 by_status_on
 zagłada
 on_all_character
 ranged
 klatwa_effect
-graphics/sounds/positive_effect_1.wav
+graphics/sounds/hit2.wav
 
 _______________________________________

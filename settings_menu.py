@@ -17,6 +17,7 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
            f.write(characters[x]+'.MAX_HP = '+str(player.team[x].MAX_HP)+'\n')
            f.write(characters[x]+'.MAX_MP = '+str(player.team[x].MAX_MP)+'\n')
+           f.write(characters[x]+'.MP_regen = '+str(player.team[x].MP_regen)+'\n')
            f.write(characters[x]+'.HP = '+str(player.team[x].HP)+'\n')
            f.write(characters[x]+'.MP = '+str(player.team[x].MP)+'\n')
            f.write(characters[x]+'.STR_base = '+str(player.team[x].STR_base)+'\n')

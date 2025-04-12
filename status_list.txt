@@ -10,22 +10,22 @@ _ 9. code to clear efect after battle
 ________________defend_______________
 obrona
 obrona
-self.current_target.damage_reduction = 0.1
+self.current_target.damage_reduction -= 0.9
 1
 graphics/icons/blok_status.png
 one_time
-self.current_target.damage_reduction = 1
+self.current_target.damage_reduction += 0.9
 Obrona\nZmniejsza obrażenia o 90% do następnej tury
 x.damage_reduction = 1
 ____________player status____________
 szał
 szał
-self.current_target.STR_modifier += 0.3\nself.current_target.defence_modifier -= 0.99
+self.current_target.STR_modifier += 0.25\nself.current_target.MP_regen += 15\nself.current_target.damage_reduction += 0.5
 4
 graphics/icons/szał_status.png
 one_time
-self.current_turn.STR_modifier -= 0.3\nself.current_turn.defence_modifier += 0.99
-Szał\nSiła zwiększona o 30%
+self.current_turn.STR_modifier -= 0.25\nself.current_turn.MP_regen -= 15\nself.current_turn.damage_reduction -= 0.5
+Szał\nSiła zwiększona o 25% oraz regeneracja many o 15.\nOdnosisz 50% więcej obrażeń
 x.STR /= 1.3\nx.damage = x.STR+x.weapon
 _______________________________________
 ogłuszenie
@@ -40,32 +40,32 @@ Ogłuszenie\nCel pomija swoją turę
 _______________________________________
 zew bojowy
 zew bojowy
-self.current_target.STR_modifier += 0.2
+self.current_target.damage_modifier += 0.2
 4
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.2
-Zew Bojowy\nSiła zwiększona o 20%
+self.current_turn.damage_modifier -= 0.2
+Zew Bojowy\nObrażenia zwiększone o 20%
 x.STR /= 1.2\nx.damage = x.STR+x.weapon
 _______________________________________
 zew bojowy ulepszony
 zew bojowy ulepszony
-self.current_target.STR_modifier += 0.4
+self.current_target.damage_modifier += 0.5
 4
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.4
-Okrzyk Bojowy\nSiła zwiększona o 40%
+self.current_turn.damage_modifier -= 0.5
+Okrzyk Bojowy\nObrażenia zwiększone o 50%
 x.STR /= 1.4\nx.damage = x.STR+x.weapon
 _______________________________________
 zew bojowy mistrz
 zew bojowy mistrz
-self.current_target.STR_modifier += 0.4
+self.current_target.damage_modifier += 0.5
 6
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.STR_modifier -= 0.4
-Okrzyk Bojowy\nSiła zwiększona o 40%
+self.current_turn.damage_modifier -= 0.5
+Okrzyk Bojowy\nObrażenia zwiększone o 50%
 x.STR /= 1.4\nx.damage = x.STR+x.weapon
 _______________________________________
 precyzyjne ciosy
@@ -77,6 +77,46 @@ one_time
 self.current_turn.crit_chance_modifier -= 20
 Precyzyje Ciosy\nSzansza na trafienie krytyczne zwiększona o 20%
 x.crit_chance -= 20
+_______________________________________
+aura heroizmu
+aura heroizmu
+self.current_target.damage_modifier += 0.15
+10
+graphics/icons/aura_heroizmu_status.png
+one_time
+self.current_target.damage_modifier -= 0.15
+Aura Heroizmu\nObrażenia zwiększone o 15%
+x.damage_modifier -= 0.15
+_______________________________________
+aura leczenia
+aura leczenia
+self.current_turn.HP += 10
+10
+graphics/icons/aura_leczenia_status.png
+dmg_ot
+
+Aura Leczenia\nOdnawia 10 HP co turę
+
+_______________________________________
+aura energi
+aura energi
+self.current_target.MP_regen += 10
+10
+graphics/icons/aura_energi_status.png
+one_time
+self.current_target.MP_regen -= 10
+Aura Energi\nZwiększa regeneracje MP o 10
+x.MP_regen += 10
+_______________________________________
+blogoslawienstwo
+blogoslawienstwo
+self.current_target.STR_modifier += 0.15\nself.current_target.DEX_modifier += 0.15\nself.current_target.INT_modifier += 0.15
+3
+graphics/icons/blogoslawienstwo_status.png
+one_time
+self.current_target.STR_modifier -= 0.15\nself.current_target.DEX_modifier -= 0.15\nself.current_target.INT_modifier -= 0.15
+Błogosławieństwo\nSiła, Zreczność oraz Inteligencja zwiększone o 15%
+x.STR_modifier -= 0.15\nx.DEX_modifier -= 0.15\nx.INT_modifier -= 0.15
 ________________________________________
 płonięcie
 płonięcie
@@ -88,34 +128,64 @@ dmg_ot
 Płonięcie\nCel traci 5 HP co turę
 
 ________________________________________
+magiczny pocisk
+magiczny pocisk
+self.current_target.damage_reduction += 0.3
+2
+graphics/icons/magiczny_pocisk_status.png
+one_time
+self.current_target.damage_reduction -= 0.3
+Magiczny Pocisk\nCel odnosi 50% więcej obrażeń
+
+________________________________________
 kamienna skóra
 kamienna skóra
-self.current_target.defence_modifier += 0.5
+self.current_target.damage_reduction -= 0.5
 4
 graphics/icons/kamienna_skóra_status.png
 one_time
-self.current_turn.defence_modifier -= 0.5
-Kamienna Skóra\nPancerz zwiększony o 50%
+self.current_turn.damage_reduction += 0.5
+Kamienna Skóra\nOdnosisz o 50% mniej obrażeń
 x.defence-=15
 _______________________________________
 zamrożenie
 zamrożenie
-self.current_target.defence_modifier += 10.0
+self.current_target.damage_reduction -= 0.9
 4
 graphics/icons/zamrożenie_status.png
 stun
-self.current_turn.defence_modifier -= 10.0
-Zamrożenie\nCel traci swoją turę ale zwyskuje 1000% Pancerza
+self.current_target.damage_reduction += 0.9
+Zamrożenie\nCel traci swoją turę ale otrzymuje tylko 10% obrażeń
 x.defence -= 500
 ________________________________________
 runiczna klinga
 runiczna klinga
 self.current_target.damage_bonus += self.current_target.INT
-6
+4
 graphics/icons/runiczna_klinga_status.png
 one_time
 self.current_turn.damage_bonus -= self.current_turn.INT
 Runiczna Klinga\nDodaje statystykę inteligencji do wartości obrażeń
+x.damage_bonus -= x.INT
+________________________________________
+morska bryza
+morska bryza
+self.current_target.crit_chance_modifier += 15\nself.current_target.dodge_chance_modifier += 15
+7
+graphics/icons/morska_bryza_status.png
+one_time
+self.current_target.crit_chance_modifier -= 15\nself.current_target.dodge_chance_modifier -= 15
+Morska Bryza\nZwiększa szansę na trafienie krytyczne i unik o 15%
+x.damage_bonus -= x.INT
+________________________________________
+pięść wichru
+pięść wichru
+self.current_target.damage_modifier -= 0.1\nself.current_target.DEX_modifier -= 0.8
+7
+graphics/icons/morska_bryza_status.png
+one_time
+self.current_target.damage_modifier += 0.1\nself.current_target.DEX_modifier += 0.8
+Pięść Wichru\nObniża obrażenia o 10% oraz zreczność o 80%
 x.damage_bonus -= x.INT
 ________________________________________
 zatrute ostrze
@@ -128,14 +198,24 @@ self.current_turn.damage_bonus -= self.current_turn.DEX
 Zatrute Ostrze\nDodaje statystykę zręczności do wartości obrażeń
 x.damage_bonus -= x.DEX
 ________________________________________
+ukrycie w cieniu
+ukrycie w cieniu
+self.current_target.damage_reduction -= 0.9\nself.current_target.damage_modifier += 1.5
+2
+graphics/icons/ukrycie_w_cieniu_status.png
+one_time
+self.current_target.damage_reduction += 0.9\nself.current_target.damage_modifier -= 1.5
+Ukrycie w cieniu\nObrażenia +250% oraz odporność na obrażenia +90%
+x.damage_reduction += 0.9\nx.damage_modifier -= 1.5
+________________________________________
 krwawienie
 krwawienie
-self.current_turn.HP -= 15
+self.current_turn.HP -= self.current_target.MAX_HP*0.05
 4
 graphics/icons/krwawienie_status.png
 dmg_ot
 
-Krwawienie\nCel traci 15 zdrowia co turę
+Krwawienie\nCel traci 5% zdrowia co turę
 
 ________________________________________
 krwiopijca
@@ -160,11 +240,11 @@ x.damage_special_effect = ""
 ________________________________________
 rozbrojenie
 rozbrojenie
-self.current_target.STR_modifier -= 0.5
+self.current_target.STR_modifier -= 0.5\nself.current_target.damage_modifier -= 0.5
 4
 graphics/icons/krwiopijca_status.png
 one_time
-self.current_turn.STR_modifier += 0.5
+self.current_turn.STR_modifier += 0.5\nself.current_target.damage_modifier += 0.5
 Rozbrojenie\nSiła i obrażenia zmniejszone o 50%
 x.STR /= 0.5\nx.damage = x.STR+x.weapon
 ________________________________________
@@ -245,11 +325,11 @@ x.damage/=0.8
 ________________________________________
 szał wojownika
 szał wojownika
-self.current_turn.damage+=1
+self.current_turn.damage+=1\nself.current_turn.damage_base+=1
 99
 graphics/icons/szal_wojownika_status.png
 dmg_ot
-self.current_turn.damage = 25
+self.current_turn.damage = 25\nself.current_turn.damage_base+=25
 Szał Wojownika\nCo ture obrażenia zwiększane o 1 kumulacyjnie.
 x.damage = 25
 ________________________________________
@@ -373,20 +453,10 @@ self.current_target.MP += 0
 Horror\nTracisz cała manę. Przynajmniej przez jakiś czas nie ma co tracic...
 x.damage_modifier -= 1.3\nx.defence += 10
 ________________________________________
-inkantacja
-inkantacja
+zagłada
+zagłada
 
 2
-graphics/icons/kumulacja_status.png
-stun
-
-Inkantacja\nCzujesz narastająca moc.
-
-________________________________________
-zagłada
-zagłada
-
-3
 graphics/icons/wybuch_status.png
 one_time
 

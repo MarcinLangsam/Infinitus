@@ -1,4 +1,4 @@
-import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character
+import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
@@ -20,14 +20,13 @@ class Menu(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.accept_sound = SoundLoader.load("graphics/sound/accept.wav")
         self.setup_window()
 
     def change_window(self,window_name):
-        self.accept_sound.play()
         self.manager.current = window_name
 
     def setup_window(self):
+        mp.music_player.change_music("graphics/music/stage1.wav")
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 10"
         self.add_widget(Image(source="graphics/menu_background.png", size=(400,100), pos=(600,0), size_hint=(None,None), allow_stretch=True))
@@ -64,6 +63,10 @@ class Game_Over(Screen):
 class End(Screen):
     pass
 class Main_Menu(Screen):
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        mp.music_player.play_music()
+
     def exit(self):
         quit()
     def load_game(self):

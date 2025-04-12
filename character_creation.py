@@ -57,37 +57,34 @@ class Character_Creation(Screen):
         if class_type == "warrior":
             p.HP = 60
             p.MAX_HP = 60
-            p.MP = 40
-            p.MAX_MP = 40
-            p.STR = 15
+            p.STR_base = 15
+            p.MP_regen = 10
             self.weapon_description = "Miecz z Brązu\nObrażenia +3"
-            self.skill_description = "Zamach\nZadaje: Obrażenia+50%STR\nKoszt MP: 20"
+            self.skill_description = "Zamach\nZadaje: Obrażenia+50%STR\nKoszt MP: 30"
             self.weapon_image.source = "graphics/items/miecz_z_brazu.png"
             self.skill_image.source = "graphics/skills/zamach.png"
             p.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
-            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.6",20,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
+            p.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5",30,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]50%STR[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
             self.warrior_class.background_normal = "graphics/warrior_class.png"
-            self.class_label.text = "+Bonus do siły\n+Bonus do zdrowia\n-Kara do many"
+            self.class_label.text = "+Bonus do siły\n+Bonus do zdrowia\nRegeneracja many na ture: 10"
         elif class_type == "mage":
             p.HP = 40
             p.MAX_HP = 40
-            p.MP = 60
-            p.MAX_MP = 60
-            p.INT = 15
+            p.INT_base = 15
+            p.MP_regen = 20
             self.weapon_description = "Pika\nObrażenia +1\nMana +10"
-            self.skill_description = "Kula Ognia\nZadaje: 10+75%INT\nNakłada: Płonięcie\nKoszt MP: 10"
+            self.skill_description = "Kula Ognia\nZadaje: 10+75%INT\nNakłada: Płonięcie\nKoszt MP: 40"
             self.weapon_image.source = "graphics/items/pika.png"
             self.skill_image.source = "graphics/skills/kula_ognia.png"
             p.inventory["main_hand"][2] = "graphics/items/pika.png"
-            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.6\nself.action_status = 'płonięcie'",10,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]10[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
+            p.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'płonięcie'",40,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
             self.mage_class.background_normal = "graphics/mage_class.png"
-            self.class_label.text = "+Bonus do inteligencji\n+Bonus do many\n-Kara do zdrowia"
+            self.class_label.text = "+Bonus do inteligencji\n-Kara do zdrowia\nRegeneracja many na ture: 20"
         elif class_type == "rouge":
             p.HP = 50
             p.MAX_HP = 50
-            p.MP = 50
-            p.MAX_MP = 50
-            p.DEX = 15
+            p.DEX_base = 15
+            p.MP_regen = 15
             self.weapon_description = "Miedziany sztylet\nObrażenia +2\nZręczność +1"
             self.skill_description = "Zatrute Ostrze\nDodaje DEX do obrażeń\nKoszt MP: 20"
             self.weapon_image.source = "graphics/items/miedziany_sztylet.png"
@@ -95,7 +92,7 @@ class Character_Creation(Screen):
             p.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
             p.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect","graphics/sounds/positive_effect_1.wav"]
             self.thief_class.background_normal = "graphics/thief_class.png"
-            self.class_label.text = "+Bonus do zręczności"
+            self.class_label.text = "+Bonus do zręczności\nRegeneracja many na ture: 15"
 
         p.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
         p.head = "glowa"+str(self.current_portrait)
@@ -104,6 +101,7 @@ class Character_Creation(Screen):
         self.weapon_label.text = self.weapon_description
         self.skill_label.text = self.skill_description
     
+        p.update_player_stats()
         self.refresh_items()
         im.items.equip()
 

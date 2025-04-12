@@ -1,4 +1,4 @@
-import player, enemy, skill_record as sk, status_effect as se, tooltip as tt,random, text_pop as tp, inventory_manager as im
+import player, enemy, skill_record as sk, status_effect as se, tooltip as tt,random, text_pop as tp, inventory_manager as im, music_player as mp
 from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
 from kivy.uix.button import Button
@@ -208,6 +208,8 @@ class Fight(Screen):
                 self.add_widget(self.target_option[x][0])
     
     def start_fight_setup(self):
+        mp.music_player.change_music("graphics/music/battle2.wav")
+
         enemy.enemy_team_alive.clear()
         enemy.player_team_alive = player.team.copy()
         for x in range(0,len(enemy.enemy_team)):
@@ -514,8 +516,6 @@ class Fight(Screen):
                 if x[0][2] > 0:
                     temp.append(x)
                 else:
-                    print("TUTAJ")
-                    print(exec(x[0][5]))
                     exec(x[0][5])
                     self.aplly_stats_modifier(self.current_turn)
             self.current_turn.status = temp
@@ -819,7 +819,6 @@ class Fight(Screen):
         self.target_type = "on_enemy"
         self.action_status = ""
         self.action = "self.final_damage = self.current_turn.damage+self.current_turn.damage_bonus"
-        exec("self.current_turn.MP+=int(self.final_damage)")
         self.effect = "no_effect"
         self.set_sound_effect("graphics/sounds/hit.wav")
         self.add_widget(self.resign_button)
@@ -855,7 +854,6 @@ class Fight(Screen):
         self.effect = "obrona_buff_effect"
         self.set_sound_effect("graphics/sounds/positive_effect_1.wav")
         self.final_damage = 0
-        #exec(self.current_turn.potion_effect)
         self.add_widget(self.resign_button)
         self.chose_target("on_self")
 
@@ -891,7 +889,7 @@ class Fight(Screen):
         self.skill_list_pop_up.list.clear_widgets()
         for x in self.current_turn.skill:
             if self.current_turn.skill[x][4] != "passive":
-                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+" "+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6],self.current_turn.skill[x][7],self.current_turn.skill[x][8]))))
+                self.skill_list_pop_up.list.add_widget(sk.Skill_Record(self.current_turn.skill[x][2], text=x+"  MP:"+str(self.current_turn.skill[x][1]),halign = "left", valign="middle" ,font_size = 20, color=(0,0,0,1), on_press = (lambda y, x=x:self.chosen_skill(self.current_turn.skill[x][0],self.current_turn.skill[x][1],self.current_turn.skill[x][5],self.current_turn.skill[x][6],self.current_turn.skill[x][7],self.current_turn.skill[x][8]))))
         self.add_widget(self.skill_list_pop_up)
         
     
@@ -961,14 +959,19 @@ class Fight(Screen):
         self.sprite = self.chose_sprite(e)
         self.current_turn = e 
         self.check_for_status()
-        self.status_menagment()
-                
-        ### if player turn, set pointer ###
-        if e in enemy.player_team_alive:            
+        
+        ### if player turn, set pointer AND REGAIN MP ###
+        if self.current_turn in enemy.player_team_alive:            
             self.pointer.pos = (self.chose_sprite(self.current_turn).pos[0]-580,self.chose_sprite(self.current_turn).pos[1]-160)
+            self.current_turn.MP += self.current_turn.MP_regen
+            if self.current_turn.MP > self.current_turn.MAX_MP:
+                self.current_turn.MP = self.current_turn.MAX_MP
+            self.update_status()
         else:
             self.pointer.pos = (9999,9999)
-            
+
+        self.status_menagment()
+                            
     def next_turn(self):
         self.check_for_victory_or_defeat()
         if self.battle_end == False:

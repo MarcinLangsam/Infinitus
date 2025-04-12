@@ -13,6 +13,7 @@ class Shop(Screen):
         self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
 
     def change_screen(self):
+        self.clear_on_shop_leave()
         self.accept_sound.play()
         self.clear_widgets()
         self.manager.current = "menu"
@@ -39,6 +40,12 @@ class Shop(Screen):
         for x in range(48,48+len(self.shop_content[current_stage])):
             im.inventory[x].sprite = str(self.shop_content[current_stage][x-48])
             player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-48])
+
+    def clear_on_shop_leave(self):
+        for x in range(48,95):
+            im.inventory[x].sprite = "graphics/items/empty_slot.png"
+            player.current_player.inventory[x][2] = "graphics/items/empty_slot.png"
+
 
     shop_content={
         1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",

@@ -126,9 +126,9 @@ class Stat_Button(Button):
             if self.stat == "HP":
                 player.current_player.MAX_HP += 10
                 player.current_player.HP +=10
-            elif self.stat == "MP":
-                player.current_player.MAX_MP += 5
-                player.current_player.MP +=5
+            #elif self.stat == "MP":
+            #    player.current_player.MAX_MP += 5
+            #    player.current_player.MP +=5
             elif self.stat == "STR":
                 player.current_player.STR_base +=1
             elif self.stat == "DEX":

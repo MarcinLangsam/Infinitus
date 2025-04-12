@@ -42,7 +42,7 @@ two_hand
 player.current_player.weapon += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.HP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
 player.current_player.weapon -= 10\nplayer.current_player.MAX_HP -= 10\nplayer.current_player.HP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10
 Dwóręczny Topór Rzeźnika    |   BROŃ DWURĘCZNA\nObrażenia +10\n[color=#ff0000]Zdrowie +10[/color]\n[color=#0000ff]Mana +10[/color]
-300
+250
 _______________________________________
 graphics/items/grzech_kaplana.png
 two_hand_spear
@@ -56,7 +56,7 @@ two_hand_spear
 player.current_player.weapon += 3\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base+=2
 player.current_player.weapon -= 3\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.MP -= 10\nplayer.current_player.INT_base-=2
 Kostur Maga    |   BROŃ DWURĘCZNA\nObrażenia +3\n[color=#0000ff]Mana +10[/color]\n[color=#00f7ff]Inteligencja +2[/color]
-160
+200
 _______________________________________
 graphics/items/maczuga_zolnierska.png
 one_hand
@@ -77,7 +77,7 @@ one_hand
 player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus += 1
 player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus -= 1
 Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +4[color=#00ff00]Zręczność +4[/color]\n[color=#d9d764]nSzansa na trafienie krytyczne +1[/color]
-160
+200
 _______________________________________
 graphics/items/siewca_smierci.png
 one_hand
@@ -112,7 +112,7 @@ two_hand
 player.current_player.weapon += 10
 player.current_player.weapon -= 10
 Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
-160
+200
 _______________________________________
 graphics/items/gladius.png
 one_hand
@@ -150,7 +150,7 @@ off_hand
 player.current_player.defence_base += 2
 player.current_player.defence_base -= 2
 Drewniana Tarcza   |   DRUGA RĘKA\nPancerz +2
-130
+170
 _______________________________________
 graphics/items/stalowa_tarcza.png
 off_hand
@@ -164,14 +164,14 @@ off_hand
 player.current_player.damage_base += 2player.current_player.DEX_base += 1
 player.current_player.damage_base -= 2player.current_player.DEX_base -= 1
 Podstępny Majcher   |   DRUGA RĘKA\nObrażenia +2\n[color=#00ff00]Zręczność +1[/color]
-130
+170
 _______________________________________
 graphics/items/magicza_ksiega.png
 off_hand
 player.current_player.MP += 5\nplayer.current_player.MAX_MP += 5\nplayer.current_player.INT_base += 1
 player.current_player.MP -= 5\nplayer.current_player.MAX_MP -= 5\nplayer.current_player.INT_base -= 1
 Magicza Księga   |   DRUGA RĘKA\n[color=#0000ff]Mana +5[/color]\n[color=#00f7ff]Inteligencja +1[/color]
-130
+170
 _______________________________________
 _
 _
@@ -188,7 +188,7 @@ armor
 player.current_player.defence_base += 8
 player.current_player.defence_base -= 8
 Pikowany Pancerz   |   PANCERZ\nPancerz +8
-400
+500
 _______________________________________
 graphics/items/szata_maga.png
 armor
@@ -219,35 +219,35 @@ accessory
 player.current_player.STR_base += 3
 player.current_player.STR_base -= 3
 Pierścień Siły    |   AKCESORIA\n[color=#de8833]Siła +3[/color]
-100
+200
 _______________________________________
 graphics/items/pierscien_zrecznosci.png
 accessory
 player.current_player.DEX_base += 3
 player.current_player.DEX_base -= 3
 Pierścień Zręczności    |   AKCESORIA\n[color=#00ff00]Zręczność +3[/color]
-100
+200
 _______________________________________
 graphics/items/pierscien_inteligencji.png
 accessory
 player.current_player.INT_base += 3
 player.current_player.INT_base -= 3
 Pierścień Inteligencji   |   AKCESORIA\n[color=#00f7ff]Inteligencja +3[/color]
-100
+200
 _______________________________________
 graphics/items/pierscien_zdrowia.png
 accessory
 player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20
 player.current_player.HP -= 20\nplayer.current_player.MAX_HP -= 20
 Pierścień Zdrowia    |   AKCESORIA\n[color=#ff0000]Zdrowie +20[/color]
-100
+200
 _______________________________________
 graphics/items/pierscien_many.png
 accessory
 player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10
 player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10
 Większy Pierścień Many    |   AKCESORIA\n[color=#0000ff]Mana +10[/color]
-100
+200
 _______________________________________
 graphics/items/wiekszy_pierscien_sily.png
 accessory
@@ -289,7 +289,7 @@ accessory
 player.current_player.defence_base += 1
 player.current_player.defence_base -= 1
 Srebrny Pierścień    |   AKCESORIA\nPancerz +1
-100
+150
 _______________________________________
 graphics/items/zloty_pierscien.png
 accessory
@@ -303,14 +303,14 @@ accessory
 player.current_player.crit_chance_bonus += 3
 player.current_player.crit_chance_bonus -= 3
 Amulet Precyzji    |   AKCESORIA\n[color=#d9d764]Szansa na trafienie krytyczne +3[/color]
-150
+250
 _______________________________________
 graphics/items/amulet_predkosci.png
 accessory
 player.current_player.dodge_chance_bonus += 2
 player.current_player.dodge_chance_bonus -= 2
 Amulet Prędkości    |   AKCESORIA\n[color=#d9d764]Szansa na unik +2[/color]
-150
+250
 _______________________________________
 graphics/items/zelazna_rekawica.png
 accessory
@@ -334,14 +334,14 @@ potion
 player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nLeczy 100 HP\nUżycia: 1
-300
+400
 _______________________________________
 graphics/items/mała_mikstura_many.png
 potion
-player.current_player.potion_effect = "self.current_turn.MP+=50"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = "self.current_turn.MP+=100"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
-Mikstura zdrowia    |   MIKSTURA\nOdnawia 50 MP\nUżycia: 1
-300
+Mikstura zdrowia    |   MIKSTURA\nOdnawia 100 MP\nUżycia: 1
+250
 _______________________________________
 graphics/items/srednia_mikstura_zdrowia.png
 potion

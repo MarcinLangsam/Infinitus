@@ -4,10 +4,9 @@ from kivy.properties import ObjectProperty
 global current_player
 
 def level_up(character):
-        print("HALOO")
         character.EXP = 0
         character.EXP_To_Lv += 100
-        character.stat_points += 7
+        character.stat_points += 5
         character.skill_points += 1
         character.lv += 1
 
@@ -76,6 +75,7 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
+        self.MP_regen = 10
 
         self.STR = 10
         self.DEX = 10
@@ -116,7 +116,7 @@ class Character(Widget):
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 0
-        self.skill_points = 3
+        self.skill_points = 30
 
         self.skill = {}
         self.status = list()
@@ -240,6 +240,7 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
+        self.MP_regen = 10
         self.STR = 10
         self.DEX = 10
         self.INT = 10
@@ -274,7 +275,7 @@ class Character(Widget):
         self.EXP = 0
         self.EXP_To_Lv = 100
         self.stat_points = 0
-        self.skill_points = 3
+        self.skill_points = 30
         self.skill = {}
         self.status = list()
         self.head = "glowa1"
@@ -291,7 +292,18 @@ class Character(Widget):
 
         self.blok = False
 
-
+    def update_player_stats(self):
+        self.STR = self.STR_base
+        self.INT = self.INT_base
+        self.DEX = self.DEX_base
+        self.damage_base = self.STR_base+self.weapon
+        self.damage = self.STR+self.weapon
+        self.crit_chance_base = round(0.1*self.DEX,2)
+        self.dodge_chance_base = round(0.02*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX,2)
+        self.dodge_chance = round(0.02*self.DEX,2)
+        self.EXP_boost = round(0.1*self.INT,2)
+        
     def printBattleStats(self):
         print("STR "+str(self.STR))
         print("DEX "+str(self.DEX))

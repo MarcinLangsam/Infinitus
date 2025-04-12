@@ -1,4 +1,4 @@
-import player, inventory_manager as im, UI_manager as UI, abilities_manager as am, text_pop as tp, tooltip as tt
+import player, inventory_manager as im, UI_manager as UI, abilities_manager as am, text_pop as tp, tooltip as tt, music_player as mp
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.uix.progressbar import ProgressBar
@@ -142,7 +142,6 @@ class Team(Screen):
             UI.stats[x].bind(size=UI.stats[x].setter("text_size"))
             self.add_widget(UI.stats[x])
         self.add_widget(am.Stat_Button("HP","Zwiększa zdrowię o 10",pos=(1380,635)))
-        self.add_widget(am.Stat_Button("MP","Zwiększa manę o 5",pos=(1380,590)))
         self.add_widget(am.Stat_Button("STR","Zwiększa obrażenia o 1\nWpływa na umiejętności wojownika",pos=(1380,545)))
         self.add_widget(am.Stat_Button("DEX","Decyduje o kolejce w walce\nZwiększa szansę na unik i cios krytyczny\nWpływa na umięjętności łotra",pos=(1380,505)))
         self.add_widget(am.Stat_Button("INT","Zwiększa bonus do doświadczenia\nWływa na umiejętności maga",pos=(1380,460)))
