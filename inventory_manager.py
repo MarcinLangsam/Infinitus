@@ -64,10 +64,10 @@ class ItemSlot(DragBehavior, Widget):
         else:
             self.parent.empty_accessory3.color = [0,0,0,0]
 
-        #if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
-        #    self.parent.empty_potion.color = [1,1,1,1]
-        #else:
-        #    self.parent.empty_potion.color = [0,0,0,0]
+        if player.current_player.inventory["potion"][2] == "graphics/items/empty_slot.png":
+            self.parent.empty_potion.color = [1,1,1,1]
+        else:
+            self.parent.empty_potion.color = [0,0,0,0]
 
     def switch_items_in_invetory(self):
         self.temp = inventory[self.select].sprite

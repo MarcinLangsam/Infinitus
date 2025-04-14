@@ -375,7 +375,7 @@ class Enemy(Widget):
             if drop_roll <= self.enemy_drop[x]:
                 items_droped.append(x)
                 drop_roll = random.randint(0,100)
-        for x in range(49,49+len(items_droped)):
+        for x in range(48,48+len(items_droped)):
             player.current_player.inventory[x][2] = items_droped[count]
             count += 1
 

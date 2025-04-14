@@ -60,7 +60,7 @@ class Character_Creation(Screen):
             p.STR_base = 15
             p.MP_regen = 10
             self.weapon_description = "Miecz z Brązu\nObrażenia +3"
-            self.skill_description = "Zamach\nZadaje: Obrażenia+50%STR\nKoszt MP: 30"
+            self.skill_description = "Zamach\nZadaje:\nObrażenia+50%STR\nKoszt MP: 30"
             self.weapon_image.source = "graphics/items/miecz_z_brazu.png"
             self.skill_image.source = "graphics/skills/zamach.png"
             p.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
