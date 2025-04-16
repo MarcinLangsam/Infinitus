@@ -1,4 +1,4 @@
-import text_pop as tp, player, inventory_manager as im, fight, tooltip as tt
+import player, inventory_manager as im, fight, tooltip as tt
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.progressbar import ProgressBar

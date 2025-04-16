@@ -1,4 +1,4 @@
-import player, tooltip as tt, inventory_manager as im, UI_manager as UI, abilities_manager as am
+import player, tooltip as tt, inventory_manager as im, UI_manager as UI
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.uix.button import Button

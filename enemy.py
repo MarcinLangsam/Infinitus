@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import player,inventory_manager as im, random, status_effect as se, codecs
+import player, random, status_effect as se, codecs
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 
@@ -434,7 +434,7 @@ skeleton_priest2 = Enemy("Upadły kapłan",3,85,10,20,15,15,0,80,20,{
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80,"graphics/items/magicza_ksiega.png":15},
                                                             "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan")
                                         
-lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,20,5,0,0,{
+lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,21,5,0,0,{
                                                             "atak":enemy_skills["atak"]
                                                             ,"atak":enemy_skills["atak"]
                                                             ,"eteryczny":enemy_skills["eteryczny"]
@@ -446,7 +446,7 @@ lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,20,5,0,0,{
                                                             {},
                                                             "graphics/sprites/zagubiona_dusza_sprite.png","zagubiona_dusza")
 
-zjawa = Enemy("Zjawa",4,140,10,30,25,19,0,50,30,{"atak":enemy_skills["atak"],
+zjawa = Enemy("Zjawa",4,140,10,30,25,22,0,50,30,{"atak":enemy_skills["atak"],
                                                 "eteryczny":enemy_skills["eteryczny"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
@@ -456,19 +456,19 @@ zjawa = Enemy("Zjawa",4,140,10,30,25,19,0,50,30,{"atak":enemy_skills["atak"],
                                                 {"graphics/items/amulet_precyzji.png":40,"graphics/items/wlocznia_straznicza.png":20,"graphics/items/srebrny_pierscien.png":60,"graphics/items/mała_mikstura_zdrowia.png":40},
                                                 "graphics/sprites/zjawa_sprite.png","zjawa")
 
-skeleton_warrior = Enemy("Szkielet Wojownik",4,170,23,5,1,23,5,50,35,{
+skeleton_warrior = Enemy("Szkielet Wojownik",4,170,23,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":100,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
-skeleton_warrior2 = Enemy("Szkielet Wojownik",4,170,25,5,1,20,5,50,35,{
+skeleton_warrior2 = Enemy("Szkielet Wojownik",4,170,25,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":80,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
-skeleton_warrior3 = Enemy("Szkielet Wojownik",4,170,25,5,1,20,5,50,35,{
+skeleton_warrior3 = Enemy("Szkielet Wojownik",4,170,25,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},

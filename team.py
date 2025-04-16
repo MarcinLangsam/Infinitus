@@ -1,4 +1,4 @@
-import player, inventory_manager as im, UI_manager as UI, abilities_manager as am, text_pop as tp, tooltip as tt, music_player as mp
+import player, inventory_manager as im, UI_manager as UI, abilities_manager as am, text_pop as tp, tooltip as tt
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.uix.progressbar import ProgressBar
@@ -13,7 +13,7 @@ class Switch_Character_Button(Button):
 class Team(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
+        self.accept_sound = SoundLoader.load("graphics/sounds/accept.wav")
         self.main_player_sprite = player.Character_Sprite(player.main_player, im.items.item_list[player.main_player.inventory["main_hand"][2]][0], player.main_player.head, pos=(590,432-65))
         self.companion1_sprite = player.Character_Sprite(player.companion1, im.items.item_list[player.companion1.inventory["main_hand"][2]][0], player.companion1.head, pos=(590,432-65))
         self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.companion2.inventory["main_hand"][2]][0], player.companion2.head, pos=(590,432-65))
@@ -188,7 +188,6 @@ class Team(Screen):
         self.current_sprite.set_sprite_weapon()
         self.current_sprite.set_weapon()
         self.add_widget(self.current_sprite,10)
-        print(self.current_sprite.base)
         self.remove_widget(self.tooltip)
         self.add_widget(self.tooltip)
  

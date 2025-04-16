@@ -10,7 +10,7 @@ class Shop(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.tooltip = tt.Tooltip()
-        self.accept_sound = SoundLoader.load("graphics/sounds/accpet.wav")
+        self.accept_sound = SoundLoader.load("graphics/sounds/t.wav")
 
     def change_screen(self):
         self.clear_on_shop_leave()

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import player,UI_manager as UI, text_pop as tp, tooltip as tt, status_effect as se, codecs
+import player,UI_manager as UI, text_pop as tp, tooltip as tt, codecs
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.properties import StringProperty, ListProperty
@@ -31,7 +31,6 @@ class SkillSlot(Widget):
                             if player.current_player.skill_points > 0:
                                 if skills.skill_list[x][2] in player.current_player.skill or skills.skill_list[x][2]=="none":
                                     player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12],skills.skill_list[x][13],skills.skill_list[x][14]]
-                                    print(player.current_player.skill[skills.skill_list[x][0]])
                                     if skills.skill_list[x][9] == "passive":
                                         exec(skills.skill_list[x][1])
                                     tp.text_pop.text = "Dodano umiejętność"

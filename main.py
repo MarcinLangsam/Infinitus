@@ -1,4 +1,4 @@
-import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character, music_player as mp
+import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character, music_player as mp, sys, os
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
@@ -6,10 +6,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window
-from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
-from kivy.core.audio import SoundLoader
 from kivy.uix.button import Button
 
 class StageProgressBar(ProgressBar):

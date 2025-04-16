@@ -1,5 +1,4 @@
 from kivy.uix.label import Label
-from kivy.graphics import Color
 from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivy.clock import Clock

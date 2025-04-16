@@ -1,3 +1,4 @@
+#:kivy 2.0.0
 #: import WipeTransition kivy.uix.screenmanager.WipeTransition
 
 WindowManger:
@@ -482,7 +483,7 @@ WindowManger:
     size: 25,25
     background_normal: "graphics/stat_up_button.png"
 
-<-HPBar@ProgressBar>:
+<-HPBar>:
     canvas.before:
         PushMatrix
         Rotate:
@@ -505,7 +506,7 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 48
             source: 'graphics/pb_hp.png'
 
-<-MPBar@ProgressBar>:
+<-MPBar>:
     canvas.before:
         PushMatrix
         Rotate:
@@ -527,7 +528,7 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 48
             source: 'graphics/pb_mp.png'
 
-<-EnemyHPBar@ProgressBar>:
+<-EnemyHPBar>:
     canvas.before:
         PushMatrix
         Rotate:
@@ -549,7 +550,7 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 48
             source: 'graphics/pb_hp.png'
 
-<-EXPBar@ProgressBar>:
+<-EXPBar>:
     canvas:
         Color:
             rgb: 1, 1, 1
@@ -564,7 +565,7 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 40
             source: 'graphics/pb_exp.png'
 
-<-StageProgressBar@ProgressBar>:
+<-StageProgressBar>:
     pos: 1150,0
     size_hint_x: .40
     canvas.before:

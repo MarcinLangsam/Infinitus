@@ -156,7 +156,7 @@ self.final_damage = 50+self.current_turn.STR*1.3+self.current_turn.INT*1.7
 paladyn
 graphics/skills/boski_grzmot.png
 305
-590
+520
 22
 graphics/skills/boski_grzmot_ok.png
 30
@@ -183,23 +183,6 @@ heal
 on_character
 leczenie_effect
 graphics/sounds/heal.wav
-______________________________________
-11
-końskie zdrowie
-player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
-boski grzmot
-graphics/skills/końskie_zdrowie.png
-375
-380
-9
-graphics/skills/końskie_zdrowie_ok.png
-0
-passive
-Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+30 zdrowia[/color]
-
-
-no_effect
-
 ______________________________________
 12
 trening wojownika I
@@ -354,30 +337,30 @@ on_self
 obrazenia_buff_effect
 graphics/sounds/positive_effect_3.wav
 ______________________________________
-21
-masowe blogoslawienstwo
-self.final_damage = 0\nself.action_status = 'blogoslawienstwo'
-niestrudzony obrońca
-graphics/skills/masowe_blogoslawienstwo.png
-305
-450
-5
-graphics/skills/masowe_blogoslawienstwo_ok.png
-35
-active
-Błogosławieństwo   |   AKTYWNA\nWszystkim na krótką chwile zwiększa statystyki.\n\nNakłada: Błogosławieństwo 3 tury - [color=#fdff80]Wszystkie atrybuty +15%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]35[/color]
-status
-on_all_character
-obrazenia_buff_effect
-graphics/sounds/positive_effect_3.wav
+_21
+_masowe blogoslawienstwo
+_self.final_damage = 0\nself.action_status = 'blogoslawienstwo'
+_niestrudzony obrońca
+_graphics/skills/masowe_blogoslawienstwo.png
+_305
+_450
+_5
+_graphics/skills/masowe_blogoslawienstwo_ok.png
+_35
+_active
+_Błogosławieństwo   |   AKTYWNA\nWszystkim na krótką chwile zwiększa statystyki.\n\nNakłada: Błogosławieństwo 3 tury - [color=#fdff80]Wszystkie atrybuty +15%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]35[/color]
+_status
+_on_all_character
+_obrazenia_buff_effect
+_graphics/sounds/positive_effect_3.wav
 ______________________________________
 22
 paladyn
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5
-masowe blogoslawienstwo
+blogoslawienstwo
 graphics/skills/paladyn.png
 305
-520
+450
 20
 graphics/skills/paladyn_ok.png
 0
@@ -387,6 +370,23 @@ Paldayn   |   PASYWNA\nWiara i honor to najważniejsze wartości do osiągnięci
 
 no_effect
 
+______________________________________
+_11
+_końskie zdrowie
+_player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
+_boski grzmot
+_graphics/skills/końskie_zdrowie.png
+_375
+_380
+_9
+_graphics/skills/końskie_zdrowie_ok.png
+_0
+_passive
+_Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+30 zdrowia[/color]
+_
+_
+_no_effect
+_
 _____________mage skill________________
 41
 kula ognia
@@ -686,9 +686,9 @@ graphics/skills/uderzenie_pioruna.png
 240
 83
 graphics/skills/uderzenie_pioruna_ok.png
-25
+60
 active
-Uderzenie Pioruna   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#00ff00]200%DEX[/color] + [color=#00f7ff]150%INT[/color]\nKoszt MP: [color=#0000ff]25[/color]
+Uderzenie Pioruna   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#00ff00]200%DEX[/color] + [color=#00f7ff]150%INT[/color]\nKoszt MP: [color=#0000ff]60[/color]
 ranged
 on_enemy
 piorun_effect
@@ -815,7 +815,7 @@ no_effect
 _________________________________________
 94
 rozprucie
-self.final_damage = self.current_turn.damage*1.4 + self.current_turn.DEX*0.2
+self.final_damage = self.current_turn.damage*1.5 + self.current_turn.DEX
 krwiopijca
 graphics/skills/rozprucie.png
 1260
@@ -824,7 +824,7 @@ graphics/skills/rozprucie.png
 graphics/skills/rozprucie_ok.png
 40
 active
-Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]140% obrażeń[/color] + [color=#00ff00]20%DEX[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]150% obrażeń[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]40[/color]
 melee
 on_enemy
 rozprucie_effect

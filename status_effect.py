@@ -10,8 +10,7 @@ class Status():
 
     def __init__(self):
         self.load_status()
-        print(self.status_list)
-
+        
     def load_status(self):
         data =["","","","","","","","",""]
         count = 0
