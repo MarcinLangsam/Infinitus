@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import tooltip as tt, codecs
+import codecs
+from tooltip import set_tooltip_status, clear_tooltip
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.clock import Clock
@@ -48,9 +49,9 @@ class Status_Icon(Widget):
             Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):
-        tt.clear_tooltip(self.parent.tooltip)
+        clear_tooltip(self.parent.tooltip)
     def display_tooltip(self, *args):
-        tt.set_tooltip_status(self.parent.tooltip,self.t, self.p)
+        set_tooltip_status(self.parent.tooltip,self.t, self.p)
 
 
 status_effect = Status()

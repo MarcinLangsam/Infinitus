@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import player, UI_manager as UI, text_pop as tp, tooltip as tt, codecs
-from itertools import islice
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
@@ -8,6 +7,7 @@ from kivy.uix.behaviors import DragBehavior
 from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
+from kivy.metrics import dp
 
 global screen
 screen = ""
@@ -81,7 +81,7 @@ class ItemSlot(DragBehavior, Widget):
             self.check_for_empty_slot()
 
     def on_touch_down(self, touch):
-        if self.pos[0] <= touch.pos[0] <= self.pos[0]+75 and self.pos[1] <= touch.pos[1] <= self.pos[1]+75: 
+        if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(55) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(55): 
             for x in player.current_player.inventory.keys():
                     if self.pos[0] == player.current_player.inventory[x][0] and self.pos[1] == player.current_player.inventory[x][1]:
                         self.select = x
@@ -93,14 +93,14 @@ class ItemSlot(DragBehavior, Widget):
     
     def on_touch_up(self, touch):
             for x in player.current_player.inventory.keys():
-                if player.current_player.inventory[x][0] <= touch.pos[0] <= player.current_player.inventory[x][0]+75 and player.current_player.inventory[x][1] <= touch.pos[1] <= player.current_player.inventory[x][1]+75:
+                if player.current_player.inventory[x][0] <= touch.pos[0] <= player.current_player.inventory[x][0]+dp(55) and player.current_player.inventory[x][1] <= touch.pos[1] <= player.current_player.inventory[x][1]+dp(55):
                     self.drop = x
                     self.check_collision = True
                 else:
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                if 440 <= touch.pos[0] <= 440+90 and 60 <= touch.pos[1] <= 60+90 and screen == "team": ### deleting item
+                if dp(455) <= touch.pos[0] <= dp(455)+90 and dp(138) <= touch.pos[1] <= dp(138)+90 and screen == "team": ### deleting item
                     player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
                     inventory[self.select].sprite = "graphics/items/empty_slot.png"
                     self.check_for_empty_slot()

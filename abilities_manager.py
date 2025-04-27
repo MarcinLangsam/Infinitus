@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window 
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.core.audio import SoundLoader
+from kivy.metrics import dp
 
 class Skill_line(Widget):
     points = ListProperty([])
@@ -15,13 +16,13 @@ class SkillSlot(Widget):
     def __init__(self, **kwargs):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super().__init__(**kwargs)
-        self.t = 0
+        self.t = ""
         self.p = 0
         self.new_skill_sound = SoundLoader.load("graphics/sounds/new_skill.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
 
     def on_touch_down(self, touch):
-        if self.pos[0] <= touch.pos[0] <= self.pos[0]+50 and self.pos[1] <= touch.pos[1] <= self.pos[1]+50: 
+        if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(50) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(50): 
             for x in skills.skill_list.keys():
                     if self.pos[0] == skills.skill_list[x][4] and self.pos[1] == skills.skill_list[x][5]:
                         if skills.skill_list[x][0] in player.current_player.skill:
@@ -56,7 +57,7 @@ class SkillSlot(Widget):
         self.close_tooltip()
         if self.collide_point(*self.to_widget(*pos)):
             for x in skills.skill_list.keys():
-                    if self.pos[0] == skills.skill_list[x][4] and self.pos[1] == skills.skill_list[x][5]:   
+                    if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):   
                             self.t = skills.skill_list[x][10]
                             self.p = (self.pos[0],self.pos[1])
             Clock.schedule_once(self.display_tooltip, 0.5)
@@ -108,7 +109,7 @@ class Stat_Button(Button):
         self.close_tooltip()
         if self.collide_point(*self.to_widget(*pos)):
             self.t = self.description
-            self.p = (800,550)
+            self.p = (dp(600),dp(700))
             Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):

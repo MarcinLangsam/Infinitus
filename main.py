@@ -1,4 +1,8 @@
-import player, enemy, inventory_manager as im, abilities_manager as am, UI_manager as UI, text_pop as tp, random, fight, shop, team, battle_result, skills_window, character_creation, tooltip as tt, map, settings_menu, add_new_character, music_player as mp, sys, os
+import os
+import sys
+if sys.__stdout__ is None or sys.__stderr__ is None:
+    os.environ['KIVY_NO_CONSOLELOG'] = '1'
+import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
@@ -9,6 +13,7 @@ from kivy.core.window import Window
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 from kivy.uix.button import Button
+from kivy.metrics import dp
 
 class StageProgressBar(ProgressBar):
     pass
@@ -27,14 +32,14 @@ class Menu(Screen):
         mp.music_player.change_music("graphics/music/stage1.wav")
         self.bar = fight.current_fight
         self.text = "Postęp: "+str(int(fight.current_fight))+" / 10"
-        self.add_widget(Image(source="graphics/menu_background.png", size=(400,100), pos=(600,0), size_hint=(None,None), allow_stretch=True))
-        self.add_widget(Button(pos=(110,350), size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        self.add_widget(Button(pos=(380,510), size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
-        self.add_widget(Button(pos=(1175,540), size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
-        self.add_widget(Button(pos=(660,10), size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
-        self.add_widget(Button(pos=(760,10), size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
-        self.add_widget(Button(pos=(860,10), size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
-        self.add_widget(Button(pos=(1350,10), size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
+        self.add_widget(Image(source="graphics/menu_background.png", size=(dp(400),dp(100)), pos_hint={"center_x": 0.5, "y": 0}, size_hint=(None,None), allow_stretch=True))
+        self.add_widget(Button(pos_hint={"center_x": 0.12, "center_y": 0.4}, size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
+        self.add_widget(Button(pos_hint={"center_x": 0.29, "center_y": 0.6}, size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
+        self.add_widget(Button(pos_hint={"center_x": 0.82, "center_y": 0.66}, size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
+        self.add_widget(Button(pos_hint={"center_x": 0.435, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
+        self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
+        self.add_widget(Button(pos_hint={"center_x": 0.565, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
+        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         
 
     def start_main_fight(self):
@@ -63,6 +68,7 @@ class End(Screen):
 class Main_Menu(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
+        import player
         mp.music_player.play_music()
 
     def exit(self):

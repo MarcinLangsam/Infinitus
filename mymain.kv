@@ -81,24 +81,24 @@ WindowManger:
 <Menu>:
     name: "menu"
     on_pre_enter: root.setup_window()
+    size_hint: 1,1
     Image:
-        size_hint: None,None
+        size_hint: 1,1
         allow_stretch: True
-        size: 1540,950
+        fit_mode: "fill"
         source: "graphics/stage1_background.png"
-        pos: 0,0
     StageProgressBar:
         max: 10
         value: root.bar
     Label:
-        pos: 595,0
-        font_size: 25
+        pos_hint: {"center_x": 0.88, "center_y": 0.5}
+        font_size: 30
         text: root.text
 
 <Shop>:
     name: "shop"
     on_pre_enter: root.setup_window()
-    size_hint: None, None
+    size_hint: 1, 1
         
 <Skills_Window>:
     name: "skills"
@@ -108,7 +108,7 @@ WindowManger:
 <Team>:
     name: "team"
     on_pre_enter: root.setup_window()
-    size_hint: None, None
+    size_hint: 1, 1
 
 <Fight>:
     name: "fight"
@@ -223,6 +223,7 @@ WindowManger:
         halign: "center"
 <Character_Creation>:
     name: "character_creation"
+    size_hint: 1,1
     on_pre_enter: root.setup_window()
 <Add_New_Character>:
     name: "add_new_character"
@@ -232,23 +233,21 @@ WindowManger:
     on_pre_enter: root.setup_window()
 <Main_Menu>:
     name: "main_menu"
-    size_hint: None, None
+    size_hint: 1, 1
     Image:
-        size_hint: None,None
+        size_hint: 1, 1
         allow_stretch: True
-        size: 1540,950
+        fit_mode: "fill"
         source: "graphics/plain_background.png"
         pos: 0,0
     Image:
-        pos: 450,570
-        size_hint: None,None
-        allow_stretch: True
-        size: 600,300
+        size_hint: 1,1
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
         source: "graphics/title.png"
 
     Button:
         on_release: app.root.current = "character_creation"
-        pos: 650,460
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
         size: 200,130
         size_hint: None,None
         text: "Nowa Gra"
@@ -256,7 +255,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: root.load_game()
-        pos: 650,310
+        pos_hint: {"center_x": 0.5, "center_y": 0.40}
         size: 200,130
         size_hint: None,None
         text: "Wczytaj grę"
@@ -264,7 +263,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "tutorial"
-        pos: 650,160
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
         size: 200,130
         size_hint: None,None
         text: "Jak grać?"
@@ -272,7 +271,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: root.exit()
-        pos: 650,10
+        pos_hint: {"center_x": 0.5, "center_y": 0.10}
         size: 200,130
         size_hint: None,None
         text: "Wyjście"
@@ -566,7 +565,7 @@ WindowManger:
             source: 'graphics/pb_exp.png'
 
 <-StageProgressBar>:
-    pos: 1150,0
+    pos_hint: {"center_x": 0.95, "center_y": 0.5}
     size_hint_x: .40
     canvas.before:
         PushMatrix
@@ -630,7 +629,7 @@ WindowManger:
     text_size: self.width, None
     size_hint: None, None
     height: self.texture_size[1]
-    font_size: 23
+    font_size: 27
     color: 0,0,0,1
     width: 500
     canvas.before:

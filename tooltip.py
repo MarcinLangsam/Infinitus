@@ -2,6 +2,7 @@ from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivy.clock import Clock
+from kivy.metrics import dp
 
 def adjust_tooltip_to_screen(tooltip,pos_x,pos_y): #prewent tooltips to go over the screen where thay can't by seen by user
     #only for x axis, y is self expandable so i can't get valid size...yet
@@ -18,8 +19,6 @@ def set_tooltip(tooltip,t,p):
     tooltip.color = (1,1,1,1)
     tooltip.outline_width = 1
     tooltip.markup=True
-    #with tooltip.canvas.before:
-    #    Color(0.2,0.6,0.6,1)
 
 def set_tooltip_status(tooltip,t,p):
     tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0],p[1]+30)
@@ -27,8 +26,6 @@ def set_tooltip_status(tooltip,t,p):
     tooltip.color = (1,1,1,1)
     tooltip.outline_width = 1
     tooltip.markup=True
-    #with tooltip.canvas.before:
-    #    Color(0.2,0.6,0.6,1)
 
 def set_tooltip_skill(tooltip,t,p):
     tooltip.text = t
@@ -36,13 +33,9 @@ def set_tooltip_skill(tooltip,t,p):
     tooltip.outline_width = 1
     tooltip.markup=True
     tooltip.pos = adjust_tooltip_to_screen(tooltip,p[0]+50,p[1]-50)
-    #with tooltip.canvas.before:
-    #    Color(0.2,0.6,0.6,1)
 
 def clear_tooltip(tooltip):
     tooltip.text = ""
-    #with tooltip.canvas.before:
-    #    Color(0.2,0.6,0.6,1)
 
 class Tooltip(Label):
     pass

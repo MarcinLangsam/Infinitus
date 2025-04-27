@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-import player, random, status_effect as se, codecs
+import random, codecs
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 
 global player_team_alive
 global enemy_team_alive
-player_team_alive = player.team
+from player import team
+player_team_alive = team
 
 current = 0
 
@@ -105,6 +106,7 @@ class Enemy(Widget):
         print("Dodge: "+str(self.dodge_chance))
 
     def action(self,action,sort_by,value,type,name,distance,effect,sound,status):
+        import status_effect as se
         ok = False
         if type in ["on_character","attack","on_all_character"]:
             targets = player_team_alive
@@ -376,7 +378,8 @@ class Enemy(Widget):
                 items_droped.append(x)
                 drop_roll = random.randint(0,100)
         for x in range(48,48+len(items_droped)):
-            player.current_player.inventory[x][2] = items_droped[count]
+            from player import current_player
+            current_player.inventory[x][2] = items_droped[count]
             count += 1
 
 enemy_skills ={}
