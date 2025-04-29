@@ -24,7 +24,7 @@ class SkillSlot(Widget):
     def on_touch_down(self, touch):
         if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(50) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(50): 
             for x in skills.skill_list.keys():
-                    if self.pos[0] == skills.skill_list[x][4] and self.pos[1] == skills.skill_list[x][5]:
+                    if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):
                         if skills.skill_list[x][0] in player.current_player.skill:
                             tp.text_pop.text = "Już masz tę umiejętność"
                             self.error_sound.play()

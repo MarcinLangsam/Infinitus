@@ -16,7 +16,7 @@ def check_whitch_screen(s):
     global screen
     screen = s
 
-gold_on_screen = Label(pos_hint={'x':-0.34,'y':-0.378}, font_size=33,halign="left", valign="middle", text="{0:g}".format(player.gold), outline_width = 1)
+gold_on_screen = Label(pos_hint={'x':-0.25,'y': -0.295}, font_size=33, halign="left", valign="middle", text="{0:g}".format(player.gold), outline_width = 1)
 def update_gold():
     gold_on_screen.text = "{0:g}".format(player.gold)
 

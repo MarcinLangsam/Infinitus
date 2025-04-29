@@ -148,7 +148,7 @@ class Character_Creation(Screen):
             UI.stats[x].bind(size=UI.stats[x].setter("text_size"))
             self.add_widget(UI.stats[x])
         UI.ui.stats_refresh(player.main_player)
-        self.add_widget(Label(text="KIM JESTEŚ?", pos=(720,750), font_size=40))
+        self.add_widget(Label(text="KIM JESTEŚ?", pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=40))
         self.add_widget(self.tooltip)
         self.set_class(player.main_player, "warrior")
         self.refresh_items()

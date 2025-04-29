@@ -114,55 +114,49 @@ WindowManger:
     name: "fight"
     on_pre_enter: root.start_fight_setup()
     Image:
-        size_hint: None,None
         allow_stretch: True
-        size: 1540,950
+        size_hint: 1,1
         source: "graphics/battle_background.png"
-        pos: 0,0
+        fit_mode: "fill"
     Button:
         id: attack
         on_release: root.action_attack()
-        pos: 50,200
+        pos: dp(40),dp(210)
         size_hint: 0.065,0.10
         background_normal: "graphics/attack_button.png"
         background_disabled_normal: "graphics/attack_button_disabled.png"
-
     Button:
         id: spells
         on_release: root.action_spells()
-        pos: 50,320
+        pos: dp(40),dp(330)
         size_hint: 0.065,0.10
         background_normal: "graphics/magic_button.png"
         background_disabled_normal: "graphics/magic_button_disabled.png"
-
     Button:
         id: defend
         on_release: root.action_defend()
-        pos: 50,440
+        pos: dp(40),dp(450)
         size_hint: 0.065,0.10
         background_normal: "graphics/defend_button.png"
         background_disabled_normal: "graphics/defend_button_disabled.png"
-    
     Button:
         id: potion
         on_release: root.action_potion()
-        pos: 50,560
+        pos: dp(40),dp(570)
         size_hint: 0.065,0.10
         background_normal: "graphics/potion_button.png"
         background_disabled_normal: "graphics/potion_button_disabled.png"
-
 <Game_Over>:
     name: "game_over"
-    size_hint: None, None
+    size_hint: 1, 1
     Image:
-        size_hint: None,None
+        size_hint: 1,1
         allow_stretch: True
-        size: 1540,950
         source: "graphics/game_over_background.png"
-        pos: 0,0
+        fit_mode: "fill"
     Button:
         on_release: app.root.current = "main_menu"
-        pos: 450,300
+        pos_hint: {"center": 0.4, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wróc do menu"
@@ -170,7 +164,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "menu"
-        pos: 850,300
+        pos_hint: {"center": 0.6, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wczytaj grę"
@@ -179,25 +173,24 @@ WindowManger:
     Label:
         text: "PORAŻKA\nZOSTAŁEŚ POKONANY"
         font_size: 45
-        pos: 0,200
+        pos_hint: {"center": 0.5, "center_y": 0.8}
         halign: "center"
     Label:
         text: "Nie udało ci się wydostać z nieskończonego lochu.\nWczytaj grę aby spróbować jeszcze raz"
         font_size: 30
-        pos: 0,100
+        pos_hint: {"center": 0.5, "center_y": 0.75}
         halign: "center"
 <End>:
     name: "end"
-    size_hint: None, None
+    size_hint: 1, 1
     Image:
-        size_hint: None,None
+        size_hint: 1,1
         allow_stretch: True
-        size: 1540,950
         source: "graphics/plain_background.png"
-        pos: 0,0
+        fit_mode: "fill"
     Button:
         on_release: app.root.current = "main_menu"
-        pos: 450,300
+        pos_hint: {"center": 0.4, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wróc do menu"
@@ -205,7 +198,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "menu"
-        pos: 850,300
+        pos_hint: {"center": 0.6, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Graj dalej"
@@ -214,12 +207,12 @@ WindowManger:
     Label:
         text: "GRATULACJE"
         font_size: 45
-        pos: 0,200
+        pos_hint: {"center": 0.5, "center_y": 0.8}
         halign: "center"
     Label:
         text: "Udało ci się pokonać władcę lochu i odzyskać wolność.\nJeśli chcesz możesz grać dalej wczytując grę"
         font_size: 25
-        pos: 0,100
+        pos_hint: {"center": 0.5, "center_y": 0.75}
         halign: "center"
 <Character_Creation>:
     name: "character_creation"
@@ -228,9 +221,11 @@ WindowManger:
 <Add_New_Character>:
     name: "add_new_character"
     on_pre_enter: root.setup_window()
+    size_hint: 1,1
 <Map>:
     name: "map"
     on_pre_enter: root.setup_window()
+    size_hint: 1,1
 <Main_Menu>:
     name: "main_menu"
     size_hint: 1, 1
@@ -342,23 +337,20 @@ WindowManger:
         valign: "middle"
 <Settings_menu>:
     name: "main_menu"
-    size_hint: None, None
+    size_hint: 1, 1
     Image:
-        size_hint: None,None
+        size_hint: 1,1
         allow_stretch: True
-        size: 1540,950
         source: "graphics/plain_background.png"
-        pos: 0,0
+        fit_mode: "fill"
     Image:
-        pos: 450,570
-        size_hint: None,None
-        allow_stretch: True
-        size: 600,300
+        size_hint: 1,1
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
         source: "graphics/title.png"
 
     Button:
         on_release: app.root.current = "menu"
-        pos: 650,460
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
         size: 200,130
         size_hint: None,None
         text: "Powrót do gry"
@@ -366,7 +358,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: root.save_game()
-        pos: 650,310
+        pos_hint: {"center_x": 0.5, "center_y": 0.40}
         size: 200,130
         size_hint: None,None
         text: "Zapisz grę"
@@ -374,7 +366,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "main_menu"
-        pos: 650,160
+        pos_hint: {"center_x": 0.5, "center_y": 0.25}
         size: 200,130
         size_hint: None,None
         text: "Wyjście do menu"
@@ -382,7 +374,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: root.exit()
-        pos: 650,10
+        pos_hint: {"center_x": 0.5, "center_y": 0.10}
         size: 200,130
         size_hint: None,None
         text: "Wyjdź z gry"
@@ -390,7 +382,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
 <Battle_Result>:
     name: "battle_result"
-    size_hint: None, None
+    size_hint: 1, 1
     on_pre_enter: root.setup_window()
         
 <Character_Sprite>:

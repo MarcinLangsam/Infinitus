@@ -1,39 +1,43 @@
 player.main_player.head = "glowa1"
 player.main_player.name = "Podaj imiê..."
-player.main_player.lv = 2
-player.main_player.MAX_HP = 85
+player.main_player.lv = 1
+player.main_player.MAX_HP = 70
 player.main_player.MAX_MP = 100
 player.main_player.MP_regen = 10
-player.main_player.HP = 85
+player.main_player.HP = 70
 player.main_player.MP = 100
-player.main_player.STR_base = 25
-player.main_player.DEX_base = 12
+player.main_player.STR_base = 30
+player.main_player.DEX_base = 17
 player.main_player.INT_base = 10
 player.main_player.weapon = 30
-player.main_player.damage_base = 55
+player.main_player.damage_base = 60
 player.main_player.defence_base = 5
-player.main_player.crit_chance_base = 0.12
-player.main_player.dodge_chance_base = 0.24
+player.main_player.crit_chance_base = 0.1
+player.main_player.dodge_chance_base = 0.2
 player.main_player.EXP_boost = 0.1
 player.main_player.EXP = 0
-player.main_player.EXP_To_Lv = 200
+player.main_player.EXP_To_Lv = 100
 player.main_player.stat_points = 0
-player.main_player.skill_points = 27
-player.main_player.potions = 1
-player.main_player.potion_effect = "self.final_damage = -100"
-player.main_player.current_potions = 1
+player.main_player.skill_points = 22
+player.main_player.potions = 0
+player.main_player.potion_effect = ""
+player.main_player.current_potions = 0
 player.main_player.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5",30,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadz¹ca rozpêdzon¹ broñ prosto we wroga.\n\nZadaje: [color=#fdff80]Obra¿enia[/color] + [color=#de8833]50%STR[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
 player.main_player.skill["sza³"] = ["self.final_damage = 0\nself.action_status = 'sza³'",70,"graphics/skills/sza³.png","Sza³   |   AKTYWNA\nWpadasz w nieposkromony sza³, który zwiêksza twoj¹ si³ê i regeneracje many ale nie dbasz o obronê.\n\nNak³ada: Sza³ 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas sza³u odnosisz 50% wiêcej obra¿eñ! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]","active","status","on_self","szal_effect","graphics/sounds/positive_effect_1.wav"]
-player.main_player.skill["zaciek³y wojownik"] = ["player.current_player.STR_base += 3",0,"graphics/skills/zaciek³y_wojownik.png","Zaciek³y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siê do boju i walczysz do samego koñca.\n\n[color=#de8833]+3 si³y[/color]","passive","","","no_effect",""]
 player.main_player.skill["trening wojownika I"] = ["player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10",0,"graphics/skills/trening_si³y.png","Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz siê do cie¿kich warunków lochu szlifuj¹c swoje umiejêtnoœci w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 si³y[/color] [color=#00ff00]+2 zrêcznoœci[/color] [color=#ff0000]+10 zdrowia[/color]","passive","","","no_effect",""]
-player.main_player.skill["niestrudzony obroñca"] = ["player.current_player.HP += 15\nplayer.current_player.MAX_HP += 15",0,"graphics/skills/niestrudzony_obroñca.png","Niestrudzony Obroñca   |   PASYWNA\nNie pozwolisz nikogo przepóœciæ bez walki.\n\n[color=#ff0000]+15 zdrowia[/color]","passive","","","no_effect",""]
+player.main_player.skill["zaciek³y wojownik"] = ["player.current_player.STR_base += 3",0,"graphics/skills/zaciek³y_wojownik.png","Zaciek³y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siê do boju i walczysz do samego koñca.\n\n[color=#de8833]+3 si³y[/color]","passive","","","no_effect",""]
+player.main_player.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",50,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoj¹ broñ trucizn¹ aby wykonywa³a wiêksz¹ szkodê.\n\nNak³ada: Zatrute Ostrze 4 tury - [color=#fdff80]dodaje wartoœæ zrêcznoœci od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]","active","status","on_self","obrazenia_buff_effect","graphics/sounds/positive_effect_1.wav"]
+player.main_player.skill["nadzwyczajna zwinnoœæ"] = ["player.current_player.DEX_base += 3",0,"graphics/skills/nadzwyczajna_zwinnoœæ.png","Nadzwyczajna Zwinnoœæ   |   PASYWNA\nStajesz siê szybszy a twój reflex polepsza siê.\n\n[color=#00ff00]+3 zwinnoœci[/color]","passive","","","no_effect",""]
+player.main_player.skill["krwiopijca"] = ["self.final_damage = 0\nself.action_status = 'krwiopijca'",40,"graphics/skills/krwiopijca.png","Krwiopijca   |   AKTYWNA\nKrew i ból twoich przeciwników nape³nia ciê enrgi¹ ¿yciow¹.\n\nNak³ada: Krwiopijca 3 tury - [color=#fdff80]50% zadanych obra¿eñ wraca jako zdrowie[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","status","on_self","krwiopijca_effect","graphics/sounds/positive_effect_1.wav"]
+player.main_player.skill["rozprucie"] = ["self.final_damage = self.current_turn.damage*1.5 + self.current_turn.DEX",40,"graphics/skills/rozprucie.png","Rozprucie   |   AKTYWNA\nDwa precyzyjne ciêcia, szatkuj¹ce worgów.\n\nZadaje: [color=#fdff80]150% obra¿eñ[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","melee","on_enemy","rozprucie_effect","graphics/sounds/rozprucie.wav"]
+player.main_player.skill["trening ³otra I"] = ["player.current_player.DEX_base += 2\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3",0,"graphics/skills/trening_³otra.png","Trening £otra I   |   AKTYWNA\nPowoli dostoswujesz siê do cie¿kich warunków lochu szlifuj¹c swoje umiejêtnoœci w ³otrostwa i sprytu.\n\n[color=#00ff00]+2 zrêcznoœci[/color] [color=#de8833]+1 si³y[/color] [color=#fdff80]+3% szansy na unik[/color]","passive","","","no_effect",""]
 player.main_player.inventory["main_hand"][2] = "graphics/items/gladius.png"
 player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
-player.main_player.inventory["accessory"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
-player.main_player.inventory["potion"][2] = "graphics/items/ma³a_mikstura_zdrowia.png"
+player.main_player.inventory["accessory"][2] = "graphics/items/pierscien_sily.png"
+player.main_player.inventory["accessory2"][2] = "graphics/items/pierscien_sily.png"
+player.main_player.inventory["accessory3"][2] = "graphics/items/pierscien_sily.png"
+player.main_player.inventory["potion"][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[0][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[1][2] = "graphics/items/skorzany_pancerz.png"
 player.main_player.inventory[2][2] = "graphics/items/skorzany_pancerz.png"
@@ -82,6 +86,6 @@ player.main_player.inventory[44][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[45][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[46][2] = "graphics/items/empty_slot.png"
 player.main_player.inventory[47][2] = "graphics/items/empty_slot.png"
-fight.current_fight=2
+fight.current_fight=1
 fight.current_stage=1
-player.gold = 1000
+player.gold = 400

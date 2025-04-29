@@ -41,7 +41,7 @@ class Menu(Screen):
         self.add_widget(Button(pos_hint={"center_x": 0.565, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
         self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         
-
+    
     def start_main_fight(self):
         enemy.enemy_team.clear()
         fight.is_random_fight = False
@@ -68,7 +68,6 @@ class End(Screen):
 class Main_Menu(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        import player
         mp.music_player.play_music()
 
     def exit(self):

@@ -1,6 +1,6 @@
+import player
 from kivy.uix.label import Label
-from player import gold
-from player import team
+
 
 class UI():         
     def stats_setup(self,character):
@@ -35,7 +35,7 @@ class UI():
         
         stats["exp"] = Label(pos_hint={'x':0.745,'y':0.34}, font_size=25,halign="left", valign="middle", text=(("Doświadczenie: ") + str(character.EXP) + ("/") + str(character.EXP_To_Lv)), outline_width = 1)
         stats["stat_points"] = Label(pos_hint={'x':0.883,'y':-0.01}, font_size=27,halign="left", valign="middle", text="+"+str(character.stat_points), outline_width = 1)
-        stats["gold"] = Label(pos_hint={'x':0.23,'y': -0.30}, font_size=33,halign="left", valign="middle", text=str(gold), outline_width = 1)
+        stats["gold"] = Label(pos_hint={'x':0.23,'y': -0.30}, font_size=33,halign="left", valign="middle", text=str(player.gold), outline_width = 1)
         stats["skill_points"] = Label(pos_hint={'x':0.315,'y':-0.437}, font_size=40,halign="left", valign="middle", text=(str(character.skill_points)), outline_width = 1)    
         
     def stats_refresh(self,character):
@@ -58,7 +58,7 @@ class UI():
         stats["dodge_chance"].text = "{:.2f}".format(character.dodge_chance) + "%"
         stats["exp_boost"].text = "{:.2f}".format(character.EXP_boost) + "%"
         stats["exp"].text = (("Doświadczenie: ") + "{:.0f}".format(character.EXP) + ("/") + str(character.EXP_To_Lv))
-        stats["gold"].text = "{0:g}".format(gold)
+        stats["gold"].text = "{0:g}".format(player.gold)
         if character.stat_points <= 0 :
             stats["stat_points_label"].font_size = 20
             stats["stat_points"].text = "brak"
@@ -74,4 +74,4 @@ class UI():
 
 stats = {}
 ui = UI()
-ui.stats_setup(team[0])
+ui.stats_setup(player.team[0])
