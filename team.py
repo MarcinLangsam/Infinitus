@@ -48,6 +48,7 @@ class Team(Screen):
             self.empty_armor.color = [1,1,1,1]
         else:
             self.empty_armor.color = [0,0,0,0]
+        
         if player.current_player.inventory["accessory"][2] == "graphics/items/empty_slot.png":
             self.empty_accessory.color = [1,1,1,1]
         else:

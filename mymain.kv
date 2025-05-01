@@ -156,7 +156,7 @@ WindowManger:
         fit_mode: "fill"
     Button:
         on_release: app.root.current = "main_menu"
-        pos_hint: {"center": 0.4, "center_y": 0.5}
+        pos_hint: {"center_x": 0.4, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wróc do menu"
@@ -164,7 +164,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "menu"
-        pos_hint: {"center": 0.6, "center_y": 0.5}
+        pos_hint: {"center_x": 0.6, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wczytaj grę"
@@ -173,12 +173,12 @@ WindowManger:
     Label:
         text: "PORAŻKA\nZOSTAŁEŚ POKONANY"
         font_size: 45
-        pos_hint: {"center": 0.5, "center_y": 0.8}
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
         halign: "center"
     Label:
         text: "Nie udało ci się wydostać z nieskończonego lochu.\nWczytaj grę aby spróbować jeszcze raz"
         font_size: 30
-        pos_hint: {"center": 0.5, "center_y": 0.75}
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
         halign: "center"
 <End>:
     name: "end"
@@ -190,7 +190,7 @@ WindowManger:
         fit_mode: "fill"
     Button:
         on_release: app.root.current = "main_menu"
-        pos_hint: {"center": 0.4, "center_y": 0.5}
+        pos_hint: {"center_x": 0.4, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Wróc do menu"
@@ -198,7 +198,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         on_release: app.root.current = "menu"
-        pos_hint: {"center": 0.6, "center_y": 0.5}
+        pos_hint: {"center_x": 0.6, "center_y": 0.5}
         size: 200,150
         size_hint: None,None
         text: "Graj dalej"
@@ -207,12 +207,12 @@ WindowManger:
     Label:
         text: "GRATULACJE"
         font_size: 45
-        pos_hint: {"center": 0.5, "center_y": 0.8}
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
         halign: "center"
     Label:
         text: "Udało ci się pokonać władcę lochu i odzyskać wolność.\nJeśli chcesz możesz grać dalej wczytując grę"
         font_size: 25
-        pos_hint: {"center": 0.5, "center_y": 0.75}
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
         halign: "center"
 <Character_Creation>:
     name: "character_creation"
@@ -228,9 +228,9 @@ WindowManger:
     size_hint: 1,1
 <Main_Menu>:
     name: "main_menu"
-    size_hint: 1, 1
+    size_hint: 1,1
     Image:
-        size_hint: 1, 1
+        size_hint: 1,1
         allow_stretch: True
         fit_mode: "fill"
         source: "graphics/plain_background.png"
@@ -274,23 +274,21 @@ WindowManger:
         background_normal:"graphics/target_button.png"
 <Tutorial>:
     name:"tutorial"
-    size_hint: None,None
+    size_hint: 1,1
     on_pre_enter: root.start()
     Image:
-        size_hint: None,None
+        size_hint: 1,1
         allow_stretch: True
-        size: 1540,950
         source: "graphics/plain_background.png"
-        pos: 0,0
+        fit_mode: "fill"
     Image:
         id: help_image
-        pos: 200,20
+        pos_hint: {"center_x": 0.5, "center_y": 0.37}
         source: ""
-        size: 1100,600
-        size_hint: None,None
+        size_hint: 0.7,0.7
     Button:
         text: "Start"
-        pos: 50,750
+        pos_hint: {"center_x": 0.1, "center_y": 0.9}
         size: 170,80
         on_release: root.start()
         size_hint: None,None
@@ -298,7 +296,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Ekwipunek\nSklep"
-        pos: 250,750
+        pos_hint: {"center_x": 0.2, "center_y": 0.9}
         size: 170,80
         on_release: root.inventory_shop()
         size_hint: None,None
@@ -306,7 +304,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Rozwój postaci"
-        pos: 450,750
+        pos_hint: {"center_x": 0.3, "center_y": 0.9}
         size: 170,80
         on_release: root.progress()
         size_hint: None,None
@@ -314,7 +312,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Walka"
-        pos: 650,750
+        pos_hint: {"center_x": 0.4, "center_y": 0.9}
         size: 170,80
         on_release: root.fight()
         size_hint: None,None
@@ -322,7 +320,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Powrót"
-        pos: 850,750
+        pos_hint: {"center_x": 0.5, "center_y": 0.9}
         size: 170,80
         on_release: app.root.current = "main_menu"
         size_hint: None,None
@@ -331,8 +329,8 @@ WindowManger:
     Label:
         id: help_text
         size_hint: None,None
-        pos: 700,650
-        font_size: 20
+        pos_hint: {"x": 0.5, "y": 0.75}
+        font_size: 24
         halign: "left"
         valign: "middle"
 <Settings_menu>:
