@@ -5,6 +5,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.clock import Clock
 from kivy.core.window import Window
+from resource_path import get_resource_path
 
 class Status():
     status_list={}        
@@ -15,7 +16,8 @@ class Status():
     def load_status(self):
         data =["","","","","","","","",""]
         count = 0
-        with codecs.open("status_list.txt",'r','utf-8') as f:
+        file_path = get_resource_path("status_list.txt")
+        with codecs.open(file_path,'r','utf-8') as f:
             while True:
                 line = f.readline()
                 if not line:

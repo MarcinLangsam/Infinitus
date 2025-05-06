@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import random, codecs
+import random, codecs, os, sys
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
+from resource_path import get_resource_path
 
 global player_team_alive
 global enemy_team_alive
@@ -385,9 +386,10 @@ class Enemy(Widget):
 enemy_skills ={}
 
 def load_enemy_skill():
+    file_path = get_resource_path('enemy_skill_list.txt')
     data =["","","","","","","","","",""]
     count = 0
-    with codecs.open("enemy_skill_list.txt",'r','utf-8') as f:
+    with codecs.open(file_path,'r','utf-8') as f:
         while True:
             line = f.readline()
             if not line:

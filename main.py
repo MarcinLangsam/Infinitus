@@ -1,7 +1,7 @@
 import os
 import sys
-if sys.__stdout__ is None or sys.__stderr__ is None:
-    os.environ['KIVY_NO_CONSOLELOG'] = '1'
+#if sys.__stdout__ is None or sys.__stderr__ is None:
+#    os.environ['KIVY_NO_CONSOLELOG'] = '1'
 import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
@@ -14,6 +14,7 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.metrics import dp
+from resource_path import get_resource_path
 
 class StageProgressBar(ProgressBar):
     pass
@@ -73,6 +74,9 @@ class Main_Menu(Screen):
     def exit(self):
         quit()
     def load_game(self):
+        #save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
+        #if not os.path.exists(save_path):
+        #    save_path = "save_game.txt"
         f = open("save_game.txt")
         while True:
             line = f.readline()
@@ -130,7 +134,8 @@ class WindowManger(ScreenManager):
     settings_menu = ObjectProperty(None)
 
 screen_manager = WindowManger()
-kv = Builder.load_file("mymain.kv")
+kivy_file = get_resource_path("mymain.kv")
+kv = Builder.load_file(kivy_file)
 Window.fullscreen = "auto"
 
 

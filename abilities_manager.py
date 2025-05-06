@@ -8,6 +8,7 @@ from kivy.core.window import Window
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
+from resource_path import get_resource_path
 
 class Skill_line(Widget):
     points = ListProperty([])
@@ -38,7 +39,6 @@ class SkillSlot(Widget):
                                     skills_objects[x].sprite=(skills.skill_list[x][7])
                                     player.current_player.skill_points-=1
                                     UI.ui.skill_points_refresh(player.current_player)
-                                    #player.current_player.printBattleStats()
                                     self.new_skill_sound.play()
                                 else:
                                     tp.text_pop.text = "Poptrzeba wcześniejszych umiejętności"
@@ -76,7 +76,8 @@ class Skills():
     def load_skills(self):
         data =["","","","","","","","","","","","","","","",""]
         count = 0
-        with codecs.open("skill_list.txt",'r','utf-8') as f:
+        file_path = get_resource_path("skill_list.txt")
+        with codecs.open(file_path,'r','utf-8') as f:
             while True:
                 line = f.readline()
                 if not line:

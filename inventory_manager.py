@@ -8,6 +8,7 @@ from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
+from resource_path import get_resource_path
 
 global screen
 screen = ""
@@ -237,7 +238,8 @@ class Items(Widget):
     def load_items(self):
         data =["","","","","",0]
         count = 0
-        with codecs.open("items_list.txt",'r','utf-8') as f:
+        file_path = get_resource_path("items_list.txt")
+        with codecs.open(file_path,'r','utf-8') as f:
             while True:
                 line = f.readline()
                 if not line:

@@ -1,4 +1,4 @@
-import player,fight, text_pop as tp
+import player,fight, text_pop as tp, os
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
 
@@ -7,6 +7,7 @@ class Settings_menu(Screen):
     def exit(self):
         quit()
     def save_game(self):
+        #save_path = os.path.join(os.path.espanduser("~"), "save_game.txt")
         f = open("save_game.txt","w")
         characters = ["player.main_player","player.companion1","player.companion2"]
         for x in range(0,len(player.team)):
