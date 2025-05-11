@@ -148,7 +148,7 @@ class Fight(Screen):
         if len(enemy.enemy_team) >=2:
             self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[1].enemy_sprite,enemy.enemy_team[1].source,pos=(dp(1030),dp(460))),
                                        Image(pos=(dp(1075),dp(735)), size_hint=(0.075,0.14), source = "graphics/sprites/"+enemy.enemy_team[1].source+"_portrait.png"),
-                                       Image(pos=(dp(1044),dp(707)), size_hint=(0.0958,0.05), source = "graphics/name_holder.png"),
+                                       Image(pos=(dp(1044),dp(707)), size_hint=(0.0886,0.05), source = "graphics/name_holder.png"),
                                        EnemyHPBar(pos=(dp(1013),dp(752)), max=enemy.enemy_team[1].MAX_HP, value=enemy.enemy_team[1].HP, size_hint=(0.078,0.1)),
                                        Label(text=str(enemy.enemy_team[1].HP),pos=(dp(294),dp(380)), font_size=23, outline_width = 1),
                                        Label(text=enemy.enemy_team[1].name,pos=(dp(340),dp(297)), font_size=17, outline_width = 1)
@@ -156,8 +156,8 @@ class Fight(Screen):
         if len(enemy.enemy_team) >=3:
             self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[2].enemy_sprite,enemy.enemy_team[2].source,pos=(dp(940),dp(165))),
                                        Image(pos=(dp(1275),dp(735)), size_hint=(0.075,0.14), source = "graphics/sprites/"+enemy.enemy_team[2].source+"_portrait.png"),
-                                       Image(pos=(dp(1244),dp(707)), size_hint=(0.0958,0.05), source = "graphics/name_holder.png"),
-                                       EnemyHPBar(pos=(dp(813),dp(752)), max=enemy.enemy_team[2].MAX_HP, value=enemy.enemy_team[2].HP, size_hint=(0.078,0.1)),
+                                       Image(pos=(dp(1244),dp(707)), size_hint=(0.0886,0.05), source = "graphics/name_holder.png"),
+                                       EnemyHPBar(pos=(dp(1213),dp(752)), max=enemy.enemy_team[2].MAX_HP, value=enemy.enemy_team[2].HP, size_hint=(0.078,0.1)),
                                        Label(text=str(enemy.enemy_team[2].HP),pos=(dp(494),dp(380)), font_size=23, outline_width = 1),
                                        Label(text=enemy.enemy_team[2].name,pos=(dp(540),dp(297)), font_size=17, outline_width = 1)
                                        ])
@@ -524,11 +524,11 @@ class Fight(Screen):
 
             for x in range(0,len(self.current_turn.status)):
                 if self.current_turn in enemy.player_team_alive:
-                    self.current_turn.status[x][1].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0])-dp(40)+x*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])+dp(120))
-                    self.current_turn.status[x][2].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0])-dp(800)+x*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(303))
+                    self.current_turn.status[x][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-dp(25)+x*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])+dp(120))
+                    self.current_turn.status[x][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-dp(785)+x*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(303))
                 else:
-                    self.current_turn.status[x][1].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0])-dp(245)+x*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(220))
-                    self.current_turn.status[x][2].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0])-dp(1005)+x*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(644))
+                    self.current_turn.status[x][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-dp(25)+x*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(220))
+                    self.current_turn.status[x][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[0]-dp(785)+x*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].pos[1])-dp(644))
                 self.current_turn.status[x][2].text = str(self.current_turn.status[x][0][2])
                 self.add_widget(self.current_turn.status[x][1],-1)
                 self.add_widget(self.current_turn.status[x][2],-2)
@@ -575,11 +575,11 @@ class Fight(Screen):
                 target.status.append([se.status_effect.status_list[new_status].copy(),se.Status_Icon(se.status_effect.status_list[new_status][3],se.status_effect.status_list[new_status][6]),Label(font_size = 22)])
                 if len(target.status) != 0:
                     if target in enemy.player_team_alive:
-                        target.status[-1][1].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(40)+(len(self.current_target.status)-1)*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])+dp(120))
-                        target.status[-1][2].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(800)+(len(self.current_target.status)-1)*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(303))
+                        target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(25)+(len(self.current_target.status)-1)*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])+dp(120))
+                        target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(785)+(len(self.current_target.status)-1)*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(303))
                     else:
-                        target.status[-1][1].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(245)+(len(self.current_target.status)-1)*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(220))
-                        target.status[-1][2].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(1005)+(len(self.current_target.status)-1)*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(644))
+                        target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(25)+(len(self.current_target.status)-1)*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(220))
+                        target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(785)+(len(self.current_target.status)-1)*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(644))
                     target.status[-1][2].text = str(target.status[-1][0][2])
                     if target.status[-1][0][4] == "one_time":
                         exec(target.status[-1][0][1])
@@ -598,11 +598,11 @@ class Fight(Screen):
                 self.current_target.status.append([se.status_effect.status_list[new_status].copy(),se.Status_Icon(se.status_effect.status_list[new_status][3],se.status_effect.status_list[new_status][6]),Label(font_size = 22)])
                 if len(self.current_target.status) != 0:
                     if self.current_target in enemy.player_team_alive:
-                        self.current_target.status[-1][1].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(40)+(len(self.current_target.status)-1)*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])+dp(120))
-                        self.current_target.status[-1][2].pos = (dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(800)+(len(self.current_target.status)-1)*dp(30),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(303))
+                        self.current_target.status[-1][1].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(25)+(len(self.current_target.status)-1)*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])+dp(120))
+                        self.current_target.status[-1][2].pos = (self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(785)+(len(self.current_target.status)-1)*dp(20),dp(self.player_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(303))
                     else:
-                        self.current_target.status[-1][1].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(245)+(len(self.current_target.status)-1)*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(220))
-                        self.current_target.status[-1][2].pos = (dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0])-dp(1005)+(len(self.current_target.status)-1)*dp(30),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(644))
+                        self.current_target.status[-1][1].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(25)+(len(self.current_target.status)-1)*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(220))
+                        self.current_target.status[-1][2].pos = (self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[0]-dp(785)+(len(self.current_target.status)-1)*dp(20),dp(self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].pos[1])-dp(644))
                     self.current_target.status[-1][2].text = str(self.current_target.status[-1][0][2])
                     if self.current_target.status[-1][0][4] == "one_time":
                         exec(self.current_target.status[-1][0][1])

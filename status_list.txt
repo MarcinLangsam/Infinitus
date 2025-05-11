@@ -275,13 +275,13 @@ x.defence-=15
 ________________________________________
 klątwa
 klątwa
-self.current_target.STR_modifier -= 0.3\nself.current_target.DEX_modifier -= 0.30\nself.current_target.INT_modifier -= 0.30
+self.current_target.STR_modifier -= 0.2\nself.current_target.DEX_modifier -= 0.2\nself.current_target.INT_modifier -= 0.2
 4
 graphics/icons/klatwa_status.png
 one_time
-self.current_turn.STR_modifier += 0.3\nself.current_turn.DEX_modifier += 0.30\nself.current_turn.INT_modifier += 0.30
-Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 30%
-x.STR/=0.70\nx.DEX/=0.70\nx.INT/=0.70\nx.damage/=0.70
+self.current_turn.STR_modifier += 0.2\nself.current_turn.DEX_modifier += 0.2\nself.current_turn.INT_modifier += 0.2
+Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 20%
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 ________________________________________
 eteryczny
 eteryczny

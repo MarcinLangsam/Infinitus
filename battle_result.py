@@ -16,12 +16,12 @@ class EXPBar(ProgressBar):
 class Battle_Result(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.exp_bar_player = EXPBar(pos_hint={"center_x": 0.5, "center_y": 0.7}, size_hint_x = 0.1, max=100)
-        self.exp_bar_companion_one = EXPBar(pos_hint={"center_x": 0.5, "center_y": 0.5}, size_hint_x = 0.1, max=100) 
-        self.exp_bar_companion_two = EXPBar(pos_hint={"center_x": 0.5, "center_y": 0.3}, size_hint_x = 0.1, max=100)
-        self.exp_bar_player_text = Label(pos_hint={"center_x": 0.50, "center_y": 0.71}, font_size=25,halign="left", valign="middle", outline_width=1)
-        self.exp_bar_companion_one_text = Label(pos_hint={"center_x": 0.50, "center_y": 0.51}, font_size=25,halign="left", valign="middle", outline_width=1)
-        self.exp_bar_companion_two_text = Label(pos_hint={"center_x": 0.50, "center_y": 0.31}, font_size=25,halign="left", valign="middle", outline_width=1)
+        self.exp_bar_player = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.7}, size_hint_x = 0.1, max=100)
+        self.exp_bar_companion_one = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.5}, size_hint_x = 0.1, max=100) 
+        self.exp_bar_companion_two = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.3}, size_hint_x = 0.1, max=100)
+        self.exp_bar_player_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.71}, font_size=25,halign="left", valign="middle", outline_width=1)
+        self.exp_bar_companion_one_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.51}, font_size=25,halign="left", valign="middle", outline_width=1)
+        self.exp_bar_companion_two_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.31}, font_size=25,halign="left", valign="middle", outline_width=1)
         self.gold_gain = Label(pos_hint={'x':-0.25,'y': -0.295}, font_size=33, halign="right", valign="middle", outline_width=1)
         self.ok1 = False
         self.ok2 = False
@@ -37,9 +37,9 @@ class Battle_Result(Screen):
         self.add_widget(Image(source="graphics/menu_background.png", size=(550,90), pos_hint={"x": 0.069, "y": 0.16}, size_hint=(None,None), allow_stretch=True)) #gold widget
         self.add_widget(Image(source="graphics/shop_button.png", size=(60,60), pos_hint={"x": 0.14, "y": 0.18}, size_hint=(None,None), allow_stretch=True))
         Clock.schedule_once(self.progress_bar_start)
-        self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.4, "center_y": 0.7}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.4, "center_y": 0.5}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.4, "center_y": 0.3}))
+        self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.7}))
+        self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.5}))
+        self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.3}))
         self.add_widget(self.exp_bar_player)
         self.add_widget(self.exp_bar_companion_one)
         self.add_widget(self.exp_bar_companion_two)
@@ -83,7 +83,7 @@ class Battle_Result(Screen):
         
         if self.exp_bar_player.value >= player.main_player.EXP or self.exp_bar_player.value == self.exp_bar_player.max:
             if self.exp_bar_player.value == self.exp_bar_player.max and self.ok1 == False:
-                self.add_widget(text_pop_up("AWANS",dp(-5),dp(215)))
+                self.add_widget(text_pop_up("AWANS",dp(20),dp(215)))
                 self.ok1 = True
         else:
             self.exp_bar_player.value += 1

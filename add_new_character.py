@@ -9,7 +9,7 @@ class Add_New_Character(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.new_character = player.companion1
-        self.sprite = player.Character_Sprite(self.new_character,"one_hand",self.new_character.head,pos=(520,432-65))
+        self.sprite = player.Character_Sprite(self.new_character,"one_hand",self.new_character.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
         self.tooltip = tt.Tooltip()
         self.weapon_description = ""
         self.skill_description = ""
@@ -18,9 +18,9 @@ class Add_New_Character(Screen):
         self.class_label = Label(pos_hint={"center_x": 0.2, "center_y": 0.2}, text=self.skill_description , size_hint=(None,None), font_size=30)
         self.weapon_image = Image(pos_hint={"center_x": 0.58, "center_y": 0.2}, size=(100,100), source="", allow_stretch=True ,size_hint=(None,None))
         self.skill_image = Image(pos_hint={"center_x": 0.42, "center_y": 0.2}, size=(100,100), source="", allow_stretch=True, size_hint=(None,None))
-        self.warrior_class = Button(pos_hint={"center_x": 0.12, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.main_player,"warrior"), background_normal="graphics/warrior_class_disabled.png")
-        self.mage_class = Button(pos_hint={"center_x": 0.2, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.main_player,"mage"), background_normal="graphics/mage_class_disabled.png")
-        self.thief_class = Button(pos_hint={"center_x": 0.28, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.main_player,"rouge"), background_normal="graphics/thief_class_disabled.png")
+        self.warrior_class = Button(pos_hint={"center_x": 0.12, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.companion1,"warrior"), background_normal="graphics/warrior_class_disabled.png")
+        self.mage_class = Button(pos_hint={"center_x": 0.2, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.companion1,"mage"), background_normal="graphics/mage_class_disabled.png")
+        self.thief_class = Button(pos_hint={"center_x": 0.28, "center_y": 0.33}, size=(100,100), size_hint=(None,None), on_press = lambda y:self.set_class(player.companion1,"rouge"), background_normal="graphics/thief_class_disabled.png")
         self.portarit = (Image(source="graphics/sprites/glowa1_portrait.png", pos_hint={"center_x": 0.2, "center_y": 0.55}, size_hint=(0.1,0.17), allow_stretch=True))
         self.enter_name = TextInput(text="Podaj imię...", multiline=False, pos_hint={"center_x": 0.2, "center_y": 0.8}, size_hint=(0.2,0.06), font_size=19)
         self.current_portrait = 1

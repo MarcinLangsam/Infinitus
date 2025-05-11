@@ -411,13 +411,13 @@ def load_enemy_skill():
 load_enemy_skill()
 
                 #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
-first_enemy = Enemy("Szkielet",1,80,5,1,1,8,1,100,100,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/mała_mikstura_zdrowia.png":100},"graphics/sprites/szkielet_sprite.png","szkielet")
+first_enemy = Enemy("Szkielet",1,70,5,1,1,8,1,100,100,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/mała_mikstura_zdrowia.png":100},"graphics/sprites/szkielet_sprite.png","szkielet")
 
-skeleton1 = Enemy("Szkielet",2,80,5,1,5,12,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton2 = Enemy("Szkielet",2,80,5,1,5,12,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton3 = Enemy("Szkielet",2,80,5,1,5,12,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton1 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton2 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton3 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
 
-skeleton_priest = Enemy("Upadły kapłan",3,90,10,20,13,15,0,80,20,{
+skeleton_priest = Enemy("Upadły kapłan",3,70,10,20,13,16,0,80,20,{
                                                             "atak":enemy_skills["atak"],
                                                             "leczenie":enemy_skills["leczenie"],
                                                             "leczenie":enemy_skills["leczenie"],
@@ -428,7 +428,7 @@ skeleton_priest = Enemy("Upadły kapłan",3,90,10,20,13,15,0,80,20,{
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80},
                                                             "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan")
 
-skeleton_priest2 = Enemy("Upadły kapłan",3,85,10,20,15,15,0,80,20,{
+skeleton_priest2 = Enemy("Upadły kapłan",3,70,10,20,15,15,0,80,20,{
                                                             "atak":enemy_skills["atak"],
                                                             "leczenie":enemy_skills["leczenie"],
                                                             "leczenie":enemy_skills["leczenie"],
@@ -481,7 +481,7 @@ skeleton_warrior3 = Enemy("Szkielet Wojownik",4,170,25,5,1,24,5,50,35,{
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
 
 
-rzeznik = Enemy("Rzeznik",5,170,30,20,10,30,120,200,100,{
+rzeznik = Enemy("Rzeznik",5,185,30,20,10,30,120,200,100,{
                                                     "atak":enemy_skills["atak"],
                                                     "atak":enemy_skills["atak"],
                                                     "tortury":enemy_skills["tortury"],
@@ -501,7 +501,7 @@ zombie = Enemy("Zombie",5,150,30,10,20,30,0,60,40,{
                                             "trujące opary":enemy_skills["trujące opary"]},
                                             {"graphics/items/pikowany_pancerz.png":35,"graphics/items/maczuga_zolnierska.png":30,"graphics/items/amulet_precyzji.png":15},
                                             "graphics/sprites/zombie_sprite.png","zombie")
-zombie2 = Enemy("Zombie",5,130,25,10,20,25,5,60,40,{
+zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,60,40,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                             "podcięcie":enemy_skills["podcięcie"],
