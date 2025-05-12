@@ -76,7 +76,7 @@ graphics/items/rytualny_sztylet.png
 one_hand
 player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus += 1
 player.current_player.weapon += 4\nplayer.current_player.DEX_base+=6\nplayer.current_player.crit_chance_bonus -= 1
-Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +4[color=#00ff00]\nZręczność +4[/color]\n[color=#d9d764]nSzansa na trafienie krytyczne +1[/color]
+Rytualny Sztylet    |   BROŃ JEDNORĘCZNA\nObrażenia +4[color=#00ff00]\nZręczność +4[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +1[/color]
 200
 _______________________________________
 graphics/items/siewca_smierci.png

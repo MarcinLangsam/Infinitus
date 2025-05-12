@@ -274,23 +274,23 @@ class Fight(Screen):
     def create_target_option(self):
         if len(enemy.enemy_team) >= 1:
             enemy_name1 = enemy.enemy_team[0].name.replace(" ","\n")
-            self.target_option[0] = [Button(text=enemy_name1,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(210)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
+            self.target_option[0] = [Button(text=enemy_name1,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(215)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
         if len(enemy.enemy_team) >= 2:
             enemy_name2 = enemy.enemy_team[1].name.replace(" ","\n")
-            self.target_option[1] = [Button(text=enemy_name2,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(210)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[1]).pos]
+            self.target_option[1] = [Button(text=enemy_name2,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(215)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[1]).pos]
         if len(enemy.enemy_team) >= 3:
             enemy_name3 = enemy.enemy_team[2].name.replace(" ","\n")
-            self.target_option[2] = [Button(text=enemy_name3,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(210)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[2]).pos]
+            self.target_option[2] = [Button(text=enemy_name3,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(215)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[2]).pos]
         
         if len(team) >= 1:
-            self.target_option[3] = [Button(text=team[0].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(210)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(team[0]).pos]
+            self.target_option[3] = [Button(text=team[0].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(215)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(team[0]).pos]
         if len(team) >= 2:
-            self.target_option[4] = [Button(text=team[1].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(210)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(team[1]).pos]
+            self.target_option[4] = [Button(text=team[1].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(215)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(team[1]).pos]
         if len(team) >= 3:
-            self.target_option[5] = [Button(text=team[2].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(210)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
+            self.target_option[5] = [Button(text=team[2].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(215)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
 
-        self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(210)), on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
-        self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(210)), on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+        self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(215)), on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+        self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(215)), on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
 
 
     def set_sound_effect(self,sound_source):
@@ -312,6 +312,7 @@ class Fight(Screen):
         if (self.sprite.time > self.sprite.rate):
                 self.sprite.time -= self.sprite.rate
                 self.sprite.head = "atlas://graphics/animations/"+self.sprite.head_source+"/"+self.sprite.anim + self.animation_type + str(self.sprite.frame)
+                print(self.sprite.head)
                 self.sprite.sprite = "atlas://graphics/animations/"+self.sprite.source+"/"+self.sprite.anim + self.animation_type + str(self.sprite.frame)
                 self.sprite.weapon = "atlas://graphics/animations/"+self.sprite.weapon_source+"/"+self.sprite.weapon_source + self.animation_type + str(self.sprite.frame)
                 if(self.target_sprite==self.sprite):

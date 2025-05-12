@@ -203,7 +203,7 @@ no_effect
 ______________________________________
 13
 oprawca
-self.final_damage = self.current_turn.damage*1.5\nself.current_turn.HP += self.current_turn.damage*1.5
+self.final_damage = self.current_turn.damage*1.5\nself.current_turn.HP += int(self.current_turn.damage*0.75)
 trening wojownika I
 graphics/skills/oprawca.png
 235
@@ -212,7 +212,7 @@ graphics/skills/oprawca.png
 graphics/skills/oprawca_ok.png
 40
 active
-Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]150% Obrażeń[/color]\nZwraca zadane obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]
+Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]150% Obrażeń[/color]\nZwraca 50% zadanych obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]
 melee
 on_enemy
 oprawca_effect

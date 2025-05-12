@@ -43,6 +43,7 @@ class Character_Creation(Screen):
             self.current_portrait+=1
 
         player.main_player.head = "glowa"+str(self.current_portrait)
+        print(self.current_portrait)
         self.sprite.head_source = player.main_player.head
         self.sprite.set_head()
         self.portarit.source = self.sprite.portrait
