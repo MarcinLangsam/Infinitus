@@ -416,20 +416,37 @@ graphics/skills/magiczny_pocisk.png
 graphics/skills/magiczny_pocisk_ok.png
 70
 active
-Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przzeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 30% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 30% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
 ranged
 on_enemy
 magiczny_pocisk_effect
 graphics/sounds/magic.wav
 _________________________________________
+45
+trening maga I
+player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
+magiczny pocisk
+graphics/skills/trening_maga.png
+740
+310
+42
+graphics/skills/trening_maga_ok.png
+0
+passive
+Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]
+
+
+no_effect
+
+_________________________________________
 43
 morska bryza
 self.final_damage = 0\nself.action_status = 'morska bryza'
-magiczny pocisk
+trening maga I
 graphics/skills/morska_bryza.png
-740
-310
-41
+810
+380
+45
 graphics/skills/morska_bryza_ok.png
 50
 active
@@ -442,11 +459,11 @@ _________________________________________
 50
 uzdrowienie
 self.final_damage = int(-(self.current_turn.INT*1.3)-30)
-morska bryza
+trening maga I
 graphics/skills/uzdrowienie.png
 670
 310
-43
+45
 graphics/skills/uzdrowienie_ok.png
 50
 active
@@ -459,11 +476,11 @@ _________________________________________
 44
 pięść wichru
 self.final_damage = self.current_turn.damage+self.current_turn.INT\nself.action_status = 'pięść wichru'
-morska bryza
+trening maga I
 graphics/skills/piesc_wichru.png
 740
 380
-43
+45
 graphics/skills/piesc_wichru_ok.png
 60
 active
@@ -473,31 +490,14 @@ on_enemy
 piesc_wichru_effect
 graphics/sounds/hit2.wav
 _________________________________________
-45
-trening maga I
-player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
-kamienna skóra
-graphics/skills/trening_maga.png
-740
-520
-48
-graphics/skills/trening_maga_ok.png
-0
-passive
-Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]
-
-
-no_effect
-
-_________________________________________
 46
 zamrożenie
 self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'
-pięść wichru
+morska bryza
 graphics/skills/zamrożenie.png
 810
-380
-44
+450
+43
 graphics/skills/zamrożenie_ok.png
 70
 active
@@ -529,7 +529,7 @@ kamienna skóra
 self.final_damage = 0\nself.action_status = 'kamienna skóra'
 pięść wichru
 graphics/skills/kamienna_skóra.png
-740
+670
 450
 44
 graphics/skills/kamienna_skóra_ok.png
@@ -563,8 +563,8 @@ masowe uzdrowienie
 self.final_damage = int(-(self.current_turn.INT*)-20)
 uzdrowienie
 graphics/skills/masowe_uzdrowienie.png
-600
-310
+670
+380
 50
 graphics/skills/masowe_uzdrowienie_ok.png
 70
@@ -578,15 +578,15 @@ ______________________________________
 52
 runiczna klinga
 self.final_damage = 0\nself.action_status = 'runiczna klinga'
-syfon
+magiczny pocisk
 graphics/skills/runiczna_klinga.png
-600
+810
 240
-49
+42
 graphics/skills/runiczna_klinga_ok.png
-30
+40
 active
-Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 3 tur - [color=#fdff80]dodaje wartość inteligencji do ataku[/color]\nKoszt MP: [color=#0000ff]30[/color]
+Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje 20 do obrażeń[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_character
 obrazenia_buff_effect
@@ -595,15 +595,32 @@ __________________________________________
 53
 źródło many
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
-morska bryza
+trening maga I
 graphics/skills/zrodlo_many.png
 810
 310
-43
+45
 graphics/skills/zrodlo_many_ok.png
 0
 passive
 Źródło Many   |   PASYWNA\nZwiększa twoją manę do rzucania zaklęć .\n\n[color=#0000ff]+10 many[/color]
+
+
+no_effect
+
+__________________________________________
+54
+oświecenie
+player.current_player.MP_regen += 5
+pięść wichru
+graphics/skills/oswiecenie.png
+740
+450
+44
+graphics/skills/oswiecenie_ok.png
+0
+passive
+Oświecenie   |   PASYWNA\nNagle wszystko staje sie oczywiste.\n\n[color=#e45eff]+5 regeneracji many[/color]
 
 
 no_effect
@@ -645,16 +662,16 @@ graphics/sounds/hit3.wav
 _________________________________________
 83
 nadzwyczajna zwinność
-player.current_player.DEX_base += 3
-zatrute ostrze
+player.current_player.DEX_base += 4
+krwiopijca
 graphics/skills/nadzwyczajna_zwinność.png
-1260
-240
-81
+1330
+380
+90
 graphics/skills/nadzwyczajna_zwinność_ok.png
 0
 passive
-Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+3 zwinności[/color]
+Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+4 zwinności[/color]
 
 
 no_effect
@@ -667,7 +684,7 @@ krwiopijca
 graphics/skills/precyzja.png
 1330
 310
-86
+90
 graphics/skills/precyzja_ok.png
 0
 passive
@@ -678,30 +695,47 @@ no_effect
 
 _________________________________________
 85
-uderzenie pioruna
-self.final_damage = self.current_turn.DEX*2+self.current_turn.INT*1.5
-nadzwyczajna zwinność
+uderzenie błyskawicy
+self.final_damage = int(self.current_turn.damage + self.current_turn.DEX * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
+rozbrojenie
 graphics/skills/uderzenie_pioruna.png
 1190
 240
-83
+89
 graphics/skills/uderzenie_pioruna_ok.png
 60
 active
-Uderzenie Pioruna   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#00ff00]200%DEX[/color] + [color=#00f7ff]150%INT[/color]\nKoszt MP: [color=#0000ff]60[/color]
+Uderzenie Błyskawicy   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]60[/color]
 ranged
 on_enemy
 piorun_effect
 graphics/sounds/lighting.wav
 _________________________________________
+90
+trening łotra I
+player.current_player.DEX_base += 3\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
+rozbrojenie
+graphics/skills/trening_łotra.png
+1260
+310
+89
+graphics/skills/trening_łotra_ok.png
+0
+passive
+Trening Łotra I   |   AKTYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w łotrostwa i sprytu.\n\n[color=#00ff00]+3 zręczności[/color] [color=#de8833]+1 siły[/color] [color=#fdff80]+3% szansy na unik[/color]
+
+
+no_effect
+
+_________________________________________
 86
 krwiopijca
 self.final_damage = 0\nself.action_status = 'krwiopijca'
-nadzwyczajna zwinność
+rozbrojenie
 graphics/skills/krwiopijca.png
-1260
+1190
 310
-83
+81
 graphics/skills/krwiopijca_ok.png
 40
 active
@@ -716,7 +750,7 @@ dziedziczenie krwi
 player.current_player.skill["krwiopijca"][0] = """self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"""\nplayer.current_player.skill["krwiopijca"][6] = "on_character"
 krwiopijca
 graphics/skills/dziedziczenie_krwi.png
-1190
+1120
 310
 86
 graphics/skills/dziedziczenie_krwi_ok.png
@@ -731,11 +765,11 @@ _________________________________________
 88
 zew krwi
 self.final_damage = 0\nself.action_status = 'krwiopijca'
-dziedziczenie krwi
+ukrycie w cieniu
 graphics/skills/zew_krwi.png
-1120
-310
-87
+1260
+520
+96
 graphics/skills/zew_krwi_ok.png
 60
 active
@@ -748,11 +782,11 @@ _________________________________________
 89
 rozbrojenie
 self.final_damage = 0\nself.action_status = 'rozbrojenie'
-krwiopijca
+zatrute ostrze
 graphics/skills/rozbrojenie.png
-1330
-380
-86
+1260
+240
+81
 graphics/skills/rozbrojenie_ok.png
 40
 active
@@ -761,23 +795,6 @@ status
 on_enemy
 obrazenia_debuff_effect
 graphics/sounds/negative_effect_3.wav
-_________________________________________
-90
-trening łotra I
-player.current_player.DEX_base += 2\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
-rozprucie
-graphics/skills/trening_łotra.png
-1260
-450
-94
-graphics/skills/trening_łotra_ok.png
-0
-passive
-Trening Łotra I   |   AKTYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w łotrostwa i sprytu.\n\n[color=#00ff00]+2 zręczności[/color] [color=#de8833]+1 siły[/color] [color=#fdff80]+3% szansy na unik[/color]
-
-
-no_effect
-
 _________________________________________
 91
 parowanie
@@ -799,11 +816,11 @@ _________________________________________
 93
 źródło energi
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
-nadzwyczajna zwinność
+rozbrojenie
 graphics/skills/zrodlo_energi.png
 1330
 240
-83
+89
 graphics/skills/zrodlo_energi_ok.png
 0
 passive
@@ -816,11 +833,11 @@ _________________________________________
 94
 rozprucie
 self.final_damage = self.current_turn.damage*1.5 + self.current_turn.DEX
-krwiopijca
+trening łotra I
 graphics/skills/rozprucie.png
 1260
 380
-86
+90
 graphics/skills/rozprucie_ok.png
 40
 active
@@ -850,11 +867,11 @@ _________________________________________
 96
 ukrycie w cieniu
 self.final_damage = 0\nself.action_status = 'ukrycie w cieniu'
-trening łotra I
+rozprucie
 graphics/skills/ukrycie_w_cieniu.png
 1260
-520
-90
+450
+94
 graphics/skills/ukrycie_w_cieniu_ok.png
 70
 active

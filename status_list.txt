@@ -160,13 +160,13 @@ x.defence -= 500
 ________________________________________
 runiczna klinga
 runiczna klinga
-self.current_target.damage_bonus += self.current_target.INT
-4
+self.current_target.damage_bonus += 20
+6
 graphics/icons/runiczna_klinga_status.png
 one_time
-self.current_turn.damage_bonus -= self.current_turn.INT
-Runiczna Klinga\nDodaje statystykę inteligencji do wartości obrażeń
-x.damage_bonus -= x.INT
+self.current_turn.damage_bonus -= 20
+Runiczna Klinga\nDodaje 20 do wartości obrażeń
+x.damage_bonus -= 20
 ________________________________________
 morska bryza
 morska bryza

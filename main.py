@@ -78,7 +78,7 @@ class Main_Menu(Screen):
         #if not os.path.exists(save_path):
         #    save_path = "save_game.txt"
         f = open("save_game.txt")
-        while True:
+        while True: 
             line = f.readline()
             if not line:
                 break
