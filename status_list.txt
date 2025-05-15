@@ -51,32 +51,22 @@ _______________________________________
 zew bojowy ulepszony
 zew bojowy ulepszony
 self.current_target.damage_modifier += 0.5
-4
+5
 graphics/icons/zew_bojowy_status.png
 one_time
 self.current_turn.damage_modifier -= 0.5
 Okrzyk Bojowy\nObrażenia zwiększone o 50%
-x.STR /= 1.4\nx.damage = x.STR+x.weapon
-_______________________________________
-zew bojowy mistrz
-zew bojowy mistrz
-self.current_target.damage_modifier += 0.5
-6
-graphics/icons/zew_bojowy_status.png
-one_time
-self.current_turn.damage_modifier -= 0.5
-Okrzyk Bojowy\nObrażenia zwiększone o 50%
-x.STR /= 1.4\nx.damage = x.STR+x.weapon
+x.STR /= 1.5\nx.damage = x.STR+x.weapon
 _______________________________________
 precyzyjne ciosy
 precyzyjne ciosy
-self.current_target.crit_chance_modifier += 20
+self.current_target.crit_chance_modifier += 25
 5
 graphics/icons/precyzyjne_ciosy_status.png
 one_time
-self.current_turn.crit_chance_modifier -= 20
-Precyzyje Ciosy\nSzansza na trafienie krytyczne zwiększona o 20%
-x.crit_chance -= 20
+self.current_turn.crit_chance_modifier -= 25
+Precyzyje Ciosy\nSzansza na trafienie krytyczne zwiększona o 25%
+x.crit_chance -= 25
 _______________________________________
 aura heroizmu
 aura heroizmu
