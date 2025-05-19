@@ -161,8 +161,8 @@ Stalowa Tarcza   |   DRUGA RĘKA\nPancerz +3\n[color=#ff0000]Zdrowie +5[/color]
 _______________________________________
 graphics/items/podstepny_majcher.png
 off_hand
-player.current_player.damage_base += 2\nplayer.current_player.DEX_base += 1
-player.current_player.damage_base -= 2\nplayer.current_player.DEX_base -= 1
+player.current_player.weapon += 2\nplayer.current_player.DEX_base += 1
+player.current_player.weapon -= 2\nplayer.current_player.DEX_base -= 1
 Podstępny Majcher   |   DRUGA RĘKA\nObrażenia +2\n[color=#00ff00]Zręczność +1[/color]
 170
 _______________________________________
@@ -314,8 +314,8 @@ Amulet Prędkości    |   AKCESORIA\n[color=#d9d764]Szansa na unik +2[/color]
 _______________________________________
 graphics/items/zelazna_rekawica.png
 accessory
-player.current_player.damage_base += 4
-player.current_player.damage_base -= 4
+player.current_player.weapon += 4
+player.current_player.weapon -= 4
 Żelazna Rękawica    |   AKCESORIA\nObrażenia +4
 100
 _______________________________________
