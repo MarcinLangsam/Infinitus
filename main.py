@@ -1,7 +1,4 @@
 import os
-import sys
-#if sys.__stdout__ is None or sys.__stderr__ is None:
-#    os.environ['KIVY_NO_CONSOLELOG'] = '1'
 import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
@@ -71,13 +68,11 @@ class Main_Menu(Screen):
         super().__init__(**kw)
         mp.music_player.play_music()
 
-    def exit(self):
-        quit()
     def load_game(self):
-        #save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
-        #if not os.path.exists(save_path):
-        #    save_path = "save_game.txt"
-        f = open("save_game.txt")
+        save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
+        if not os.path.exists(save_path):
+            save_path = "save_game.txt"
+        f = open(save_path)
         while True: 
             line = f.readline()
             if not line:
@@ -89,31 +84,34 @@ class Main_Menu(Screen):
 class Tutorial(Screen):
     def start(self):
         self.ids.help_text.text = """
-        Witaj w 'NIESKOŃCZONYM LOCHU', twoim celem jest odkrycie głęboko ukrytej tajemnicy tego miejsca. Ulepszaj swoich bohaterów, zdobywaj coraz lepsze 
-        wyposarzenie aby pokonywać trudniejsze wyzwania. Do obsługi gry jest wymagana tylko myszka, masz dostęp tylko do jednego slotu zapisu swojego progressu. 
-        Z tego ekranu możesz podjąć kolneją walkę i zarządzać swoją drużyną. Aby sprawdzić pomoc do reszty mechanik po prostu kliknij na jeden z rodziałów wyrzej. 
+        Witaj w 'NIESKOŃCZONYM LOCHU', twoim celem jest odkrycie głęboko ukrytej tajemnicy tego miejsca. 
+        Ulepszaj swoich bohaterów, zdobywaj coraz lepsze wyposażenie, aby pokonywać trudniejsze wyzwania. 
+        Do obsługi gry jest wymagana tylko myszka, masz dostęp tylko do jednego slotu zapisu swojego progresu. 
+        Z tego ekranu możesz podjąć kolejną walkę i zarządzać swoją drużyną. 
+        Aby sprawdzić pomoc do reszty mechanik po prostu kliknij na jeden z rozdziałów wyżej.
         """
         self.ids.help_image.source = "graphics/help_start.png"
     def inventory_shop(self):
         self.ids.help_text.text = """
-        W ekranie ekwipunku możesz wyposarzać swoją drużynę w zdobyte przemioty, wystarczy przeciągnąć myszką na odpowiedni slot,najedź na przedmiot
-        myszką aby sprawdzić jego właściwości, tutaj możesz też sprawdzić statystyki swoich bohaterów. W ekranie sklepu możesz kupiwać oraz sprzedawać
-        przedmioty przeciagaj przemioty ze sklepu do ekwipunku aby coś kupić oraz vice versa aby coś sprzedać. O wartośći sprzedarzy bądź kupna dopwiesz
-        się najeżdżając na przedmiot myszką.
+        W ekranie ekwipunku możesz wyposażać swoją drużynę w zdobyte przedmioty, wystarczy przeciągnąć myszką na odpowiedni slot, najedź na przedmiot myszką, aby sprawdzić jego właściwości.
+        Tutaj możesz też sprawdzić statystyki swoich bohaterów. 
+        W ekranie sklepu możesz kupować oraz sprzedawać przedmioty. 
+        Przeciągaj przedmioty ze sklepu do ekwipunku, aby coś kupić oraz vice versa, aby coś sprzedać. 
+        O wartości sprzedaży bądź kupna dowiesz się najeżdżając na przedmiot myszką.
         """
         self.ids.help_image.source = "graphics/help_inventory.png"
     def progress(self):
         self.ids.help_text.text = """
-        W tym ekranie możesz uczyć swoich bohaterów nowych umiejętności, wystraczy na nie kliknąć, najedź na nie myszą aby zobaczyć opis umiejętności. 
+        W tym ekranie możesz uczyć swoich bohaterów nowych umiejętności, wystarczy na nie kliknąć, najedź na nie myszą, aby zobaczyć opis umiejętności. 
         Rozwijanie zaczyna się od dołu, nie można wybrać umiejętności bez posiadania poprzednich z drzewka.
         W ekranie ekwipunku możesz również zwiększać statystyki bohaterów. 
-        Walcząć zdobywasz punkty doświadczenia a awansując zyskujesz 1 punkt umijętności oraz 5 punktów statystyk.
+        Walcząc zdobywasz punkty doświadczenia, a awansując zyskujesz 1 punkt umiejętności oraz 5 punktów statystyk.
         """
         self.ids.help_image.source = "graphics/help_progress.png"
     def fight(self):
         self.ids.help_text.text = """
-        Walka odbywa się turowo, kolejka tur jest zależna od statytyki zręczności. Po każdej walce zdobywasz złoto oraz doświadczenie jest również 
-        procentowa szansa na zdobycie łupów w postaci przedmiotów, aby je zachować przeciągnij je do swojego ekwipunku.   
+        Walka odbywa się turowo, kolejka tur jest zależna od statystyki zręczności. 
+        Po każdej walce zdobywasz złoto oraz doświadczenie jest również  procentowa szansa na zdobycie łupów w postaci przedmiotów, aby je zachować przeciągnij je do swojego ekwipunku.
         """
         self.ids.help_image.source = "graphics/help_fight.png"
     
@@ -140,6 +138,9 @@ Window.fullscreen = "auto"
 
 
 class MyMainApp(App):
+    def exit_app(self):
+        self.stop()
+
     def build(self):
         return kv
     

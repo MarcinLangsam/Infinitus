@@ -7,8 +7,8 @@ class Settings_menu(Screen):
     def exit(self):
         quit()
     def save_game(self):
-        #save_path = os.path.join(os.path.espanduser("~"), "save_game.txt")
-        f = open("save_game.txt","w")
+        save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
+        f = open(save_path,"w")
         characters = ["player.main_player","player.companion1","player.companion2"]
         for x in range(0,len(player.team)):
            f.write(characters[x]+'.head = "'+str(player.team[x].head)+'"\n')

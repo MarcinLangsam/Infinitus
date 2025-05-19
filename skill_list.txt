@@ -729,17 +729,17 @@ no_effect
 
 _________________________________________
 85
-uderzenie błyskawicy
-self.final_damage = int(self.current_turn.damage + self.current_turn.DEX * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
-rozbrojenie
+błyskawica
+self.final_damage = int((self.current_turn.damage + self.current_turn.DEX) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
+zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
-1190
+1260
 240
-89
+81
 graphics/skills/uderzenie_pioruna_ok.png
-60
+80
 active
-Uderzenie Błyskawicy   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]60[/color]
+Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]80[/color]
 ranged
 on_enemy
 piorun_effect
@@ -748,11 +748,11 @@ _________________________________________
 90
 trening łotra I
 player.current_player.DEX_base += 3\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
-rozbrojenie
+błyskawica
 graphics/skills/trening_łotra.png
 1260
 310
-89
+85
 graphics/skills/trening_łotra_ok.png
 0
 passive
@@ -765,7 +765,7 @@ _________________________________________
 86
 krwiopijca
 self.final_damage = 0\nself.action_status = 'krwiopijca'
-rozbrojenie
+błyskawica
 graphics/skills/krwiopijca.png
 1190
 310
@@ -816,11 +816,11 @@ _________________________________________
 89
 rozbrojenie
 self.final_damage = 0\nself.action_status = 'rozbrojenie'
-zatrute ostrze
+błyskawica
 graphics/skills/rozbrojenie.png
-1260
+1190
 240
-81
+85
 graphics/skills/rozbrojenie_ok.png
 40
 active
@@ -850,11 +850,11 @@ _________________________________________
 93
 źródło energi
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
-rozbrojenie
+błyskawica
 graphics/skills/zrodlo_energi.png
 1330
 240
-89
+85
 graphics/skills/zrodlo_energi_ok.png
 0
 passive

@@ -232,7 +232,7 @@ rozbrojenie
 rozbrojenie
 self.current_target.STR_modifier -= 0.5\nself.current_target.damage_modifier -= 0.5
 4
-graphics/icons/krwiopijca_status.png
+graphics/icons/rozbrojenie_status.png
 one_time
 self.current_turn.STR_modifier += 0.5\nself.current_target.damage_modifier += 0.5
 Rozbrojenie\nSiła i obrażenia zmniejszone o 50%

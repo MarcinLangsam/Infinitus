@@ -83,7 +83,7 @@ class Battle_Result(Screen):
         
         if self.exp_bar_player.value >= player.main_player.EXP or self.exp_bar_player.value == self.exp_bar_player.max:
             if self.exp_bar_player.value == self.exp_bar_player.max and self.ok1 == False:
-                self.add_widget(text_pop_up("AWANS",dp(20),dp(215)))
+                self.add_widget(text_pop_up("AWANS",dp(80),dp(215)))
                 self.ok1 = True
         else:
             self.exp_bar_player.value += 1
@@ -91,7 +91,7 @@ class Battle_Result(Screen):
         
         if self.exp_bar_companion_one.value >= player.companion1.EXP or self.exp_bar_companion_one.value == self.exp_bar_companion_one.max:
             if self.exp_bar_companion_one.value == self.exp_bar_companion_one.max and self.ok2 == False:
-                self.add_widget(text_pop_up("AWANS",dp(125),dp(70)))
+                self.add_widget(text_pop_up("AWANS",dp(80),dp(70)))
                 self.ok2 = True
             pass    
         else:
@@ -100,7 +100,7 @@ class Battle_Result(Screen):
         
         if self.exp_bar_companion_two.value >= player.companion2.EXP or self.exp_bar_companion_two.value == self.exp_bar_companion_two.max:
             if self.exp_bar_companion_two.value == self.exp_bar_companion_two.max and self.ok3 == False:
-                self.add_widget(text_pop_up("AWANS",dp(125),dp(-220)))
+                self.add_widget(text_pop_up("AWANS",dp(80),dp(-220)))
                 self.ok3 = True
             pass
         else:
