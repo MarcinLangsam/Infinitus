@@ -373,7 +373,7 @@ no_effect
 ______________________________________
 24
 trening wojownika II
-player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MP_regen += 5
+player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen += 5
 rozplatanie
 graphics/skills/trening_siły_II.png
 235

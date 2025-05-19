@@ -154,15 +154,15 @@ Drewniana Tarcza   |   DRUGA RĘKA\nPancerz +2
 _______________________________________
 graphics/items/stalowa_tarcza.png
 off_hand
-player.current_player.defence_base += 3player.current_player.HP += 5\nplayer.current_player.MAX_HP += 5
-player.current_player.defence_base -= 3player.current_player.HP -= 5\nplayer.current_player.MAX_HP -= 5
+player.current_player.defence_base += 3\nplayer.current_player.HP += 5\nplayer.current_player.MAX_HP += 5
+player.current_player.defence_base -= 3\nplayer.current_player.HP -= 5\nplayer.current_player.MAX_HP -= 5
 Stalowa Tarcza   |   DRUGA RĘKA\nPancerz +3\n[color=#ff0000]Zdrowie +5[/color]
 300
 _______________________________________
 graphics/items/podstepny_majcher.png
 off_hand
-player.current_player.damage_base += 2player.current_player.DEX_base += 1
-player.current_player.damage_base -= 2player.current_player.DEX_base -= 1
+player.current_player.damage_base += 2\nplayer.current_player.DEX_base += 1
+player.current_player.damage_base -= 2\nplayer.current_player.DEX_base -= 1
 Podstępny Majcher   |   DRUGA RĘKA\nObrażenia +2\n[color=#00ff00]Zręczność +1[/color]
 170
 _______________________________________
