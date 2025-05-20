@@ -22,11 +22,12 @@ Wykorzystane technologie:
 - Kivy 2
 
 Obecny stan gry:
+![src1](https://github.com/user-attachments/assets/6c1ec271-0a76-41db-98e1-8744bd81e8f3)
 
-![infinitus screen 1](https://github.com/MarcinLangsam/Infinitus/assets/127155913/481e7bfc-775f-498f-8543-1d8060d4e515)
+![src2](https://github.com/user-attachments/assets/a111551b-058e-4b5d-a1e8-52e91a79fae3)
 
-![infinitus screen 2](https://github.com/MarcinLangsam/Infinitus/assets/127155913/9c7e30cc-752d-415a-86b4-6421ddd22956)
+![src3](https://github.com/user-attachments/assets/d092cdc9-c1e1-46c3-8626-6a451a2da6f4)
 
-![infinitus screen 3](https://github.com/MarcinLangsam/Infinitus/assets/127155913/8b6661cd-09b9-4fa4-a5d7-7add5de5a3c1)
+![src4](https://github.com/user-attachments/assets/56f024b8-44a9-4947-82f1-00aa929d0135)
 
-![infinitus screen 4](https://github.com/MarcinLangsam/Infinitus/assets/127155913/51009144-0c0e-4a42-b4c9-b4b3bf13c93c)
+![src5](https://github.com/user-attachments/assets/8ad5b436-4d69-4c96-9b93-7b46ce3fc938)
