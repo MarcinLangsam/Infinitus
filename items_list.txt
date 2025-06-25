@@ -142,6 +142,71 @@ player.current_player.weapon -= 5\nplayer.current_player.MAX_HP -= 5\nplayer.cur
 Miecz Półtoraręczny    |   BROŃ JEDNORĘCZNA\nObrażenia +5\n[color=#de8833]Siła +5[/color]\n[color=#ff0000]Zdrowie +5[/color]
 10
 _______________________________________
+graphics/items/berdysz_mao.png
+two_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Berdysz Mao    |   BROŃ DWURĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/halbarda_ji.png
+two_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Halbarda Ji    |   BROŃ DWURĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/jaszczurzy_kord.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Jaszczurzy Kord    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/kiel_weza.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Kieł Węża    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/kostur_kaplanski.png
+two_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Kostur Kapłański    |   BROŃ DWURĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/ostatni_bastion.png
+two_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Kostur Kapłański    |   BROŃ DWURĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/rapier.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Rapier    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/sejmitar.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Sejmitar    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+graphics/items/zaklety_oskard.png
+one_hand
+player.current_player.weapon += 5
+player.current_player.weapon -= 5
+Zaklęty Oskard    |   BROŃ JEDNORĘCZNA\nObrażenia +5
+10
+_______________________________________
+
+
 _
 _
 _________OFF HAND ITEMS ____________
@@ -210,6 +275,34 @@ player.current_player.defence_base += 10
 player.current_player.defence_base -= 10
 Kolczuga   |   PANCERZ\nPancerz +10
 1000
+_______________________________________
+graphics/items/pancerz_z_wzmocnionej_skory.png
+armor
+player.current_player.defence_base += 13
+player.current_player.defence_base -= 13
+Pancerz z Wzmocnionej Skóry   |   PANCERZ\nPancerz +13
+1500
+_______________________________________
+graphics/items/brygantyna.png
+armor
+player.current_player.defence_base += 5
+player.current_player.defence_base -= 5
+Brygantyna    |   PANCERZ\nPancerz +5
+10
+_______________________________________
+graphics/items/ozdobna_toga.png
+armor
+player.current_player.defence_base += 5
+player.current_player.defence_base -= 5
+Ozdobna Toga    |   PANCERZ\nPancerz +5
+10
+_______________________________________
+graphics/items/serce_golema.png
+armor
+player.current_player.defence_base += 5
+player.current_player.defence_base -= 5
+Serce Golema    |   PANCERZ\nPancerz +5
+10
 _______________________________________
 _
 _

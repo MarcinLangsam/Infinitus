@@ -291,7 +291,7 @@ graphics/icons/zimny_jak_lod_status.png
 one_time
 self.current_turn.damage_modifier +=0.2
 Zimny jak lód\nObrażenia zmniejszona o 20%
-x.damage/=0.8\nx.defence/=0.01
+x.damage/=0.8
 ________________________________________
 magiczna włócznia
 magiczna włócznia
@@ -451,5 +451,25 @@ graphics/icons/wybuch_status.png
 one_time
 
 Zagłada\nTo nie wygląda dobrze.
+
+________________________________________
+tchnienie śmierci
+tchnienie śmierci
+self.current_target.damage_modifier -=0.2
+5
+graphics/icons/zimny_jak_lod_status.png
+one_time
+self.current_turn.damage_modifier +=0.2
+Zimny jak lód\nObrażenia zmniejszona o 20%
+x.damage/=0.8
+________________________________________
+astralna wiedza
+astralna wiedza
+self.current_target.STR_modifier +=0.3\nself.current_target.DEX_modifier +=0.3\nself.current_target.INT_modifier +=0.3
+99
+graphics/icons/inteligencja_buff_status.png
+one_time
+self.current_turn.damage_modifier +=0.2
+Zimny jak lód\nWszystkie statystyki zwiększane o 30%
 
 ________________________________________

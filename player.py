@@ -167,7 +167,7 @@ class Character(Widget):
             28 : [dp(420),dp(380),"graphics/items/kolczuga.png","item"],
             29 : [dp(475),dp(380),"graphics/items/szata_maga.png","item"],
             30 : [dp(200),dp(325),"graphics/items/szata_maga.png","item"],
-            31 : [dp(255),dp(325),"graphics/items/empty_slot.png","item"],
+            31 : [dp(255),dp(325),"graphics/items/pancerz_z_wzmocnionej_skory.png","item"],
             32 : [dp(310),dp(325),"graphics/items/empty_slot.png","item"],
             33 : [dp(365),dp(325),"graphics/items/empty_slot.png","item"],
             34 : [dp(420),dp(325),"graphics/items/empty_slot.png","item"],

@@ -39,7 +39,7 @@ by_stauts_and_HP
 on_self
 status
 obrona_buff_effect
-graphics/sounds/positivew_effect_3.wav
+graphics/sounds/positive_effect_3.wav
 blok
 _______________________________________
 leczenie
@@ -105,7 +105,7 @@ by_stauts_and_HP
 on_self
 status
 obrazenia_buff_effect
-graphics/sounds/positivew_effect_3.wav
+graphics/sounds/positive_effect_3.wav
 magiczna włócznia
 _______________________________________
 skowyt banshee
@@ -248,7 +248,7 @@ by_HP
 on_all_character
 status
 no_effect
-graphics/sounds/positivew_effect_3.wav
+graphics/sounds/positive_effect_3.wav
 
 _______________________________________
 dotyk ghula
@@ -314,6 +314,39 @@ zagłada
 on_all_character
 ranged
 klatwa_effect
+graphics/sounds/hit2.wav
+
+_______________________________________
+tchnienie śmierci
+tchnienie śmierci
+self.final_damage = self.current_turn.INT*1.5\nself.action_status = 'tchnienie śmierci'
+by_status
+tchnienie śmierci
+on_all_character
+ranged
+klatwa_effect
+graphics/sounds/negative_effect_1.wav
+
+_______________________________________
+astralna wiedza
+astralna wiedza
+self.final_damage = 0\nself.action_status = 'astralna wiedza'
+by_HP_must_have
+0.5
+on_self
+ranged
+klatwa_effect
+graphics/sounds/positive_effect_1.wav
+
+_______________________________________
+rozplatanie
+rozplatanie
+self.final_damage = self.current_turn.STR*1.3
+0
+0
+attack
+melee
+rozplatanie_effect
 graphics/sounds/hit2.wav
 
 _______________________________________

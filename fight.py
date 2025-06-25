@@ -7,11 +7,10 @@ from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
-from kivy.properties import ObjectProperty, NumericProperty, StringProperty
+from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
-from kivy.graphics import Color, Rectangle
 
 current_stage = 1
 current_fight = 1
