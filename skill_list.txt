@@ -697,7 +697,7 @@ _________________________________________
 83
 nadzwyczajna zwinność
 player.current_player.DEX_base += 4
-krwiopijca
+trening łotra I
 graphics/skills/nadzwyczajna_zwinność.png
 1330
 380
@@ -714,7 +714,7 @@ _________________________________________
 84
 precyzja
 player.current_player.crit_chance_bonus += 3
-krwiopijca
+trening łotra I
 graphics/skills/precyzja.png
 1330
 310
@@ -884,7 +884,7 @@ _________________________________________
 95
 spokojny oddech
 self.final_damage = 0\nself.current_turn.MP += 30
-krwiopijca
+rozprucie
 graphics/skills/spokojny_oddech.png
 1190
 380

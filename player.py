@@ -82,7 +82,6 @@ class Character(Widget):
         self.DEX = 10
         self.INT = 10
 
-
         self.STR_base = 10
         self.DEX_base = 10
         self.INT_base = 10
@@ -94,7 +93,6 @@ class Character(Widget):
         self.damage_base = self.STR_base+self.weapon
         self.defence_base = 0
 
-        
         self.defence = self.defence_base
         self.crit_chance_base = round(0.1*self.DEX,2)
         self.dodge_chance_base = round(0.02*self.DEX,2)
@@ -131,7 +129,7 @@ class Character(Widget):
         self.inventory = {
             "main_hand" : [dp(600),dp(550),"graphics/items/empty_slot.png","main_hand"],
             "off_hand" : [dp(600),dp(450),"graphics/items/empty_slot.png","off_hand"],
-            "armor" : [dp(600),dp(350),"graphics/items/empty_slot.png","armor"],
+            "armor" : [dp(600),dp(350),"graphics/items/skorzany_pancerz.png","armor"],
             "accessory" : [dp(880),dp(550),"graphics/items/empty_slot.png","accessory"],
             "accessory2" : [dp(880),dp(450),"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [dp(880),dp(350),"graphics/items/empty_slot.png","accessory"],
@@ -234,8 +232,9 @@ class Character(Widget):
             94 : [dp(1220),dp(215),"graphics/items/empty_slot.png","item"],
             95 : [dp(1275),dp(215),"graphics/items/empty_slot.png","item"],
         }
-    def reset_player(self):
-        self.name = "Player"
+
+    def hard_reset_player(self):
+        #self.name = "Player"
         self.lv = 1
         self.MAX_HP = 100
         self.MAX_MP = 100
@@ -285,12 +284,61 @@ class Character(Widget):
         self.current_potions = 0
         self.inventory["main_hand"][2] = "graphics/items/empty_slot.png"
         self.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
-        self.inventory["armor"][2] = "graphics/items/empty_slot.png"
+        self.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
         self.inventory["accessory"][2] = "graphics/items/empty_slot.png"
         self.inventory["accessory2"][2] = "graphics/items/empty_slot.png"
         self.inventory["accessory3"][2] = "graphics/items/empty_slot.png"
         self.inventory["potion"][2] = "graphics/items/empty_slot.png"
+        self.blok = False
 
+    def soft_reset_player(self):
+        self.lv = 1
+        self.MAX_HP = 100
+        self.MAX_MP = 100
+        self.HP = 100
+        self.MP = 100
+        self.MP_regen = 10
+        self.STR = 10
+        self.DEX = 10
+        self.INT = 10
+
+        self.STR_base = 10
+        self.DEX_base = 10
+        self.INT_base = 10
+        self.damage_base = self.STR_base+self.weapon
+        self.defence_base = 0
+
+        self.STR_modifier = 1
+        self.DEX_modifier = 1
+        self.INT_modifier = 1
+        self.damage_modifier = 1
+        self.defence_modifier = 1
+        self.crit_chance_modifier = 0
+        self.dodge_chance_modifier = 0
+
+        self.weapon = 0
+        self.damage = self.STR+self.weapon
+        self.damage_bonus = 0
+        self.damage_special_effect = ""
+        self.defence = 0
+        self.crit_chance_base = round(0.1*self.DEX,2)
+        self.dodge_chance_base = round(0.02*self.DEX,2)
+        self.crit_chance = round(0.1*self.DEX,2)
+        self.dodge_chance = round(0.02*self.DEX,2)
+        self.EXP_boost = round(0.1*self.INT,2)
+        self.crit_chance_bonus = 0
+        self.dodge_chance_bonus = 0
+        self.EXP_boost_bonus = 0
+        self.EXP = 0
+        self.EXP_To_Lv = 100
+        self.stat_points = 0
+        self.skill_points = 30
+        self.skill = {}
+        self.status = list()
+        self.head = "glowa1"
+        self.potions = 0
+        self.potion_effect = ""
+        self.current_potions = 0
         self.blok = False
 
     def update_player_stats(self):

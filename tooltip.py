@@ -39,26 +39,3 @@ def clear_tooltip(tooltip):
 
 class Tooltip(Label):
     pass
-
-class Tooltip_Button(Button):
-    def __init__(self, description, **kwargs):
-        super().__init__(**kwargs)
-        self.description = description
-        Window.bind(mouse_pos=self.on_mouse_pos)
-        self.p = (0,0)
-        self.t = ""
-    def on_mouse_pos(self, window, pos):
-        if not self.get_root_window():
-            return
-        Clock.unschedule(self.display_tooltip)
-        self.close_tooltip()
-        if self.collide_point(*self.to_widget(*pos)):
-            self.t = self.description
-            self.p = (self.pos[0],self.pos[1]+170)
-            Clock.schedule_once(self.display_tooltip, 0.5)
-
-    def close_tooltip(self, *args):
-        clear_tooltip(self.parent.tooltip)
-    def display_tooltip(self, *args):
-        set_tooltip(self.parent.tooltip, self.t, self.p)
-

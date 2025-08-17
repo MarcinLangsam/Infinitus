@@ -103,7 +103,7 @@ _______________________________________
 graphics/items/wlocznia_straznicza.png
 two_hand_spear
 player.current_player.weapon += 5\nplayer.current_player.DEX_base+=4
-player.current_player.weapon -= 5\nplayer.current_player.DEX_base+=4
+player.current_player.weapon -= 5\nplayer.current_player.DEX_base-=4
 Topór Wojownika    |   BROŃ DWÓRĘCZNA\nObrażenia +5\n[color=#00ff00]Zręczność +4[/color]
 200
 _______________________________________
@@ -205,8 +205,6 @@ player.current_player.weapon -= 5
 Zaklęty Oskard    |   BROŃ JEDNORĘCZNA\nObrażenia +5
 10
 _______________________________________
-
-
 _
 _
 _________OFF HAND ITEMS ____________

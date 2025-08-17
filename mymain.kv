@@ -86,15 +86,11 @@ WindowManger:
         size_hint: 1,1
         allow_stretch: True
         fit_mode: "fill"
-        source: "graphics/stage1_background.png"
+        source: root.stage_background
     StageProgressBar:
         max: 10
         value: root.bar
-    Label:
-        pos_hint: {"center_x": 0.88, "center_y": 0.5}
-        font_size: 30
-        text: root.text
-
+    
 <Shop>:
     name: "shop"
     on_pre_enter: root.setup_window()
@@ -116,36 +112,40 @@ WindowManger:
     Image:
         allow_stretch: True
         size_hint: 1,1
-        source: "graphics/battle_background.png"
+        source: root.battle_background
         fit_mode: "fill"
     Button:
         id: attack
         on_release: root.action_attack()
-        pos: dp(40),dp(210)
+        pos_hint: {"x": 0.02, "y": 0.25}
         size_hint: 0.065,0.10
         background_normal: "graphics/attack_button.png"
         background_disabled_normal: "graphics/attack_button_disabled.png"
+        border: (0,0,0,0)
     Button:
         id: spells
         on_release: root.action_spells()
-        pos: dp(40),dp(330)
+        pos_hint: {"x": 0.02, "y": 0.35}
         size_hint: 0.065,0.10
         background_normal: "graphics/magic_button.png"
         background_disabled_normal: "graphics/magic_button_disabled.png"
+        border: 0,0,0,0
     Button:
         id: defend
         on_release: root.action_defend()
-        pos: dp(40),dp(450)
+        pos_hint: {"x": 0.02, "y": 0.45}
         size_hint: 0.065,0.10
         background_normal: "graphics/defend_button.png"
         background_disabled_normal: "graphics/defend_button_disabled.png"
+        border: (0,0,0,0)
     Button:
         id: potion
         on_release: root.action_potion()
-        pos: dp(40),dp(570)
+        pos_hint: {"x": 0.02, "y": 0.55}
         size_hint: 0.065,0.10
         background_normal: "graphics/potion_button.png"
         background_disabled_normal: "graphics/potion_button_disabled.png"
+        border: (0,0,0,0)
 <Game_Over>:
     name: "game_over"
     size_hint: 1, 1
@@ -225,7 +225,11 @@ WindowManger:
 <Map>:
     name: "map"
     on_pre_enter: root.setup_window()
-    size_hint: 1,1
+    Image:
+        allow_stretch: True
+        size_hint: 1,1
+        source: "graphics/plain_background.png"
+        fit_mode: "fill"
 <Main_Menu>:
     name: "main_menu"
     size_hint: 1,1
@@ -420,7 +424,7 @@ WindowManger:
     drag_timeout: 10000000
     drag_distance: 0
     size_hint: None, None   
-    size: 65,65
+    size: dp(50),dp(50)
     canvas:
         Color: 
             rgba: 1,1,1,1
@@ -485,15 +489,51 @@ WindowManger:
             rgb: 1, 1, 1
         BorderImage:
             border: (12, 12, 12, 12)
-            pos: self.x, self.center_y - 12
-            size: self.width, 48
+            pos: self.pos
+            size: self.size
             source: 'graphics/pb_bg.png'
         BorderImage:
             id: border_image
             border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
-            pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 48
+            pos: self.pos
+            size: self.width * (self.value / float(self.max)) if self.max else 0, self.height
             source: 'graphics/pb_hp.png'
+
+    Label:
+        text: str(int(root.value))
+        color: 1,1,1,1
+        font_size: 31
+        outline_width: 1
+        size: root.width, 48
+        pos: root.x, root.center_y + 10
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: 270
+                origin: root.center
+        canvas.after:
+            PopMatrix
+
+    Label:
+        text: str(int(root.max))
+        color: 1,1,1,1
+        font_size: 23
+        outline_width: 1
+        size: root.width, 48
+        pos: root.x, root.center_y - 20
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: 270
+                origin: root.center
+        canvas.after:
+            PopMatrix
 
 <-MPBar>:
     canvas.before:
@@ -508,14 +548,50 @@ WindowManger:
             rgb: 1, 1, 1
         BorderImage:
             border: (12, 12, 12, 12)
-            pos: self.x, self.center_y - 12
-            size: self.width, 48
+            pos: self.pos
+            size: self.size
             source: 'graphics/pb_bg.png'
         BorderImage:
             border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
-            pos: self.x, self.center_y - 12
-            size: self.width * (self.value / float(self.max)) if self.max else 0, 48
+            pos: self.pos
+            size: self.width * (self.value / float(self.max)) if self.max else 0, self.height
             source: 'graphics/pb_mp.png'
+        
+    Label:
+        text: str(int(root.value))
+        color: 1,1,1,1
+        font_size: 31
+        size: root.width, 48
+        pos: root.x, root.center_y + 10
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        outline_width: 1
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: 270
+                origin: root.center
+        canvas.after:
+            PopMatrix
+
+    Label:
+        text: str(int(root.max))
+        color: 1,1,1,1
+        font_size: 23
+        outline_width: 1
+        size: root.width, 48
+        pos: root.x, root.center_y - 20
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: 270
+                origin: root.center
+        canvas.after:
+            PopMatrix
 
 <-EnemyHPBar>:
     canvas.before:
@@ -539,6 +615,17 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 48
             source: 'graphics/pb_hp.png'
 
+    Label:
+        text: str(int(root.value))
+        color: 1,1,1,1
+        font_size: 25
+        size: root.width, 48
+        pos: root.x, root.center_y - 18
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        outline_width: 1
+
 <-EXPBar>:
     canvas:
         Color:
@@ -554,16 +641,21 @@ WindowManger:
             size: self.width * (self.value / float(self.max)) if self.max else 0, 40
             source: 'graphics/pb_exp.png'
 
+    Label:
+        text: "Doświadczenie: "+str(int(root.value))+"/"+str(int(root.max))
+        color: 1,1,1,1
+        font_size: 25
+        size: root.width, 48
+        pos: root.x, root.center_y - 18
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        outline_width: 1
+        
+
 <-StageProgressBar>:
-    pos_hint: {"center_x": 0.95, "center_y": 0.5}
-    size_hint_x: .40
-    canvas.before:
-        PushMatrix
-        Rotate:
-            angle: 90
-            origin: self.center
-    canvas.after:
-        PopMatrix
+    pos_hint: {"center_x": 0.5, "center_y": 0.95}
+    size_hint_x: .35
     canvas:
         Color:
             rgb: 1, 1, 1
@@ -578,6 +670,17 @@ WindowManger:
             pos: self.x, self.center_y - 12
             size: self.width * (self.value / float(self.max)) if self.max else 0, 24
             source: 'graphics/pb_stage.png'
+
+    Label:
+        text: "Postęp: "+str(int(root.value))+"/10"
+        color: 1,1,1,1
+        font_size: 23
+        size: root.width, 48
+        pos: root.x, root.center_y - 24
+        halign: 'center'
+        valign: 'middle'
+        text_size: root.width, 48
+        outline_width: 1
 
 <Skill_Record>:
     size_hint: None,None
@@ -597,19 +700,6 @@ WindowManger:
             size: 50,50
             source: self.source
             
-
-<Status_Icon>:
-    size_hint: None,None
-    size: 20,20
-    background_color:
-    canvas:
-        Color:
-            rgba: 1,1,1,1
-        Rectangle:
-            pos: self.pos
-            size: 20,20
-            source: self.source
-
 <Switch_Character_Button>:
     size_hint: 0.10,0.06
     background_normal:"graphics/target_button.png"

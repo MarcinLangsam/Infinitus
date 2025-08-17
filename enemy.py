@@ -206,7 +206,7 @@ class Enemy(Widget):
         if sort_by == "by_status":
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[value][0] == x[0][0]:
+                        if se.status_effects.status_list[value][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         self.actions.append([targets,action,name,distance,type,effect,sound])
@@ -214,7 +214,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[value][0] == y[0][0]:
+                        if se.status_effects.status_list[value][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         self.actions.append([x,action,name,distance,type,effect,sound])
@@ -222,20 +222,20 @@ class Enemy(Widget):
         if sort_by == "by_status_on":
             if type == "on_self":
                 for x in targets.status:
-                    if se.status_effect.status_list[value][0] == x[0][0]:
+                    if se.status_effects.status_list[value][0] == x[0][0]:
                         self.actions.clear()
                         self.actions.append([targets,action,name,distance,type,effect,sound])
             else:
                 for x in targets:
                     for y in x.status:
-                        if se.status_effect.status_list[value][0] == y[0][0]:
+                        if se.status_effects.status_list[value][0] == y[0][0]:
                             self.actions.clear()
                             self.actions.append([x,action,name,distance,type,effect,sound])
 
         if sort_by == "by_stauts_and_HP":
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[status][0] == x[0][0]:
+                        if se.status_effects.status_list[status][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         if targets.HP <= targets.MAX_HP*value:
@@ -244,7 +244,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[status][0] == y[0][0]:
+                        if se.status_effects.status_list[status][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         if x.HP <= x.MAX_HP*value:
@@ -253,7 +253,7 @@ class Enemy(Widget):
         if sort_by == "by_stauts_and_HP_alter":
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[status][0] == x[0][0]:
+                        if se.status_effects.status_list[status][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         if targets.HP >= targets.MAX_HP*value:
@@ -262,7 +262,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[status][0] == y[0][0]:
+                        if se.status_effects.status_list[status][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         if x.HP >= x.MAX_HP*value:
@@ -271,7 +271,7 @@ class Enemy(Widget):
         if sort_by == "by_team_must_have": #use this ability 100% when alone
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[value][0] == x[0][0]:
+                        if se.status_effects.status_list[value][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         if len(enemy_team_alive)==1:
@@ -281,7 +281,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[value][0] == y[0][0]:
+                        if se.status_effects.status_list[value][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         if len(enemy_team_alive)==1:
@@ -291,7 +291,7 @@ class Enemy(Widget):
         if sort_by == "must_have":
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[value][0] == x[0][0]:
+                        if se.status_effects.status_list[value][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         self.actions.clear()
@@ -300,7 +300,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[value][0] == y[0][0]:
+                        if se.status_effects.status_list[value][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         self.actions.clear()
@@ -309,7 +309,7 @@ class Enemy(Widget):
         if sort_by == "by_HP_must_have":
             if type == "on_self":
                     for x in targets.status:
-                        if se.status_effect.status_list[status][0] == x[0][0]:
+                        if se.status_effects.status_list[status][0] == x[0][0]:
                             ok = True
                     if ok == False:
                         if targets.HP <= targets.MAX_HP*value:
@@ -319,7 +319,7 @@ class Enemy(Widget):
                 for x in targets:
                     ok = False
                     for y in x.status:
-                        if se.status_effect.status_list[status][0] == y[0][0]:
+                        if se.status_effects.status_list[status][0] == y[0][0]:
                             ok = True
                     if ok == False:
                         if targets.HP <= targets.MAX_HP*value:
@@ -537,6 +537,13 @@ rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,30,40,15,100,200,{
                                                             {},
                                                             "graphics/sprites/rozdarta_dusza_sprite.png","rozdarta_dusza")
 
+wojownik_qin = Enemy("Wojownik Qin",6,600,30,25,20,15,13,100,200,{
+                                                            "atak":enemy_skills["atak"],
+                                                            
+                                                            },
+                                                            {},
+                                                            "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin")
+
 wlocznik_qin = Enemy("Włócznik Qin",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
@@ -608,6 +615,21 @@ przeklety_czempion = Enemy("Przeklęty Czempion",6,600,30,25,20,15,13,100,200,{
                                                             {},
                                                             "graphics/sprites/przeklety_czempion_sprite.png","przeklety_czempion")
 
+golem = Enemy("Golem",6,600,30,25,20,15,13,100,200,{
+                                                    "atak":enemy_skills["atak"],
+                                                    
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/golem_sprite.png","golem")
+
+layt = Enemy("Wiedzma Layt",6,600,30,25,20,15,13,100,200,{
+                                                    "atak":enemy_skills["atak"],
+                                                    
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/layt_sprite.png","layt")
+
+
 
 
 
@@ -630,5 +652,17 @@ story_fight = {
         8:[[skeleton_warrior,skeleton_warrior2,skeleton_warrior3],"normal"],
         9:[[skeleton_warrior,zombie,skeleton_priest],"normal"],
         10:[[death_knight],"one_time"]
+    },
+    2:{
+        1:[[rozdarta_dusza],"character"],
+        2:[[wojownik_qin,wojownik_qin],"normal"],
+        3:[[wojownik_qin,wlocznik_qin, halabardnik_qin],"normal"],
+        4:[[golem],"normal"],
+        5:[[jaszczurzy_wojownik,jaszczurzy_zabojca],"normal"],
+        6:[[jaszczurzy_czempion,jaszczurzy_wojownik,jaszczurzy_wojownik],"normal"],
+        7:[[nosiciel_swiatla,jaszczurzy_czempion, jaszczurzy_zabojca],"normal"],
+        8:[[chory_jaszczur,chory_jaszczur,chory_jaszczur],"normal"],
+        9:[[przeklety_wojownik,przeklety_czempion,przeklety_wojownik],"normal"],
+        10:[[layt,przeklety_czempion, przeklety_czempion],"one_time"]
     }
 }

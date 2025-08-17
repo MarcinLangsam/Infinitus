@@ -6,6 +6,7 @@ from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.metrics import dp
+from components.inventory_component import gold_gain_widget
 
 def text_pop_up(t,pos_x,pos_y):
     text_pop = Label(pos=(pos_x,pos_y), text=t, font_size=25, outline_width=1)
@@ -16,13 +17,9 @@ class EXPBar(ProgressBar):
 class Battle_Result(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.exp_bar_player = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.7}, size_hint_x = 0.1, max=100)
-        self.exp_bar_companion_one = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.5}, size_hint_x = 0.1, max=100) 
-        self.exp_bar_companion_two = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.3}, size_hint_x = 0.1, max=100)
-        self.exp_bar_player_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.71}, font_size=25,halign="left", valign="middle", outline_width=1)
-        self.exp_bar_companion_one_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.51}, font_size=25,halign="left", valign="middle", outline_width=1)
-        self.exp_bar_companion_two_text = Label(pos_hint={"center_x": 0.55, "center_y": 0.31}, font_size=25,halign="left", valign="middle", outline_width=1)
-        self.gold_gain = Label(pos_hint={'x':-0.25,'y': -0.295}, font_size=33, halign="right", valign="middle", outline_width=1)
+        self.exp_bar_player = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.7}, size_hint_x = 0.16, max=100)
+        self.exp_bar_companion_one = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.5}, size_hint_x = 0.16, max=100) 
+        self.exp_bar_companion_two = EXPBar(pos_hint={"center_x": 0.55, "center_y": 0.3}, size_hint_x = 0.16, max=100)
         self.ok1 = False
         self.ok2 = False
         self.ok3 = False
@@ -37,22 +34,19 @@ class Battle_Result(Screen):
         self.add_widget(Image(source="graphics/menu_background.png", size=(550,90), pos_hint={"x": 0.069, "y": 0.16}, size_hint=(None,None), allow_stretch=True)) #gold widget
         self.add_widget(Image(source="graphics/shop_button.png", size=(60,60), pos_hint={"x": 0.14, "y": 0.18}, size_hint=(None,None), allow_stretch=True))
         Clock.schedule_once(self.progress_bar_start)
-        self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.7}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.5}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.45, "center_y": 0.3}))
+        self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.7}))
+        self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.5}))
+        self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.3}))
         self.add_widget(self.exp_bar_player)
         self.add_widget(self.exp_bar_companion_one)
         self.add_widget(self.exp_bar_companion_two)
-        self.add_widget(self.exp_bar_player_text)
-        self.add_widget(self.exp_bar_companion_one_text)
-        self.add_widget(self.exp_bar_companion_two_text)
-        self.add_widget(self.gold_gain)
+        self.add_widget(gold_gain_widget)
         im.check_whitch_screen(self.manager.current)
         
         for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos=(player.main_player.inventory[x][0],player.main_player.inventory[x][1]), sprite=(player.main_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
-        self.gold_gain.text = "+"+"{0:g}".format(fight.gold_gain)
+        gold_gain_widget.update_gold_gain(fight.gold_gain)
         self.add_widget(self.tooltip)
             
     def progress_bar_start(self, instance): 
@@ -76,7 +70,6 @@ class Battle_Result(Screen):
             player.level_up(player.companion2)
   
     def next(self, dt):
-
         if self.ok1 == True and self.ok2 == True and self.ok3 == True:
 
             return False
@@ -87,8 +80,7 @@ class Battle_Result(Screen):
                 self.ok1 = True
         else:
             self.exp_bar_player.value += 1
-            self.exp_bar_player_text.text = "{0:g}".format(self.exp_bar_player.value)+" / "+str(player.main_player.EXP_To_Lv)
-        
+            
         if self.exp_bar_companion_one.value >= player.companion1.EXP or self.exp_bar_companion_one.value == self.exp_bar_companion_one.max:
             if self.exp_bar_companion_one.value == self.exp_bar_companion_one.max and self.ok2 == False:
                 self.add_widget(text_pop_up("AWANS",dp(80),dp(70)))
@@ -96,8 +88,7 @@ class Battle_Result(Screen):
             pass    
         else:
             self.exp_bar_companion_one.value += 1
-            self.exp_bar_companion_one_text.text = "{0:g}".format(self.exp_bar_companion_one.value)+" / "+str(player.companion1.EXP_To_Lv)
-        
+            
         if self.exp_bar_companion_two.value >= player.companion2.EXP or self.exp_bar_companion_two.value == self.exp_bar_companion_two.max:
             if self.exp_bar_companion_two.value == self.exp_bar_companion_two.max and self.ok3 == False:
                 self.add_widget(text_pop_up("AWANS",dp(80),dp(-220)))
@@ -105,8 +96,7 @@ class Battle_Result(Screen):
             pass
         else:
             self.exp_bar_companion_two.value += 1
-            self.exp_bar_companion_two_text.text = "{0:g}".format(self.exp_bar_companion_two.value)+" / "+str(player.companion2.EXP_To_Lv)
-
+            
     def start_fill_animation(self):
         Clock.schedule_interval(self.next, 1/70)
         

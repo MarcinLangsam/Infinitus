@@ -1,16 +1,14 @@
 import os
 import sys
 
-# Wyczyść sys.path, aby zapobiec problemom z nieprawidłowymi ścieżkami
 sys.path = [p for p in sys.path if p and isinstance(p, str) and os.path.exists(p)]
 
-# Określ folder projektu
 project_dir = os.getcwd()
 
-# Zasoby projektu
 datas = [
     (os.path.join(project_dir, 'mymain.kv'), '.'),
     (os.path.join(project_dir, 'graphics'), 'graphics'),
+    (os.path.join(project_dir, 'components'), 'components'),
     (os.path.join(project_dir, 'status_list.txt'), '.'),
     (os.path.join(project_dir, 'skill_list.txt'), '.'),
     (os.path.join(project_dir, 'save_game.txt'), '.'),
@@ -21,10 +19,8 @@ datas = [
     (os.path.join(project_dir, 'character_anim.atlas'), '.')
 ]
 
-# Binaria (pozostawiamy puste, ponieważ Kivy automatycznie dołącza potrzebne DLL-e)
 binaries = []
 
-# Ręczne określenie kluczowych modułów Kivy
 hiddenimports = [
     'kivy',
     'kivy.app',
@@ -58,7 +54,6 @@ hiddenimports = [
     'kivy.storage.jsonstore'
 ]
 
-# Konfiguracja analizy
 a = Analysis(
     ['main.py'],
     pathex=[project_dir],
@@ -73,10 +68,8 @@ a = Analysis(
     optimize=0,
 )
 
-# Tworzenie pliku PYZ
 pyz = PYZ(a.pure)
 
-# Tworzenie pliku EXE w trybie --onedir
 exe = EXE(
     pyz,
     a.scripts,
@@ -95,7 +88,6 @@ exe = EXE(
     entitlements_file=None,
 )
 
-# Zbieranie wszystkich plików w folderze (tryb --onedir)
 coll = COLLECT(
     exe,
     a.binaries,

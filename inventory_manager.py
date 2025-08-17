@@ -17,10 +17,6 @@ def check_whitch_screen(s):
     global screen
     screen = s
 
-gold_on_screen = Label(pos_hint={'x':-0.25,'y': -0.295}, font_size=33, halign="left", valign="middle", text="{0:g}".format(player.gold), outline_width = 1)
-def update_gold():
-    gold_on_screen.text = "{0:g}".format(player.gold)
-
 class ItemSlot(DragBehavior, Widget):
     sprite = StringProperty("")
     
@@ -38,6 +34,7 @@ class ItemSlot(DragBehavior, Widget):
         self.put_down_sound = SoundLoader.load("graphics/sounds/put_down.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
         self.shop_sound = SoundLoader.load("graphics/sounds/shop.wav")
+    
 
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -101,7 +98,7 @@ class ItemSlot(DragBehavior, Widget):
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                if dp(455) <= touch.pos[0] <= dp(455)+90 and dp(138) <= touch.pos[1] <= dp(138)+90 and screen == "team": ### deleting item
+                if dp(140) <= touch.pos[0] <= dp(140)+dp(50) and dp(600) <= touch.pos[1] <= dp(600)+dp(50) and screen == "team": ### usuwanie przedmiotow
                     player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
                     inventory[self.select].sprite = "graphics/items/empty_slot.png"
                     self.check_for_empty_slot()
@@ -120,19 +117,19 @@ class ItemSlot(DragBehavior, Widget):
                 if self.select in range (0,48) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                     if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
                         player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]/10)
-                        update_gold()
-                        tp.text_pop.text = "Sprzedano przedmiot"
+                        UI.ui.gold_refresh()
+                        tp.text_pop_inventory.text = "Sprzedano przedmiot"
                         self.shop_sound.play()
                         self.switch_items_in_invetory()
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]: #zakładnie przedmitów
                         if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
-                            tp.text_pop.text = "Używasz broni dwuręcznej!"
+                            tp.text_pop_inventory.text = "Używasz broni dwuręcznej!"
                             self.error_sound.play()
                         elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
-                            tp.text_pop.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
+                            tp.text_pop_inventory.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
                             self.error_sound.play()
                         elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory[self.drop][3] == "main_hand":
                             items.unequip()
@@ -148,7 +145,7 @@ class ItemSlot(DragBehavior, Widget):
                             self.put_down_sound.play()
                         else:
                             inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
-                            tp.text_pop.text = "Nie możesz założyć tutaj tego przedmiotu"
+                            tp.text_pop_inventory.text = "Nie możesz założyć tutaj tego przedmiotu"
                             self.error_sound.play()
                     elif self.drop in range(0,48):
                         if self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
@@ -165,12 +162,12 @@ class ItemSlot(DragBehavior, Widget):
                         if screen == "shop": #kupowanie przedmitów
                             if player.gold >= items.item_list[player.current_player.inventory[self.select][2]][4] and screen == "shop":
                                 player.gold -= items.item_list[player.current_player.inventory[self.select][2]][4]
-                                update_gold()
+                                UI.ui.gold_refresh()
                                 self.switch_items_in_invetory()
-                                tp.text_pop.text = "Kupiono przedmiot"
+                                tp.text_pop_inventory.text = "Kupiono przedmiot"
                                 self.shop_sound.play()
                             else:
-                                tp.text_pop.text = "Nie masz wsytarczająco złota"
+                                tp.text_pop_inventory.text = "Nie masz wsytarczająco złota"
                                 self.error_sound.play()
                                 inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
                         elif screen != "shop":

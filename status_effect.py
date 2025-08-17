@@ -56,4 +56,4 @@ class Status_Icon(Widget):
         set_tooltip_status(self.parent.tooltip,self.t, self.p)
 
 
-status_effect = Status()
+status_effects = Status()

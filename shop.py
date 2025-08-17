@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
+from components.inventory_component import gold_widget, Trash
 
 class Shop(Screen):
     def __init__(self, **kw):
@@ -20,17 +21,15 @@ class Shop(Screen):
         self.manager.current = "menu"
     def setup_window(self):
         self.add_widget(Image(source="graphics/plain_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(Image(source="graphics/menu_background.png", size=(550,90), pos_hint={"x": 0.069, "y": 0.16}, size_hint=(None,None), allow_stretch=True)) #gold widget
-        self.add_widget(Image(source="graphics/trash.png", size=(90,90), pos=(dp(455),dp(138)), size_hint=(None,None), allow_stretch=True))
-        self.add_widget(Image(source="graphics/shop_button.png", size=(60,60), pos_hint={"x": 0.14, "y": 0.18}, size_hint=(None,None), allow_stretch=True))
         
         for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
+        
 
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
-        self.add_widget(im.gold_on_screen)
-        im.update_gold()
+        self.add_widget(gold_widget)
+        self.add_widget(Trash())
         im.check_whitch_screen(self.manager.current)
         self.add_widget(tp.text_pop)
 

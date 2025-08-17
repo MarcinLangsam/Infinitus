@@ -2,24 +2,29 @@ import os
 import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
-Config.set('graphics', 'width', '1920')
-Config.set('graphics', 'height', '1080')
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import Screen
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.core.window import Window
 from kivy.uix.progressbar import ProgressBar
-from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.metrics import dp
 from resource_path import get_resource_path
+from components.bottom_menu import BottomMenu
+from components.menu_components import DynamicStageButton
 
 class StageProgressBar(ProgressBar):
     pass
 class Menu(Screen):
     bar = ObjectProperty(None)
-    text = ObjectProperty(None)
+    stage_background = StringProperty("graphics/stage1_background.png")
+    current_shop = ObjectProperty([0.12,0.4])
+    current_random_fight = ObjectProperty([0.29,0.6])
+    current_main_fight = ObjectProperty([0.82,0.66])
+                        #shop -> random fight -> main fight
+    button_placment = [[[0.12,0.4],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
+    
 
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -28,27 +33,27 @@ class Menu(Screen):
     def change_window(self,window_name):
         self.manager.current = window_name
 
-    def get_stage_background(self,current_stage):
-        if current_stage == 1:
-            return "graphics/menu_background.png"
-        elif current_stage == 2:
-            return "graphics/menu_background.png"
+    def get_stage_background(self):
+        if fight.current_stage == 1:
+            return "graphics/stage1_background.png"
+        elif fight.current_stage == 2:
+            return "graphics/stage2_background.png"
         else:
-            return "graphics/menu_background.png"
+            return "graphics/stage1_background.png"
 
     def setup_window(self):
+        self.stage_background = self.get_stage_background()
+        self.current_shop = self.button_placment[fight.current_stage-1][0]
+        self.current_random_fight = self.button_placment[fight.current_stage-1][1]
+        self.current_main_fight = self.button_placment[fight.current_stage-1][2]
         mp.music_player.change_music("graphics/music/stage1.wav")
         self.bar = fight.current_fight
-        self.text = "Postęp: "+str(int(fight.current_fight))+" / 10"
-        self.add_widget(Image(source=self.get_stage_background(fight.current_stage), size=(dp(400),dp(100)), pos_hint={"center_x": 0.5, "y": 0}, size_hint=(None,None), allow_stretch=True))
-        self.add_widget(Button(pos_hint={"center_x": 0.12, "center_y": 0.4}, size_hint=(0.1,0.18), background_normal="graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        self.add_widget(Button(pos_hint={"center_x": 0.29, "center_y": 0.6}, size_hint=(0.1,0.18), background_normal="graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
-        self.add_widget(Button(pos_hint={"center_x": 0.82, "center_y": 0.66}, size_hint=(0.1,0.18), background_normal="graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
-        self.add_widget(Button(pos_hint={"center_x": 0.435, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/team_button.png", on_press = lambda y:self.change_window("team")))
-        self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_window("skills")))
-        self.add_widget(Button(pos_hint={"center_x": 0.565, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/map_button.png", on_press = lambda y:self.change_window("map")))
-        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.05,0.09), background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         
+        self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
+        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), border=(0,0,0,0),  background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
+        self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
+        self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
+        self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
     
     def start_main_fight(self):
         enemy.enemy_team.clear()
@@ -124,24 +129,8 @@ class Tutorial(Screen):
         Po każdej walce zdobywasz złoto oraz doświadczenie jest również  procentowa szansa na zdobycie łupów w postaci przedmiotów, aby je zachować przeciągnij je do swojego ekwipunku.
         """
         self.ids.help_image.source = "graphics/help_fight.png"
-    
-class WindowManger(ScreenManager):
-    menu = ObjectProperty(None) 
-    team = ObjectProperty(None)
-    shop = ObjectProperty(None)
-    skills = ObjectProperty(None)
-    fight = ObjectProperty(None)
-    game_over = ObjectProperty(None)
-    battle_result = ObjectProperty(None)
-    character_creation = ObjectProperty(None)
-    add_new_charater = ObjectProperty(None)
-    map = ObjectProperty(None)
-    main_menu = ObjectProperty(None)
-    tutorial = ObjectProperty(None)
-    end = ObjectProperty(None)
-    settings_menu = ObjectProperty(None)
 
-screen_manager = WindowManger()
+
 kivy_file = get_resource_path("mymain.kv")
 kv = Builder.load_file(kivy_file)
 Window.fullscreen = "auto"

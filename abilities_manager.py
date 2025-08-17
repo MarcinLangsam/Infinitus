@@ -27,7 +27,7 @@ class SkillSlot(Widget):
             for x in skills.skill_list.keys():
                     if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):
                         if skills.skill_list[x][0] in player.current_player.skill:
-                            tp.text_pop.text = "Już masz tę umiejętność"
+                            tp.text_pop_abilities.text = "Już masz tę umiejętność"
                             self.error_sound.play()
                         else:
                             if player.current_player.skill_points > 0:
@@ -35,16 +35,16 @@ class SkillSlot(Widget):
                                     player.current_player.skill[skills.skill_list[x][0]] = [skills.skill_list[x][1],skills.skill_list[x][8],skills.skill_list[x][3],skills.skill_list[x][10],skills.skill_list[x][9],skills.skill_list[x][11],skills.skill_list[x][12],skills.skill_list[x][13],skills.skill_list[x][14]]
                                     if skills.skill_list[x][9] == "passive":
                                         exec(skills.skill_list[x][1])
-                                    tp.text_pop.text = "Dodano umiejętność"
+                                    tp.text_pop_abilities.text = "Dodano umiejętność"
                                     skills_objects[x].sprite=(skills.skill_list[x][7])
                                     player.current_player.skill_points-=1
                                     UI.ui.skill_points_refresh(player.current_player)
                                     self.new_skill_sound.play()
                                 else:
-                                    tp.text_pop.text = "Poptrzeba wcześniejszych umiejętności"
+                                    tp.text_pop_abilities.text = "Poptrzeba wcześniejszych umiejętności"
                                     self.error_sound.play()
                             else:
-                                tp.text_pop.text = "Nie masz punktów umiejętności"
+                                tp.text_pop_abilities.text = "Nie masz punktów umiejętności"
                                 self.error_sound.play()
                         Clock.schedule_interval(tp.clear_pop_up,3)
         else:
@@ -139,7 +139,7 @@ class Stat_Button(Button):
             player.current_player.stat_points -=1
             UI.ui.stats_refresh(player.current_player)
         else:
-            tp.text_pop.text = "Nie masz punktów statystyk"
+            tp.text_pop_abilities.text = "Nie masz punktów statystyk"
             Clock.schedule_interval(tp.clear_pop_up,3)
 
 skills = Skills()
