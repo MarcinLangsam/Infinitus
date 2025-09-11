@@ -62,7 +62,7 @@ class Fight(Screen):
         self.turn_number = 0
         self.action = ""
         self.action_status = ""
-        self.resign_button = Button(size_hint=(0.065,0.10), pos=(dp(160),dp(210)), on_press = lambda y:self.resign_action(), background_normal="graphics/back_button.png", border=(0,0,0,0))
+        self.resign_button = Button(size_hint=(None,None), size=(dp(85),dp(75)), pos_hint={"x": 0.1, "y": 0.25}, on_press = lambda y:self.resign_action(), background_normal="graphics/back_button.png", border=(0,0,0,0))
         self.enemy_team = list()
         self.battle_end = False
         self.if_attack = True
@@ -115,32 +115,32 @@ class Fight(Screen):
         self.enemy_sprites.clear()
         if len(team) >=1:
             self.player1_container = PlayerStatusContainer(team[0], self.tooltip, pos_hint={"x": 0.02, "y": 0.019})
-            self.player_sprites.append([Character_Sprite(main_player,im.items.item_list[main_player.inventory["main_hand"][2]][0],main_player.head,pos=(dp(365),dp(340))),
+            self.player_sprites.append([Character_Sprite(main_player,im.items.item_list[main_player.inventory["main_hand"][2]][0],main_player.head, pos_hint={"center_x": 0.4, "center_y": 0.57}),
                                         self.player1_container
                                         ])
         if len(team) >=2:
             self.player2_container = PlayerStatusContainer(team[1], self.tooltip, pos_hint={"x": 0.21, "y": 0.019})
-            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0],companion1.head,pos=(dp(150),dp(470))),
+            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0],companion1.head, pos_hint={"center_x": 0.25, "center_y": 0.73}),
                                         self.player2_container
                                         ])
         if len(team) >=3:
             self.player3_container = PlayerStatusContainer(team[2], self.tooltip, pos_hint={"x": 0.40, "y": 0.019})
-            self.player_sprites.append([Character_Sprite(companion2,im.items.item_list[companion2.inventory["main_hand"][2]][0],companion2.head,pos=(dp(240),dp(165))),
+            self.player_sprites.append([Character_Sprite(companion2,im.items.item_list[companion2.inventory["main_hand"][2]][0],companion2.head, pos_hint={"center_x": 0.3, "center_y": 0.45}),
                                         self.player3_container
                                         ])
         if len(enemy.enemy_team) >=1:
             self.enemy1_container = EnemyStatusContainer(enemy.enemy_team[0], self.tooltip, pos_hint={"x": 0.50, "y": 0.81})
-            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[0].enemy_sprite,enemy.enemy_team[0].source,pos=(dp(815),dp(340))),
+            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[0].enemy_sprite,enemy.enemy_team[0].source, pos_hint={"center_x": 0.6, "center_y": 0.57}),
                                        self.enemy1_container
                                        ])
         if len(enemy.enemy_team) >=2:
             self.enemy2_container = EnemyStatusContainer(enemy.enemy_team[1], self.tooltip, pos_hint={"x": 0.63, "y": 0.81})
-            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[1].enemy_sprite,enemy.enemy_team[1].source,pos=(dp(1030),dp(460))),
+            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[1].enemy_sprite,enemy.enemy_team[1].source, pos_hint={"center_x": 0.75, "center_y": 0.73}),
                                        self.enemy2_container
                                        ])
         if len(enemy.enemy_team) >=3:
             self.enemy3_container = EnemyStatusContainer(enemy.enemy_team[2], self.tooltip, pos_hint={"x": 0.75, "y": 0.81})
-            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[2].enemy_sprite,enemy.enemy_team[2].source,pos=(dp(940),dp(165))),
+            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[2].enemy_sprite,enemy.enemy_team[2].source, pos_hint={"center_x": 0.3, "center_y": 0.45}),
                                        self.enemy3_container
                                        ])
         for x in range(0,len(team)):
@@ -256,23 +256,23 @@ class Fight(Screen):
     def create_target_option(self):
         if len(enemy.enemy_team) >= 1:
             enemy_name1 = enemy.enemy_team[0].name.replace(" ","\n")
-            self.target_option[0] = [Button(text=enemy_name1,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(215)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
+            self.target_option[0] = [Button(text=enemy_name1,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.17, "y": 0.25}, on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
         if len(enemy.enemy_team) >= 2:
             enemy_name2 = enemy.enemy_team[1].name.replace(" ","\n")
-            self.target_option[1] = [Button(text=enemy_name2,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(215)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[1]).pos]
+            self.target_option[1] = [Button(text=enemy_name2,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.27, "y": 0.25}, on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[1]).pos]
         if len(enemy.enemy_team) >= 3:
             enemy_name3 = enemy.enemy_team[2].name.replace(" ","\n")
-            self.target_option[2] = [Button(text=enemy_name3,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(215)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[2]).pos]
+            self.target_option[2] = [Button(text=enemy_name3,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.37, "y": 0.25}, on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[2]).pos]
         
         if len(team) >= 1:
-            self.target_option[3] = [Button(text=team[0].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+0*dp(140),dp(215)), on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(team[0]).pos]
+            self.target_option[3] = [Button(text=team[0].name,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.17, "y": 0.25}, on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(team[0]).pos]
         if len(team) >= 2:
-            self.target_option[4] = [Button(text=team[1].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+1*dp(140),dp(215)), on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(team[1]).pos]
+            self.target_option[4] = [Button(text=team[1].name,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.27, "y": 0.25}, on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(team[1]).pos]
         if len(team) >= 3:
-            self.target_option[5] = [Button(text=team[2].name,font_size = 18,size_hint=(0.09,0.08), pos=(dp(290)+2*dp(140),dp(215)), on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
+            self.target_option[5] = [Button(text=team[2].name,font_size = 18, size_hint=(0.09,0.08), pos_hint={"x": 0.37, "y": 0.25}, on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
 
-        self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(215)), on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
-        self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18,size_hint=(0.115,0.08), pos=(dp(290)+1*dp(130),dp(215)), on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+        self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18, size_hint=(0.115,0.08), pos_hint={"x": 0.17, "y": 0.25}, on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+        self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18, size_hint=(0.115,0.08), pos_hint={"x": 0.17, "y": 0.25}, on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
 
 
     def set_sound_effect(self,sound_source):

@@ -34,7 +34,7 @@ class ItemSlot(DragBehavior, Widget):
         self.put_down_sound = SoundLoader.load("graphics/sounds/put_down.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
         self.shop_sound = SoundLoader.load("graphics/sounds/shop.wav")
-    
+        
 
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -73,27 +73,38 @@ class ItemSlot(DragBehavior, Widget):
         player.current_player.inventory[self.select][2] = inventory[self.drop].sprite
         inventory[self.drop].sprite = self.temp
         player.current_player.inventory[self.drop][2] = self.temp
-        inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+        inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
+        #inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
 
         if screen == "team":
             self.check_for_empty_slot()
 
     def on_touch_down(self, touch):
-        if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(55) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(55): 
-            for x in player.current_player.inventory.keys():
-                    if self.pos[0] == player.current_player.inventory[x][0] and self.pos[1] == player.current_player.inventory[x][1]:
+        if self.collide_point(touch.pos[0], touch.pos[1]):
+        #if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(55) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(55): 
+            for x in inventory.keys():
+                    if self.pos[0] == inventory[x].pos[0] and self.pos[1] == inventory[x].pos[1]:
                         self.select = x
                         self.check_touch = True
                         self.pick_up_sound.play()
+                        self.pos_hint = {}
+                        
         else:
             pass
         return super(ItemSlot, self).on_touch_down(touch)
     
     def on_touch_up(self, touch):
-            for x in player.current_player.inventory.keys():
-                if player.current_player.inventory[x][0] <= touch.pos[0] <= player.current_player.inventory[x][0]+dp(55) and player.current_player.inventory[x][1] <= touch.pos[1] <= player.current_player.inventory[x][1]+dp(55):
+            for x in inventory.keys():
+                #if self.collide_point(inventory[x].pos[0], inventory[x].pos[1]):
+                if inventory[x].pos[0] <= touch.pos[0] <= inventory[x].pos[0]+dp(55) and inventory[x].pos[1] <= touch.pos[1] <= inventory[x].pos[1]+dp(55) and self.select!=x:
                     self.drop = x
                     self.check_collision = True
+                    #print("----------------------------------------------")
+                    #print(str(inventory[x].pos[0])+", "+str(inventory[x].pos[1]))
+                    #print(str(inventory[x].pos[0]+dp(55))+", "+str(inventory[x].pos[1]+dp(55)))
+                    #print(str(touch.pos[0])+", "+str(touch.pos[1]))
+                    #print(self.drop)
+                    
                 else:
                     pass
             #kontrola będów i oszustwa
@@ -102,15 +113,15 @@ class ItemSlot(DragBehavior, Widget):
                     player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
                     inventory[self.select].sprite = "graphics/items/empty_slot.png"
                     self.check_for_empty_slot()
-                    inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                    inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                 else:
-                    inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])        
+                    inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}        
             if player.current_player.inventory[self.select][2] == "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy wyposażaniu
-                inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] != "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy kupowaniu
-                inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             if self.drop in range(48,95) and screen != "shop": #naprawia bug z przenoszeniem do sklepu z poziomu drużyny
-                inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             ##########################
 
             elif self.check_collision is True and self.check_touch is True:
@@ -124,11 +135,11 @@ class ItemSlot(DragBehavior, Widget):
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]: #zakładnie przedmitów
                         if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
-                            inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                            inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                             tp.text_pop_inventory.text = "Używasz broni dwuręcznej!"
                             self.error_sound.play()
                         elif self.drop == "main_hand" and items.item_list[player.current_player.inventory[self.select][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory["off_hand"][2] != "graphics/items/empty_slot.png": 
-                            inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                            inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                             tp.text_pop_inventory.text = "Potrzebujesz dwóch wolnych rąk aby używać tej broni!"
                             self.error_sound.play()
                         elif items.item_list[player.current_player.inventory[self.select][2]][0] in ["one_hand","two_hand","two_hand_sword","two_hand_spear"] and player.current_player.inventory[self.drop][3] == "main_hand":
@@ -144,7 +155,7 @@ class ItemSlot(DragBehavior, Widget):
                             self.parent.refresh_items()
                             self.put_down_sound.play()
                         else:
-                            inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                            inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                             tp.text_pop_inventory.text = "Nie możesz założyć tutaj tego przedmiotu"
                             self.error_sound.play()
                     elif self.drop in range(0,48):
@@ -169,12 +180,12 @@ class ItemSlot(DragBehavior, Widget):
                             else:
                                 tp.text_pop_inventory.text = "Nie masz wsytarczająco złota"
                                 self.error_sound.play()
-                                inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                                inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                         elif screen != "shop":
                             self.switch_items_in_invetory()
                             self.put_down_sound.play()
                     elif self.drop in range(48,95): #uniemożliwia przesuwanie przedmitów w sklepie
-                        inventory[self.select].pos=(player.current_player.inventory[self.select][0],player.current_player.inventory[self.select][1])
+                        inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                  
 
                 self.check_collision = False
@@ -191,8 +202,8 @@ class ItemSlot(DragBehavior, Widget):
         Clock.unschedule(self.display_tooltip)
         self.close_tooltip()
         if self.collide_point(*self.to_widget(*pos)) and self.check_touch == False:
-            for x in player.current_player.inventory.keys():
-                    if self.pos[0] == player.current_player.inventory[x][0] and self.pos[1] == player.current_player.inventory[x][1]:
+            for x in inventory.keys():
+                    if self.pos[0] == inventory[x].pos[0] and self.pos[1] == inventory[x].pos[1]:
                             if player.current_player.inventory[x][2] == "graphics/items/empty_slot.png":
                                 self.t = ""
                             else:
@@ -200,7 +211,7 @@ class ItemSlot(DragBehavior, Widget):
                                     self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość sprzedarzy: "+ "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]/10))
                                 else:
                                     self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość kupna: "+ "{0:g}".format(items.item_list[player.current_player.inventory[x][2]][4])
-                                self.p = (player.current_player.inventory[x][0]+40,player.current_player.inventory[x][1]+40)
+                                self.p = (self.pos[0]+25,self.pos[1])
                                 Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):

@@ -23,7 +23,9 @@ class Shop(Screen):
         self.add_widget(Image(source="graphics/plain_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         
         for x in range(0,96):
-            im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
+            #im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
+            im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
+            
             self.add_widget(im.inventory[x])
         
 
@@ -31,7 +33,7 @@ class Shop(Screen):
         self.add_widget(gold_widget)
         self.add_widget(Trash())
         im.check_whitch_screen(self.manager.current)
-        self.add_widget(tp.text_pop)
+        self.add_widget(tp.text_pop_shop)
 
         self.set_shop_content()
         self.add_widget(self.tooltip)

@@ -23,20 +23,20 @@ class Team(Screen):
         self.companion2_sprite = player.Character_Sprite(player.companion2, im.items.item_list[player.companion2.inventory["main_hand"][2]][0], player.companion2.head, pos_hint={"center_x": 0.5, "center_y": 0.65})
         self.current_sprite = self.main_player_sprite
 
-        self.main_player_button = Button(pos_hint={"center_x": 0.1, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))
-        self.companion1_button = Button(pos_hint={"center_x": 0.2, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion1.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion1))
-        self.companion2_button = Button(pos_hint={"center_x": 0.3, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion2.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion2))
+        self.main_player_button = Button(pos_hint={"center_x": 0.1, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))
+        self.companion1_button = Button(pos_hint={"center_x": 0.17, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.companion1.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion1))
+        self.companion2_button = Button(pos_hint={"center_x": 0.24, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.companion2.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion2))
         self.current_button = self.main_player_button
         self.exp_bar = EXPBar()
         self.tooltip = tt.Tooltip()
 
-        self.empty_main_hand = Image(source="graphics/items/empty_slot_main_hand.png", size=(65,65), pos=(dp(600),dp(550)), size_hint=(None,None))
-        self.empty_off_hand = Image(source="graphics/items/empty_slot_off_hand.png", size=(65,65), pos=(dp(600),dp(450)), size_hint=(None,None))
-        self.empty_armor = Image(source="graphics/items/empty_slot_armor.png", size=(65,65), pos=(dp(600),dp(350)), size_hint=(None,None))
-        self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(dp(880),dp(550)), size_hint=(None,None))
-        self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(dp(880),dp(450)), size_hint=(None,None))
-        self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size=(65,65), pos=(dp(880),dp(350)), size_hint=(None,None))
-        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size=(65,65), pos=(dp(880),dp(250)), size_hint=(None,None)) 
+        self.empty_main_hand = Image(source="graphics/items/empty_slot_main_hand.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["main_hand"][0], "y": player.current_player.inventory["main_hand"][1]}, size_hint=(None,None))
+        self.empty_off_hand = Image(source="graphics/items/empty_slot_off_hand.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["off_hand"][0], "y": player.current_player.inventory["off_hand"][1]}, size_hint=(None,None))
+        self.empty_armor = Image(source="graphics/items/empty_slot_armor.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["armor"][0], "y": player.current_player.inventory["armor"][1]}, size_hint=(None,None))
+        self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory"][0], "y": player.current_player.inventory["accessory"][1]}, size_hint=(None,None))
+        self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory2"][0], "y": player.current_player.inventory["accessory2"][1]}, size_hint=(None,None))
+        self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory3"][0], "y": player.current_player.inventory["accessory3"][1]}, size_hint=(None,None))
+        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}, size_hint=(None,None)) 
        
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -90,15 +90,15 @@ class Team(Screen):
         self.companion2_button.background_normal ="graphics/sprites/"+player.companion2.head+"_portrait.png"
 
         self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))        
-        self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
+        #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         
-        im.inventory["main_hand"] = im.ItemSlot(pos=(player.current_player.inventory["main_hand"][0],player.current_player.inventory["main_hand"][1]), sprite=(player.current_player.inventory["main_hand"][2]))
-        im.inventory["off_hand"] = im.ItemSlot(pos=(player.current_player.inventory["off_hand"][0],player.current_player.inventory["off_hand"][1]), sprite=(player.current_player.inventory["off_hand"][2]))
-        im.inventory["armor"] = im.ItemSlot(pos=(player.current_player.inventory["armor"][0],player.current_player.inventory["armor"][1]), sprite=(player.current_player.inventory["armor"][2]))
-        im.inventory["accessory"] = im.ItemSlot(pos=(player.current_player.inventory["accessory"][0],player.current_player.inventory["accessory"][1]), sprite=(player.current_player.inventory["accessory"][2]))
-        im.inventory["accessory2"] = im.ItemSlot(pos=(player.current_player.inventory["accessory2"][0],player.current_player.inventory["accessory2"][1]), sprite=(player.current_player.inventory["accessory2"][2]))
-        im.inventory["accessory3"] = im.ItemSlot(pos=(player.current_player.inventory["accessory3"][0],player.current_player.inventory["accessory3"][1]), sprite=(player.current_player.inventory["accessory3"][2]))
-        im.inventory["potion"] = im.ItemSlot(pos=(player.current_player.inventory["potion"][0],player.current_player.inventory["potion"][1]), sprite=(player.current_player.inventory["potion"][2]))
+        im.inventory["main_hand"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["main_hand"][0], "y": player.current_player.inventory["main_hand"][1]}, sprite=(player.current_player.inventory["main_hand"][2]))
+        im.inventory["off_hand"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["off_hand"][0], "y": player.current_player.inventory["off_hand"][1]}, sprite=(player.current_player.inventory["off_hand"][2]))
+        im.inventory["armor"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["armor"][0], "y": player.current_player.inventory["armor"][1]}, sprite=(player.current_player.inventory["armor"][2]))
+        im.inventory["accessory"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["accessory"][0], "y": player.current_player.inventory["accessory"][1]}, sprite=(player.current_player.inventory["accessory"][2]))
+        im.inventory["accessory2"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["accessory2"][0], "y": player.current_player.inventory["accessory2"][1]}, sprite=(player.current_player.inventory["accessory2"][2]))
+        im.inventory["accessory3"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["accessory3"][0], "y": player.current_player.inventory["accessory3"][1]}, sprite=(player.current_player.inventory["accessory3"][2]))
+        im.inventory["potion"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}, sprite=(player.current_player.inventory["potion"][2]))
         self.add_widget(im.inventory["main_hand"])
         self.add_widget(im.inventory["off_hand"])
         self.add_widget(im.inventory["armor"])
@@ -148,7 +148,8 @@ class Team(Screen):
         
         
         for x in range(0,48):
-            im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
+            #im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
+            im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
         
         self.refresh_items()

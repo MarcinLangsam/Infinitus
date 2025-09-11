@@ -8,7 +8,7 @@ class DynamicStageButton(Button):
         self.background_normal = s
         self.border = (0,0,0,0)
         self.pos_hint = {"center_x": x, "center_y": y}
-        self.size = (dp(120),dp(120))
+        self.size = (dp(150),dp(150))
         self.size_hint = (None, None)
 
     def update_rect(self, *args):

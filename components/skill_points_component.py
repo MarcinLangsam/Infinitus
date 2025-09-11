@@ -15,6 +15,7 @@ class SkillPointWidget(BoxLayout):
                 size=self.size,
             )
         self.bind(pos=self.update_rect, size=self.update_rect)
+        self.padding = dp(20)
 
         self.add_widget(Image(source="graphics/main_fight_button.png"))
         self.add_widget(UI.stats["skill_points"])

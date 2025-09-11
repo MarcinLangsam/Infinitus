@@ -19,7 +19,8 @@ class GoldWidget(BoxLayout):
         self.size = (dp(325),dp(100))
         self.pos = (dp(200), dp(110))
         self.size_hint = (None, None)
-        self.spacing = dp(120)
+        self.spacing = dp(110)
+        self.padding = dp(20)
 
         self.add_widget(Image(source="graphics/shop_button.png"))
         self.add_widget(UI.stats["gold"])
@@ -45,6 +46,7 @@ class GoldGainWidget(BoxLayout):
         self.spacing = dp(120)
         self.gold_gain = 0
         self.gold_gain_label = Label(text=str(self.gold_gain), font_size=40)
+        self.padding = dp(20)
 
         self.add_widget(Image(source="graphics/shop_button.png"))
         self.add_widget(self.gold_gain_label)
@@ -61,8 +63,8 @@ class Trash(Image):
         super(Trash, self).__init__(**kwargs)
         self.source = "graphics/trash.png"
         self.size = (dp(50),dp(50))
-        self.pos = (dp(140), dp(600))
+        self.pos_hint = {"x": 0.105, "y": 0.72}
         self.size_hint = (None, None)
 
-gold_widget = GoldWidget(size=(dp(325),dp(100)), pos=(dp(200),dp(110)), size_hint=(None,None))
+gold_widget = GoldWidget(size=(dp(325),dp(100)), pos_hint={"x": 0.138, "y": 0.16}, size_hint=(None,None))
 gold_gain_widget = GoldGainWidget(size=(dp(325),dp(100)), pos=(dp(200),dp(110)), size_hint=(None,None))

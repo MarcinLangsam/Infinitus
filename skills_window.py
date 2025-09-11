@@ -27,7 +27,7 @@ class Skills_Window(Screen):
 
     def setup_window(self):
         self.add_widget(Image(source="graphics/skills_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
+        #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(skill_point_widget)
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_window("menu")))
         

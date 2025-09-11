@@ -44,7 +44,9 @@ class Battle_Result(Screen):
         im.check_whitch_screen(self.manager.current)
         
         for x in range(0,96):
-            im.inventory[x] = im.ItemSlot(pos=(player.main_player.inventory[x][0],player.main_player.inventory[x][1]), sprite=(player.main_player.inventory[x][2]))
+            #im.inventory[x] = im.ItemSlot(pos=(player.main_player.inventory[x][0],player.main_player.inventory[x][1]), sprite=(player.main_player.inventory[x][2]))
+            im.inventory[x] = im.ItemSlot(pos_hint={"x": player.main_player.inventory[x][0], "y": player.main_player.inventory[x][1]}, sprite=(player.main_player.inventory[x][2]))
+            
             self.add_widget(im.inventory[x])
         gold_gain_widget.update_gold_gain(fight.gold_gain)
         self.add_widget(self.tooltip)
@@ -76,14 +78,14 @@ class Battle_Result(Screen):
         
         if self.exp_bar_player.value >= player.main_player.EXP or self.exp_bar_player.value == self.exp_bar_player.max:
             if self.exp_bar_player.value == self.exp_bar_player.max and self.ok1 == False:
-                self.add_widget(text_pop_up("AWANS",dp(80),dp(215)))
+                #self.add_widget(text_pop_up("AWANS",dp(80),dp(215)))
                 self.ok1 = True
         else:
             self.exp_bar_player.value += 1
             
         if self.exp_bar_companion_one.value >= player.companion1.EXP or self.exp_bar_companion_one.value == self.exp_bar_companion_one.max:
             if self.exp_bar_companion_one.value == self.exp_bar_companion_one.max and self.ok2 == False:
-                self.add_widget(text_pop_up("AWANS",dp(80),dp(70)))
+                #self.add_widget(text_pop_up("AWANS",dp(80),dp(70)))
                 self.ok2 = True
             pass    
         else:
@@ -91,7 +93,7 @@ class Battle_Result(Screen):
             
         if self.exp_bar_companion_two.value >= player.companion2.EXP or self.exp_bar_companion_two.value == self.exp_bar_companion_two.max:
             if self.exp_bar_companion_two.value == self.exp_bar_companion_two.max and self.ok3 == False:
-                self.add_widget(text_pop_up("AWANS",dp(80),dp(-220)))
+                #self.add_widget(text_pop_up("AWANS",dp(80),dp(-220)))
                 self.ok3 = True
             pass
         else:

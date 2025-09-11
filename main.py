@@ -135,7 +135,6 @@ kivy_file = get_resource_path("mymain.kv")
 kv = Builder.load_file(kivy_file)
 Window.fullscreen = "auto"
 
-
 class MyMainApp(App):
     def exit_app(self):
         self.stop()

@@ -68,7 +68,7 @@ class LabelsContainer(BoxLayout):
     def __init__(self, start, end, **kwargs):
         super(LabelsContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.padding=[60, 50, 0, 50]
+        self.padding=[60, dp(50), 0, dp(50)]
         for x in list(UI.stats.keys())[start:end]:
             self.add_widget(UI.stats[x])
 
@@ -76,7 +76,7 @@ class ValuesContainer(BoxLayout):
     def __init__(self, start, end, **kwargs):
         super(ValuesContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.padding=[0, 50, 0, 50]
+        self.padding=[0, dp(50), 0, dp(50)]
         for x in list(UI.stats.keys())[start:end]:
             self.add_widget(UI.stats[x])
 

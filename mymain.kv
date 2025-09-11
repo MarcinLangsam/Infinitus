@@ -118,7 +118,8 @@ WindowManger:
         id: attack
         on_release: root.action_attack()
         pos_hint: {"x": 0.02, "y": 0.25}
-        size_hint: 0.065,0.10
+        size: dp(85), dp(75)
+        size_hint: None,None
         background_normal: "graphics/attack_button.png"
         background_disabled_normal: "graphics/attack_button_disabled.png"
         border: (0,0,0,0)
@@ -126,7 +127,8 @@ WindowManger:
         id: spells
         on_release: root.action_spells()
         pos_hint: {"x": 0.02, "y": 0.35}
-        size_hint: 0.065,0.10
+        size: dp(85), dp(75)
+        size_hint: None,None
         background_normal: "graphics/magic_button.png"
         background_disabled_normal: "graphics/magic_button_disabled.png"
         border: 0,0,0,0
@@ -134,7 +136,8 @@ WindowManger:
         id: defend
         on_release: root.action_defend()
         pos_hint: {"x": 0.02, "y": 0.45}
-        size_hint: 0.065,0.10
+        size: dp(85), dp(75)
+        size_hint: None,None
         background_normal: "graphics/defend_button.png"
         background_disabled_normal: "graphics/defend_button_disabled.png"
         border: (0,0,0,0)
@@ -142,7 +145,8 @@ WindowManger:
         id: potion
         on_release: root.action_potion()
         pos_hint: {"x": 0.02, "y": 0.55}
-        size_hint: 0.065,0.10
+        size: dp(85), dp(75)
+        size_hint: None,None
         background_normal: "graphics/potion_button.png"
         background_disabled_normal: "graphics/potion_button_disabled.png"
         border: (0,0,0,0)

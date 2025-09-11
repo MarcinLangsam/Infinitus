@@ -9,7 +9,7 @@ class BottomMenu(BoxLayout):
         super(BottomMenu, self).__init__(**kwargs)
         self.manager = manager
         self.size_hint = (None,None)
-        self.size = (dp(300),dp(100))
+        self.size = (dp(320),dp(110))
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
@@ -19,9 +19,9 @@ class BottomMenu(BoxLayout):
             )
         self.bind(pos=self.update_rect, size=self.update_rect)
         self.spacing = dp(20)
-        self.padding = 25
+        self.padding = dp(25)
 
-        self.add_widget(Button(border=(0,0,0,0) ,background_normal="graphics/team_button.png", on_press = lambda y:self.change_screen("team")))
+        self.add_widget(Button(border=(0,0,0,0), background_normal="graphics/team_button.png", on_press = lambda y:self.change_screen("team")))
         self.add_widget(Button(border=(0,0,0,0), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_screen("skills")))
         self.add_widget(Button(border=(0,0,0,0),  background_normal="graphics/map_button.png", on_press = lambda y:self.change_screen("map")))
         
