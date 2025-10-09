@@ -8,7 +8,7 @@ from kivy.properties import ObjectProperty, StringProperty
 from kivy.clock import Clock
 from tooltip import set_tooltip_status, clear_tooltip
 from kivy.core.window import Window
-from kivy.graphics import Rectangle
+from kivy.graphics import Line, Color, Rectangle
 
 class HPBar(ProgressBar):
     pass
@@ -108,7 +108,7 @@ class PlayerStatusContainer(BoxLayout):
     def __init__(self, player, tooltip, **kwargs):
         super(PlayerStatusContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.size_hint = (None, None)
+        self.size_hint = (0.18, 0.178)
         self.height = self.minimum_height
         self.padding = 0
         self.spacing = 0
@@ -117,16 +117,14 @@ class PlayerStatusContainer(BoxLayout):
         
         self.hp_portrait_mp_container = BoxLayout(
             orientation='horizontal',
-            size_hint=(None, None),
-            size=(dp(270), dp(180)),
+            size_hint=(1, 6/10),
             padding=0,
             spacing=0
         )
 
         self.portrait = Image(
             source=f'graphics/sprites/{self.player.head}_portrait.png',
-            size_hint=(None, None),
-            size=(dp(90), dp(90)),
+            size_hint=(1/3, 1),
             allow_stretch=True,
             keep_ratio=False
         )
@@ -135,16 +133,14 @@ class PlayerStatusContainer(BoxLayout):
         self.hp_bar = HPBar(
             max=self.player.MAX_HP,
             value=self.player.HP,
-            size_hint=(None, None),
-            size=(dp(90), dp(90))
+            size_hint=(1/3, 1),
         )
         self.hp_portrait_mp_container.add_widget(self.hp_bar)
 
         self.mp_bar = MPBar(
             max=self.player.MAX_MP,
             value=self.player.MP,
-            size_hint=(None, None),
-            size=(dp(90), dp(90))
+            size_hint=(1/3, 1),
         )
         self.hp_portrait_mp_container.add_widget(self.mp_bar)
 
@@ -152,19 +148,26 @@ class PlayerStatusContainer(BoxLayout):
 
         self.name_container = NameContainer(
             self.player.name,
-            size_hint=(None, None),
-            size=(dp(270), dp(30))
+            size_hint=(1, 2/10),
         )
         self.add_widget(self.name_container)
         self.status_icons = StatusIconContainer(
             self.tooltip,
-            size_hint=(None, None),
-            size=(dp(270), dp(30)),
-            
+            size_hint=(1, 2/10),
         )
         self.add_widget(self.status_icons)
 
         self.bind(minimum_height=self.setter('height'))
+
+    def show_border(self):
+        with self.canvas.before:
+            Color(0.8,0,0,0.7)
+            self.border = Line(
+                rectangle=(self.x, self.y, self.width, self.height),
+                width=5
+            )
+    def hide_border(self):
+        self.canvas.before.clear()
 
     def update_bars(self):
         self.hp_bar.max = self.player.MAX_HP
@@ -177,7 +180,7 @@ class EnemyStatusContainer(BoxLayout):
     def __init__(self, enemy, tooltip, **kwargs):
         super(EnemyStatusContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.size_hint = (0.4, None)
+        self.size_hint = (0.115, 0.17)
         self.height = self.minimum_height
         self.padding = 0
         self.spacing = 0
@@ -187,16 +190,15 @@ class EnemyStatusContainer(BoxLayout):
 
         self.hp_portrait_mp_container = BoxLayout(
             orientation='horizontal',
-            size_hint=(None, None),
-            size=(dp(180), dp(180)),
+            size_hint=(1, 6/10),
+            height=dp(100),
             padding=0,
             spacing=0
         )
 
         self.portrait = Image(
             source=f'graphics/sprites/{self.enemy.source}_portrait.png',
-            size_hint=(None, None),
-            size=(dp(90), dp(90)),
+            size_hint=(1/3, 1),
             allow_stretch=True,
             keep_ratio=False
         )
@@ -205,8 +207,7 @@ class EnemyStatusContainer(BoxLayout):
         self.hp_bar = HPBar(
             max=self.enemy.MAX_HP,
             value=self.enemy.HP,
-            size_hint=(None, None),
-            size=(dp(90), dp(90))
+            size_hint=(1/3, 1),
         )
         self.hp_portrait_mp_container.add_widget(self.hp_bar)
 
@@ -214,19 +215,27 @@ class EnemyStatusContainer(BoxLayout):
 
         self.name_container = NameContainer(
             self.enemy.name,
-            size_hint=(None, None),
-            size=(dp(180), dp(30))
+            size_hint=(1, 2/10),
         )
         self.add_widget(self.name_container)
 
         self.status_icons = StatusIconContainer(
             self.tooltip,
-            size_hint=(None, None),
-            size=(dp(180), dp(30))
+            size_hint=(1, 2/10),
         )
         self.add_widget(self.status_icons)
 
         self.bind(minimum_height=self.setter('height'))
+
+    def show_border(self):
+        with self.canvas.before:
+            Color(0.8,0,0,0.7)
+            self.border = Line(
+                rectangle=(self.x, self.y, self.width, self.height),
+                width=5
+            )
+    def hide_border(self):
+        self.canvas.before.clear()
 
     def update_bars(self):
         self.hp_bar.max = self.enemy.MAX_HP

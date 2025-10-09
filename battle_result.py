@@ -31,8 +31,6 @@ class Battle_Result(Screen):
     def setup_window(self):
         self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
-        self.add_widget(Image(source="graphics/menu_background.png", size=(550,90), pos_hint={"x": 0.069, "y": 0.16}, size_hint=(None,None), allow_stretch=True)) #gold widget
-        self.add_widget(Image(source="graphics/shop_button.png", size=(60,60), pos_hint={"x": 0.14, "y": 0.18}, size_hint=(None,None), allow_stretch=True))
         Clock.schedule_once(self.progress_bar_start)
         self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.7}))
         self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.5}))
@@ -44,7 +42,6 @@ class Battle_Result(Screen):
         im.check_whitch_screen(self.manager.current)
         
         for x in range(0,96):
-            #im.inventory[x] = im.ItemSlot(pos=(player.main_player.inventory[x][0],player.main_player.inventory[x][1]), sprite=(player.main_player.inventory[x][2]))
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.main_player.inventory[x][0], "y": player.main_player.inventory[x][1]}, sprite=(player.main_player.inventory[x][2]))
             
             self.add_widget(im.inventory[x])

@@ -6,6 +6,7 @@ from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from components.bottom_menu import BottomMenu
 from components.skill_points_component import skill_point_widget
+from kivy.clock import Clock
 
 class Switch_Character_Button(Button):
      pass
@@ -48,20 +49,34 @@ class Skills_Window(Screen):
             self.companion2_button.background_color = (0.4,0.4,0.4,1)
             self.add_widget(self.companion2_button)    
         self.current_button.background_color = (1,1,1,1)
+
+        #for x in list(am.skills.skill_list.keys()):
+        #    if am.skills.skill_list[x][6] == "none":
+        #        pass
+        #    else:
+        #        self.add_widget(am.Skill_line(points=([dp(am.skills.skill_list[x][4])+dp(25),dp(am.skills.skill_list[x][5])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][4])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][5])+dp(25)])),-1)
+        #        #self.add_widget(am.Skill_line(points=([dp(am.skills.skill_list[x][4])+dp(25),dp(am.skills.skill_list[x][5])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][4])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][5])+dp(25)])))
+    
         
+        for x in am.skills.skill_list.keys():
+            if am.skills.skill_list[x][0] in player.current_player.skill:
+                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][7]))
+                self.add_widget(am.skills_objects[x])
+            else:
+                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][3]))
+                self.add_widget(am.skills_objects[x])
+
+        Clock.schedule_once(lambda dt: self.draw_lines(), 0)
+
+
+    def draw_lines(self):
         for x in list(am.skills.skill_list.keys()):
             if am.skills.skill_list[x][6] == "none":
                 pass
             else:
-                self.add_widget(am.Skill_line(points=([dp(am.skills.skill_list[x][4])+dp(25),dp(am.skills.skill_list[x][5])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][4])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][5])+dp(25)])))
+                self.add_widget(am.Skill_line(points=([am.skills_objects[x].pos[0]+25,am.skills_objects[x].pos[1]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[0]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[1]+25])),-1)
+                #self.add_widget(am.Skill_line(points=([dp(am.skills.skill_list[x][4])+dp(25),dp(am.skills.skill_list[x][5])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][4])+dp(25),dp(am.skills.skill_list[am.skills.skill_list[x][6]][5])+dp(25)])))
     
-        for x in am.skills.skill_list.keys():
-            if am.skills.skill_list[x][0] in player.current_player.skill:
-                am.skills_objects[x] = am.SkillSlot(pos=(dp(am.skills.skill_list[x][4]),dp(am.skills.skill_list[x][5])), sprite=(am.skills.skill_list[x][7]))
-                self.add_widget(am.skills_objects[x])
-            else:
-                am.skills_objects[x] = am.SkillSlot(pos=(dp(am.skills.skill_list[x][4]),dp(am.skills.skill_list[x][5])), sprite=(am.skills.skill_list[x][3]))
-                self.add_widget(am.skills_objects[x])
 
         self.add_widget(self.tooltip)
         

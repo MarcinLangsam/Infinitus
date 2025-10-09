@@ -18,14 +18,15 @@ class SkillSlot(Widget):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super().__init__(**kwargs)
         self.t = ""
-        self.p = 0
+        self.p = (0,0)
         self.new_skill_sound = SoundLoader.load("graphics/sounds/new_skill.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
 
     def on_touch_down(self, touch):
         if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(50) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(50): 
             for x in skills.skill_list.keys():
-                    if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):
+                    if self.pos_hint == {'center_x': skills.skill_list[x][4], 'center_y': skills.skill_list[x][5]}:
+                    #if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):
                         if skills.skill_list[x][0] in player.current_player.skill:
                             tp.text_pop_abilities.text = "Już masz tę umiejętność"
                             self.error_sound.play()
@@ -57,7 +58,8 @@ class SkillSlot(Widget):
         self.close_tooltip()
         if self.collide_point(*self.to_widget(*pos)):
             for x in skills.skill_list.keys():
-                    if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):   
+                    if self.pos_hint == {'center_x': skills.skill_list[x][4], 'center_y': skills.skill_list[x][5]}:
+                    #if self.pos[0] == dp(skills.skill_list[x][4]) and self.pos[1] == dp(skills.skill_list[x][5]):   
                             self.t = skills.skill_list[x][10]
                             self.p = (self.pos[0],self.pos[1])
             Clock.schedule_once(self.display_tooltip, 0.5)
@@ -90,7 +92,7 @@ class Skills():
                         data[count] = int(data[count])
                     count+=1             
                     if count == 16: # <--- amout of separated data for one item/skill/status, change appropriately
-                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],int(data[5]),int(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14],data[15]]
+                        self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],float(data[5]),float(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14],data[15]]
                         count=0
         
         f.close()

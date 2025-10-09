@@ -127,9 +127,9 @@ class Character(Widget):
         self.blok = False
         #skok o 0.062!!! -------------------------------------------
         self.inventory = {
-            "main_hand" : [0.4,0.7,"graphics/items/empty_slot.png","main_hand"],
-            "off_hand" : [0.4,0.6,"graphics/items/empty_slot.png","off_hand"],
-            "armor" : [0.4,0.5,"graphics/items/skorzany_pancerz.png","armor"],
+            "main_hand" : [0.38,0.7,"graphics/items/empty_slot.png","main_hand"],
+            "off_hand" : [0.38,0.6,"graphics/items/empty_slot.png","off_hand"],
+            "armor" : [0.38,0.5,"graphics/items/skorzany_pancerz.png","armor"],
             "accessory" : [0.6,0.7,"graphics/items/empty_slot.png","accessory"],
             "accessory2" : [0.6,0.6,"graphics/items/empty_slot.png","accessory"],
             "accessory3" : [0.6,0.5,"graphics/items/empty_slot.png","accessory"],

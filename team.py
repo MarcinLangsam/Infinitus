@@ -30,13 +30,13 @@ class Team(Screen):
         self.exp_bar = EXPBar()
         self.tooltip = tt.Tooltip()
 
-        self.empty_main_hand = Image(source="graphics/items/empty_slot_main_hand.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["main_hand"][0], "y": player.current_player.inventory["main_hand"][1]}, size_hint=(None,None))
-        self.empty_off_hand = Image(source="graphics/items/empty_slot_off_hand.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["off_hand"][0], "y": player.current_player.inventory["off_hand"][1]}, size_hint=(None,None))
-        self.empty_armor = Image(source="graphics/items/empty_slot_armor.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["armor"][0], "y": player.current_player.inventory["armor"][1]}, size_hint=(None,None))
-        self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory"][0], "y": player.current_player.inventory["accessory"][1]}, size_hint=(None,None))
-        self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory2"][0], "y": player.current_player.inventory["accessory2"][1]}, size_hint=(None,None))
-        self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["accessory3"][0], "y": player.current_player.inventory["accessory3"][1]}, size_hint=(None,None))
-        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size=(dp(50),dp(50)), pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}, size_hint=(None,None)) 
+        self.empty_main_hand = Image(source="graphics/items/empty_slot_main_hand.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["main_hand"][0], "y": player.current_player.inventory["main_hand"][1]})
+        self.empty_off_hand = Image(source="graphics/items/empty_slot_off_hand.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["off_hand"][0], "y": player.current_player.inventory["off_hand"][1]})
+        self.empty_armor = Image(source="graphics/items/empty_slot_armor.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["armor"][0], "y": player.current_player.inventory["armor"][1]})
+        self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory"][0], "y": player.current_player.inventory["accessory"][1]})
+        self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory2"][0], "y": player.current_player.inventory["accessory2"][1]})
+        self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory3"][0], "y": player.current_player.inventory["accessory3"][1]})
+        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}) 
        
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":

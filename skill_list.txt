@@ -19,8 +19,8 @@ zamach
 self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5
 none
 graphics/skills/zamach.png
-235
-170
+0.16
+0.13
 none
 graphics/skills/zamach_ok.png
 30
@@ -36,8 +36,8 @@ szał
 self.final_damage = 0\nself.action_status = 'szał'
 zamach
 graphics/skills/szał.png
-235
-240
+0.16
+0.21
 1
 graphics/skills/szał_ok.png
 70
@@ -53,8 +53,8 @@ cios rękojeścią
 self.final_damage = self.current_turn.STR\nself.action_status = 'ogłuszenie'
 szał
 graphics/skills/cios_rękojeścią.png
-305
-240
+0.21
+0.21
 2
 graphics/skills/cios_rękojeścią_ok.png
 20
@@ -70,8 +70,8 @@ zaciekły wojownik
 player.current_player.STR_base += 3
 zew bojowy
 graphics/skills/zaciekły_wojownik.png
-165
-240
+0.11
+0.21
 6
 graphics/skills/zaciekły_wojownik_ok.png
 0
@@ -87,8 +87,8 @@ niestrudzony obrońca
 player.current_player.HP += 15\nplayer.current_player.MAX_HP += 20
 nakładanie rąk
 graphics/skills/niestrudzony_obrońca.png
-305
-380
+0.21
+0.37
 10
 graphics/skills/niestrudzony_obrońca_ok.png
 0
@@ -104,8 +104,8 @@ zew bojowy
 self.final_damage = 0\nself.action_status = 'zew bojowy'
 szał
 graphics/skills/zew_bojowy.png
-165
-310
+0.11
+0.29
 2
 graphics/skills/zew_bojowy_ok.png
 50
@@ -121,8 +121,8 @@ okrzyk bojowy
 player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"""\nplayer.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
 zew bojowy
 graphics/skills/okrzyk_bojowy.png
-165
-380
+0.11
+0.37
 6
 graphics/skills/okrzyk_bojowy_ok.png
 0
@@ -155,8 +155,8 @@ nakładanie rąk
 self.final_damage = int(-(self.current_turn.INT*2)-50)
 szał
 graphics/skills/nakładanie_rąk.png
-305
-310
+0.21
+0.29
 2
 graphics/skills/nakładanie_rąk_ok.png
 40
@@ -172,8 +172,8 @@ trening wojownika I
 player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
 szał
 graphics/skills/trening_siły.png
-235
-310
+0.16
+0.29
 2
 graphics/skills/trening_siły_ok.png
 0
@@ -189,8 +189,8 @@ oprawca
 self.final_damage = self.current_turn.damage*1.5\nself.current_turn.HP += int(self.current_turn.damage*0.75)
 trening wojownika I
 graphics/skills/oprawca.png
-235
-380
+0.16
+0.37
 12
 graphics/skills/oprawca_ok.png
 40
@@ -206,8 +206,8 @@ rozplatanie
 self.final_damage = self.current_turn.damage+self.current_turn.HP*0.1
 oprawca
 graphics/skills/rozplatanie.png
-235
-450
+0.16
+0.45
 13
 graphics/skills/rozplatanie_ok.png
 50
@@ -223,8 +223,8 @@ szkolenie bojowe
 player.current_player.crit_chance_bonus += 3
 none
 graphics/skills/szkolenie_bojowe.png
-165
-170
+0.11
+0.13
 none
 graphics/skills/szkolenie_bojowe_ok.png
 0
@@ -240,8 +240,8 @@ precyzyjne ciosy
 self.final_damage = 0\nself.action_status = 'precyzyjne ciosy'
 barbazynca
 graphics/skills/precyzyjne_ciosy.png
-95
-450
+0.06
+0.45
 23
 graphics/skills/precyzyjne_ciosy_ok.png
 40
@@ -291,8 +291,8 @@ aura energi
 self.final_damage = 0\nself.action_status = 'aura energi'
 paladyn
 graphics/skills/aura_energi.png
-375
-450
+0.26
+0.45
 22
 graphics/skills/aura_energi_ok.png
 35
@@ -342,8 +342,8 @@ paladyn
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5
 oprawca
 graphics/skills/paladyn.png
-305
-450
+0.21
+0.45
 13
 graphics/skills/paladyn_ok.png
 0
@@ -359,8 +359,8 @@ barbazynca
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5
 oprawca
 graphics/skills/barbazynca.png
-165
-450
+0.11
+0.45
 13
 graphics/skills/barbazynca_ok.png
 0
@@ -376,8 +376,8 @@ trening wojownika II
 player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen += 5
 rozplatanie
 graphics/skills/trening_siły_II.png
-235
-520
+0.16
+0.53
 2
 graphics/skills/trening_siły_II_ok.png
 0
@@ -410,8 +410,8 @@ kula ognia
 self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
-740
-170
+0.5
+0.13
 none
 graphics/skills/kula_ognia_ok.png
 40
@@ -427,8 +427,8 @@ magiczny pocisk
 self.final_damage = self.current_turn.damage\nself.action_status = 'magiczny pocisk'
 kula ognia
 graphics/skills/magiczny_pocisk.png
-740
-240
+0.5
+0.21
 41
 graphics/skills/magiczny_pocisk_ok.png
 70
@@ -444,8 +444,8 @@ trening maga I
 player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
 magiczny pocisk
 graphics/skills/trening_maga.png
-740
-310
+0.5
+0.29
 42
 graphics/skills/trening_maga_ok.png
 0
@@ -461,8 +461,8 @@ morska bryza
 self.final_damage = 0\nself.action_status = 'morska bryza'
 trening maga I
 graphics/skills/morska_bryza.png
-810
-380
+0.55
+0.37
 45
 graphics/skills/morska_bryza_ok.png
 50
@@ -478,8 +478,8 @@ uzdrowienie
 self.final_damage = int(-(self.current_turn.INT*1.3)-30)
 trening maga I
 graphics/skills/uzdrowienie.png
-670
-310
+0.45
+0.29
 45
 graphics/skills/uzdrowienie_ok.png
 50
@@ -495,8 +495,8 @@ pięść wichru
 self.final_damage = self.current_turn.damage+self.current_turn.INT\nself.action_status = 'pięść wichru'
 trening maga I
 graphics/skills/piesc_wichru.png
-740
-380
+0.5
+0.37
 45
 graphics/skills/piesc_wichru_ok.png
 60
@@ -512,8 +512,8 @@ zamrożenie
 self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'
 morska bryza
 graphics/skills/zamrożenie.png
-810
-450
+0.55
+0.45
 43
 graphics/skills/zamrożenie_ok.png
 70
@@ -529,8 +529,8 @@ szybka nauka
 player.current_player.EXP_boost_bonus += 5 
 none
 graphics/skills/szybka_nauka.png
-810
-170
+0.55
+0.13
 none
 graphics/skills/szybka_nauka_ok.png
 0
@@ -546,8 +546,8 @@ kamienna skóra
 self.final_damage = 0\nself.action_status = 'kamienna skóra'
 pięść wichru
 graphics/skills/kamienna_skóra.png
-670
-450
+0.45
+0.45
 44
 graphics/skills/kamienna_skóra_ok.png
 35
@@ -563,8 +563,8 @@ syfon
 self.final_damage = self.current_turn.damage\nself.current_turn.MP+=int(self.current_turn.damage)
 magiczny pocisk
 graphics/skills/syfon.png
-670
-240
+0.45
+0.21
 42
 graphics/skills/syfon_ok.png
 0
@@ -580,8 +580,8 @@ masowe uzdrowienie
 self.final_damage = int(-(self.current_turn.INT*)-20)
 uzdrowienie
 graphics/skills/masowe_uzdrowienie.png
-670
-380
+0.45
+0.37
 50
 graphics/skills/masowe_uzdrowienie_ok.png
 70
@@ -597,8 +597,8 @@ runiczna klinga
 self.final_damage = 0\nself.action_status = 'runiczna klinga'
 magiczny pocisk
 graphics/skills/runiczna_klinga.png
-810
-240
+0.55
+0.21
 42
 graphics/skills/runiczna_klinga_ok.png
 40
@@ -614,8 +614,8 @@ __________________________________________
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
 trening maga I
 graphics/skills/zrodlo_many.png
-810
-310
+0.55
+0.29
 45
 graphics/skills/zrodlo_many_ok.png
 0
@@ -631,8 +631,8 @@ oświecenie
 player.current_player.MP_regen += 5
 pięść wichru
 graphics/skills/oswiecenie.png
-740
-450
+0.5
+0.45
 44
 graphics/skills/oswiecenie_ok.png
 0
@@ -648,8 +648,8 @@ trening maga II
 player.current_player.INT_base += 3\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP +=10
 oświecenie
 graphics/skills/trening_maga_II.png
-740
-520
+0.5
+0.53
 54
 graphics/skills/trening_maga_II_ok.png
 0
@@ -665,8 +665,8 @@ zatrute ostrze
 self.final_damage = 0\nself.action_status = 'zatrute ostrze'
 none
 graphics/skills/zatrute_ostrze.png
-1260
-170
+0.84
+0.13
 none
 graphics/skills/zatrute_ostrze_ok.png
 50
@@ -682,8 +682,8 @@ głębokie rany
 self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawienie'
 precyzja
 graphics/skills/głębokie_rany.png
-1400
-310
+0.94
+0.29
 84
 graphics/skills/głębokie_rany_ok.png
 100
@@ -699,8 +699,8 @@ nadzwyczajna zwinność
 player.current_player.DEX_base += 4
 trening łotra I
 graphics/skills/nadzwyczajna_zwinność.png
-1330
-380
+0.89
+0.37
 90
 graphics/skills/nadzwyczajna_zwinność_ok.png
 0
@@ -716,8 +716,8 @@ precyzja
 player.current_player.crit_chance_bonus += 3
 trening łotra I
 graphics/skills/precyzja.png
-1330
-310
+0.89
+0.29
 90
 graphics/skills/precyzja_ok.png
 0
@@ -733,8 +733,8 @@ błyskawica
 self.final_damage = int((self.current_turn.damage + self.current_turn.DEX) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
 zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
-1260
-240
+0.84
+0.21
 81
 graphics/skills/uderzenie_pioruna_ok.png
 80
@@ -750,8 +750,8 @@ trening łotra I
 player.current_player.DEX_base += 3\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
 błyskawica
 graphics/skills/trening_łotra.png
-1260
-310
+0.84
+0.29
 85
 graphics/skills/trening_łotra_ok.png
 0
@@ -767,8 +767,8 @@ krwiopijca
 self.final_damage = 0\nself.action_status = 'krwiopijca'
 błyskawica
 graphics/skills/krwiopijca.png
-1190
-310
+0.79
+0.29
 90
 graphics/skills/krwiopijca_ok.png
 40
@@ -784,8 +784,8 @@ dziedziczenie krwi
 player.current_player.skill["krwiopijca"][0] = """self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"""\nplayer.current_player.skill["krwiopijca"][6] = "on_character"
 krwiopijca
 graphics/skills/dziedziczenie_krwi.png
-1120
-310
+0.74
+0.29
 86
 graphics/skills/dziedziczenie_krwi_ok.png
 0
@@ -796,30 +796,30 @@ Krwiopijca   |   AKTYWNA\nULEPSZENIE\nKrwiopijca działa teraz 4 tury oraz na do
 krwiopijca_effect
 graphics/sounds/positive_effect_1.wav
 _________________________________________
-88
-zew krwi
-self.final_damage = 0\nself.action_status = 'krwiopijca'
-ukrycie w cieniu
-graphics/skills/zew_krwi.png
-1260
-520
-96
-graphics/skills/zew_krwi_ok.png
-60
-active
-Zew Krwi   |   AKTYWNA\nWszyscy sojusznicy są głodniu krwi i krzyków swoich wrogów.\n\nNadaje: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]60[/color]
-status
-on_all_character
-krwiopijca_effect
-graphics/sounds/positive_effect_1.wav
+_88
+_zew krwi
+_self.final_damage = 0\nself.action_status = 'krwiopijca'
+_ukrycie w cieniu
+_graphics/skills/zew_krwi.png
+_1260
+_520
+_96
+_graphics/skills/zew_krwi_ok.png
+_60
+_active
+_Zew Krwi   |   AKTYWNA\nWszyscy sojusznicy są głodniu krwi i krzyków swoich wrogów.\n\nNadaje: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]60[/color]
+_status
+_on_all_character
+_krwiopijca_effect
+_graphics/sounds/positive_effect_1.wav
 _________________________________________
 89
 rozbrojenie
 self.final_damage = 0\nself.action_status = 'rozbrojenie'
 błyskawica
 graphics/skills/rozbrojenie.png
-1190
-240
+0.79
+0.21
 85
 graphics/skills/rozbrojenie_ok.png
 40
@@ -835,8 +835,8 @@ parowanie
 player.current_player.defence_base += 2
 none
 graphics/skills/parowanie.png
-1330
-170
+0.89
+0.13
 none
 graphics/skills/parowanie_ok.png
 0
@@ -852,8 +852,8 @@ _________________________________________
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
 błyskawica
 graphics/skills/zrodlo_energi.png
-1330
-240
+0.89
+0.21
 85
 graphics/skills/zrodlo_energi_ok.png
 0
@@ -869,8 +869,8 @@ rozprucie
 self.final_damage = self.current_turn.damage*1.5 + self.current_turn.DEX
 trening łotra I
 graphics/skills/rozprucie.png
-1260
-380
+0.84
+0.37
 90
 graphics/skills/rozprucie_ok.png
 40
@@ -886,8 +886,8 @@ spokojny oddech
 self.final_damage = 0\nself.current_turn.MP += 30
 rozprucie
 graphics/skills/spokojny_oddech.png
-1190
-380
+0.79
+0.37
 94
 graphics/skills/spokojny_oddech_ok.png
 0
@@ -903,8 +903,8 @@ ukrycie w cieniu
 self.final_damage = 0\nself.action_status = 'ukrycie w cieniu'
 rozprucie
 graphics/skills/ukrycie_w_cieniu.png
-1260
-450
+0.84
+0.45
 94
 graphics/skills/ukrycie_w_cieniu_ok.png
 70
@@ -920,8 +920,8 @@ trening łotra II
 player.current_player.DEX_base += 1\nplayer.current_player.STR_base += 3\nplayer.current_player.dodge_chance_bonus += 2
 ukrycie w cieniu
 graphics/skills/trening_łotra_II.png
-1260
-520
+0.84
+0.53
 96
 graphics/skills/trening_łotra_II_ok.png
 0
