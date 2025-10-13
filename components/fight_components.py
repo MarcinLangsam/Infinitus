@@ -26,7 +26,7 @@ class StatusIcon(Image):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super(StatusIcon, self).__init__(**kwargs)
         self.size_hint = (None, None)
-        self.size = (dp(25), dp(25))
+        self.size = (dp(35), dp(35))
         self.source = source
         self.t = text
         self.description = description
@@ -34,12 +34,12 @@ class StatusIcon(Image):
         self.label = Label(
             text=self.t,
             size_hint=(None, None),
-            size=(dp(25), dp(25)),
-            pos=(self.x + (self.width - dp(25)) / 2, self.y + (self.height - dp(25)) / 2),
+            size=(dp(35), dp(35)),
+            pos=(self.x + (self.width - dp(35)) / 2, self.y + (self.height - dp(35)) / 2),
             font_size=20,
             halign='center',
             valign='middle',
-            text_size=(dp(25), dp(25))
+            text_size=(dp(35), dp(35))
         )
         self.add_widget(self.label)
 
@@ -160,14 +160,14 @@ class PlayerStatusContainer(BoxLayout):
         self.bind(minimum_height=self.setter('height'))
 
     def show_border(self):
-        with self.canvas.before:
-            Color(0.8,0,0,0.7)
+        with self.hp_portrait_mp_container.canvas.before:
+            Color(0.8,0,0,0.75)
             self.border = Line(
-                rectangle=(self.x, self.y, self.width, self.height),
-                width=5
+                rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
+                width=6
             )
     def hide_border(self):
-        self.canvas.before.clear()
+        self.hp_portrait_mp_container.canvas.before.clear()
 
     def update_bars(self):
         self.hp_bar.max = self.player.MAX_HP
@@ -228,14 +228,14 @@ class EnemyStatusContainer(BoxLayout):
         self.bind(minimum_height=self.setter('height'))
 
     def show_border(self):
-        with self.canvas.before:
-            Color(0.8,0,0,0.7)
+        with self.hp_portrait_mp_container.canvas.before:
+            Color(0.8,0,0,0.75)
             self.border = Line(
-                rectangle=(self.x, self.y, self.width, self.height),
-                width=5
+                rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
+                width=6
             )
     def hide_border(self):
-        self.canvas.before.clear()
+        self.hp_portrait_mp_container.canvas.before.clear()
 
     def update_bars(self):
         self.hp_bar.max = self.enemy.MAX_HP

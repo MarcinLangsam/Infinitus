@@ -11,7 +11,7 @@ from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
-from components.fight_components import PlayerStatusContainer, EnemyStatusContainer, StatusIcon
+from components.fight_components import PlayerStatusContainer, EnemyStatusContainer
 
 current_stage = 1
 current_fight = 1
@@ -29,10 +29,6 @@ def update_stages_progression(current):
         stage1_progress += 1
     if current == 2:
         stage2_progress += 1
-
-#def text_pop_up(t,pos_x,pos_y):
-#    text_pop = Label(pos=(pos_x,pos_y), text=t, font_size=24)
-#    return text_pop
 
 class HPBar(ProgressBar):
     pass
@@ -203,7 +199,9 @@ class Fight(Screen):
             self.aplly_stats_modifier(x)
         for x in enemy.enemy_team:
             self.aplly_stats_modifier(x)
-        self.take_action(self.turn_order[self.turn_number]) 
+        #self.take_action(self.turn_order[self.turn_number])
+
+        Clock.schedule_once(lambda dt: self.take_action(self.turn_order[self.turn_number]), 0)
 
     def battle_over(self):
         for x in team:
