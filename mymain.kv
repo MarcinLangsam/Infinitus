@@ -440,9 +440,16 @@ WindowManger:
 <SkillSlot>:
     size_hint: None, None   
     size: 50,50
+    canvas.before:
+        Color:
+            rgba: (1,1,0,self.border_alfa)
+        Line:
+            rectangle: self.x, self.y, self.width, self.height
+            width: 2
+
     canvas:
         Color: 
-            rgba: 1,1,1,1
+            rgba: (1,1,1,1)
         Rectangle:
             pos: self.pos
             size: self.size
@@ -451,9 +458,9 @@ WindowManger:
 <Skill_Line>:
     canvas:
         Color: 
-            rgba: 1,1,1,1
+            rgba: 0.8,0.8,0.8,0.6
         Line:
-            width: 4
+            width: 3
             points: self.points
                   
 <Skill_List_Pop_Up>:

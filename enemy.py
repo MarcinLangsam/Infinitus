@@ -111,10 +111,8 @@ class Enemy(Widget):
         ok = False
         if type in ["on_character","attack","on_all_character"]:
             targets = player_team_alive
-            print(player_team_alive)
         if type in ["on_enemy","on_all_enemy"]:
             targets = enemy_team_alive
-            print(enemy_team_alive)
         if type == "on_self":
             targets = current
         

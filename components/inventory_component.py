@@ -62,10 +62,8 @@ class Trash(Image):
     def __init__(self, **kwargs):
         super(Trash, self).__init__(**kwargs)
         self.source = "graphics/trash.png"
-        #self.size = (sp(50),sp(50))
         self.size_hint = (0.031,0.055)
         self.pos_hint = {"x": 0.105, "y": 0.72}
-        #self.size_hint = (None, None)
-
+        
 gold_widget = GoldWidget(size=(dp(325),dp(100)), pos_hint={"x": 0.138, "y": 0.16}, size_hint=(None,None))
 gold_gain_widget = GoldGainWidget(size=(dp(325),dp(100)), pos_hint={"x": 0.138, "y": 0.16}, size_hint=(None,None))

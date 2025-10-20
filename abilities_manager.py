@@ -2,7 +2,7 @@
 import player,UI_manager as UI, text_pop as tp, tooltip as tt, codecs
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
-from kivy.properties import StringProperty, ListProperty
+from kivy.properties import StringProperty, ListProperty, NumericProperty
 from kivy.clock import Clock
 from kivy.core.window import Window 
 from kivy.input.providers.mouse import MouseMotionEvent
@@ -14,6 +14,7 @@ class Skill_line(Widget):
     points = ListProperty([])
 class SkillSlot(Widget):
     sprite = StringProperty("")
+    border_alfa = NumericProperty(1)
     def __init__(self, **kwargs):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super().__init__(**kwargs)
@@ -40,6 +41,7 @@ class SkillSlot(Widget):
                                     skills_objects[x].sprite=(skills.skill_list[x][7])
                                     player.current_player.skill_points-=1
                                     UI.ui.skill_points_refresh(player.current_player)
+                                    self.border_alfa = 1
                                     self.new_skill_sound.play()
                                 else:
                                     tp.text_pop_abilities.text = "Poptrzeba wcześniejszych umiejętności"

@@ -24,4 +24,4 @@ class SkillPointWidget(BoxLayout):
         self.rect.pos = self.pos
         self.rect.size = self.size
 
-skill_point_widget = SkillPointWidget(pos_hint={"center_x": 0.9, "y": 0}, size=(dp(270),dp(80)), size_hint=(None,None))
+skill_point_widget = SkillPointWidget(pos_hint={"x": 0.83, "y": 0}, size_hint=(0.17, 0.09))

@@ -26,20 +26,21 @@ class StatusIcon(Image):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super(StatusIcon, self).__init__(**kwargs)
         self.size_hint = (None, None)
-        self.size = (dp(35), dp(35))
+        self.size = (dp(25), dp(25))
         self.source = source
         self.t = text
         self.description = description
+        self.allow_stretch = True
 
         self.label = Label(
             text=self.t,
             size_hint=(None, None),
-            size=(dp(35), dp(35)),
-            pos=(self.x + (self.width - dp(35)) / 2, self.y + (self.height - dp(35)) / 2),
+            size=(dp(25), dp(25)),
+            pos=(self.x + (self.width - dp(25)) / 2, self.y + (self.height - dp(25)) / 2),
             font_size=20,
             halign='center',
             valign='middle',
-            text_size=(dp(35), dp(35))
+            text_size=(dp(25), dp(25))
         )
         self.add_widget(self.label)
 
@@ -161,10 +162,10 @@ class PlayerStatusContainer(BoxLayout):
 
     def show_border(self):
         with self.hp_portrait_mp_container.canvas.before:
-            Color(0.8,0,0,0.75)
+            Color(0.85,0.85,0,0.85)
             self.border = Line(
                 rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
-                width=6
+                width=9
             )
     def hide_border(self):
         self.hp_portrait_mp_container.canvas.before.clear()
@@ -229,10 +230,10 @@ class EnemyStatusContainer(BoxLayout):
 
     def show_border(self):
         with self.hp_portrait_mp_container.canvas.before:
-            Color(0.8,0,0,0.75)
+            Color(0.85,0.85,0,0.85)
             self.border = Line(
                 rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
-                width=6
+                width=9
             )
     def hide_border(self):
         self.hp_portrait_mp_container.canvas.before.clear()

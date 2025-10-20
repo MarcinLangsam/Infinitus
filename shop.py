@@ -5,8 +5,9 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
-from kivy.metrics import dp
-from components.inventory_component import gold_widget, Trash
+from kivy.metrics import dp, sp
+from components.inventory_component import gold_widget
+from kivy.uix.label import Label
 
 class Shop(Screen):
     def __init__(self, **kw):
@@ -31,11 +32,12 @@ class Shop(Screen):
 
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
         self.add_widget(gold_widget)
-        self.add_widget(Trash())
         im.check_whitch_screen(self.manager.current)
         self.add_widget(tp.text_pop_shop)
 
         self.set_shop_content()
+        self.add_widget(Label(text="EKWIPUNEK", font_size=(sp(50)), pos_hint={"center_x": 0.235, "center_y": 0.9}, outline_width = 1))
+        self.add_widget(Label(text="SKLEP", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
         self.add_widget(self.tooltip)
 
     def set_shop_content(self):

@@ -53,11 +53,13 @@ class Skills_Window(Screen):
         
         for x in am.skills.skill_list.keys():
             if am.skills.skill_list[x][0] in player.current_player.skill:
-                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][7]))
+                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][7]), border_alfa=1)
                 self.add_widget(am.skills_objects[x])
             else:
-                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][3]))
+                am.skills_objects[x] = am.SkillSlot(pos_hint={"center_x":am.skills.skill_list[x][4],"center_y":am.skills.skill_list[x][5]}, sprite=(am.skills.skill_list[x][3]), border_alfa=0)
                 self.add_widget(am.skills_objects[x])
+
+        self.add_widget(self.tooltip)
 
         Clock.schedule_once(lambda dt: self.draw_lines(), 0)
 
@@ -67,10 +69,7 @@ class Skills_Window(Screen):
             if am.skills.skill_list[x][6] == "none":
                 pass
             else:
-                self.add_widget(am.Skill_line(points=([am.skills_objects[x].pos[0]+25,am.skills_objects[x].pos[1]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[0]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[1]+25])),-1)
-
-        self.add_widget(self.tooltip)
-        
+                self.add_widget(am.Skill_line(points=([am.skills_objects[x].pos[0]+25,am.skills_objects[x].pos[1]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[0]+25,am.skills_objects[am.skills.skill_list[x][6]].pos[1]+25])),48)
     def change_character_menu(self,character):
         self.clear_widgets()
         player.current_player = character

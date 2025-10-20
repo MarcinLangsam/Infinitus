@@ -12,6 +12,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from components.fight_components import PlayerStatusContainer, EnemyStatusContainer
+from kivy.core.window import Window
 
 current_stage = 1
 current_fight = 1
@@ -115,7 +116,7 @@ class Fight(Screen):
                                         ])
         if len(team) >=2:
             self.player2_container = PlayerStatusContainer(team[1], self.tooltip, pos_hint={"x": 0.23, "y": 0.005})
-            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0],companion1.head, pos_hint={"center_x": 0.24, "center_y": 0.73}),
+            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0], companion1.head, pos_hint={"center_x": 0.24, "center_y": 0.73}),
                                         self.player2_container
                                         ])
         if len(team) >=3:
@@ -356,7 +357,10 @@ class Fight(Screen):
                         #for x in self.final_damage_all:
                             #self.text_pop.text += str(x) + "\n\n"
                     else:
-                        self.text_pop.pos = (self.chose_sprite(self.current_target).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(140))   
+                        if self.current_turn == self.current_target:
+                            self.text_pop.pos = (Window.width*self.pos_hint_copy['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.pos_hint_copy['center_y']-(Window.height/2))
+                        else:
+                            self.text_pop.pos = (Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2))      
                         self.text_pop.text = str(self.final_damage)
                     
                     Clock.schedule_interval(self.clear_pop_up,1)
@@ -394,7 +398,8 @@ class Fight(Screen):
             self.run_animation()
 
     def run_animation(self):
-        self.pos_hint_copy = self.sprite.pos_hint.copy()
+        if self.sprite.pos_hint != {}:
+            self.pos_hint_copy = self.sprite.pos_hint.copy()
         self.sprite.pos_hint = {}
         if len(self.anim_queue)>0:
             w, a = self.anim_queue.pop(0)
@@ -630,55 +635,56 @@ class Fight(Screen):
                 self.create_movement_animation(self.sprite, self.chose_sprite(self.current_target).pos[0]+dp(180),self.chose_sprite(self.current_target).pos[1])
             
             if self.if_all_targets and self.current_target in team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(enemy.enemy_team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))             
+                print(self.chose_sprite(self.current_target).pos_hint['center_x'])
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
 
         elif self.distance == "ranged":
             self.animation_type = "_magic"
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
             if self.if_all_targets and self.current_target in team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(enemy.enemy_team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-dp(110),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
         
         elif self.distance == "heal":
             self.animation_type = "_magic"
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
             if self.if_all_targets and self.current_target in team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(enemy.enemy_team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
         
         elif self.distance == "status":
             self.animation_type = "_magic"
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
             if self.if_all_targets and self.current_target in team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(enemy.enemy_team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
         
         else:
             self.animation_type = "_attack"
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
             if self.if_all_targets and self.current_target in team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(enemy.enemy_team[0]).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                self.create_movement_animation(self.text_pop, self.chose_sprite(self.current_target).pos[0]-dp(510),self.chose_sprite(self.current_target).pos[1]-dp(100))
+                self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
 
     def check_for_exceed_HP_MP(self):

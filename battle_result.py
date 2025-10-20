@@ -5,7 +5,7 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from kivy.metrics import dp
+from kivy.metrics import dp, sp
 from components.inventory_component import gold_gain_widget
 
 def text_pop_up(t,pos_x,pos_y):
@@ -39,6 +39,8 @@ class Battle_Result(Screen):
         self.add_widget(self.exp_bar_companion_one)
         self.add_widget(self.exp_bar_companion_two)
         self.add_widget(gold_gain_widget)
+        self.add_widget(Label(text="EKWIPUNEK", font_size=(sp(50)), pos_hint={"center_x": 0.235, "center_y": 0.9}, outline_width = 1))
+        self.add_widget(Label(text="ŁUPY", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
         im.check_whitch_screen(self.manager.current)
         
         for x in range(0,96):

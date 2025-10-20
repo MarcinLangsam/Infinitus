@@ -234,7 +234,6 @@ class Character(Widget):
         }
 
     def hard_reset_player(self):
-        #self.name = "Player"
         self.lv = 1
         self.MAX_HP = 100
         self.MAX_MP = 100
@@ -292,7 +291,7 @@ class Character(Widget):
         self.blok = False
 
     def soft_reset_player(self):
-        self.lv = 1
+        #self.lv = 1
         self.MAX_HP = 100
         self.MAX_MP = 100
         self.HP = 100
@@ -330,12 +329,12 @@ class Character(Widget):
         self.dodge_chance_bonus = 0
         self.EXP_boost_bonus = 0
         self.EXP = 0
-        self.EXP_To_Lv = 100
+        self.EXP_To_Lv = 100*self.lv
         self.stat_points = 0
-        self.skill_points = 30
+        #self.skill_points = 0
         self.skill = {}
         self.status = list()
-        self.head = "glowa1"
+        #self.head = "glowa1"
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0

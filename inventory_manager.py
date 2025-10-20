@@ -109,7 +109,8 @@ class ItemSlot(DragBehavior, Widget):
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                if dp(140) <= touch.pos[0] <= dp(140)+dp(50) and dp(600) <= touch.pos[1] <= dp(600)+dp(50) and screen == "team": ### usuwanie przedmiotow
+                if self.collide_widget(self.parent.trash):
+                #if dp(140) <= touch.pos[0] <= dp(140)+dp(50) and dp(600) <= touch.pos[1] <= dp(600)+dp(50) and screen == "team": ### usuwanie przedmiotow
                     player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
                     inventory[self.select].sprite = "graphics/items/empty_slot.png"
                     self.check_for_empty_slot()
@@ -208,9 +209,20 @@ class ItemSlot(DragBehavior, Widget):
                                 self.t = ""
                             else:
                                 if x in range(0,40) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
-                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość sprzedarzy: "+ "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]/10))
+                                    price = "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]/10))
+                                    colored_price = f"[color=ffd700]{price}[/color]"
+                                    self.t = (items.item_list[player.current_player.inventory[x][2]][3]
+                                              +"\n\n----------------------------------------\n"
+                                              +f"Wartość sprzedarzy: {colored_price}"
+                                              )
                                 else:
-                                    self.t = items.item_list[player.current_player.inventory[x][2]][3]+"  \nWartość kupna: "+ "{0:g}".format(items.item_list[player.current_player.inventory[x][2]][4])
+                                    price = "{0:g}".format(items.item_list[player.current_player.inventory[x][2]][4])
+                                    colored_price = f"[color=ffd700]{price}[/color]"
+                                    
+                                    self.t = (items.item_list[player.current_player.inventory[x][2]][3]
+                                              +"\n\n----------------------------------------\n"
+                                              +f"Wartość kupna: {colored_price}"
+                                              )
                                 self.p = (self.pos[0]+25,self.pos[1])
                                 Clock.schedule_once(self.display_tooltip, 0.5)
 
