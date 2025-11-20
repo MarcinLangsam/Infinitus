@@ -30,4 +30,5 @@ class BottomMenu(BoxLayout):
         self.rect.size = self.size
 
     def change_screen(self,screen_name):
+        self.parent.clear_widgets()
         self.manager.current = screen_name

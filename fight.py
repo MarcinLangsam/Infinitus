@@ -95,6 +95,7 @@ class Fight(Screen):
 
     def clear_after_battle(self):
         for x in range(0,len(team)):
+            self.player_sprites[x][1].status_icons.clear_all_icons()
             for y in range(0,1):
                 self.remove_widget(self.player_sprites[x][y])
         for x in range(0,len(enemy.enemy_team)):
@@ -454,19 +455,21 @@ class Fight(Screen):
                 if self.current_target in team:
                     enemy.player_team_alive.remove(self.current_target)
                 else:
+                    if self.current_target.on_death == True:
+                        self.on_death_effect_status_enemy_team(self.current_target.on_death_status)
                     self.target_option[self.chose_enemy_index(self.current_target)][0] = Button(pos=(10000,10000), size=(1,1)) 
                     enemy.enemy_team_alive.remove(self.current_target)
                     
         
-        if self.current_turn.HP <= 0:
-            if self.current_turn in self.turn_order:
-                self.turn_order[self.get_turn_index(self.current_turn)] = "dead"
-                self.remove_widget(self.chose_sprite(self.current_turn))
-                if self.current_turn in team:
-                    enemy.player_team_alive.remove(self.current_turn)
-                else:
-                    self.target_option[self.chose_enemy_index(self.current_turn)][0] = Button(pos=(10000,10000), size=(1,1)) 
-                    enemy.enemy_team_alive.remove(self.current_turn)
+        #if self.current_turn.HP <= 0:
+        #    if self.current_turn in self.turn_order:
+        #        self.turn_order[self.get_turn_index(self.current_turn)] = "dead"
+        #        self.remove_widget(self.chose_sprite(self.current_turn))
+        #        if self.current_turn in team:
+        #            enemy.player_team_alive.remove(self.current_turn)
+        #        else:
+        #            self.target_option[self.chose_enemy_index(self.current_turn)][0] = Button(pos=(10000,10000), size=(1,1)) 
+        #            enemy.enemy_team_alive.remove(self.current_turn)
     def check_for_death_entity(self,e):
         if e.HP <= 0:
             if e in self.turn_order:
@@ -475,20 +478,20 @@ class Fight(Screen):
                 if e in team:
                     enemy.player_team_alive.remove(e)
                 else:
+                    if e.on_death == True:
+                        self.on_death_effect_status_enemy_team(e.on_death_status)
                     self.target_option[self.chose_enemy_index(e)][0] = Button(pos=(10000,10000), size=(1,1)) 
                     enemy.enemy_team_alive.remove(e)
-                    
+    
+    def on_death_effect_status_enemy_team(self, status):
+        for e in enemy.enemy_team_alive:
+            self.start_status_by_target(status, e)
+    def on_death_effect_status_player_team(self, status):
+        for character in enemy.player_team_alive:
+            print(status, character)
+            self.start_status_by_target(status, character)
         
-        if e.HP <= 0:
-            if e in self.turn_order:
-                self.turn_order[self.get_turn_index(e)] = "dead"
-                self.remove_widget(self.chose_sprite(e))
-                if e in team:
-                    enemy.player_team_alive.remove(e)
-                else:
-                    self.target_option[self.chose_enemy_index(e)][0] = Button(pos=(10000,10000), size=(1,1)) 
-                    enemy.enemy_team_alive.remove(e)
-                
+
     def check_for_status(self):
         if len(self.current_turn.status) != 0:
             for x in self.current_turn.status:
@@ -555,9 +558,9 @@ class Fight(Screen):
                         exec(target.status[-1][0][1])
                         self.aplly_stats_modifier(target)
                     if target in enemy.player_team_alive:
-                        self.player_sprites[self.chose_enemy_index(target)][1].status_icons.draw_all_icons(target)
+                        self.player_sprites[self.chose_enemy_index(target)][1].status_icons.draw_all_icons(target.status)
                     else:
-                        self.enemy_sprites[self.chose_enemy_index(target)][1].status_icons.draw_all_icons(target)
+                        self.enemy_sprites[self.chose_enemy_index(target)][1].status_icons.draw_all_icons(target.status)
         
 
     def start_status(self,new_status):

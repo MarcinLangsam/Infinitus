@@ -4,9 +4,13 @@ from kivy.clock import Clock
 
 
 class Settings_menu(Screen):
+    def on_pre_enter(self):
+        self.add_widget(tp.text_pop_save_game)
+
     def exit(self):
         quit()
     def save_game(self):
+        tp.text_pop_save_game.text = "Zapisano Grę"
         save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
         f = open(save_path,"w")
         characters = ["player.main_player","player.companion1","player.companion2"]

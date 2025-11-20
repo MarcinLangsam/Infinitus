@@ -1,29 +1,30 @@
 import player
 from kivy.uix.label import Label
+from kivy.metrics import dp
 
 
 class UI():         
     def stats_setup(self,character):
-        stats["lv_label"] = Label( font_size=33,halign="left", valign="middle", text="Poziom: ", outline_width = 1)
-        stats["HP_label"]  = Label( font_size=23,halign="left", valign="middle", text="HP: ", outline_width = 1, color=(1,0,0,1))
-        stats["MP_label"] = Label( font_size=23,halign="left", valign="middle", text="MP: ", outline_width = 1, color=(0,0,1,1))
-        stats["STR_label"] = Label( font_size=23,halign="left", valign="middle", text="Siła: ", outline_width = 1, color=(1,0.5,0,1))
-        stats["DEX_label"] = Label( font_size=23,halign="left", valign="middle", text="Zręczność: ", outline_width = 1, color=(0,1,0,1))
-        stats["INT_label"] = Label( font_size=23,halign="left", valign="middle", text="Inteligencja: ", outline_width = 1, color=(0.2,0.8,0.8,1))
-        stats["stat_points_label"] = Label( font_size=27,halign="left", valign="middle", text="Punkty statystyk: ", outline_width = 1)
-        stats["lv"] = Label(font_size=33,halign="left", valign="middle", text=str(character.lv), outline_width = 1)
+        stats["lv_label"] = Label( font_size=33,halign="left", valign="middle", text="Poziom: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["HP_label"]  = Label( font_size=23,halign="left", valign="middle", text="HP: ", outline_width = 1, color=(1,0,0,1), size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["MP_label"] = Label( font_size=23,halign="left", valign="middle", text="MP: ", outline_width = 1, color=(0,0,1,1), size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["STR_label"] = Label( font_size=23,halign="left", valign="middle", text="Siła: ", outline_width = 1, color=(1,0.5,0,1), size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["DEX_label"] = Label( font_size=23,halign="left", valign="middle", text="Zręczność: ", outline_width = 1, color=(0,1,0,1), size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["INT_label"] = Label( font_size=23,halign="left", valign="middle", text="Inteligencja: ", outline_width = 1, color=(0.2,0.8,0.8,1), size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["stat_points_label"] = Label( font_size=23,halign="left", valign="middle", text="Punkty statystyk: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["lv"] = Label(font_size=33,halign="left", valign="middle", text=str(character.lv), outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
         stats["HP"]  = Label( font_size=23,halign="left", valign="middle", text=str(character.MAX_HP), outline_width = 1, color=(1,0,0,1))
         stats["MP"] = Label( font_size=23,halign="left", valign="middle", text=str(character.MAX_MP), outline_width = 1, color=(0,0,1,1))
         stats["STR"] = Label( font_size=23,halign="left", valign="middle", text=str(character.STR), outline_width = 1, color=(1,0.5,0,1))
         stats["DEX"] = Label( font_size=23,halign="left", valign="middle", text=str(character.DEX), outline_width = 1, color=(0,1,0,1))
         stats["INT"] = Label( font_size=23,halign="left", valign="middle", text=str(character.INT), outline_width = 1, color=(0.2,0.8,0.8,1))
-        stats["stat_points"] = Label( font_size=27,halign="left", valign="middle", text="+"+str(character.stat_points), outline_width = 1)
+        stats["stat_points"] = Label( font_size=23,halign="left", valign="middle", text="+"+str(character.stat_points), outline_width = 1)
         
-        stats["damage_label"] = Label( font_size=23,halign="left", valign="middle", text="Obrażenia: ", outline_width = 1)
-        stats["defence_label"] = Label( font_size=23,halign="left", valign="middle", text="Pancerz: ", outline_width = 1)
-        stats["crit_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Cios krytyczny: ", outline_width = 1)
-        stats["dodge_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Unik: ", outline_width = 1)
-        stats["exp_boost_label"] = Label( font_size=23,halign="left", valign="middle", text="Bonus do doświadczenia: ", outline_width = 1)
+        stats["damage_label"] = Label( font_size=23,halign="left", valign="middle", text="Obrażenia: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["defence_label"] = Label( font_size=23,halign="left", valign="middle", text="Pancerz: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["crit_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Cios krytyczny: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["dodge_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Unik: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["exp_boost_label"] = Label( font_size=23,halign="left", valign="middle", text="Bonus do doświadczenia: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
         stats["damage"] = Label( font_size=23,halign="left", valign="middle", text=str(character.damage), outline_width = 1)
         stats["defence"] = Label( font_size=23,halign="left", valign="middle", text=str(character.defence), outline_width = 1)
         stats["crit_chance"] = Label( font_size=23,halign="left", valign="middle", text=str(character.crit_chance), outline_width = 1)
@@ -56,13 +57,13 @@ class UI():
         stats["exp"].text = (("Doświadczenie: ") + "{:.0f}".format(character.EXP) + ("/") + str(character.EXP_To_Lv))
         stats["gold"].text = "{0:g}".format(player.gold)
         if character.stat_points <= 0 :
-            stats["stat_points_label"].font_size = 20
+            stats["stat_points_label"].color = (0.6,0.6,0.6,0.5)
             stats["stat_points"].text = "brak"
-            stats["stat_points"].font_size = 20
+            stats["stat_points"].color = (0.6,0.6,0.6,0.5)
         else:
-            stats["stat_points_label"].font_size = 27
+            stats["stat_points_label"].color = (1,1,1,1)
             stats["stat_points"].text = "+"+str(character.stat_points)
-            stats["stat_points"].font_size = 27
+            stats["stat_points"].color = (1,1,1,1)
 
     
     def skill_points_refresh(self,character):

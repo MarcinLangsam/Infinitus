@@ -138,6 +138,7 @@ class Team(Screen):
         
         self.add_widget(self.current_sprite,10)
         self.add_widget(tp.text_pop_inventory)
+        self.add_widget(tp.text_pop_stat_up)
         
         self.add_widget(self.empty_main_hand)
         self.add_widget(self.empty_off_hand)

@@ -13,6 +13,7 @@ from kivy.metrics import dp
 from resource_path import get_resource_path
 from components.bottom_menu import BottomMenu
 from components.menu_components import DynamicStageButton
+from kivy.uix.image import Image
 
 class StageProgressBar(ProgressBar):
     pass
@@ -28,7 +29,6 @@ class Menu(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.setup_window()
 
     def change_window(self,window_name):
         self.manager.current = window_name
@@ -40,6 +40,7 @@ class Menu(Screen):
             return "graphics/stage2_background.png"
         else:
             return "graphics/stage1_background.png"
+        
 
     def setup_window(self):
         self.stage_background = self.get_stage_background()
@@ -48,13 +49,16 @@ class Menu(Screen):
         self.current_main_fight = self.button_placment[fight.current_stage-1][2]
         mp.music_player.change_music("graphics/music/stage1.wav")
         self.bar = fight.current_fight
-        
+
+        self.add_widget(Image(source=self.stage_background, size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
+        self.add_widget(StageProgressBar(value=self.bar))
         self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), border=(0,0,0,0),  background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
         self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
         self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
     
+        
     def start_main_fight(self):
         enemy.enemy_team.clear()
         fight.is_random_fight = False

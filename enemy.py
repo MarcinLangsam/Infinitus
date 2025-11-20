@@ -41,7 +41,7 @@ class Enemy_Sprite(Widget):
         self.frame = frame_sum
 
 class Enemy(Widget):
-    def __init__(self, name, lv, MAX_HP, STR, DEX, INT, damage, defence, exp_gain, gold_gain,AI, enemy_drop,enemy_sprite,source):
+    def __init__(self, name, lv, MAX_HP, STR, DEX, INT, damage, defence, exp_gain, gold_gain,AI, enemy_drop,enemy_sprite,source,on_death=False,on_death_status="none"):
         super().__init__()
         self.name = name
         self.lv = lv
@@ -90,6 +90,9 @@ class Enemy(Widget):
         self.source = source
 
         self.blok = False
+
+        self.on_death = on_death
+        self.on_death_status = on_death_status
 
     def printBattleStats(self):
         print("STR "+str(self.STR))
@@ -407,13 +410,37 @@ def load_enemy_skill():
     f.close()
 
 load_enemy_skill()
+######################### 1 OBSZAR ################################
+                #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite #czy daje status po smierci #jesli tak to jaki (nazwa)
+first_enemy = Enemy("Szkielet",1,70,5,1,1,8,1,100,100,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "atak":enemy_skills["atak"],
+                                                    "szarża":enemy_skills["szarża"],
+                                                    "blok":enemy_skills["blok"]},
+                                                    {"graphics/items/mała_mikstura_zdrowia.png":100},
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",False)
 
-                #nazwa #lv #MAX_HP #STR #DEX #INT #Obrażenia #Pancerz #EXP #Złoto #AI #drop #sprite
-first_enemy = Enemy("Szkielet",1,70,5,1,1,8,1,100,100,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/mała_mikstura_zdrowia.png":100},"graphics/sprites/szkielet_sprite.png","szkielet")
-
-skeleton1 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton2 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
-skeleton3 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{"atak":enemy_skills["atak"],"atak":enemy_skills["atak"],"szarża":enemy_skills["szarża"],"blok":enemy_skills["blok"]},{"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},"graphics/sprites/szkielet_sprite.png","szkielet")
+skeleton1 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "atak":enemy_skills["atak"],
+                                                    "szarża":enemy_skills["szarża"],
+                                                    "blok":enemy_skills["blok"]},
+                                                    {"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",True)
+skeleton2 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "atak":enemy_skills["atak"],
+                                                    "szarża":enemy_skills["szarża"],
+                                                    "blok":enemy_skills["blok"]},
+                                                    {"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",True)
+skeleton3 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "atak":enemy_skills["atak"],
+                                                    "szarża":enemy_skills["szarża"],
+                                                    "blok":enemy_skills["blok"]},
+                                                    {"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",False)
 
 skeleton_priest = Enemy("Upadły kapłan",3,70,10,20,13,16,0,80,20,{
                                                             "atak":enemy_skills["atak"],
@@ -424,7 +451,7 @@ skeleton_priest = Enemy("Upadły kapłan",3,70,10,20,13,16,0,80,20,{
                                                             "klatwa":enemy_skills["klatwa"],
                                                             "klatwa":enemy_skills["klatwa"]},
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80},
-                                                            "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan")
+                                                            "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan",False)
 
 skeleton_priest2 = Enemy("Upadły kapłan",3,70,10,20,15,15,0,80,20,{
                                                             "atak":enemy_skills["atak"],
@@ -435,7 +462,7 @@ skeleton_priest2 = Enemy("Upadły kapłan",3,70,10,20,15,15,0,80,20,{
                                                             "klatwa":enemy_skills["klatwa"],
                                                             "klatwa":enemy_skills["klatwa"]},
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80,"graphics/items/magicza_ksiega.png":15},
-                                                            "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan")
+                                                            "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan",False)
                                         
 lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,21,5,0,0,{
                                                             "atak":enemy_skills["atak"],
@@ -447,7 +474,7 @@ lost_soul = Enemy("Zagubiona Dusza",4,150,17,17,17,21,5,0,0,{
                                                             "bisekcja":enemy_skills["bisekcja"],
                                                             "bisekcja":enemy_skills["bisekcja"]},
                                                             {},
-                                                            "graphics/sprites/zagubiona_dusza_sprite.png","zagubiona_dusza")
+                                                            "graphics/sprites/zagubiona_dusza_sprite.png","zagubiona_dusza",False)
 
 zjawa = Enemy("Zjawa",4,140,10,30,25,22,0,50,30,{"atak":enemy_skills["atak"],
                                                 "eteryczny":enemy_skills["eteryczny"],
@@ -457,26 +484,26 @@ zjawa = Enemy("Zjawa",4,140,10,30,25,22,0,50,30,{"atak":enemy_skills["atak"],
                                                 "skowyt banshee":enemy_skills["skowyt banshee"],
                                                 "skowyt banshee":enemy_skills["skowyt banshee"],},
                                                 {"graphics/items/amulet_precyzji.png":40,"graphics/items/wlocznia_straznicza.png":20,"graphics/items/srebrny_pierscien.png":60,"graphics/items/mała_mikstura_zdrowia.png":40},
-                                                "graphics/sprites/zjawa_sprite.png","zjawa")
+                                                "graphics/sprites/zjawa_sprite.png","zjawa",False)
 
 skeleton_warrior = Enemy("Szkielet Wojownik",4,170,23,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":100,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
-                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
+                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik",False)
 skeleton_warrior2 = Enemy("Szkielet Wojownik",4,170,25,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":80,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
-                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
+                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik",False)
 skeleton_warrior3 = Enemy("Szkielet Wojownik",4,170,25,5,1,24,5,50,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":80,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
-                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik")
+                                                                    "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik",False)
 
 
 rzeznik = Enemy("Rzeznik",5,185,30,20,10,30,120,200,100,{
@@ -488,7 +515,7 @@ rzeznik = Enemy("Rzeznik",5,185,30,20,10,30,120,200,100,{
                                                     "gdzie moi słudzy":enemy_skills["gdzie moi słudzy"],
                                                     "Jestem nie pokonany":enemy_skills["Jestem nie pokonany"]},
                                                     {"graphics/items/mała_mikstura_many.png":100,"graphics/items/dwureczny_topor_rzeznika.png":100,"graphics/items/pikowany_pancerz.png":100},
-                                                    "graphics/sprites/rzeznik_sprite.png","rzeznik")
+                                                    "graphics/sprites/rzeznik_sprite.png","rzeznik",False)
 
 zombie = Enemy("Zombie",5,150,30,10,20,30,0,60,40,{
                                             "atak":enemy_skills["atak"],
@@ -498,7 +525,7 @@ zombie = Enemy("Zombie",5,150,30,10,20,30,0,60,40,{
                                             "zarodniki":enemy_skills["zarodniki"],
                                             "trujące opary":enemy_skills["trujące opary"]},
                                             {"graphics/items/pikowany_pancerz.png":35,"graphics/items/maczuga_zolnierska.png":30,"graphics/items/amulet_precyzji.png":15},
-                                            "graphics/sprites/zombie_sprite.png","zombie")
+                                            "graphics/sprites/zombie_sprite.png","zombie",False)
 zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,60,40,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
@@ -507,7 +534,7 @@ zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,60,40,{
                                             "zarodniki":enemy_skills["zarodniki"],
                                             "trujące opary":enemy_skills["trujące opary"]},
                                             {"graphics/items/pikowany_pancerz.png":35,"graphics/items/maczuga_zolnierska.png":30,"graphics/items/amulet_precyzji.png":15},
-                                            "graphics/sprites/zombie_sprite.png","zombie")
+                                            "graphics/sprites/zombie_sprite.png","zombie",False)
 
  
 death_knight = Enemy("Rycerz Śmierci",6,600,30,25,20,15,13,0,0,{
@@ -520,10 +547,10 @@ death_knight = Enemy("Rycerz Śmierci",6,600,30,25,20,15,13,0,0,{
                                                             "łaska chaosu":enemy_skills["łaska chaosu"]
                                                             },
                                                             {"graphics/items/siewca_smierci.png":100,"graphics/items/pierscien_mrocznych_mocy.png":100},
-                                                            "graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci")
+                                                            "graphics/sprites/rycerz_smierci_sprite.png","rycerz_smierci",False)
 
 
-
+######################### 2 OBSZAR ################################
 rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,30,40,15,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             "eteryczny":enemy_skills["eteryczny"],
@@ -533,99 +560,131 @@ rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,30,40,15,100,200,{
                                                             "astralna wiedza":enemy_skills["astralna wiedza"],
                                                             },
                                                             {},
-                                                            "graphics/sprites/rozdarta_dusza_sprite.png","rozdarta_dusza")
+                                                            "graphics/sprites/rozdarta_dusza_sprite.png","rozdarta_dusza",False)
 
 wojownik_qin = Enemy("Wojownik Qin",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
+                                                            "wu_jian":enemy_skills["wu_jian"],
+                                                            "wu_jian":enemy_skills["wu_jian"],
+                                                            "manewr_kowadla":enemy_skills["manewr_kowadla"],
+                                                            "manewr_mlota":enemy_skills["manewr_mlota"],
+                                                            "skupienie":enemy_skills["skupienie"],
+                                                            "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin")
+                                                            "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin",False)
 
 wlocznik_qin = Enemy("Włócznik Qin",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
+                                                            "remedium":enemy_skills["remedium"],
+                                                            "remedium":enemy_skills["remedium"],
+                                                            "cios_rewersem":enemy_skills["cios_rewersem"],
+                                                            "shi_mao":enemy_skills["shi_mao"],
+                                                            "walnięcie":enemy_skills["walnięcie"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/wlocznik_qin_sprite.png","wlocznik_qin")
+                                                            "graphics/sprites/wlocznik_qin_sprite.png","wlocznik_qin",False)
 
 halabardnik_qin = Enemy("Halabardnik Qin",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
-                                                            
+                                                            "tun_ji":enemy_skills["tun_ji"],
+                                                            "wojenny_gong_gu":enemy_skills["wojenny_gong_gu"],
+                                                            "wojenny_gong_gu":enemy_skills["wojenny_gong_gu"],
+                                                            "wojenny_gong_gu":enemy_skills["wojenny_gong_gu"],
+                                                            "manewr_kowadla":enemy_skills["manewr_kowadla"],
+                                                            "manewr_mlota":enemy_skills["manewr_mlota"],
+                                                            "podcięcie":enemy_skills["podcięcie"],
+
                                                             },
                                                             {},
-                                                            "graphics/sprites/halabardnik_qin_sprite.png","halabardnik_qin")
+                                                            "graphics/sprites/halabardnik_qin_sprite.png","halabardnik_qin",False)
 
 zhihui_guan = Enemy("Zhihui Guan",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/zhihui_guan_sprite.png","zhihui_guan")
+                                                            "graphics/sprites/zhihui_guan_sprite.png","zhihui_guan",False)
 
 jaszczurzy_wojownik = Enemy("Jaszczurzy Wojownik",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
-                                                            
+                                                            "ognisty_oddech":enemy_skills["ognisty_oddech"],
+                                                            "zemsta":enemy_skills["zemsta"],
+                                                            "zemsta":enemy_skills["zemsta"],
+                                                            "mocny_cios":enemy_skills["mocny_cios"],
+                                                            "instynkt_przetrwania":enemy_skills["instynkt_przetrwania"],
                                                             },
                                                             {},
-                                                            "graphics/sprites/jaszczurzy_wojownik_sprite.png","jaszczurzy_wojownik")
+                                                            "graphics/sprites/jaszczurzy_wojownik_sprite.png","jaszczurzy_wojownik",True,"zwiększone obrażenia")
 
 jaszczurzy_zabojca = Enemy("Jaszczurzy Zabójca",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
-                                                            
+                                                            "jadowity_oddech":enemy_skills["jadowity_oddech"],
+                                                            "jadowity_oddech":enemy_skills["jadowity_oddech"],
+                                                            "bomba_dymna":enemy_skills["bomba_dymna"],
+                                                            "bomba_dymna":enemy_skills["bomba_dymna"],
+                                                            "ukrycie":enemy_skills["ukrycie"],
+                                                            "cios_z_ukrycia":enemy_skills["cios_z_ukrycia"],
+                                                            "instynkt_przetrwania":enemy_skills["instynkt_przetrwania"],
                                                             },
                                                             {},
-                                                            "graphics/sprites/jaszczurzy_zabojca_sprite.png","jaszczurzy_zabojca")
+                                                            "graphics/sprites/jaszczurzy_zabojca_sprite.png","jaszczurzy_zabojca",True,"zwiększona szansa na unik")
 
 
 jaszczurzy_czempion = Enemy("Jaszczurzy Czempion",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
-                                                            
+                                                            "smoczy_oddech":enemy_skills["smoczy_oddech"],
+                                                            "bebny_strachu":enemy_skills["bebny_strachu"],
+                                                            "mocny_cios":enemy_skills["mocny_cios"],
+                                                            "mocny_cios":enemy_skills["mocny_cios"],
+                                                            "czempion":enemy_skills["czempion"],
                                                             },
                                                             {},
-                                                            "graphics/sprites/jaszczurzy_czempion_sprite.png","jaszczurzy_czempion")
+                                                            "graphics/sprites/jaszczurzy_czempion_sprite.png","jaszczurzy_czempion",True,"zwiększony pancerz")
 
 nosiciel_swiatla = Enemy("Nosiciel Światła",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/nosiciel_swiatla_sprite.png","nosiciel_swiatla")
+                                                            "graphics/sprites/nosiciel_swiatla_sprite.png","nosiciel_swiatla",False)
 
 chory_jaszczur = Enemy("Chory Jaszczur",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/chory_jaszczur_sprite.png","chory_jaszczur")
+                                                            "graphics/sprites/chory_jaszczur_sprite.png","chory_jaszczur",True)
 
 przeklety_wojownik = Enemy("Przeklęty Wojownik",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/przeklety_wojownik_sprite.png","przeklety_wojownik")
+                                                            "graphics/sprites/przeklety_wojownik_sprite.png","przeklety_wojownik",True)
 
 przeklety_czempion = Enemy("Przeklęty Czempion",6,600,30,25,20,15,13,100,200,{
                                                             "atak":enemy_skills["atak"],
                                                             
                                                             },
                                                             {},
-                                                            "graphics/sprites/przeklety_czempion_sprite.png","przeklety_czempion")
+                                                            "graphics/sprites/przeklety_czempion_sprite.png","przeklety_czempion",True)
 
 golem = Enemy("Golem",6,600,30,25,20,15,13,100,200,{
                                                     "atak":enemy_skills["atak"],
                                                     
                                                     },
                                                     {},
-                                                    "graphics/sprites/golem_sprite.png","golem")
+                                                    "graphics/sprites/golem_sprite.png","golem",False)
 
 layt = Enemy("Wiedzma Layt",6,600,30,25,20,15,13,100,200,{
                                                     "atak":enemy_skills["atak"],
                                                     
                                                     },
                                                     {},
-                                                    "graphics/sprites/layt_sprite.png","layt")
+                                                    "graphics/sprites/layt_sprite.png","layt",False)
 
 
 

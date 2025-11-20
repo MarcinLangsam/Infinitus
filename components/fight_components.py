@@ -88,6 +88,9 @@ class StatusIconContainer(BoxLayout):
                                     )
                             )
             
+    def clear_all_icons(self):
+        self.clear_widgets()
+            
 class NameContainer(Label):
     def __init__(self, name, **kwargs):
         super(NameContainer, self).__init__(**kwargs)

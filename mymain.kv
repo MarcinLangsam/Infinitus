@@ -82,14 +82,14 @@ WindowManger:
     name: "menu"
     on_pre_enter: root.setup_window()
     size_hint: 1,1
-    Image:
-        size_hint: 1,1
-        allow_stretch: True
-        fit_mode: "fill"
-        source: root.stage_background
-    StageProgressBar:
-        max: 10
-        value: root.bar
+    #Image:
+    #    size_hint: 1,1
+    #    allow_stretch: True
+    #    fit_mode: "fill"
+    #    source: root.stage_background
+    #StageProgressBar:
+    #    max: 10
+     #   value: root.bar
     
 <Shop>:
     name: "shop"
@@ -229,11 +229,11 @@ WindowManger:
 <Map>:
     name: "map"
     on_pre_enter: root.setup_window()
-    Image:
-        allow_stretch: True
-        size_hint: 1,1
-        source: "graphics/plain_background.png"
-        fit_mode: "fill"
+    #Image:
+    #    allow_stretch: True
+    #    size_hint: 1,1
+    #    source: "graphics/plain_background.png"
+    #    fit_mode: "fill"
 <Main_Menu>:
     name: "main_menu"
     size_hint: 1,1
@@ -729,3 +729,11 @@ WindowManger:
         Rectangle:
             pos: self.pos
             size: self.size
+
+<StageButton>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Line:
+            rectangle: self.x, self.y, self.width, self.height
+            width: 5

@@ -15,6 +15,8 @@ class StatsButton(Button):
         self.description = description
         self.background_normal = background_source
         self.border = (0,0,0,0)
+        self.size_hint = (0.2, None)
+        self.height = self.width
 
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
@@ -50,15 +52,19 @@ class StatsButton(Button):
             player.current_player.stat_points -=1
             UI.ui.stats_refresh(player.current_player)
         else:
-            tp.text_pop.text = "Nie masz punktów statystyk"
+            tp.text_pop_stat_up.text = "Nie masz punktów statystyk"
             Clock.schedule_interval(tp.clear_pop_up,3)
 
 
 class StatsUpButtonContainer(BoxLayout):
     def __init__(self, **kwargs):
         super(StatsUpButtonContainer, self).__init__(**kwargs)
-        self.spacing = 15
-        self.padding=[85, -20, 85, 20]
+        #self.spacing = 40
+        self.padding = [dp(15), 0, dp(15), 0]
+        self.pos_hint = {'center_x': 0.5}
+        self.size_hint_y = None
+        self.height = dp(80)
+        self.size_hint_x = 0.92
         self.add_widget(StatsButton("HP", "Zwiększa zdrowię o 10","graphics/health_stat_up_button.png", ))
         self.add_widget(StatsButton("STR", "Zwiększa obrażenia o 1\nWpływa na umiejętności wojownika", "graphics/strength_stat_up_button.png"))
         self.add_widget(StatsButton("DEX", "Decyduje o kolejce w walce\nZwiększa szansę na unik i cios krytyczny\nWpływa na umięjętności łotra", "graphics/aglity_stat_up_button.png"))
@@ -68,7 +74,7 @@ class LabelsContainer(BoxLayout):
     def __init__(self, start, end, **kwargs):
         super(LabelsContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.padding=[60, dp(50), 0, dp(50)]
+        self.padding=[70, dp(50), 0, dp(50)]
         for x in list(UI.stats.keys())[start:end]:
             self.add_widget(UI.stats[x])
 
@@ -112,7 +118,7 @@ class StatsComponent(BoxLayout):
         self.bind(pos=self.update_rect, size=self.update_rect)
 
         self.add_widget(BasicStatsContainer(size_hint_y=1))
-        self.add_widget(StatsUpButtonContainer(size_hint_y=0.1))
+        self.add_widget(StatsUpButtonContainer())
         self.add_widget(DetailStatsContainer(size_hint_y=1))
 
     def update_rect(self, *args):
@@ -121,6 +127,7 @@ class StatsComponent(BoxLayout):
 
     def stats_update(self):
         UI.ui.stats_refresh(player.current_player)
+
 
 stats_component = StatsComponent()
 

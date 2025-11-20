@@ -730,7 +730,7 @@ no_effect
 _________________________________________
 85
 błyskawica
-self.final_damage = int((self.current_turn.damage + self.current_turn.DEX) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
+self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX/2)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
 zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
 0.84
@@ -739,7 +739,7 @@ graphics/skills/uderzenie_pioruna.png
 graphics/skills/uderzenie_pioruna_ok.png
 80
 active
-Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]80[/color]
+Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]50%DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]80[/color]
 ranged
 on_enemy
 piorun_effect

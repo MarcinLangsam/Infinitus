@@ -1,4 +1,4 @@
-import player, tooltip as tt, inventory_manager as im, UI_manager as UI, fight
+import player, tooltip as tt, inventory_manager as im, UI_manager as UI, fight, text_pop as tp
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -36,7 +36,7 @@ class Character_Creation(Screen):
         self.add_widget(stats_component)
         self.add_widget(self.creation_menu)
         self.creation_menu.classes_component.set_class(player.main_player, "warrior")
-
+        self.add_widget(tp.text_pop_stat_up)
         #self.add_widget(self.tooltip)
         
         UI.ui.stats_refresh(player.main_player)
