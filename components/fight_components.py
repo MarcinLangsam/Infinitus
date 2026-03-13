@@ -71,7 +71,7 @@ class StatusIconContainer(BoxLayout):
         super(StatusIconContainer, self).__init__(**kwargs)
         self.orientation = "horizontal"
         self.padding = 0
-        self.spacing = 0
+        self.spacing = 2
         self.icons_list = list()
         self.tooltip = tooltip
 

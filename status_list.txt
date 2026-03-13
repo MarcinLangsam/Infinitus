@@ -111,7 +111,7 @@ ________________________________________
 płonięcie
 płonięcie
 self.current_turn.HP -= 5
-3
+4
 graphics/icons/płonięcie_status.png
 dmg_ot
 
@@ -357,7 +357,7 @@ jestem nie pokonany
 jestem nie pokonany
 self.current_target.defence_modifier += 0
 99
-graphics/icons/blok_status.png
+graphics/icons/obrona_debuff_status.png
 one_time
 self.current_turn.defence_modifier -= 0
 Jestem nie pokonany\nChyba trzeba najpierw pozbyć się tych kapłanów
@@ -436,7 +436,7 @@ ________________________________________
 horror
 horror
 self.current_target.MP = 0
-4
+5
 graphics/icons/energy_drain_status.png
 one_time
 self.current_target.MP += 0

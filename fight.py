@@ -94,6 +94,18 @@ class Fight(Screen):
         return Fight.tooltip
 
     def clear_after_battle(self):
+        if len(team) >=1:
+            self.player1_container.hide_border()
+        if len(team) >=2:
+            self.player2_container.hide_border()
+        if len(team) >=3:
+            self.player3_container.hide_border()
+        if len(enemy.enemy_team) >=1:
+            self.enemy1_container.hide_border()
+        if len(enemy.enemy_team) >=2:
+            self.enemy2_container.hide_border()
+        if len(enemy.enemy_team) >=3:
+            self.enemy3_container.hide_border()
         for x in range(0,len(team)):
             self.player_sprites[x][1].status_icons.clear_all_icons()
             for y in range(0,1):
@@ -137,7 +149,7 @@ class Fight(Screen):
                                        ])
         if len(enemy.enemy_team) >=3:
             self.enemy3_container = EnemyStatusContainer(enemy.enemy_team[2], self.tooltip, pos_hint={"x": 0.8, "y": 0.81})
-            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[2].enemy_sprite,enemy.enemy_team[2].source, pos_hint={"center_x": 0.31, "center_y": 0.45}),
+            self.enemy_sprites.append([enemy.Enemy_Sprite(enemy.enemy_team[2].enemy_sprite,enemy.enemy_team[2].source, pos_hint={"center_x": 0.71, "center_y": 0.45}),
                                        self.enemy3_container
                                        ])
         for x in range(0,len(team)):
@@ -488,12 +500,16 @@ class Fight(Screen):
             self.start_status_by_target(status, e)
     def on_death_effect_status_player_team(self, status):
         for character in enemy.player_team_alive:
-            print(status, character)
             self.start_status_by_target(status, character)
         
 
     def check_for_status(self):
         if len(self.current_turn.status) != 0:
+
+            for x in range(0,len(self.current_turn.status)):
+                if self.current_turn.status[x][0][4] != "one_time":
+                    exec(self.current_turn.status[x][0][1])
+
             for x in self.current_turn.status:
                 x[0][2] -= 1
                 
@@ -506,15 +522,34 @@ class Fight(Screen):
                     self.aplly_stats_modifier(self.current_turn)
             self.current_turn.status = temp
 
-            for x in range(0,len(self.current_turn.status)):
-                if self.current_turn.status[x][0][4] != "one_time":
-                    exec(self.current_turn.status[x][0][1])
+            
                 
             if self.current_turn in enemy.player_team_alive:
                 self.player_sprites[self.chose_enemy_index(self.current_turn)][1].status_icons.draw_all_icons(self.current_turn.status)
             else:
                 self.enemy_sprites[self.chose_enemy_index(self.current_turn)][1].status_icons.draw_all_icons(self.current_turn.status)
-            
+    def check_for_status_target(self):
+        if len(self.current_target.status) != 0:
+            #for x in self.current_target.status:
+            #    x[0][2] -= 1
+                
+            #temp = []
+            #for x in self.current_target.status:
+            #    if x[0][2] > 0:
+            #        temp.append(x)
+            #    else:
+            #        exec(x[0][5])
+            #        self.aplly_stats_modifier(self.current_target)
+            #self.current_target.status = temp
+
+            #for x in range(0,len(self.current_target.status)):
+            #    if self.current_target.status[x][0][4] != "one_time":
+            #        exec(self.current_target.status[x][0][1])
+                
+            if self.current_target in enemy.player_team_alive:
+                self.player_sprites[self.chose_enemy_index(self.current_target)][1].status_icons.draw_all_icons(self.current_target.status)
+            else:
+                self.enemy_sprites[self.chose_enemy_index(self.current_target)][1].status_icons.draw_all_icons(self.current_target.status)
 
     def reset_stats_modifier(self,target):
         target.STR_modifier = 1
@@ -590,7 +625,7 @@ class Fight(Screen):
         self.dodge_roll = random.randint(0,100)
         self.crit_roll = random.randint(0,100)
         self.action = "self.current_target.HP -= self.final_damage"
-        ### roll for critical hit'
+        ### roll for critical hit
         if self.crit_roll < self.current_turn.crit_chance and self.distance != "heal" and self.distance != "status":
                 self.final_damage = self.final_damage+(self.final_damage*0.5)
                 self.final_damage = int(self.final_damage)
@@ -612,6 +647,7 @@ class Fight(Screen):
             exec(self.current_turn.damage_special_effect)
         if self.action_status != "":
             self.start_status(self.action_status)
+            self.check_for_status_target()
             if self.final_damage == 0:
                 self.final_damage = self.action_status.upper()
             else:

@@ -32,12 +32,16 @@ class Battle_Result(Screen):
         self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
         Clock.schedule_once(self.progress_bar_start)
-        self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.7}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.5}))
-        self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.3}))
-        self.add_widget(self.exp_bar_player)
-        self.add_widget(self.exp_bar_companion_one)
-        self.add_widget(self.exp_bar_companion_two)
+
+        if len(player.team) == 1:
+            self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.7}))
+            self.add_widget(self.exp_bar_player)
+        if len(player.team) == 2:
+            self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.5}))
+            self.add_widget(self.exp_bar_companion_one)
+        if len(player.team) == 3:
+            self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.3}))
+            self.add_widget(self.exp_bar_companion_two)
         self.add_widget(gold_gain_widget)
         self.add_widget(Label(text="EKWIPUNEK", font_size=(sp(50)), pos_hint={"center_x": 0.235, "center_y": 0.9}, outline_width = 1))
         self.add_widget(Label(text="ŁUPY", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
@@ -77,14 +81,12 @@ class Battle_Result(Screen):
         
         if self.exp_bar_player.value >= player.main_player.EXP or self.exp_bar_player.value == self.exp_bar_player.max:
             if self.exp_bar_player.value == self.exp_bar_player.max and self.ok1 == False:
-                #self.add_widget(text_pop_up("AWANS",dp(80),dp(215)))
                 self.ok1 = True
         else:
             self.exp_bar_player.value += 1
             
         if self.exp_bar_companion_one.value >= player.companion1.EXP or self.exp_bar_companion_one.value == self.exp_bar_companion_one.max:
             if self.exp_bar_companion_one.value == self.exp_bar_companion_one.max and self.ok2 == False:
-                #self.add_widget(text_pop_up("AWANS",dp(80),dp(70)))
                 self.ok2 = True
             pass    
         else:
@@ -92,12 +94,11 @@ class Battle_Result(Screen):
             
         if self.exp_bar_companion_two.value >= player.companion2.EXP or self.exp_bar_companion_two.value == self.exp_bar_companion_two.max:
             if self.exp_bar_companion_two.value == self.exp_bar_companion_two.max and self.ok3 == False:
-                #self.add_widget(text_pop_up("AWANS",dp(80),dp(-220)))
                 self.ok3 = True
             pass
         else:
             self.exp_bar_companion_two.value += 1
             
     def start_fill_animation(self):
-        Clock.schedule_interval(self.next, 1/70)
+        Clock.schedule_interval(self.next, 1/100)
         

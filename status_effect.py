@@ -40,6 +40,7 @@ class Status_Icon(Widget):
         super().__init__(**kwargs)
         self.source = source
         self.t = text
+        self.allow_stretch = True
 
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():

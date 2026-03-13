@@ -51,7 +51,7 @@ class Menu(Screen):
         self.bar = fight.current_fight
 
         self.add_widget(Image(source=self.stage_background, size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(StageProgressBar(value=self.bar))
+        self.add_widget(StageProgressBar(max=10,value=self.bar))
         self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), border=(0,0,0,0),  background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
         self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
@@ -88,6 +88,11 @@ class Main_Menu(Screen):
         mp.music_player.play_music()
 
     def load_game(self):
+        player.main_player.hard_reset_player()
+        player.companion1.hard_reset_player()
+        player.companion2.hard_reset_player()
+        player.team.clear()
+        player.team.append(player.main_player)
         save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
         if not os.path.exists(save_path):
             save_path = "save_game.txt"
@@ -97,6 +102,7 @@ class Main_Menu(Screen):
             if not line:
                 break
             exec(line.strip())
+            print(line.strip())
         f.close()
         self.manager.current = "menu"
 

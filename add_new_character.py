@@ -17,6 +17,7 @@ class Add_New_Character(Screen):
 
 
     def change_screen(self,screen):
+        self.new_character.name = self.creation_menu.name_component.return_name()
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):

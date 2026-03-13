@@ -36,7 +36,7 @@ class Team(Screen):
         self.empty_accessory = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory"][0], "y": player.current_player.inventory["accessory"][1]})
         self.empty_accessory2 = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory2"][0], "y": player.current_player.inventory["accessory2"][1]})
         self.empty_accessory3 = Image(source="graphics/items/empty_slot_accessory.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["accessory3"][0], "y": player.current_player.inventory["accessory3"][1]})
-        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}) 
+        self.empty_potion = Image(source="graphics/items/empty_slot_potion.png", size_hint=(0.031,0.055), pos_hint={"x": player.current_player.inventory["potion"][0], "y": player.current_player.inventory["potion"][1]}, allow_stretch=True) 
         self.trash = Trash()
 
     def check_for_empty_slot(self):
@@ -150,7 +150,6 @@ class Team(Screen):
         
         
         for x in range(0,48):
-            #im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
         

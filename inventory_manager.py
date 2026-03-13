@@ -128,7 +128,7 @@ class ItemSlot(DragBehavior, Widget):
             elif self.check_collision is True and self.check_touch is True:
                 if self.select in range (0,48) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                     if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
-                        player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]/10)
+                        player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]*0.2)
                         UI.ui.gold_refresh()
                         tp.text_pop_inventory.text = "Sprzedano przedmiot"
                         self.shop_sound.play()
@@ -208,8 +208,8 @@ class ItemSlot(DragBehavior, Widget):
                             if player.current_player.inventory[x][2] == "graphics/items/empty_slot.png":
                                 self.t = ""
                             else:
-                                if x in range(0,40) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
-                                    price = "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]/10))
+                                if x in range(0,48) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
+                                    price = "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]*0.2))
                                     colored_price = f"[color=ffd700]{price}[/color]"
                                     self.t = (items.item_list[player.current_player.inventory[x][2]][3]
                                               +"\n\n----------------------------------------\n"

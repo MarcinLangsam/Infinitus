@@ -426,14 +426,14 @@ skeleton1 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
                                                     "szarża":enemy_skills["szarża"],
                                                     "blok":enemy_skills["blok"]},
                                                     {"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},
-                                                    "graphics/sprites/szkielet_sprite.png","szkielet",True)
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",False)
 skeleton2 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
                                                     "atak":enemy_skills["atak"],
                                                     "atak":enemy_skills["atak"],
                                                     "szarża":enemy_skills["szarża"],
                                                     "blok":enemy_skills["blok"]},
                                                     {"graphics/items/miedziany_sztylet.png":70,"graphics/items/pika.png":70,"graphics/items/miecz_z_brazu.png":70,"graphics/items/stalowy_miecz.png":60,"graphics/items/srebrny_pierscien.png":50},
-                                                    "graphics/sprites/szkielet_sprite.png","szkielet",True)
+                                                    "graphics/sprites/szkielet_sprite.png","szkielet",False)
 skeleton3 = Enemy("Szkielet",2,70,5,1,5,13,1,40,10,{
                                                     "atak":enemy_skills["atak"],
                                                     "atak":enemy_skills["atak"],

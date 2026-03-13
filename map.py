@@ -23,8 +23,8 @@ class Map(Screen):
     def switch_stage(self,stage_number):
         fight.current_stage = stage_number
         fight.current_fight = self.get_stage_progress(stage_number)
-        #self.stages_box.clear_widgets()
-        #self.clear_widgets()
+        self.stages_box.clear_widgets()
+        self.clear_widgets()
         self.change_screen("menu")
 
     def get_stage_progress(self, stage_number):

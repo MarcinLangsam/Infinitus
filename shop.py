@@ -1,4 +1,4 @@
-import inventory_manager as im, text_pop as tp, player
+import inventory_manager as im, text_pop as tp, player, UI_manager as UI
 from fight import current_stage
 import tooltip as tt
 from kivy.uix.screenmanager import Screen
@@ -32,6 +32,7 @@ class Shop(Screen):
 
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
         self.add_widget(gold_widget)
+        UI.ui.gold_refresh()
         im.check_whitch_screen(self.manager.current)
         self.add_widget(tp.text_pop_shop)
 
@@ -54,6 +55,14 @@ class Shop(Screen):
     shop_content={
         1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",
            "graphics/items/srebrny_pierscien.png","graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/drewniana_tarcza.png","graphics/items/magicza_ksiega.png","graphics/items/podstepny_majcher.png",
-           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/pikowany_pancerz.png",
-           ]
+           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/miecz_poltorareczny.png"
+           "graphics/items/pikowany_pancerz.png","graphics/items/szata_maga.png","graphics/items/przyszywanica.png","graphics/items/kolczuga.png"
+        ],
+        2:["graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
+           "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png",
+           "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png"
+           "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png"
+
+
+        ]
     }

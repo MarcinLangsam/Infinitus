@@ -356,7 +356,7 @@ no_effect
 ______________________________________
 23
 barbazynca
-player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5
+player.current_player.MAX_HP += 10\nplayer.current_player.HP += 10\nplayer.current_player.STR_base += 5
 oprawca
 graphics/skills/barbazynca.png
 0.11
@@ -365,7 +365,7 @@ graphics/skills/barbazynca.png
 graphics/skills/barbazynca_ok.png
 0
 passive
-Barbarzyńca   |   PASYWNA\nWiara i honor to najważniejsze wartości do osiągnięcia wiecznej chwały.\n\n[color=#00f7ff]+5 inteligencji[/color] [color=#0000ff]+10 many[/color]
+Barbarzyńca   |   PASYWNA\nOdwaga i sila to jedyna droga do osiągnięcia wiecznej chwały.\n\n[color=#de8833]+5 siły[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
 no_effect
@@ -569,7 +569,7 @@ graphics/skills/syfon.png
 graphics/skills/syfon_ok.png
 0
 active
-Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotknięcie aby wyssać moc magiczną z twojego celu.\n\nZadaje: [color=#fdff80]Obrażenia, wartość obrażeń(czysta) jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]
+Syfon   |   AKTYWNA\nWystrczy tylko lekkie dotknięcie aby wyssać moc magiczną z twojego celu.\n\nZadaje: [color=#fdff80]Obrażenia, wartość obrażeń (czysta) jest zwracana jako mana[/color]\nKoszt MP: [color=#0000ff]0[/color]
 melee
 on_enemy
 syfon_effect

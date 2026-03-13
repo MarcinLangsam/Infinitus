@@ -15,12 +15,15 @@ class Character_Creation(Screen):
         self.creation_menu = CreatorContainer(self.sprite, player.main_player, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
         
     def change_screen(self,screen):
+        player.main_player.name = self.creation_menu.name_component.return_name()
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):
         player.main_player.hard_reset_player()
         player.companion1.hard_reset_player()
         player.companion2.hard_reset_player()
+        player.team.clear()
+        player.team.append(player.main_player)
         player.current_player = player.main_player
 
         fight.current_fight = 1

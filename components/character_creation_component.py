@@ -98,7 +98,7 @@ class ClassesComponent(BoxLayout):
 
         self.add_widget(self.icons_container)
         self.add_widget(self.labels_container)
-        self.set_class(self.current_character, "warrior")
+        #self.set_class(self.current_character, "warrior")
         
 
     def set_class(self,current_character,class_type):

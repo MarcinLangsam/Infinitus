@@ -302,7 +302,7 @@ by_status
 zagłada
 on_all_character
 status
-klatwa_effect
+aura_smierci_effect
 graphics/sounds/negative_effect_skill.wav
 
 _______________________________________
@@ -313,7 +313,7 @@ by_status_on
 zagłada
 on_all_character
 ranged
-klatwa_effect
+
 graphics/sounds/boom.wav
 
 _______________________________________
