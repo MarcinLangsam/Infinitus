@@ -132,6 +132,7 @@ class Tutorial(Screen):
         W ekranie ekwipunku możesz również zwiększać statystyki bohaterów. 
         Walcząc zdobywasz punkty doświadczenia, a awansując zyskujesz 1 punkt umiejętności oraz 5 punktów statystyk.
         """
+        
         self.ids.help_image.source = "graphics/help_progress.png"
     def fight(self):
         self.ids.help_text.text = """

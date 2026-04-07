@@ -27,7 +27,7 @@ class Status():
                 else:
                     data[count] = line.strip().replace(r'\n','\n')
                     count+=1             
-                    if count == 9: # <--- amout of separated data for one item/skill/status, change appropriately
+                    if count == 9: # <--- ilosc kategori nadanej dla jednego przedmiotu/umiejetnosci/statusu, zmienic odpowiednio
                         self.status_list[data[0]] = [data[1],data[2],int(data[3]),data[4],data[5],data[6],data[7],data[8]]
                         count=0
         f.close()

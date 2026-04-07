@@ -118,7 +118,7 @@ graphics/sounds/positive_effect_1.wav
 ______________________________________
 7
 okrzyk bojowy
-player.current_player.skill["zew bojowy"][0] = """self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"""\nplayer.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
+upgrade_zew_bojowy()
 zew bojowy
 graphics/skills/okrzyk_bojowy.png
 0.11
@@ -127,7 +127,7 @@ graphics/skills/okrzyk_bojowy.png
 graphics/skills/okrzyk_bojowy_ok.png
 0
 passive
-Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obrażenia o 50% i trwa 4 tury.\n\nNakłada: Zew Bojowy 4 tur - [color=#de8833]+50% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obrażenia o 50% i trwa 4 tury.\n\nNakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+50% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
 szal_effect
@@ -186,7 +186,7 @@ no_effect
 ______________________________________
 13
 oprawca
-self.final_damage = self.current_turn.damage*1.5\nself.current_turn.HP += int(self.current_turn.damage*0.75)
+self.final_damage = self.current_turn.damage*1.4\nself.current_turn.HP += int(self.current_turn.damage*0.5)
 trening wojownika I
 graphics/skills/oprawca.png
 0.16
@@ -195,7 +195,7 @@ graphics/skills/oprawca.png
 graphics/skills/oprawca_ok.png
 40
 active
-Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]150% Obrażeń[/color]\nZwraca 50% zadanych obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]
+Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]140% Obrażeń[/color]\nZwraca 50% zadanych obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]
 melee
 on_enemy
 oprawca_effect
@@ -203,7 +203,7 @@ graphics/sounds/positive_effect_2.wav
 ______________________________________
 14
 rozplatanie
-self.final_damage = self.current_turn.damage+self.current_turn.HP*0.1
+self.final_damage = self.current_turn.damage+self.current_turn.HP*0.2
 oprawca
 graphics/skills/rozplatanie.png
 0.16
@@ -212,7 +212,7 @@ graphics/skills/rozplatanie.png
 graphics/skills/rozplatanie_ok.png
 50
 active
-Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 10% swojego obecnego zdrowia [/color]\nKoszt MP: [color=#0000ff]50[/color]
+Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 20% swojego obecnego zdrowia [/color]\nKoszt MP: [color=#0000ff]50[/color]
 melee
 on_enemy
 rozplatanie_effect
@@ -373,7 +373,7 @@ no_effect
 ______________________________________
 24
 trening wojownika II
-player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen += 5
+player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen_base += 5
 rozplatanie
 graphics/skills/trening_siły_II.png
 0.16
@@ -407,7 +407,7 @@ _
 _____________mage skill________________
 41
 kula ognia
-self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'płonięcie'
+self.final_damage = 12+self.current_turn.INT*0.80\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
 0.5
@@ -416,7 +416,7 @@ none
 graphics/skills/kula_ognia_ok.png
 40
 active
-Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]12[/color] + [color=#00f7ff]80%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]40[/color]
 ranged
 on_enemy
 kula_ognia_effect
@@ -433,7 +433,7 @@ graphics/skills/magiczny_pocisk.png
 graphics/skills/magiczny_pocisk_ok.png
 70
 active
-Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 30% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 35% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
 ranged
 on_enemy
 magiczny_pocisk_effect
@@ -577,7 +577,7 @@ graphics/sounds/negative_effect_3.wav
 _________________________________________
 51
 masowe uzdrowienie
-self.final_damage = int(-(self.current_turn.INT*)-20)
+self.final_damage = int(-(self.current_turn.INT)-20)
 uzdrowienie
 graphics/skills/masowe_uzdrowienie.png
 0.45
@@ -601,9 +601,9 @@ graphics/skills/runiczna_klinga.png
 0.21
 42
 graphics/skills/runiczna_klinga_ok.png
-40
+20
 active
-Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje 20 do obrażeń[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje 20 do obrażeń[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]20[/color]
 status
 on_character
 obrazenia_buff_effect
@@ -628,7 +628,7 @@ no_effect
 __________________________________________
 54
 oświecenie
-player.current_player.MP_regen += 5
+player.current_player.MP_regen_base += 5
 pięść wichru
 graphics/skills/oswiecenie.png
 0.5
@@ -730,16 +730,16 @@ no_effect
 _________________________________________
 85
 błyskawica
-self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX/2)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
+self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX*0.5)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
 zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
 0.84
 0.21
 81
 graphics/skills/uderzenie_pioruna_ok.png
-80
+90
 active
-Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]50%DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]80[/color]
+Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]40%DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]90[/color]
 ranged
 on_enemy
 piorun_effect
@@ -781,7 +781,7 @@ graphics/sounds/positive_effect_1.wav
 _________________________________________
 87
 dziedziczenie krwi
-player.current_player.skill["krwiopijca"][0] = """self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"""\nplayer.current_player.skill["krwiopijca"][6] = "on_character"
+upgrade_krwiopijca()
 krwiopijca
 graphics/skills/dziedziczenie_krwi.png
 0.74
@@ -866,16 +866,16 @@ no_effect
 _________________________________________
 94
 rozprucie
-self.final_damage = self.current_turn.damage*1.5 + self.current_turn.DEX
+self.final_damage = self.current_turn.damage*1.3 + self.current_turn.DEX
 trening łotra I
 graphics/skills/rozprucie.png
 0.84
 0.37
 90
 graphics/skills/rozprucie_ok.png
-40
+50
 active
-Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]150% obrażeń[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]130% obrażeń[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]50[/color]
 melee
 on_enemy
 rozprucie_effect

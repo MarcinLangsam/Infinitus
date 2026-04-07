@@ -10,25 +10,30 @@ from components.character_creation_component import CreatorContainer
 class Add_New_Character(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.sprite = player.Character_Sprite(player.companion1,"one_hand",player.companion1.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
         self.tooltip = tt.Tooltip()
-        self.creation_menu = CreatorContainer(self.sprite, player.companion1, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
-        self.creation_menu.classes_component.set_class(player.companion1, "warrior")
+        
 
 
     def change_screen(self,screen):
         self.new_character.name = self.creation_menu.name_component.return_name()
+        player.current_player = player.main_player
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):
 
-        if len(player.team)==1:
+        if len(player.team) == 1:
+            self.sprite = player.Character_Sprite(player.companion1,"one_hand",player.companion1.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
+            self.creation_menu = CreatorContainer(self.sprite, player.companion1, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
+            self.creation_menu.classes_component.set_class(player.companion1, "warrior")
             player.team.append(player.companion1)
             player.current_player = player.companion1
             self.new_character = player.companion1
             while player.main_player.lv > player.companion1.lv:
                 player.level_up(player.companion1)
-        elif len(player.team)==2:
+        elif len(player.team) == 2:
+            self.sprite = player.Character_Sprite(player.companion2,"one_hand",player.companion2.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
+            self.creation_menu = CreatorContainer(self.sprite, player.companion2, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
+            self.creation_menu.classes_component.set_class(player.companion2, "warrior")
             player.team.append(player.companion2)
             player.current_player = player.companion2
             self.new_character = player.companion2
@@ -46,7 +51,10 @@ class Add_New_Character(Screen):
         self.add_widget(self.creation_menu)
         #self.add_widget(self.tooltip)
         
-        UI.ui.stats_refresh(player.companion1)
+        if len(player.team) == 1:
+            UI.ui.stats_refresh(player.companion1)
+        elif len(player.team) == 2:
+            UI.ui.stats_refresh(player.companion2)
         #self.refresh_items()
 
     def refresh_items(self):

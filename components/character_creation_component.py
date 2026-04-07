@@ -113,7 +113,7 @@ class ClassesComponent(BoxLayout):
             current_character.HP = 60
             current_character.MAX_HP = 60
             current_character.STR_base = 15
-            current_character.MP_regen = 10
+            current_character.MP_regen_base = 10
             current_character.inventory["main_hand"][2] = "graphics/items/miecz_z_brazu.png"
             current_character.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5",30,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]50%STR[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
             self.warrior_class.background_normal = "graphics/warrior_class.png"
@@ -127,7 +127,7 @@ class ClassesComponent(BoxLayout):
             current_character.HP = 40
             current_character.MAX_HP = 40
             current_character.INT_base = 15
-            current_character.MP_regen = 20
+            current_character.MP_regen_base = 20
             current_character.inventory["main_hand"][2] = "graphics/items/pika.png"
             current_character.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'płonięcie'",40,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemień pokłady swojej magicznej energi w żywy ogien palący twoich wrogów.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]5 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
             self.mage_class.background_normal = "graphics/mage_class.png"
@@ -141,7 +141,7 @@ class ClassesComponent(BoxLayout):
             current_character.HP = 50
             current_character.MAX_HP = 50
             current_character.DEX_base = 15
-            current_character.MP_regen = 15
+            current_character.MP_regen_base = 15
             current_character.inventory["main_hand"][2] = "graphics/items/miedziany_sztylet.png"
             current_character.skill["zatrute ostrze"] = ["self.final_damage = 0\nself.action_status = 'zatrute ostrze'",20,"graphics/skills/zatrute_ostrze.png","Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","status","on_self","obrazenia_buff_effect","graphics/sounds/positive_effect_1.wav"]
             self.thief_class.background_normal = "graphics/thief_class.png"

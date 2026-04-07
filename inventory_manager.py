@@ -269,7 +269,7 @@ class Items(Widget):
                 else:
                     data[count] = line.strip().replace(r'\n','\n')
                     count+=1             
-                    if count == 6: # <--- amout of separated data for one item/skill/status, change appropriately
+                    if count == 6: # <--- ilosc kategori nadanej dla jednego przedmiotu/umiejetnosci/statusu, zmienic odpowiednio
                         self.item_list[data[0]] = [data[1],data[2],data[3],data[4],int(data[5])]
                         count=0
         f.close()

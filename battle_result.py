@@ -33,13 +33,13 @@ class Battle_Result(Screen):
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
         Clock.schedule_once(self.progress_bar_start)
 
-        if len(player.team) == 1:
+        if len(player.team) >= 1:
             self.add_widget(Image(source="graphics/sprites/"+player.main_player.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.7}))
             self.add_widget(self.exp_bar_player)
-        if len(player.team) == 2:
+        if len(player.team) >= 2:
             self.add_widget(Image(source="graphics/sprites/"+player.companion1.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.5}))
             self.add_widget(self.exp_bar_companion_one)
-        if len(player.team) == 3:
+        if len(player.team) >= 3:
             self.add_widget(Image(source="graphics/sprites/"+player.companion2.head+"_portrait.png", pos_hint={"center_x": 0.42, "center_y": 0.3}))
             self.add_widget(self.exp_bar_companion_two)
         self.add_widget(gold_gain_widget)

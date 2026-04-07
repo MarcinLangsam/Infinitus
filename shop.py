@@ -1,5 +1,4 @@
-import inventory_manager as im, text_pop as tp, player, UI_manager as UI
-from fight import current_stage
+import inventory_manager as im, text_pop as tp, player, UI_manager as UI, fight
 import tooltip as tt
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
@@ -24,7 +23,6 @@ class Shop(Screen):
         self.add_widget(Image(source="graphics/plain_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         
         for x in range(0,96):
-            #im.inventory[x] = im.ItemSlot(pos=(player.current_player.inventory[x][0],player.current_player.inventory[x][1]), sprite=(player.current_player.inventory[x][2]))
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
             
             self.add_widget(im.inventory[x])
@@ -42,9 +40,9 @@ class Shop(Screen):
         self.add_widget(self.tooltip)
 
     def set_shop_content(self):
-        for x in range(48,48+len(self.shop_content[current_stage])):
-            im.inventory[x].sprite = str(self.shop_content[current_stage][x-48])
-            player.current_player.inventory[x][2] = str(self.shop_content[current_stage][x-48])
+        for x in range(48,48+len(self.shop_content[fight.current_stage])):
+            im.inventory[x].sprite = str(self.shop_content[fight.current_stage][x-48])
+            player.current_player.inventory[x][2] = str(self.shop_content[fight.current_stage][x-48])
 
     def clear_on_shop_leave(self):
         for x in range(48,95):
@@ -55,13 +53,14 @@ class Shop(Screen):
     shop_content={
         1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",
            "graphics/items/srebrny_pierscien.png","graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/drewniana_tarcza.png","graphics/items/magicza_ksiega.png","graphics/items/podstepny_majcher.png",
-           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/miecz_poltorareczny.png"
-           "graphics/items/pikowany_pancerz.png","graphics/items/szata_maga.png","graphics/items/przyszywanica.png","graphics/items/kolczuga.png"
+           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/miecz_poltorareczny.png",
+           "graphics/items/pikowany_pancerz.png","graphics/items/szata_maga.png","graphics/items/przyszywanica.png","graphics/items/kolczuga.png",
         ],
         2:["graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
            "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png",
-           "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png"
-           "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png"
+           "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png",
+           "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png",
+           "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png",
 
 
         ]

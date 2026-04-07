@@ -22,7 +22,7 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
            f.write(characters[x]+'.MAX_HP = '+str(player.team[x].MAX_HP)+'\n')
            f.write(characters[x]+'.MAX_MP = '+str(player.team[x].MAX_MP)+'\n')
-           f.write(characters[x]+'.MP_regen = '+str(player.team[x].MP_regen)+'\n')
+           f.write(characters[x]+'.MP_regen_base = '+str(player.team[x].MP_regen_base)+'\n')
            f.write(characters[x]+'.HP = '+str(player.team[x].HP)+'\n')
            f.write(characters[x]+'.MP = '+str(player.team[x].MP)+'\n')
            f.write(characters[x]+'.STR_base = '+str(player.team[x].STR_base)+'\n')
@@ -56,10 +56,10 @@ class Settings_menu(Screen):
             f.write('player.main_player.inventory['+str(x)+'][2] = "'+(player.current_player.inventory[x][2])+'"\n')
         f.write("fight.current_fight="+str(fight.current_fight)+"\n")
         f.write("fight.current_stage="+str(fight.current_stage)+"\n")
-        if len(player.team)==2:
+        if len(player.team)>=2:
             f.write("player.team.append(player.companion1)\n")
-        if len(player.team)==3:
-            f.write("player.team.append(player.companion2)")
+        if len(player.team)>=3:
+            f.write("player.team.append(player.companion2)\n")
         f.write("player.gold = "+str(player.gold))
         f.close()
         Clock.schedule_once(tp.clear_pop_up,2)

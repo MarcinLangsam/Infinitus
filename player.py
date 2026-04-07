@@ -76,7 +76,8 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
-        self.MP_regen = 10
+        self.MP_regen_base = 10
+        self.MP_regen_modifier = 0
 
         self.STR = 10
         self.DEX = 10
@@ -169,8 +170,8 @@ class Character(Widget):
             32 : [0.21,0.41,"graphics/items/empty_slot.png","item"],
             33 : [0.245,0.41,"graphics/items/empty_slot.png","item"],
             34 : [0.28,0.41,"graphics/items/pancerz_z_wzmocnionej_skory.png","item"],
-            35 : [0.315,0.41,"graphics/items/empty_slot.png","item"],
-            36 : [0.14,0.348,"graphics/items/empty_slot.png","item"],
+            35 : [0.315,0.41,"graphics/items/gladius.png","item"],
+            36 : [0.14,0.348,"graphics/items/gladius.png","item"],
             37 : [0.175,0.348,"graphics/items/empty_slot.png","item"],
             38 : [0.21,0.348,"graphics/items/empty_slot.png","item"],
             39 : [0.245,0.348,"graphics/items/empty_slot.png","item"],
@@ -239,7 +240,7 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
-        self.MP_regen = 10
+        self.MP_regen_base = 10
         self.STR = 10
         self.DEX = 10
         self.INT = 10
@@ -296,7 +297,7 @@ class Character(Widget):
         self.MAX_MP = 100
         self.HP = 100
         self.MP = 100
-        self.MP_regen = 10
+        self.MP_regen_base = 10
         self.STR = 10
         self.DEX = 10
         self.INT = 10
@@ -375,4 +376,4 @@ companion2 = Character()
        
 team = list()
 team.append(main_player)
-gold = 1000
+gold = 0

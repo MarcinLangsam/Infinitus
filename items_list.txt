@@ -116,9 +116,9 @@ Młot Bojowy    |   BROŃ DWURĘCZNA\nObrażenia +10
 _______________________________________
 graphics/items/gladius.png
 one_hand
-player.current_player.weapon += 50
-player.current_player.weapon -= 50
-Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +50 DEV WEAPON :P
+player.current_player.weapon += 99
+player.current_player.weapon -= 99
+Gladius    |   BROŃ JEDNORĘCZNA\nObrażenia +99 DEV WEAPON :P
 10000
 _______________________________________
 graphics/items/miecz_rycerski.png
@@ -297,8 +297,8 @@ Ozdobna Toga    |   PANCERZ\nPancerz +11\n[color=#00f7ff]Inteligencja +3[/color]
 _______________________________________
 graphics/items/serce_golema.png
 armor
-\nplayer.current_player.MAX_HP += 100\nplayer.current_player.HP += 100\nplayer.current_player.MAX_MP += 20\nplayer.current_player.MP += 20\nplayer.current_player.crit_chance_bonus += 5
-\nplayer.current_player.MAX_HP -= 100\nplayer.current_player.HP -= 100\nplayer.current_player.MAX_MP -= 20\nplayer.current_player.MP -= 20\nplayer.current_player.crit_chance_bonus -= 3
+player.current_player.MAX_HP += 100\nplayer.current_player.HP += 100\nplayer.current_player.MAX_MP += 20\nplayer.current_player.MP += 20\nplayer.current_player.crit_chance_bonus += 5
+player.current_player.MAX_HP -= 100\nplayer.current_player.HP -= 100\nplayer.current_player.MAX_MP -= 20\nplayer.current_player.MP -= 20\nplayer.current_player.crit_chance_bonus -= 3
 Serce Golema    |   PANCERZ\n[color=#ff0000]Zdrowie +100[/color]\n[color=#0000ff]Mana +20[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +5[/color]
 1500
 _______________________________________

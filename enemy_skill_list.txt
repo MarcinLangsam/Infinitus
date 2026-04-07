@@ -34,7 +34,7 @@ _______________________________________
 blok
 Blok
 self.final_damage = 0\nself.action_status = 'blok'
-by_stauts_and_HP
+by_status_and_HP
 0.5
 on_self
 status
@@ -100,7 +100,7 @@ _______________________________________
 magiczna włócznia
 magiczna włócznia
 self.final_damage = 0\nself.action_status = 'magiczna włócznia'
-by_stauts_and_HP
+by_status_and_HP
 0.5
 on_self
 status
@@ -154,7 +154,7 @@ graphics/sounds/hit2.wav
 _______________________________________
 tortury
 Tortury
-self.final_damage = 10\nself.action_status = 'tortury'
+self.final_damage = 5\nself.action_status = 'tortury'
 by_status
 tortury
 on_enemy
@@ -196,12 +196,12 @@ trujace_opary_effect
 graphics/sounds/magic3.wav
 
 _______________________________________
-zarodniki
-zarodniki
-self.final_damage = 0\nself.action_status = 'zarodniki'
+regeneracja
+regeneracja
+self.final_damage = 0\nself.action_status = 'regeneracja'
 must_have
-zarodniki
-on_all_enemy
+regeneracja
+on_self
 status
 leczenie_effect
 graphics/sounds/heal.wav
@@ -287,7 +287,7 @@ _______________________________________
 horror
 horror
 self.final_damage = 0\nself.action_status = 'horror'
-by_stauts_and_HP_alter
+by_status_and_HP_alter
 0.21
 on_character
 status
@@ -313,7 +313,7 @@ by_status_on
 zagłada
 on_all_character
 ranged
-
+aura_smierci_effect
 graphics/sounds/boom.wav
 
 _______________________________________
@@ -332,12 +332,12 @@ astralna wiedza
 astralna wiedza
 self.final_damage = 0\nself.action_status = 'astralna wiedza'
 by_HP_must_have
-0.5
+0.6
 on_self
 ranged
 aura_effect
 graphics/sounds/positive_effect_1.wav
-
+astralna wiedza
 _______________________________________
 rozplatanie
 rozplatanie
@@ -366,7 +366,7 @@ Manwer Kowadła
 self.final_damage = self.current_turn.damage\nself.action_status = 'kowadlo'
 0
 0
-on_character
+attack
 melee
 obrona_debuff_effect
 graphics/sounds/hit3.wav
@@ -377,7 +377,7 @@ Manwer Młota
 self.final_damage = self.current_turn.damage*1.7\nself.action_status = 'mlot'
 by_status_on
 kowadlo
-on_character
+attack
 melee
 rozplatanie_effect
 graphics/sounds/hit6.wav
@@ -386,13 +386,13 @@ _______________________________________
 skupienie
 Skupienie
 self.final_damage = 0\nself.action_status = 'skupienie'
-by_HP_alter
+by_status_and_HP_alter
 0.15
 on_self
 status
 obrazenia_buff_effect
 graphics/sounds/positive_effect_1.wav
-
+skupienie
 _______________________________________
 remedium
 Remedium
@@ -410,7 +410,7 @@ Cios Rewersem
 self.final_damage = self.current_turn.damage\nself.action_status = 'ogłuszenie'
 0
 0
-on_character
+attack
 status
 ogluszenie_effect
 graphics/sounds/ogluszenie.wav
@@ -421,7 +421,7 @@ Shi Mao
 self.final_damage = self.current_turn.damage*2\nself.action_status = 'oslabienie'
 0
 0
-on_character
+attack
 melee
 shi_mao_effect
 graphics/sounds/hit5.wav
@@ -432,7 +432,7 @@ Tun Ji
 self.final_damage = self.current_turn.damage*1.3\nself.action_status = 'tun ji'
 by_status
 tun ji
-on_character
+attack
 melee
 tun_ji_effect
 graphics/sounds/negative_effect_skill.wav
@@ -465,7 +465,7 @@ Półksiężyc
 self.final_damage = 0\nself.action_status = 'polksiezyc'
 0
 0
-on_character
+attack
 melee
 polksiezyc_effect
 graphics/sounds/negative_effect_4.wav
@@ -477,7 +477,7 @@ self.final_damage = 0\nself.action_status = 'pelnia'
 0
 0
 on_all_character
-range
+ranged
 pelnia_effect
 graphics/sounds/negative_effect_4.wav
 
@@ -517,7 +517,7 @@ graphics/sounds/positive_effect_4.wav
 _______________________________________
 instynkt_przetrwania
 Instynkt Przetrwania
-self.final_damage = 50\nself.action_status = 'instynkt przetrwania'
+self.final_damage = -50\nself.action_status = 'instynkt przetrwania'
 by_HP_must_have
 0.3
 on_self
@@ -531,7 +531,7 @@ Ognisty Oddech
 self.final_damage = self.current_turn.STR*1.5
 0
 0
-on_character
+attack
 ranged
 kula_ognia_effect
 graphics/sounds/breath_attack.wav
@@ -553,7 +553,7 @@ Mocny cios
 self.final_damage = self.current_turn.damage*1.5
 0
 0
-on_character
+attack
 melee
 rozplatanie_effect
 graphics/sounds/hit2.wav
@@ -564,7 +564,7 @@ Jadowity Oddech
 self.final_damage = self.current_turn.DEX\nself.action_status = 'trucizna'
 0
 0
-on_self
+attack
 status
 jadowity_oddech_effect
 graphics/sounds/breath_attack.wav
@@ -572,9 +572,9 @@ graphics/sounds/breath_attack.wav
 _______________________________________
 bomba_dymna
 Bomba Dymna
-self.final_damage = self.current_turn.DEX\nself.action_status = 'bomba dymna'
+self.final_damage = 0\nself.action_status = 'bomba dymna'
 by_status
-bomba dymnn
+bomba dymna
 on_all_enemy
 status
 bomba_dymna_effect
@@ -597,7 +597,7 @@ Cios z Ukrycia
 self.final_damage = self.current_turn.damage*3
 by_status_on
 ukrycie
-on_character
+attack
 melee
 rozprucie_effect
 graphics/sounds/hit7.wav
@@ -608,7 +608,7 @@ Smoczy Oddech
 self.final_damage = self.current_turn.STR*1.6
 0
 0
-on_all_character
+attack
 ranged
 kula_ognia_effect
 graphics/sounds/breath_attack.wav
@@ -637,18 +637,18 @@ graphics/sounds/negative_effect_1.wav
 
 _______________________________________
 miazga
-miazga
-self.final_damage = self.current_turn.damage*2
+Miazga
+self.final_damage = self.current_turn.damage*2.5
 by_status_on
 roztrzaskanie
-on_character
+attack
 melee
 miazga_effect
 graphics/sounds/miazga.wav
 
 _______________________________________
 wstrzas
-wstrząs
+Wstrząs
 self.final_damage = self.current_turn.damage1.5
 0
 0
@@ -663,7 +663,7 @@ lubudu_i_bec
 self.final_damage = self.current_turn.damage\nself.action_status = 'ogłuszenie'
 0
 0
-on_character
+attack
 melee
 ogluszenie_effect
 graphics/sounds/hit8.wav
@@ -694,7 +694,7 @@ _______________________________________
 dzicz
 Dzicz
 self.final_damage = 0\nself.action_status = 'dzicz'
-by_stauts_and_HP_alter
+by_status_and_HP
 0.3
 on_self
 status
@@ -702,4 +702,179 @@ dzicz_effect
 graphics/sounds/negative_effect_1.wav
 dzicz
 _______________________________________
+przeklety_oddech
+Przeklęty Oddech
+self.final_damage = self.current_turn.STR*1.65
+0
+0
+attack
+ranged
+klatwa_effect
+graphics/sounds/breath_attack.wav
 
+_______________________________________
+morderczy_cios
+Morderczy Cios
+self.final_damage = self.current_turn.damage*1.65
+0
+0
+attack
+melee
+rozplatanie_effect
+graphics/sounds/hit2.wav
+
+_______________________________________
+zgnilizna
+Zgnilizna
+self.final_damage = 35\nself.action_status = 'zgnilizna'
+0
+0
+attack
+status
+trujace_opary_effect
+graphics/sounds/magic3.wav
+
+_______________________________________
+uzdrowienie
+Uzdrowienie
+self.final_damage = -(self.current_turn.INT*2)
+by_HP
+0.3
+on_enemy
+heal
+leczenie_effect
+graphics/sounds/heal.wav
+
+_______________________________________
+kuracja
+Kuracja
+self.final_damage = 0\nself.action_status = "kuracja"
+by_HP
+0.3
+on_enemy
+heal
+leczenie_effect
+graphics/sounds/heal.wav
+
+_______________________________________
+korozja
+Korozja
+self.final_damage = 0\nself.action_status = "korozja"
+by_status_and_HP
+0.3
+on_character
+status
+obrona_debuff_effect
+graphics/sounds/negative_effect_3.wav
+korozja
+_______________________________________
+oslepienie
+Oslepienie
+self.final_damage = 0\nself.action_status = "oslepienie"
+by_HP
+0.3
+on_character
+status
+obrazenia_debuff_effect
+graphics/sounds/negative_effect_4.wav
+
+_______________________________________
+ostatni bastion
+Ostatni Bastion
+self.final_damage = 0\nself.action_status = "ostatni bastion"
+by_HP_must_have
+0.3
+on_self
+status
+aura_effect
+graphics/sounds/positive_effect_2.wav
+
+_______________________________________
+blask
+Blask
+self.final_damage = self.current_turn.damage
+by_HP_alter
+0.3
+on_all_character
+ranged
+boski_grzmot_effect
+graphics/sounds/magic3.wav
+
+_______________________________________
+blysk
+Blysk
+self.final_damage = self.current_turn.damage*1.5
+by_HP_alter
+0.3
+on_character
+melee
+boski_grzmot_effect
+graphics/sounds/hit3.wav
+
+_______________________________________
+lenistwo
+lenistwo
+self.final_damage = 0\nself.action_status = "lenistwo"
+by_HP_must_have
+0.8
+on_all_character
+status
+zrecznosc_debuff_effect
+graphics/sounds/negative_effect_1.wav
+lenistwo
+_______________________________________
+gniew
+gniew
+self.final_damage = 0\nself.action_status = "gniew"
+by_HP_must_have
+0.6
+on_all_character
+status
+sila_debuff_effect
+graphics/sounds/negative_effect_2.wav
+gniew
+_______________________________________
+pycha
+pycha
+self.final_damage = 0\nself.action_status = "pycha"
+by_HP_must_have
+0.4
+on_all_character
+status
+inteligencja_debuff_effect
+graphics/sounds/negative_effect_3.wav
+pycha
+_______________________________________
+mroczna eksplozja
+mroczna eksplozja
+self.final_damage = self.current_turn.INT*2
+by_HP
+0.2
+on_all_character
+ranged
+klatwa_effect
+graphics/sounds/dark_magic.wav
+
+_______________________________________
+rozdarcie
+rozdarcie
+self.final_damage = self.current_turn.damage*1.3\nself.action_status = 'rozdarcie'
+0
+0
+attack
+melee
+obrona_debuff_effect
+graphics/sounds/hit5.wav
+
+_______________________________________
+ciemnosc
+ciemnosc
+self.final_damage = self.current_turn.INT*1.2
+0
+0
+attack
+ranged
+ciemnosc_effect
+graphics/sounds/magic.wav
+
+_______________________________________

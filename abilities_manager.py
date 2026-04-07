@@ -10,6 +10,15 @@ from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from resource_path import get_resource_path
 
+def upgrade_krwiopijca():
+        player.current_player.skill["krwiopijca"][0] = "self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"
+        player.current_player.skill["krwiopijca"][3] = "\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]"
+        player.current_player.skill["krwiopijca"][6] = "on_character"
+def upgrade_zew_bojowy():
+    player.current_player.skill["zew bojowy"][0] = "self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"
+    player.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
+    player.current_player.skill["zew bojowy"][3] = "Nakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+50% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]"
+
 class Skill_line(Widget):
     points = ListProperty([])
 class SkillSlot(Widget):
@@ -77,6 +86,8 @@ class Skills():
     def __init__(self):
         self.load_skills()
 
+    
+
     def load_skills(self):
         data =["","","","","","","","","","","","","","","",""]
         count = 0
@@ -93,7 +104,7 @@ class Skills():
                     if count == 7 and data[count] != "none":
                         data[count] = int(data[count])
                     count+=1             
-                    if count == 16: # <--- amout of separated data for one item/skill/status, change appropriately
+                    if count == 16: # <--- ilosc kategori nadanej dla jednego przedmiotu/umiejetnosci/statusu, zmienic odpowiednio
                         self.skill_list[int(data[0])] = [data[1],data[2],data[3],data[4],float(data[5]),float(data[6]),data[7],data[8],int(data[9]),data[10],data[11],data[12],data[13],data[14],data[15]]
                         count=0
         

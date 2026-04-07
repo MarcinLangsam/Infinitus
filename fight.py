@@ -565,6 +565,7 @@ class Fight(Screen):
         target.dodge_chance = 0.02*target.DEX_base + target.dodge_chance_bonus
         target.damage_bonus = 0
         target.damage_special_effect = ""
+        target.MP_regen_modifier = 0
         self.aplly_stats_modifier(target)
 
     def aplly_stats_modifier(self,target):
@@ -970,7 +971,7 @@ class Fight(Screen):
         ### if player turn, set pointer AND REGAIN MP ###
         if self.current_turn in enemy.player_team_alive:            
             self.player_sprites[self.chose_enemy_index(self.current_turn)][1].show_border()
-            self.current_turn.MP += self.current_turn.MP_regen
+            self.current_turn.MP += self.current_turn.MP_regen_base + self.current_turn.MP_regen_modifier
             if self.current_turn.MP > self.current_turn.MAX_MP:
                 self.current_turn.MP = self.current_turn.MAX_MP
             self.update_status()
