@@ -86,8 +86,6 @@ class Skills():
     def __init__(self):
         self.load_skills()
 
-    
-
     def load_skills(self):
         data =["","","","","","","","","","","","","","","",""]
         count = 0

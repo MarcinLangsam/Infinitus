@@ -572,7 +572,7 @@ rozdarta_dusza = Enemy("Rozdarta Dusza",6,330,30,30,27,37,15,0,0,{
                                                             {},
                                                             "graphics/sprites/rozdarta_dusza_sprite.png","rozdarta_dusza",False)
 
-wojownik_qin = Enemy("Wojownik Qin",6,350,30,25,20,15,13,100,200,{
+wojownik_qin = Enemy("Wojownik Qin",6,235,30,25,20,16,13,150,135,{
                                                             "atak":enemy_skills["atak"],
                                                             "wu_jian":enemy_skills["wu_jian"],
                                                             "wu_jian":enemy_skills["wu_jian"],
@@ -583,7 +583,7 @@ wojownik_qin = Enemy("Wojownik Qin",6,350,30,25,20,15,13,100,200,{
                                                             },
                                                             {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":25,"graphics/items/pikowany_pancerz.png":25},
                                                             "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin",False)
-wojownik_qin2 = Enemy("Wojownik Qin",6,350,30,25,20,15,13,100,200,{
+wojownik_qin2 = Enemy("Wojownik Qin",6,235,25,25,23,16,13,150,135,{
                                                             "atak":enemy_skills["atak"],
                                                             "wu_jian":enemy_skills["wu_jian"],
                                                             "wu_jian":enemy_skills["wu_jian"],
@@ -595,7 +595,7 @@ wojownik_qin2 = Enemy("Wojownik Qin",6,350,30,25,20,15,13,100,200,{
                                                             {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":25,"graphics/items/pikowany_pancerz.png":25},
                                                             "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin",False)
 
-wlocznik_qin = Enemy("Włócznik Qin",6,290,30,25,20,15,13,100,200,{
+wlocznik_qin = Enemy("Włócznik Qin",6,260,20,20,35,13,7,170,145,{
                                                             "atak":enemy_skills["atak"],
                                                             "remedium":enemy_skills["remedium"],
                                                             "remedium":enemy_skills["remedium"],
@@ -606,7 +606,7 @@ wlocznik_qin = Enemy("Włócznik Qin",6,290,30,25,20,15,13,100,200,{
                                                             {"graphics/items/pierscien_zrecznosci.png":40,"graphics/items/wiekszy_pierscien_zrecznosci.png":15,"graphics/items/pikowany_pancerz.png":15},
                                                             "graphics/sprites/wlocznik_qin_sprite.png","wlocznik_qin",False)
 
-halabardnik_qin = Enemy("Halabardnik Qin",6,400,30,25,20,15,13,100,200,{
+halabardnik_qin = Enemy("Halabardnik Qin",6,200,30,20,10,17,10,170,175,{
                                                             "atak":enemy_skills["atak"],
                                                             "tun_ji":enemy_skills["tun_ji"],
                                                             "wojenny_gong_gu":enemy_skills["wojenny_gong_gu"],
@@ -781,14 +781,13 @@ przeklety_czempion2 = Enemy("Przeklęty Czempion",6,600,30,25,20,15,13,100,200,{
                                                             {"graphics/items/srednia_mikstura_zdrowia.png":50,"graphics/items/srednia_mikstura_many.png":50},
                                                             "graphics/sprites/przeklety_czempion_sprite.png","przeklety_czempion",True)
 
-golem = Enemy("Golem",6,400,30,25,20,35,999,100,200,{
+golem = Enemy("Golem",6,400,30,25,20,35,30,100,200,{
                                                     "atak":enemy_skills["atak"],
                                                     "serce_natury":enemy_skills["serce_natury"],
                                                     "serce_natury":enemy_skills["serce_natury"],
                                                     "wstrzas":enemy_skills["wstrzas"],
                                                     "lubudu_i_bec":enemy_skills["lubudu_i_bec"],
                                                     "lubudu_i_bec":enemy_skills["lubudu_i_bec"],
-                                                    "roztrzaskanie":enemy_skills["roztrzaskanie"],
                                                     "roztrzaskanie":enemy_skills["roztrzaskanie"],
                                                     "miazga":enemy_skills["miazga"],
                                                     "dzicz":enemy_skills["dzicz"],

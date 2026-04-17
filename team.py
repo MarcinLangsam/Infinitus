@@ -8,6 +8,7 @@ from kivy.metrics import dp
 from components.stats_component import stats_component
 from components.inventory_component import gold_widget, Trash
 from components.bottom_menu import BottomMenu
+from kivy.uix.label import Label
 
 
 class EXPBar(ProgressBar):
@@ -90,7 +91,8 @@ class Team(Screen):
         self.companion1_button.background_normal ="graphics/sprites/"+player.companion1.head+"_portrait.png"
         self.companion2_button.background_normal ="graphics/sprites/"+player.companion2.head+"_portrait.png"
 
-        self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))        
+        self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))   
+        self.add_widget(Label(text="Trzymaj kursor na przedmiocie aby zobaczyć jego opis", pos_hint={"center_x": 0.5,"center_y": 0.05}, font_size=18))     
         #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         
         im.inventory["main_hand"] = im.ItemSlot(pos_hint={"x": player.current_player.inventory["main_hand"][0], "y": player.current_player.inventory["main_hand"][1]}, sprite=(player.current_player.inventory["main_hand"][2]))

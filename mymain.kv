@@ -114,42 +114,18 @@ WindowManger:
         size_hint: 1,1
         source: root.battle_background
         fit_mode: "fill"
-    Button:
+    AttackButton:
         id: attack
-        on_release: root.action_attack()
         pos_hint: {"x": 0.02, "y": 0.25}
-        size: dp(85), dp(75)
-        size_hint: None,None
-        background_normal: "graphics/attack_button.png"
-        background_disabled_normal: "graphics/attack_button_disabled.png"
-        border: (0,0,0,0)
-    Button:
+    SkillButton:
         id: spells
-        on_release: root.action_spells()
         pos_hint: {"x": 0.02, "y": 0.35}
-        size: dp(85), dp(75)
-        size_hint: None,None
-        background_normal: "graphics/magic_button.png"
-        background_disabled_normal: "graphics/magic_button_disabled.png"
-        border: 0,0,0,0
-    Button:
+    DefendButton:
         id: defend
-        on_release: root.action_defend()
         pos_hint: {"x": 0.02, "y": 0.45}
-        size: dp(85), dp(75)
-        size_hint: None,None
-        background_normal: "graphics/defend_button.png"
-        background_disabled_normal: "graphics/defend_button_disabled.png"
-        border: (0,0,0,0)
-    Button:
+    PotionButton:
         id: potion
-        on_release: root.action_potion()
         pos_hint: {"x": 0.02, "y": 0.55}
-        size: dp(85), dp(75)
-        size_hint: None,None
-        background_normal: "graphics/potion_button.png"
-        background_disabled_normal: "graphics/potion_button_disabled.png"
-        border: (0,0,0,0)
 <Game_Over>:
     name: "game_over"
     size_hint: 1, 1
@@ -479,7 +455,7 @@ WindowManger:
             size_hint_y: None
             cols: 1
             height: self.minimum_height
-            padding: 0,200,0,200
+            padding: 75,200,0,200
             
 <Stat_Button>:
     size_hint: None, None
@@ -736,3 +712,126 @@ WindowManger:
         Line:
             rectangle: self.x, self.y, self.width, self.height
             width: 5
+
+
+<AttackButton@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: None, None
+    height: dp(75)
+    width: dp(85) + dp(175)
+
+    Image:
+        id: img
+        size_hint: None, None
+        size: dp(85), dp(75)
+        source: "graphics/attack_button.png" if not root.disabled else "graphics/attack_button_disabled.png"
+        allow_stretch: True
+        
+    Label:
+        id: attack_label
+        text: "Atak"
+        size_hint: None, 1
+        width: dp(175)
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+        color: 1, 1, 1, 1
+        font_size: dp(16)
+        bold: True
+        halign: 'center'
+        valign: 'middle'
+
+<SkillButton@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: None, None
+    height: dp(75)
+    width: dp(85) + dp(175)
+
+
+    Image:
+        id: img
+        size_hint: None, None
+        size: dp(85), dp(75)
+        source: "graphics/magic_button.png" if not root.disabled else "graphics/magic_button_disabled.png"
+        allow_stretch: True
+        
+    Label:
+        id: skill_label
+        text: "Umiejętności"
+        size_hint: None, 1
+        width: dp(175)
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+        color: 1, 1, 1, 1
+        font_size: dp(16)
+        bold: True
+        halign: 'center'
+        valign: 'middle'
+
+<DefendButton@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: None, None
+    height: dp(75)
+    width: dp(85) + dp(175)
+
+
+    Image:
+        id: img
+        size_hint: None, None
+        size: dp(85), dp(75)
+        source: "graphics/defend_button.png" if not root.disabled else "graphics/defend_button_disabled.png"
+        allow_stretch: True
+        
+    Label:
+        id: defend_label
+        text: "Obrona\nRedukcja 90% obrażeń"
+        size_hint: None, 1
+        width: dp(175)
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+        color: 1, 1, 1, 1
+        font_size: dp(16)
+        bold: True
+        halign: 'center'
+        valign: 'middle'
+
+<PotionButton@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: None, None
+    height: dp(75)
+    width: dp(85) + dp(175)
+
+    Image:
+        id: img
+        size_hint: None, None
+        size: dp(85), dp(75)
+        source: "graphics/potion_button.png" if not root.disabled else "graphics/potion_button_disabled.png"
+        allow_stretch: True
+        
+    Label:
+        id: potion_label
+        text: "Mikstury"
+        size_hint: None, 1
+        width: dp(175)
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.2, 0.95
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+        color: 1, 1, 1, 1
+        font_size: dp(16)
+        bold: True
+        halign: 'center'
+        valign: 'middle'

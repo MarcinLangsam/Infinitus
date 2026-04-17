@@ -7,6 +7,7 @@ from kivy.metrics import dp
 from components.bottom_menu import BottomMenu
 from components.skill_points_component import skill_point_widget
 from kivy.clock import Clock
+from kivy.uix.label import Label
 
 class Switch_Character_Button(Button):
      pass
@@ -28,6 +29,7 @@ class Skills_Window(Screen):
 
     def setup_window(self):
         self.add_widget(Image(source="graphics/skills_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
+        self.add_widget(Label(text="Trzymaj kursor na kafelku umiejętności aby zobaczyć jej opis", pos_hint={"center_x": 0.5,"center_y": 0.05}, font_size=18))
         #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(skill_point_widget)
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_window("menu")))

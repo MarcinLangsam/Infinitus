@@ -483,7 +483,7 @@ self.current_turn.defence_modifier -=0.5
 Młot\nPancerz zmniejszony o 50%
 
 ________________________________________
-kowadlo
+kowadło
 Kowadło
 self.current_turn.HP -= 10
 6
@@ -495,12 +495,12 @@ Kowadło\nCel traci 10 HP co turę
 ________________________________________
 skupienie
 Skupienie
-self.current_turn.damage_modifier +=2.5
+self.current_turn.damage_modifier +=2.2
 2
 graphics/icons/precyzyjne_ciosy_status.png
 one_time
-self.current_turn.damage_modifier -=2.5
-Skupienie\nZwiększa obrażenia o 250% do następnej tury
+self.current_turn.damage_modifier -=2.2
+Skupienie\nZwiększa obrażenia o 220% do następnej tury
 
 ________________________________________
 oslabienie
@@ -516,7 +516,7 @@ ________________________________________
 tun ji
 Tun Ji
 self.current_target.MP = 0
-4
+10
 graphics/icons/energy_drain_status.png
 one_time
 self.current_turn.MP += 0

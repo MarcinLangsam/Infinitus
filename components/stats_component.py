@@ -131,3 +131,4 @@ class StatsComponent(BoxLayout):
 
 stats_component = StatsComponent()
 
+

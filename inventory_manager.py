@@ -109,12 +109,13 @@ class ItemSlot(DragBehavior, Widget):
                     pass
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
-                if self.collide_widget(self.parent.trash):
-                #if dp(140) <= touch.pos[0] <= dp(140)+dp(50) and dp(600) <= touch.pos[1] <= dp(600)+dp(50) and screen == "team": ### usuwanie przedmiotow
-                    player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
-                    inventory[self.select].sprite = "graphics/items/empty_slot.png"
-                    self.check_for_empty_slot()
-                    inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
+                if screen == "team":
+                    if self.collide_widget(self.parent.trash):
+                    #if dp(140) <= touch.pos[0] <= dp(140)+dp(50) and dp(600) <= touch.pos[1] <= dp(600)+dp(50) and screen == "team": ### usuwanie przedmiotow
+                        player.current_player.inventory[self.select][2] = "graphics/items/empty_slot.png"
+                        inventory[self.select].sprite = "graphics/items/empty_slot.png"
+                        self.check_for_empty_slot()
+                        inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                 else:
                     inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}        
             if player.current_player.inventory[self.select][2] == "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy wyposażaniu
