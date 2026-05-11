@@ -43,6 +43,7 @@ class Add_New_Character(Screen):
         self.add_widget(Label(text="DODAJ NOWEGO\nCZŁONKA DRUŻYNY!", pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
         
         self.add_widget(self.sprite)
+        stats_component.hidden()
         self.add_widget(stats_component)
         self.add_widget(self.creation_menu)
         #self.add_widget(self.tooltip)

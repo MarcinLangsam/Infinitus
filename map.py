@@ -5,6 +5,7 @@ import fight
 from kivy.metrics import dp
 from components.bottom_menu import BottomMenu
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
 
 class StageButton(Button):
     pass
@@ -42,6 +43,7 @@ class Map(Screen):
     def setup_window(self):
         self.add_widget(Image(source="graphics/plain_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen("menu")))
+        self.add_widget(Label(text="Kliknij na wybraną mapę aby się tam przenieść", pos_hint={"center_x": 0.5,"center_y": 0.05}, font_size=18))     
         
 
         self.add_widget(self.stages_box)

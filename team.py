@@ -129,8 +129,7 @@ class Team(Screen):
         self.exp_bar.pos_hint = {'center_x':0.5,'center_y':0.9}
         self.exp_bar.size_hint_x = 0.20
         self.add_widget(self.exp_bar)
-    
-        
+        stats_component.visible()
         self.add_widget(stats_component)
         self.add_widget(gold_widget)
         self.add_widget(self.trash)

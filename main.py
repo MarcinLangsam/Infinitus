@@ -111,33 +111,48 @@ class Tutorial(Screen):
         self.ids.help_text.text = """
         Witaj w 'NIESKOŃCZONYM LOCHU', twoim celem jest odkrycie głęboko ukrytej tajemnicy tego miejsca. 
         Ulepszaj swoich bohaterów, zdobywaj coraz lepsze wyposażenie, aby pokonywać trudniejsze wyzwania. 
-        Do obsługi gry jest wymagana tylko myszka, masz dostęp tylko do jednego slotu zapisu swojego progresu. 
-        Z tego ekranu możesz podjąć kolejną walkę i zarządzać swoją drużyną. 
-        Aby sprawdzić pomoc do reszty mechanik po prostu kliknij na jeden z rozdziałów wyżej.
+        Do obsługi gry jest wymagana tylko myszka, masz dostęp do jednego slotu zapisu swojego progresu. 
+        Z ekranu zaprezentowanego poniżej możesz podjąć kolejną walkę i zarządzać swoją drużyną. 
+        Aby sprawdzić pomoc do reszty mechanik kliknij na jeden z rozdziałów wyżej.
         """
         self.ids.help_image.source = "graphics/help_start.png"
-    def inventory_shop(self):
+    def creation(self):
         self.ids.help_text.text = """
-        W ekranie ekwipunku możesz wyposażać swoją drużynę w zdobyte przedmioty, wystarczy przeciągnąć myszką na odpowiedni slot, najedź na przedmiot myszką, aby sprawdzić jego właściwości.
-        Tutaj możesz też sprawdzić statystyki swoich bohaterów. 
+        Podczas twożenia postaci możesz wybrać jej imię, twarz oraz klasę. 
+        Klasy maja unikatowe bonusy do statystyk ale determinują tylko startową broń i umiejętność.
+        Każda klasa może nauczyzć sie wszystkich umiejętności i nosić dowolny ekwipunek. 
+        Wraz z progresem walk możesz zdobyć do 3 członków drużyny.
+        """
+        self.ids.help_image.source = "graphics/help_creation.png"
+    def inventory(self):
+        self.ids.help_text.text = """
+        W ekranie ekwipunku możesz wyposażać swoją drużynę w zdobyte przedmioty, wystarczy przeciągnąć myszką na odpowiedni slot, 
+        najedź na przedmiot myszką, aby sprawdzić jego właściwości.
+        Tutaj możesz też sprawdzić statystyki swoich bohaterów oraz rozdawać punkty statystyk po awansie.
+        Przeciagaj przedmioty na ikone śmietnika aby je zniszczć.
+        """
+        self.ids.help_image.source = "graphics/help_inventory.png"
+    def shop(self):
+        self.ids.help_text.text = """
         W ekranie sklepu możesz kupować oraz sprzedawać przedmioty. 
         Przeciągaj przedmioty ze sklepu do ekwipunku, aby coś kupić oraz vice versa, aby coś sprzedać. 
         O wartości sprzedaży bądź kupna dowiesz się najeżdżając na przedmiot myszką.
         """
-        self.ids.help_image.source = "graphics/help_inventory.png"
+        self.ids.help_image.source = "graphics/help_shop.png"
     def progress(self):
         self.ids.help_text.text = """
         W tym ekranie możesz uczyć swoich bohaterów nowych umiejętności, wystarczy na nie kliknąć, najedź na nie myszą, aby zobaczyć opis umiejętności. 
-        Rozwijanie zaczyna się od dołu, nie można wybrać umiejętności bez posiadania poprzednich z drzewka.
-        W ekranie ekwipunku możesz również zwiększać statystyki bohaterów. 
+        Drzewko zaczyna się od dołu, nie można wybrać umiejętności bez posiadania poprzednich z drzewka.
         Walcząc zdobywasz punkty doświadczenia, a awansując zyskujesz 1 punkt umiejętności oraz 5 punktów statystyk.
+        Ikony na szaro to umiejętności nie wyuczone natomiast w żółtej ramcte to te już znane.
+        Każda klasa może się nauczyć każdej umiejetności i każda kosztuje 1 punkt.
         """
-        
         self.ids.help_image.source = "graphics/help_progress.png"
     def fight(self):
         self.ids.help_text.text = """
         Walka odbywa się turowo, kolejka tur jest zależna od statystyki zręczności. 
-        Po każdej walce zdobywasz złoto oraz doświadczenie jest również  procentowa szansa na zdobycie łupów w postaci przedmiotów, aby je zachować przeciągnij je do swojego ekwipunku.
+        Po każdej walce zdobywasz złoto oraz doświadczenie jest również procentowa szansa na zdobycie łupów w postaci przedmiotów, 
+        aby je zachować przeciągnij je do swojego ekwipunku.
         """
         self.ids.help_image.source = "graphics/help_fight.png"
 

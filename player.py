@@ -124,6 +124,7 @@ class Character(Widget):
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+        self.potion_description = ""
 
         self.blok = False
         #skok o 0.062!!! -------------------------------------------
@@ -282,6 +283,7 @@ class Character(Widget):
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+        self.potion_description = ""
         self.inventory["main_hand"][2] = "graphics/items/empty_slot.png"
         self.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
         self.inventory["armor"][2] = "graphics/items/skorzany_pancerz.png"
@@ -339,6 +341,7 @@ class Character(Widget):
         self.potions = 0
         self.potion_effect = ""
         self.current_potions = 0
+        self.potion_description = ""
         self.blok = False
 
     def update_player_stats(self):

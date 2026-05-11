@@ -267,7 +267,7 @@ WindowManger:
         fit_mode: "fill"
     Image:
         id: help_image
-        pos_hint: {"center_x": 0.5, "center_y": 0.37}
+        pos_hint: {"center_x": 0.5, "center_y": 0.365}
         source: ""
         size_hint: 0.7,0.7
     Button:
@@ -279,16 +279,32 @@ WindowManger:
         font_size: 23
         background_normal:"graphics/target_button.png"
     Button:
-        text: "Ekwipunek\nSklep"
+        text: "Tworzenie\nPostaci"
         pos_hint: {"center_x": 0.2, "center_y": 0.9}
         size: 170,80
-        on_release: root.inventory_shop()
+        on_release: root.creation()
         size_hint: None,None
         font_size: 23
         background_normal:"graphics/target_button.png"
     Button:
-        text: "Rozwój postaci"
+        text: "Ekwipunek"
         pos_hint: {"center_x": 0.3, "center_y": 0.9}
+        size: 170,80
+        on_release: root.inventory()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Sklep"
+        pos_hint: {"center_x": 0.4, "center_y": 0.9}
+        size: 170,80
+        on_release: root.shop()
+        size_hint: None,None
+        font_size: 23
+        background_normal:"graphics/target_button.png"
+    Button:
+        text: "Rozwój\nPostaci"
+        pos_hint: {"center_x": 0.5, "center_y": 0.9}
         size: 170,80
         on_release: root.progress()
         size_hint: None,None
@@ -296,7 +312,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Walka"
-        pos_hint: {"center_x": 0.4, "center_y": 0.9}
+        pos_hint: {"center_x": 0.6, "center_y": 0.9}
         size: 170,80
         on_release: root.fight()
         size_hint: None,None
@@ -304,7 +320,7 @@ WindowManger:
         background_normal:"graphics/target_button.png"
     Button:
         text: "Powrót"
-        pos_hint: {"center_x": 0.5, "center_y": 0.9}
+        pos_hint: {"center_x": 0.7, "center_y": 0.9}
         size: 170,80
         on_release: app.root.current = "main_menu"
         size_hint: None,None
@@ -314,7 +330,7 @@ WindowManger:
         id: help_text
         size_hint: None,None
         pos_hint: {"x": 0.5, "y": 0.75}
-        font_size: 24
+        font_size: 23
         halign: "left"
         valign: "middle"
 <Settings_menu>:
@@ -821,7 +837,7 @@ WindowManger:
         
     Label:
         id: potion_label
-        text: "Mikstury"
+        text: root.potion_description
         size_hint: None, 1
         width: dp(175)
         canvas.before:

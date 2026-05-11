@@ -62,6 +62,8 @@ class DefendButton(ButtonBehavior, BoxLayout):
     def on_defend_release(self, *args):
         self.parent.action_defend()
 class PotionButton(ButtonBehavior, BoxLayout):
+    potion_description = StringProperty("Nie masz miskstur")
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.bind(on_release=self.on_potion_release)
@@ -143,6 +145,7 @@ class Fight(Screen):
         self.remove_widget(self.tooltip)
         self.remove_widget(tp.text_pop_fight)
         self.remove_widget(self.text_pop)
+        self.final_damage = 0
         
         
     def prepare_battle_visuals(self):
@@ -156,7 +159,7 @@ class Fight(Screen):
                                         ])
         if len(team) >=2:
             self.player2_container = PlayerStatusContainer(team[1], self.tooltip, pos_hint={"x": 0.23, "y": 0.005})
-            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0], companion1.head, pos_hint={"center_x": 0.24, "center_y": 0.73}),
+            self.player_sprites.append([Character_Sprite(companion1,im.items.item_list[companion1.inventory["main_hand"][2]][0], companion1.head, pos_hint={"center_x": 0.25, "center_y": 0.73}),
                                         self.player2_container
                                         ])
         if len(team) >=3:
@@ -226,7 +229,8 @@ class Fight(Screen):
                 self.add_widget(self.target_option[x][0])
     
     def start_fight_setup(self):
-        mp.music_player.change_music("graphics/music/battle2.wav")
+        music_number = random.randint(1,4)
+        mp.music_player.change_music("graphics/music/battle"+str(music_number)+".wav")
 
         enemy.enemy_team_alive.clear()
         enemy.player_team_alive = team.copy()
@@ -995,10 +999,11 @@ class Fight(Screen):
         for x in range(0, len(self.enemy_sprites)):   
             self.enemy_sprites[x][1].hide_border()
         
-        ### if player turn, set pointer AND REGAIN MP ###
+        ### if player turn regain mp and update potion destription ###
         if self.current_turn in enemy.player_team_alive:            
             self.player_sprites[self.chose_enemy_index(self.current_turn)][1].show_border()
             self.current_turn.MP += self.current_turn.MP_regen_base + self.current_turn.MP_regen_modifier
+            self.ids.potion.potion_description = self.current_turn.potion_description + "\n("+str(self.current_turn.current_potions)+")"
             if self.current_turn.MP > self.current_turn.MAX_MP:
                 self.current_turn.MP = self.current_turn.MAX_MP
             self.update_status()

@@ -40,22 +40,22 @@ Ogłuszenie\nCel pomija swoją turę
 _______________________________________
 zew bojowy
 zew bojowy
-self.current_target.damage_modifier += 0.2
+self.current_target.damage_modifier += 0.25
 4
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.damage_modifier -= 0.2
-Zew Bojowy\nObrażenia zwiększone o 20%
+self.current_turn.damage_modifier -= 0.25
+Zew Bojowy\nObrażenia zwiększone o 25%
 x.STR /= 1.2\nx.damage = x.STR+x.weapon
 _______________________________________
 zew bojowy ulepszony
 zew bojowy ulepszony
-self.current_target.damage_modifier += 0.5
+self.current_target.damage_modifier += 0.35
 5
 graphics/icons/zew_bojowy_status.png
 one_time
-self.current_turn.damage_modifier -= 0.5
-Okrzyk Bojowy\nObrażenia zwiększone o 50%
+self.current_turn.damage_modifier -= 0.35
+Okrzyk Bojowy\nObrażenia zwiększone o 35%
 x.STR /= 1.5\nx.damage = x.STR+x.weapon
 _______________________________________
 precyzyjne ciosy
@@ -120,12 +120,12 @@ Płonięcie\nCel traci 5 HP co turę
 ________________________________________
 magiczny pocisk
 magiczny pocisk
-self.current_target.damage_reduction += 0.35
+self.current_target.damage_reduction += 0.50
 2
 graphics/icons/magiczny_pocisk_status.png
 one_time
-self.current_turn.damage_reduction -= 0.35
-Magiczny Pocisk\nCel odnosi 35% więcej obrażeń
+self.current_turn.damage_reduction -= 0.50
+Magiczny Pocisk\nCel odnosi 50% więcej obrażeń
 
 ________________________________________
 kamienna skóra
@@ -479,12 +479,12 @@ self.current_target.damage_reduction +=0.5
 4
 graphics/icons/mlot_status.png
 one_time
-self.current_turn.defence_modifier -=0.5
+self.current_turn.damage_reduction -=0.5
 Młot\nPancerz zmniejszony o 50%
 
 ________________________________________
-kowadło
-Kowadło
+kowadlo
+kowadlo
 self.current_turn.HP -= 10
 6
 graphics/icons/kowadlo_status.png
@@ -545,12 +545,12 @@ x.damage = 25
 ________________________________________
 zemsta
 Zemsta
-self.current_turn.HP -= 15\nself.current_turn.damage_base += 4
+self.current_turn.HP -= 15\nself.current_turn.damage+=4\nself.current_turn.damage_base += 4
 6
 graphics/icons/szal_wojownika_status.png
 dmg_ot
 
-Zemsta\nCo ture traci 15 HP ale zwiększa obrażenia o 4
+Zemsta\nCo ture traci 15 HP ale zwiększa obrażenia o 4 kumulacyjnie
 x.damage = 25
 ________________________________________
 trucizna
@@ -565,23 +565,23 @@ x.damage = 25
 ________________________________________
 bomba dymna
 Bomba Dymna
-self.current_target.dodge_chance_modifier += 30
+self.current_target.dodge_chance_modifier += 25
 3
 graphics/icons/eteryczny_status.png
 one_time
-self.current_turn.dodge_chance_modifier -= 30
-Bomba Dymna\nSzansza na unik zwiększona o 30%
+self.current_turn.dodge_chance_modifier -= 25
+Bomba Dymna\nSzansza na unik zwiększona o 25%
 x.dodge_chance-=30
 ________________________________________
-ukrycie
-Ukrycie
-self.current_target.dodge_chance_modifier += 100
+ofiara
+Ofiara
+
 2
 graphics/icons/ukrycie_w_cieniu_status.png
 one_time
-self.current_turn.dodge_chance_modifier -= 100
-Ukrycie\nSzansza na unik zwiększona o 100%
-x.dodge_chance-=100
+
+Ofiara\nZabójca obrał swój cel...
+
 ________________________________________
 czempion
 czempion
@@ -625,12 +625,12 @@ x.dodge_chance-=30
 ________________________________________
 zwiększony pancerz
 zwiększony pancerz
-self.current_target.defence_modifier += 20
+self.current_target.defence_base += 15
 99
-graphics/icons/eteryczny_status.png
+graphics/icons/obrona_buff_status.png
 one_time
-self.current_turn.defence_modifier -= 20
-Efekt Śmierci: Pancerz\nPancerz zwiększony o 20
+self.current_turn.defence_base -= 15
+Efekt Śmierci: Pancerz\nPancerz zwiększony o 15
 x.dodge_chance-=30
 ________________________________________
 manewr rybiej luski
@@ -695,18 +695,18 @@ x.damage_modifier -= 1.3\nx.defence += 10
 ________________________________________
 roztrzaskanie
 roztrzaskanie
-self.current_target.damage_reduction += 0.99 
+self.current_target.damage_reduction += 0.65 
 2
 graphics/icons/obrona_debuff_status.png
 one_time
-self.current_turn.damage_reduction -= 0.99
-Roztrzaskanie\nCel traci cały pancerz, bedzie bolało...
+self.current_turn.damage_reduction -= 0.65
+Roztrzaskanie\nCel otrzyma 65% więcej obrażeń, bedzie bolało...
 
 ________________________________________
 serce natury
 serce natury
 self.current_target.defence -= 999 
-5
+3
 graphics/icons/serce_natury_status.png
 one_time
 self.current_turn.defence += 999
@@ -757,7 +757,7 @@ oslepienie
 oslepienie
 self.current_target.damage_modifier -= 0.8
 2
-graphics/icons/obrona_debuff_status.png
+graphics/icons/obrazenia_debuff_status.png
 one_time
 self.current_turn.damage_modifier += 0.8
 Oślepienie\nCel zadaje o 80% obrażeń mniej
@@ -811,5 +811,15 @@ graphics/icons/obrona_debuff_status.png
 one_time
 self.current_turn.damage_modifier -= 0.4
 Rozdarcie\nCel otrzymuje 40% wiecej obrażeń
+
+_______________________________________
+ogłuszenie2
+ogłuszenie
+
+3
+graphics/icons/ogłuszenie_status.png
+stun
+
+Ogłuszenie\nCel pomija swoją turę
 
 _______________________________________

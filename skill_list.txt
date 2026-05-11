@@ -127,7 +127,7 @@ graphics/skills/okrzyk_bojowy.png
 graphics/skills/okrzyk_bojowy_ok.png
 0
 passive
-Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obrażenia o 50% i trwa 4 tury.\n\nNakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+50% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obrażenia o 35% i trwa 4 tury.\n\nNakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
 
 
 szal_effect
@@ -424,16 +424,16 @@ graphics/sounds/kula_ognia.wav
 _________________________________________
 42
 magiczny pocisk
-self.final_damage = self.current_turn.damage\nself.action_status = 'magiczny pocisk'
-kula ognia
+self.final_damage = self.current_turn.damage*3\nself.action_status = 'magiczny pocisk'
+trening maga I
 graphics/skills/magiczny_pocisk.png
 0.5
-0.21
+0.37
 41
 graphics/skills/magiczny_pocisk_ok.png
-70
+75
 active
-Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 35% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]300%Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]75[/color]
 ranged
 on_enemy
 magiczny_pocisk_effect
@@ -442,11 +442,11 @@ _________________________________________
 45
 trening maga I
 player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
-magiczny pocisk
+pięść wichru
 graphics/skills/trening_maga.png
 0.5
 0.29
-42
+44
 graphics/skills/trening_maga_ok.png
 0
 passive
@@ -492,16 +492,16 @@ graphics/sounds/heal.wav
 _________________________________________
 44
 pięść wichru
-self.final_damage = self.current_turn.damage+self.current_turn.INT\nself.action_status = 'pięść wichru'
-trening maga I
+self.final_damage = self.current_turn.damage+self.current_turn.INT*1.1\nself.action_status = 'pięść wichru'
+kula ognia
 graphics/skills/piesc_wichru.png
 0.5
-0.37
-45
+0.21
+41
 graphics/skills/piesc_wichru_ok.png
 60
 active
-Pięść Wichru   |   AKTYWNA\nPotężny podmuch w formie piąchy osłabiający cel.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00f7ff]100%INT[/color]\nNakłada: Pięść Wichru 3 tury - [color=#fdff80]Obrażenia obniżone o 10% oraz zreczność o 80%[/color]\nKoszt MP: [color=#0000ff]60[/color]
+Pięść Wichru   |   AKTYWNA\nPotężny podmuch w formie piąchy osłabiający cel.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00f7ff]110%INT[/color]\nNakłada: Pięść Wichru 3 tury - [color=#fdff80]Obrażenia obniżone o 10% oraz zreczność o 80%[/color]\nKoszt MP: [color=#0000ff]60[/color]
 ranged
 on_enemy
 piesc_wichru_effect
@@ -544,11 +544,11 @@ _________________________________________
 48
 kamienna skóra
 self.final_damage = 0\nself.action_status = 'kamienna skóra'
-pięść wichru
+magiczny pocisk
 graphics/skills/kamienna_skóra.png
 0.45
 0.45
-44
+42
 graphics/skills/kamienna_skóra_ok.png
 35
 active
@@ -561,11 +561,11 @@ _________________________________________
 49
 syfon
 self.final_damage = self.current_turn.damage\nself.current_turn.MP+=int(self.current_turn.damage)
-magiczny pocisk
+pięść wichru
 graphics/skills/syfon.png
 0.45
 0.21
-42
+44
 graphics/skills/syfon_ok.png
 0
 active
@@ -595,11 +595,11 @@ ______________________________________
 52
 runiczna klinga
 self.final_damage = 0\nself.action_status = 'runiczna klinga'
-magiczny pocisk
+pięść wichru
 graphics/skills/runiczna_klinga.png
 0.55
 0.21
-42
+44
 graphics/skills/runiczna_klinga_ok.png
 20
 active
@@ -629,11 +629,11 @@ __________________________________________
 54
 oświecenie
 player.current_player.MP_regen_base += 5
-pięść wichru
+magiczny pocisk
 graphics/skills/oswiecenie.png
 0.5
 0.45
-44
+42
 graphics/skills/oswiecenie_ok.png
 0
 passive

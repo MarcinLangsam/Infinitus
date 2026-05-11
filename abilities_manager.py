@@ -17,7 +17,7 @@ def upgrade_krwiopijca():
 def upgrade_zew_bojowy():
     player.current_player.skill["zew bojowy"][0] = "self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"
     player.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
-    player.current_player.skill["zew bojowy"][3] = "Nakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+50% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]"
+    player.current_player.skill["zew bojowy"][3] = "Nakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]"
 
 class Skill_line(Widget):
     points = ListProperty([])

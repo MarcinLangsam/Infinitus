@@ -22,7 +22,9 @@ class Music_Player():
             self.current_track.stop()
             self.current_track = SoundLoader.load(source)
             self.current_source = source
+            self.current_track.loop = True
             self.current_track.play()
+            
 
         
 

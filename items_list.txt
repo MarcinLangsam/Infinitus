@@ -171,14 +171,14 @@ Kieł Węża    |   BROŃ JEDNORĘCZNA\nObrażenia +5\n[color=#00ff00]Zręcznoś
 400
 _______________________________________
 graphics/items/kostur_kaplanski.png
-two_hand
+two_hand_spear
 player.current_player.weapon += 8\nplayer.current_player.MAX_MP += 15\nplayer.current_player.MP += 15\nplayer.current_player.INT_base += 5\nplayer.current_player.dodge_chance_bonus += 15
 player.current_player.weapon -= 8\nplayer.current_player.MAX_MP -= 15\nplayer.current_player.MP -= 15\nplayer.current_player.INT_base -= 5\nplayer.current_player.dodge_chance_bonus -= 15
 Kostur Kapłański    |   BROŃ DWURĘCZNA\nObrażenia +8\n[color=#0000ff]Mana +15[/color]\n[color=#00f7ff]Inteligencja +5[/color]\n[color=#d9d764]Szansa na unik +15[/color]
 550
 _______________________________________
 graphics/items/ostatni_bastion.png
-two_hand
+two_hand_spear
 player.current_player.weapon += 15\nplayer.current_player.MAX_HP += 35\nplayer.current_player.HP += 35\nplayer.current_player.MAX_MP += 20\nplayer.current_player.MP += 20
 player.current_player.weapon -= 15\nplayer.current_player.MAX_HP -= 35\nplayer.current_player.HP -= 35\nplayer.current_player.MAX_MP -= 20\nplayer.current_player.MP -= 20
 OSTATNI BASTION    |   BROŃ DWURĘCZNA\nObrażenia +15\n[color=#ff0000]Zdrowie +35[/color]\n[color=#0000ff]Mana +20[/color]
@@ -422,28 +422,28 @@ _
 _______________POTIONS_________________
 graphics/items/mała_mikstura_zdrowia.png
 potion
-player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 100 HP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nLeczy 100 HP\nUżycia: 1
 250
 _______________________________________
 graphics/items/mała_mikstura_many.png
 potion
-player.current_player.potion_effect = "self.current_turn.MP+=100"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = "self.current_turn.MP+=100"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 100 MP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nOdnawia 100 MP\nUżycia: 1
 250
 _______________________________________
 graphics/items/srednia_mikstura_zdrowia.png
 potion
-player.current_player.potion_effect = 'self.final_damage = -200'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = 'self.final_damage = -200'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 200 MP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nLeczy 200 HP\nUżycia: 1
 375
 _______________________________________
 graphics/items/srednia_mikstura_many.png
 potion
-player.current_player.potion_effect = "self.final_damage = 0\nself.current_turn.MP+=150"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1
+player.current_player.potion_effect = "self.current_turn.MP+=150"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 150 MP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Mikstura zdrowia    |   MIKSTURA\nOdnawia 150 MP\nUżycia: 1
 375

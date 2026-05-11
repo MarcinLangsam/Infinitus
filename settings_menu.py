@@ -33,6 +33,8 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.defence_base = '+str(player.team[x].defence_base)+'\n')
            f.write(characters[x]+'.crit_chance_base = '+str(player.team[x].DEX*0.01)+'\n')
            f.write(characters[x]+'.dodge_chance_base = '+str(player.team[x].DEX*0.02)+'\n')
+           f.write(characters[x]+'.crit_chance_bonus = '+str(player.team[x].crit_chance_bonus)+'\n')
+           f.write(characters[x]+'.dodge_chance_bonus = '+str(player.team[x].dodge_chance_bonus)+'\n')
            f.write(characters[x]+'.EXP_boost = '+str(player.team[x].INT*0.01)+'\n')
            f.write(characters[x]+'.EXP = '+str(player.team[x].EXP)+'\n')
            f.write(characters[x]+'.EXP_To_Lv = '+str(player.team[x].EXP_To_Lv)+'\n')

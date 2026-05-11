@@ -37,6 +37,7 @@ class Character_Creation(Screen):
         self.add_widget(Label(text="KIM JESTEŚ?", pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
         
         self.add_widget(self.sprite)
+        stats_component.hidden()
         self.add_widget(stats_component)
         self.add_widget(self.creation_menu)
         self.creation_menu.classes_component.set_class(player.main_player, "warrior")

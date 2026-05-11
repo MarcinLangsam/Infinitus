@@ -116,10 +116,19 @@ class StatsComponent(BoxLayout):
                 size = self.size,
             )
         self.bind(pos=self.update_rect, size=self.update_rect)
+        self.stats_up = StatsUpButtonContainer()
 
         self.add_widget(BasicStatsContainer(size_hint_y=1))
-        self.add_widget(StatsUpButtonContainer())
+        self.add_widget(self.stats_up)
         self.add_widget(DetailStatsContainer(size_hint_y=1))
+
+    def visible(self):
+        self.stats_up.opacity = 1
+        self.stats_up.disabled = False
+
+    def hidden(self):
+        self.stats_up.opacity = 0
+        self.stats_up.disabled = True
 
     def update_rect(self, *args):
         self.rect.pos = self.pos

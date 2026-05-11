@@ -83,8 +83,8 @@ class ClassesComponent(BoxLayout):
 
 
         self.icons_container = BoxLayout(spacing = 5)
-        self.icons_container.add_widget(self.skill_image)
         self.icons_container.add_widget(self.weapon_image)
+        self.icons_container.add_widget(self.skill_image)
        
 
         self.labels_container = BoxLayout(spacing = 20)

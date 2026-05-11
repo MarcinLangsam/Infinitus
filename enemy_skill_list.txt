@@ -363,7 +363,7 @@ graphics/sounds/hit7.wav
 _______________________________________
 manewr_kowadla
 Manwer Kowadła
-self.final_damage = self.current_turn.damage\nself.action_status = 'kowadło'
+self.final_damage = self.current_turn.damage\nself.action_status = 'kowadlo'
 by_status
 kowadlo
 attack
@@ -496,24 +496,24 @@ _______________________________________
 taktyka_oskrzydlajaca
 Taktyka Oskrzydlajaca
 self.final_damage = 0\nself.action_status 'taktyka oskrzydlajaca'
-0
-0
+by_status_and_HP_alter
+0.5
 on_all_character
 status
 obrazenia_buff_effect
 graphics/sounds/positive_effect_2.wav
-
+taktyka oskrzydlajaca
 _______________________________________
 taktyka_frontalna
 Taktyka frontalna
 self.final_damage = 0\nself.action_status 'taktyka frontalna'
-0
-0
+by_status_and_HP
+0.49
 on_all_character
 status
 obrazenia_buff_effect
 graphics/sounds/positive_effect_4.wav
-
+taktyka frontalna
 _______________________________________
 instynkt_przetrwania
 Instynkt Przetrwania
@@ -528,7 +528,7 @@ instynkt przetrwania
 _______________________________________
 ognisty_oddech
 Ognisty Oddech
-self.final_damage = self.current_turn.STR*1.5
+self.final_damage = self.current_turn.STR*1.65
 0
 0
 attack
@@ -540,13 +540,13 @@ _______________________________________
 zemsta
 Zemsta
 self.final_damage = 0\nself.action_status = 'zemsta'
-by_HP_alter
+by_status_and_HP_alter
 0.2
 on_self
 status
 szal_effect
 graphics/sounds/positive_effect_1.wav
-
+zemsta
 _______________________________________
 mocny_cios
 Mocny cios
@@ -565,7 +565,7 @@ self.final_damage = self.current_turn.DEX\nself.action_status = 'trucizna'
 by_HP_alter
 0.1
 attack
-status
+ranged
 jadowity_oddech_effect
 graphics/sounds/breath_attack.wav
 
@@ -581,22 +581,22 @@ bomba_dymna_effect
 graphics/sounds/positive_effect_2.wav
 
 _______________________________________
-ukrycie
-Ukrycie
-self.final_damage = \nself.action_status = 'ukrycie'
+ofiara
+Ofiara
+self.final_damage = self.action_status = 'ofiara'
 by_HP_alter
 0.15
-on_self
+on_character
 status
 krycie_w_cieniu_effect
-graphics/sounds/positive_effect_2.wav
+graphics/sounds/negative_effect_4.wav
 
 _______________________________________
 cios_z_ukrycia
 Cios z Ukrycia
 self.final_damage = self.current_turn.damage*3
 by_status_on
-ukrycie
+ofiara
 attack
 melee
 rozprucie_effect
@@ -605,7 +605,7 @@ graphics/sounds/hit7.wav
 _______________________________________
 smoczy_oddech
 Smoczy Oddech
-self.final_damage = self.current_turn.STR*1.6
+self.final_damage = self.current_turn.STR*1.75
 0
 0
 attack
@@ -618,7 +618,7 @@ czempion
 Czempion
 self.final_damage = 0\nself.action_status = 'czempion'
 by_HP_must_have
-0.3
+0.35
 on_self
 status
 obrazenia_buff_effect
@@ -649,7 +649,7 @@ graphics/sounds/miazga.wav
 _______________________________________
 wstrzas
 Wstrząs
-self.final_damage = self.current_turn.damage1.5
+self.final_damage = self.current_turn.damage*1.5
 by_HP_alter
 0.1
 on_all_character
@@ -660,7 +660,7 @@ graphics/sounds/miazga2.wav
 _______________________________________
 lubudu_i_bec
 Łubudu i Bęc
-self.final_damage = self.current_turn.damage\nself.action_status = 'ogłuszenie'
+self.final_damage = self.current_turn.damage\nself.action_status = 'ogłuszenie2'
 0
 0
 attack
@@ -738,7 +738,7 @@ _______________________________________
 uzdrowienie
 Uzdrowienie
 self.final_damage = -(self.current_turn.INT*2)
-by_HP
+by_HP_alter
 0.3
 on_enemy
 heal
@@ -749,7 +749,7 @@ _______________________________________
 kuracja
 Kuracja
 self.final_damage = 0\nself.action_status = "kuracja"
-by_HP
+by_HP_alter
 0.3
 on_enemy
 heal
@@ -760,7 +760,7 @@ _______________________________________
 korozja
 Korozja
 self.final_damage = 0\nself.action_status = "korozja"
-by_status_and_HP
+by_status_and_HP_alter
 0.3
 on_character
 status
@@ -771,7 +771,7 @@ _______________________________________
 oslepienie
 Oslepienie
 self.final_damage = 0\nself.action_status = "oslepienie"
-by_HP
+by_HP_alter
 0.3
 on_character
 status
@@ -788,13 +788,13 @@ on_self
 status
 aura_effect
 graphics/sounds/positive_effect_2.wav
-
+ostatni bastion
 _______________________________________
 blask
 Blask
 self.final_damage = self.current_turn.damage
 by_HP_alter
-0.3
+0.01
 on_all_character
 ranged
 boski_grzmot_effect
@@ -805,7 +805,7 @@ blysk
 Blysk
 self.final_damage = self.current_turn.damage*1.5
 by_HP_alter
-0.3
+0.01
 on_character
 melee
 boski_grzmot_effect
@@ -815,7 +815,7 @@ _______________________________________
 lenistwo
 lenistwo
 self.final_damage = 0\nself.action_status = "lenistwo"
-by_HP_must_have
+by_status_and_HP_alter
 0.8
 on_all_character
 status
@@ -826,7 +826,7 @@ _______________________________________
 gniew
 gniew
 self.final_damage = 0\nself.action_status = "gniew"
-by_HP_must_have
+by_status_and_HP_alter
 0.6
 on_all_character
 status
@@ -837,7 +837,7 @@ _______________________________________
 pycha
 pycha
 self.final_damage = 0\nself.action_status = "pycha"
-by_HP_must_have
+by_status_and_HP_alter
 0.4
 on_all_character
 status
@@ -848,8 +848,8 @@ _______________________________________
 mroczna eksplozja
 mroczna eksplozja
 self.final_damage = self.current_turn.INT*2
-by_HP
-0.2
+by_HP_alter
+0.01
 on_all_character
 ranged
 klatwa_effect
@@ -870,9 +870,9 @@ _______________________________________
 ciemnosc
 ciemnosc
 self.final_damage = self.current_turn.INT*1.2
-0
-0
-attack
+by_HP_alter
+0.1
+on_character
 ranged
 ciemnosc_effect
 graphics/sounds/magic.wav
