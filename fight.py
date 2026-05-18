@@ -466,7 +466,7 @@ class Fight(Screen):
             g += enemy.enemy_team[x].gold_gain
             enemy.enemy_team[x].drop_mashine()
         for x in team:
-            x.EXP += exp+(exp*x.EXP_boost)
+            x.EXP += exp+((x.EXP_boost/100)*exp)
         gold_gain = g
         import player
         player.gold += g
@@ -502,17 +502,6 @@ class Fight(Screen):
                         self.on_death_effect_status_enemy_team(self.current_target.on_death_status)
                     self.target_option[self.chose_enemy_index(self.current_target)][0] = Button(pos=(10000,10000), size=(1,1)) 
                     enemy.enemy_team_alive.remove(self.current_target)
-                    
-        
-        #if self.current_turn.HP <= 0:
-        #    if self.current_turn in self.turn_order:
-        #        self.turn_order[self.get_turn_index(self.current_turn)] = "dead"
-        #        self.remove_widget(self.chose_sprite(self.current_turn))
-        #        if self.current_turn in team:
-        #            enemy.player_team_alive.remove(self.current_turn)
-        #        else:
-        #            self.target_option[self.chose_enemy_index(self.current_turn)][0] = Button(pos=(10000,10000), size=(1,1)) 
-        #            enemy.enemy_team_alive.remove(self.current_turn)
     def check_for_death_entity(self,e):
         if e.HP <= 0:
             if e in self.turn_order:
@@ -664,7 +653,7 @@ class Fight(Screen):
                 self.action = "self.current_target.HP -= self.final_damage\nself.final_damage = str(self.final_damage)+'!'"
                 self.if_critical_or_miss = True
         ### substract defence of the target(can't deal less than 5 points of damage)
-        if ((self.final_damage - self.current_target.defence) * self.current_target.damage_reduction) < 5  and self.distance != "heal" and self.distance != "status":    
+        if ((int(self.final_damage) - self.current_target.defence) * self.current_target.damage_reduction) < 5  and self.distance != "heal" and self.distance != "status":    
             self.final_damage = 5
         elif self.distance != "heal" and self.distance != "status":
             self.final_damage = (self.final_damage - self.current_target.defence) * self.current_target.damage_reduction

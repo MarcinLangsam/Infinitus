@@ -495,11 +495,11 @@ Kowadło\nCel traci 10 HP co turę
 ________________________________________
 skupienie
 Skupienie
-self.current_turn.damage_modifier +=2.2
+self.current_turn.damage_modifier += 2.2
 2
 graphics/icons/precyzyjne_ciosy_status.png
 one_time
-self.current_turn.damage_modifier -=2.2
+self.current_turn.damage_modifier -= 2.2
 Skupienie\nZwiększa obrażenia o 220% do następnej tury
 
 ________________________________________
@@ -545,12 +545,12 @@ x.damage = 25
 ________________________________________
 zemsta
 Zemsta
-self.current_turn.HP -= 15\nself.current_turn.damage+=4\nself.current_turn.damage_base += 4
+self.current_turn.HP -= 15\nself.current_turn.damage+=5\nself.current_turn.damage_base += 5
 6
 graphics/icons/szal_wojownika_status.png
 dmg_ot
 
-Zemsta\nCo ture traci 15 HP ale zwiększa obrażenia o 4 kumulacyjnie
+Zemsta\nCo ture traci 15 HP ale zwiększa obrażenia o 5 kumulacyjnie
 x.damage = 25
 ________________________________________
 trucizna
@@ -705,12 +705,12 @@ Roztrzaskanie\nCel otrzyma 65% więcej obrażeń, bedzie bolało...
 ________________________________________
 serce natury
 serce natury
-self.current_target.defence -= 999 
+self.current_target.defence += 50 
 3
 graphics/icons/serce_natury_status.png
 one_time
-self.current_turn.defence += 999
-Serce Natury\nGolem traci cały pancerz, teraz atakuj!
+self.current_turn.defence -= 50
+Serce Natury\nGolem zyskuje 50 pancerza
 
 ________________________________________
 dzicz
@@ -735,12 +735,22 @@ Zgnilizna\nCel traci 20 zdrowia co ture.
 ________________________________________
 kuracja
 kuracja
-self.current_turn.HP += 15
+self.current_turn.HP += 25
 5
 graphics/icons/regeneracja_status.png
 dmg_ot
 
-Ruracja\nOdnawia 15 HP co turę
+Ruracja\nOdnawia 25 HP co turę
+
+_______________________________________
+natchnienie
+natchnienie
+self.current_turn.HP += 15\nself.current_turn.damage+=3\nself.current_turn.damage_base += 3
+3
+graphics/icons/obrazenia_buff_status.png
+dmg_ot
+
+Ruracja\nOdnawia 15 HP co turę i co ture zwieksza obrażenia o 3
 
 _______________________________________
 korozja
@@ -775,32 +785,32 @@ Ostatni Bastion\nCel ma podwojone statystyki!
 _______________________________________
 lenistwo
 lenistwo
-self.current_target.DEX_modifier -= 0.7
+self.current_target.DEX_modifier -= 0.5
 99
 graphics/icons/zrecznosc_debuff_status.png
 one_time
-self.current_turn.DEX_modifier += 0.7
-Lenistwo\nCel traci 70% zreczności
+self.current_turn.DEX_modifier += 0.5
+Lenistwo\nCel traci 50% zreczności
 
 _______________________________________
 gniew
 gniew
-self.current_target.STR_modifier -= 0.7
+self.current_target.STR_modifier -= 0.5
 99
 graphics/icons/sila_debuff_status.png
 one_time
-self.current_turn.STR_modifier += 0.7
-Gniew\nCel traci 70% siły
+self.current_turn.STR_modifier += 0.5
+Gniew\nCel traci 50% siły
 
 _______________________________________
 pycha
 pycha
-self.current_target.INT_modifier -= 0.7
+self.current_target.INT_modifier -= 0.5
 99
 graphics/icons/inteligencja_debuff_status.png
 one_time
-self.current_turn.INT_modifier += 0.7
-Pycha\nCel traci 70% inteligencji
+self.current_turn.INT_modifier += 0.5
+Pycha\nCel traci 50% inteligencji
 
 _______________________________________
 rozdarcie
@@ -822,4 +832,14 @@ stun
 
 Ogłuszenie\nCel pomija swoją turę
 
+_______________________________________
+rozbicie
+rozbicie
+self.current_target.STR_modifier -= 0.7\nself.current_target.DEX_modifier -= 0.7\nself.current_target.INT_modifier -= 0.7
+2
+graphics/icons/klatwa_status.png
+one_time
+self.current_turn.STR_modifier += 0.7\nself.current_turn.DEX_modifier += 0.7\nself.current_turn.INT_modifier += 0.7
+Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 70%
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 _______________________________________

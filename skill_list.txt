@@ -424,16 +424,16 @@ graphics/sounds/kula_ognia.wav
 _________________________________________
 42
 magiczny pocisk
-self.final_damage = self.current_turn.damage*3\nself.action_status = 'magiczny pocisk'
+self.final_damage = self.current_turn.damage*2.5\nself.action_status = 'magiczny pocisk'
 trening maga I
 graphics/skills/magiczny_pocisk.png
 0.5
 0.37
 41
 graphics/skills/magiczny_pocisk_ok.png
-75
+80
 active
-Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]300%Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]75[/color]
+Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]250%Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]80[/color]
 ranged
 on_enemy
 magiczny_pocisk_effect

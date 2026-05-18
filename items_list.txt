@@ -186,8 +186,8 @@ OSTATNI BASTION    |   BROŃ DWURĘCZNA\nObrażenia +15\n[color=#ff0000]Zdrowie 
 _______________________________________
 graphics/items/rapier.png
 one_hand
-player.current_player.weapon += 19\nplayer.current_player.DEX_base +=6\nplayer.current_player.crit_chance_bonus += 10
-player.current_player.weapon -= 19\nplayer.current_player.DEX_base -=6\nplayer.current_player.crit_chance_bonus -= 10
+player.current_player.weapon += 22\nplayer.current_player.DEX_base += 6\nplayer.current_player.crit_chance_bonus += 10
+player.current_player.weapon -= 22\nplayer.current_player.DEX_base -= 6\nplayer.current_player.crit_chance_bonus -= 10
 Rapier    |   BROŃ JEDNORĘCZNA\nObrażenia +19\n[color=#00ff00]Zręczność +6[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +10[/color]
 700
 _______________________________________
@@ -298,7 +298,7 @@ _______________________________________
 graphics/items/serce_golema.png
 armor
 player.current_player.MAX_HP += 100\nplayer.current_player.HP += 100\nplayer.current_player.MAX_MP += 20\nplayer.current_player.MP += 20\nplayer.current_player.crit_chance_bonus += 5
-player.current_player.MAX_HP -= 100\nplayer.current_player.HP -= 100\nplayer.current_player.MAX_MP -= 20\nplayer.current_player.MP -= 20\nplayer.current_player.crit_chance_bonus -= 3
+player.current_player.MAX_HP -= 100\nplayer.current_player.HP -= 100\nplayer.current_player.MAX_MP -= 20\nplayer.current_player.MP -= 20\nplayer.current_player.crit_chance_bonus -= 5
 Serce Golema    |   PANCERZ\n[color=#ff0000]Zdrowie +100[/color]\n[color=#0000ff]Mana +20[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +5[/color]
 1500
 _______________________________________

@@ -43,6 +43,7 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.potions = '+str(player.team[x].potions)+'\n')
            f.write(characters[x]+'.potion_effect = "'+str(player.team[x].potion_effect)+'"\n')
            f.write(characters[x]+'.current_potions = '+str(player.team[x].current_potions)+'\n')
+           f.write(characters[x]+'.potion_description = "'+str(player.team[x].potion_description)+'"\n')
            for y in player.team[x].skill:
                temp = str(player.team[x].skill[y][3]).replace("\n","\\n")
                temp2 = str(player.team[x].skill[y][0]).replace("\n","\\n")
