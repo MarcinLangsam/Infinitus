@@ -405,10 +405,10 @@ Amulet Prędkości    |   AKCESORIA\n[color=#d9d764]Szansa na unik +2[/color]
 _______________________________________
 graphics/items/zelazna_rekawica.png
 accessory
-player.current_player.weapon += 4
-player.current_player.weapon -= 4
-Żelazna Rękawica    |   AKCESORIA\nObrażenia +4
-275
+player.current_player.weapon += 9
+player.current_player.weapon -= 9
+Żelazna Rękawica    |   AKCESORIA\nObrażenia +9
+350
 _______________________________________
 graphics/items/pierscien_mrocznych_mocy.png
 accessory
