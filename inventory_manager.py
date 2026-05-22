@@ -81,14 +81,13 @@ class ItemSlot(DragBehavior, Widget):
 
     def on_touch_down(self, touch):
         if self.collide_point(touch.pos[0], touch.pos[1]):
-        #if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(55) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(55): 
+        #if self.pos[0] <= touch.pos[0] <= self.pos[0]+dp(55) and self.pos[1] <= touch.pos[1] <= self.pos[1]+dp(55):
             for x in inventory.keys():
                     if self.pos[0] == inventory[x].pos[0] and self.pos[1] == inventory[x].pos[1]:
                         self.select = x
                         self.check_touch = True
                         self.pick_up_sound.play()
-                        self.pos_hint = {}
-                        
+                        self.pos_hint = {}     
         else:
             pass
         return super(ItemSlot, self).on_touch_down(touch)
@@ -106,7 +105,7 @@ class ItemSlot(DragBehavior, Widget):
                     #print(self.drop)
                     
                 else:
-                    pass
+                    inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             #kontrola będów i oszustwa
             if self.check_collision is False and self.check_touch is True: #powrót slotu w przypadku nie wykrycia "dokowania"
                 if screen == "team":

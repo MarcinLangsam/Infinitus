@@ -1,0 +1,182 @@
+player.main_player.head = "glowa3"
+player.main_player.name = "Podaj imiÍ..."
+player.main_player.lv = 9
+player.main_player.MAX_HP = 610
+player.main_player.MAX_MP = 130
+player.main_player.MP_regen_base = 25
+player.main_player.HP = 610
+player.main_player.MP = 130
+player.main_player.STR_base = 26
+player.main_player.DEX_base = 12
+player.main_player.INT_base = 15
+player.main_player.weapon = 10
+player.main_player.damage_base = 36
+player.main_player.defence_base = 0
+player.main_player.crit_chance_base = 0.12
+player.main_player.dodge_chance_base = 0.24
+player.main_player.crit_chance_bonus = 5
+player.main_player.dodge_chance_bonus = 0
+player.main_player.EXP_boost = 0.15
+player.main_player.EXP = 345.1
+player.main_player.EXP_To_Lv = 900
+player.main_player.stat_points = 0
+player.main_player.skill_points = 30
+player.main_player.potions = 1
+player.main_player.potion_effect = "self.final_damage = -100"
+player.main_player.current_potions = 1
+player.main_player.potion_description = "Odnawia 100 HP"
+player.main_player.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'p≥oniÍcie'",40,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemieÒ pok≥ady swojej magicznej energi w øywy ogien palπcy twoich wrogÛw.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNak≥ada: P≥oniÍcie 3 tury - [color=#fdff80]5 obraøeÒ na turÍ[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
+player.main_player.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5",30,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadzπca rozpÍdzonπ broÒ prosto we wroga.\n\nZadaje: [color=#fdff80]Obraøenia[/color] + [color=#de8833]50%STR[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
+player.main_player.skill["sza≥"] = ["self.final_damage = 0\nself.action_status = 'sza≥'",70,"graphics/skills/sza≥.png","Sza≥   |   AKTYWNA\nWpadasz w nieposkromony sza≥, ktÛry zwiÍksza twojπ si≥Í i regeneracje many ale nie dbasz o obronÍ.\n\nNak≥ada: Sza≥ 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas sza≥u odnosisz 50% wiÍcej obraøeÒ! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]","active","status","on_self","szal_effect","graphics/sounds/positive_effect_1.wav"]
+player.main_player.skill["trening wojownika I"] = ["player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10",0,"graphics/skills/trening_si≥y.png","Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz siÍ do cieøkich warunkÛw lochu szlifujπc swoje umiejÍtnoúci w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 si≥y[/color] [color=#00ff00]+2 zrÍcznoúci[/color] [color=#ff0000]+10 zdrowia[/color]","passive","","","no_effect",""]
+player.main_player.skill["oprawca"] = ["self.final_damage = self.current_turn.damage*1.4\nself.current_turn.HP += int(self.current_turn.damage*0.5)",40,"graphics/skills/oprawca.png","Oprawca   |   AKTYWNA\nWalka staje sie twojπ drugπ naturπ, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]140% ObraøeÒ[/color]\nZwraca 50% zadanych obraøenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]","active","melee","on_enemy","oprawca_effect","graphics/sounds/positive_effect_2.wav"]
+player.main_player.skill["rozplatanie"] = ["self.final_damage = self.current_turn.damage+self.current_turn.HP*0.2",50,"graphics/skills/rozplatanie.png","Rozp≥atanie   |   AKTYWNA\nPotÍøne uderzenie rozdzierajπce przeciwnika\nZadaje: [color=#fdff80]Obraøenia + 20% swojego obecnego zdrowia [/color]\nKoszt MP: [color=#0000ff]50[/color]","active","melee","on_enemy","rozplatanie_effect","graphics/sounds/rozplatanie.wav"]
+player.main_player.skill["trening wojownika II"] = ["player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen_base += 5",0,"graphics/skills/trening_si≥y_II.png","Trening Wojownika II   |   PASYWNA\nPchniÍcia, ciÍcia czy parady nie sπ ci obce, wraz z narastajπcπ si≥π i wytrzyma≥oúciπ stajesz siÍ nadprzeciÍtnym wojownikiem.\n\n[color=#de8833]+3 si≥y[/color] [color=#ff0000]+20 zdrowia[/color] [color=#e45eff]+5 regeneracji many[/color]","passive","","","no_effect",""]
+player.main_player.skill["nak≥adanie rπk"] = ["self.final_damage = int(-(self.current_turn.INT*2)-50)",40,"graphics/skills/nak≥adanie_rπk.png","Nak≥adanie Rπk   |   AKTYWNA\nProste zaklÍcie leczπce kojπce nerwy i rany.\n\nLeczy: [color=#fdff80]50[/color]+[color=#00f7ff]INT*2[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","heal","on_character","leczenie_effect","graphics/sounds/heal.wav"]
+player.main_player.skill["niestrudzony obroÒca"] = ["player.current_player.HP += 15\nplayer.current_player.MAX_HP += 20",0,"graphics/skills/niestrudzony_obroÒca.png","Niestrudzony ObroÒca   |   PASYWNA\nNie pozwolisz nikogo przepÛúciÊ bez walki.\n\n[color=#ff0000]+20 zdrowia[/color]","passive","","","no_effect",""]
+player.main_player.inventory["main_hand"][2] = "graphics/items/dwureczny_topor_rzeznika.png"
+player.main_player.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.main_player.inventory["armor"][2] = "graphics/items/serce_golema.png"
+player.main_player.inventory["accessory"][2] = "graphics/items/wiekszy_pierscien_zdrowia.png"
+player.main_player.inventory["accessory2"][2] = "graphics/items/wiekszy_pierscien_zdrowia.png"
+player.main_player.inventory["accessory3"][2] = "graphics/items/wiekszy_pierscien_zdrowia.png"
+player.main_player.inventory["potion"][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.companion1.head = "glowa4"
+player.companion1.name = "Podaj imiÍ..."
+player.companion1.lv = 9
+player.companion1.MAX_HP = 245
+player.companion1.MAX_MP = 175
+player.companion1.MP_regen_base = 25
+player.companion1.HP = 245
+player.companion1.MP = 175
+player.companion1.STR_base = 10
+player.companion1.DEX_base = 15
+player.companion1.INT_base = 58
+player.companion1.weapon = 15
+player.companion1.damage_base = 25
+player.companion1.defence_base = 11
+player.companion1.crit_chance_base = 0.15
+player.companion1.dodge_chance_base = 0.3
+player.companion1.crit_chance_bonus = 0
+player.companion1.dodge_chance_bonus = 0
+player.companion1.EXP_boost = 0.55
+player.companion1.EXP = 358.7
+player.companion1.EXP_To_Lv = 900
+player.companion1.stat_points = 0
+player.companion1.skill_points = 30
+player.companion1.potions = 1
+player.companion1.potion_effect = "self.final_damage = -100"
+player.companion1.current_potions = 1
+player.companion1.potion_description = "Odnawia 100 HP"
+player.companion1.skill["kula ognia"] = ["self.final_damage = 10+self.current_turn.INT*0.75\nself.action_status = 'p≥oniÍcie'",40,"graphics/skills/kula_ognia.png","Kula Ognia   |   AKTYWNA\nPrzemieÒ pok≥ady swojej magicznej energi w øywy ogien palπcy twoich wrogÛw.\n\nZadaje: [color=#fdff80]10[/color] + [color=#00f7ff]75%INT[/color]\nNak≥ada: P≥oniÍcie 3 tury - [color=#fdff80]5 obraøeÒ na turÍ[/color]\nKoszt MP: [color=#0000ff]40[/color]","active","ranged","on_enemy","kula_ognia_effect","graphics/sounds/kula_ognia.wav"]
+player.companion1.skill["piÍúÊ wichru"] = ["self.final_damage = self.current_turn.damage+self.current_turn.INT*1.1\nself.action_status = 'piÍúÊ wichru'",60,"graphics/skills/piesc_wichru.png","PiÍúÊ Wichru   |   AKTYWNA\nPotÍøny podmuch w formie piπchy os≥abiajπcy cel.\n\nZadaje: [color=#fdff80]Obraøenia[/color] + [color=#00f7ff]110%INT[/color]\nNak≥ada: PiÍúÊ Wichru 3 tury - [color=#fdff80]Obraøenia obniøone o 10% oraz zrecznoúÊ o 80%[/color]\nKoszt MP: [color=#0000ff]60[/color]","active","ranged","on_enemy","piesc_wichru_effect","graphics/sounds/hit2.wav"]
+player.companion1.skill["trening maga I"] = ["player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10",0,"graphics/skills/trening_maga.png","Trening maga I   |   PASYWNA\nPowoli dostoswujesz siÍ do cieøkich warunkÛw lochu szlifujπc swoje umiejÍtnoúci w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]","passive","","","no_effect",""]
+player.companion1.skill["magiczny pocisk"] = ["self.final_damage = self.current_turn.damage*2.5\nself.action_status = 'magiczny pocisk'",80,"graphics/skills/magiczny_pocisk.png","Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiÍkszajπcy wraøliwoúÊ przeciwnika na ataki.\n\nZadaje: [color=#fdff80]250%Obraøenia[/color]\nNak≥ada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% wiÍcej obraøeÒ[/color]\nKoszt MP: [color=#0000ff]80[/color]","active","ranged","on_enemy","magiczny_pocisk_effect","graphics/sounds/magic.wav"]
+player.companion1.skill["uzdrowienie"] = ["self.final_damage = int(-(self.current_turn.INT*1.3)-30)",50,"graphics/skills/uzdrowienie.png","Uzdrowienie   |   AKTYWNA\nKojπce zaklÍcia zasklepiajπce powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]130%INT[/color]\nKoszt MP: [color=#0000ff]50[/color]","active","heal","on_characters","leczenie_effect","graphics/sounds/heal.wav"]
+player.companion1.skill["ürÛd≥o many"] = ["player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10",0,"graphics/skills/zrodlo_many.png","èrÛd≥o Many   |   PASYWNA\nZwiÍksza twojπ manÍ do rzucania zaklÍÊ .\n\n[color=#0000ff]+10 many[/color]","passive","","","no_effect",""]
+player.companion1.skill["masowe uzdrowienie"] = ["self.final_damage = int(-(self.current_turn.INT)-20)",70,"graphics/skills/masowe_uzdrowienie.png","Masowe Uzdrowienie   |   AKTWNA\nOgromna fala uzdrawiajπca leczy wszystkich sojusznikÛw\n\nLeczy: [color=#fdff80]20[/color] + [color=#00f7ff]100%INT[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIK”W[/color]\nKoszt MP: [color=#0000ff]70[/color]","active","heal","on_all_character","leczenie_effect","graphics/sounds/heal.wav"]
+player.companion1.skill["oúwiecenie"] = ["player.current_player.MP_regen_base += 5",0,"graphics/skills/oswiecenie.png","Oúwiecenie   |   PASYWNA\nNagle wszystko staje sie oczywiste.\n\n[color=#e45eff]+5 regeneracji many[/color]","passive","","","no_effect",""]
+player.companion1.skill["trening maga II"] = ["player.current_player.INT_base += 3\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP +=10",0,"graphics/skills/trening_maga_II.png","Trening maga II   |   PASYWNA\nSztuczki, zaklÍcia, klπtwy prÛbowa≥eú juø wszystkiego, czujesz, øe przep≥ywa przez ciebie prawdziwa moc.\n\n[color=#00f7ff]+3 inteligencji[/color] [color=#ff0000]+10 zdrowia[/color]","passive","","","no_effect",""]
+player.companion1.inventory["main_hand"][2] = "graphics/items/ostatni_bastion.png"
+player.companion1.inventory["off_hand"][2] = "graphics/items/empty_slot.png"
+player.companion1.inventory["armor"][2] = "graphics/items/ozdobna_toga.png"
+player.companion1.inventory["accessory"][2] = "graphics/items/pierscien_mrocznych_mocy.png"
+player.companion1.inventory["accessory2"][2] = "graphics/items/wiekszy_pierscien_inteligencji.png"
+player.companion1.inventory["accessory3"][2] = "graphics/items/wiekszy_pierscien_many.png"
+player.companion1.inventory["potion"][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.companion2.head = "glowa5"
+player.companion2.name = "Podaj imiÍ..."
+player.companion2.lv = 9
+player.companion2.MAX_HP = 275
+player.companion2.MAX_MP = 110
+player.companion2.MP_regen_base = 10
+player.companion2.HP = 275
+player.companion2.MP = 110
+player.companion2.STR_base = 46
+player.companion2.DEX_base = 13
+player.companion2.INT_base = 15
+player.companion2.weapon = 18
+player.companion2.damage_base = 64
+player.companion2.defence_base = 24
+player.companion2.crit_chance_base = 0.13
+player.companion2.dodge_chance_base = 0.26
+player.companion2.crit_chance_bonus = 0
+player.companion2.dodge_chance_bonus = 0
+player.companion2.EXP_boost = 0.15
+player.companion2.EXP = 345.1
+player.companion2.EXP_To_Lv = 900
+player.companion2.stat_points = 0
+player.companion2.skill_points = 30
+player.companion2.potions = 1
+player.companion2.potion_effect = "self.final_damage = -100"
+player.companion2.current_potions = 1
+player.companion2.potion_description = "Odnawia 100 HP"
+player.companion2.skill["zamach"] = ["self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5",30,"graphics/skills/zamach.png","Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadzπca rozpÍdzonπ broÒ prosto we wroga.\n\nZadaje: [color=#fdff80]Obraøenia[/color] + [color=#de8833]50%STR[/color]\nKoszt MP: [color=#0000ff]30[/color]","active","melee","on_enemy","zamach_effect","graphics/sounds/hit3.wav"]
+player.companion2.skill["sza≥"] = ["self.final_damage = 0\nself.action_status = 'sza≥'",70,"graphics/skills/sza≥.png","Sza≥   |   AKTYWNA\nWpadasz w nieposkromony sza≥, ktÛry zwiÍksza twojπ si≥Í i regeneracje many ale nie dbasz o obronÍ.\n\nNak≥ada: Sza≥ 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas sza≥u odnosisz 50% wiÍcej obraøeÒ! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]","active","status","on_self","szal_effect","graphics/sounds/positive_effect_1.wav"]
+player.companion2.skill["zew bojowy"] = ["self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'",50,"graphics/skills/okrzyk_bojowy.png","Nak≥ada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% ObraøeÒ[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIK”W[/color]\nKoszt MP: [color=#0000ff]50[/color]","active","status","on_all_character","szal_effect","graphics/sounds/positive_effect_1.wav"]
+player.companion2.skill["okrzyk bojowy"] = ["upgrade_zew_bojowy()",0,"graphics/skills/okrzyk_bojowy.png","RÛg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obraøenia o 35% i trwa 4 tury.\n\nNak≥ada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% ObraøeÒ[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIK”W[/color]\nKoszt MP: [color=#0000ff]50[/color]","passive","","","szal_effect","graphics/sounds/positive_effect_1.wav"]
+player.companion2.skill["trening wojownika I"] = ["player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10",0,"graphics/skills/trening_si≥y.png","Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz siÍ do cieøkich warunkÛw lochu szlifujπc swoje umiejÍtnoúci w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 si≥y[/color] [color=#00ff00]+2 zrÍcznoúci[/color] [color=#ff0000]+10 zdrowia[/color]","passive","","","no_effect",""]
+player.companion2.skill["zaciek≥y wojownik"] = ["player.current_player.STR_base += 3",0,"graphics/skills/zaciek≥y_wojownik.png","Zaciek≥y Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz siÍ do boju i walczysz do samego koÒca.\n\n[color=#de8833]+3 si≥y[/color]","passive","","","no_effect",""]
+player.companion2.skill["cios rÍkojeúciπ"] = ["self.final_damage = self.current_turn.STR\nself.action_status = 'og≥uszenie'",20,"graphics/skills/cios_rÍkojeúciπ.png","Cios RÍkojeúciπ   |   AKTYWNA\nZwÛd wykonywany przy bliskim dystansie, koÒczπcy siÍ uderzeniem rÍkojeúciπ.\n\nZadaje: [color=#de8833]STR[/color]\nNak≥ada: Og≥uszenie 1 tura - [color=#fdff80]Cel traci turÍ[/color]\nKoszt MP: [color=#0000ff]20[/color]","active","melee","on_enemy","ogluszenie_effect","graphics/sounds/ogluszenie.wav"]
+player.companion2.skill["oprawca"] = ["self.final_damage = self.current_turn.damage*1.4\nself.current_turn.HP += int(self.current_turn.damage*0.5)",40,"graphics/skills/oprawca.png","Oprawca   |   AKTYWNA\nWalka staje sie twojπ drugπ naturπ, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]140% ObraøeÒ[/color]\nZwraca 50% zadanych obraøenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]","active","melee","on_enemy","oprawca_effect","graphics/sounds/positive_effect_2.wav"]
+player.companion2.skill["paladyn"] = ["player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5",0,"graphics/skills/paladyn.png","Paldayn   |   PASYWNA\nWiara i honor to najwaøniejsze wartoúci do osiπgniÍcia wiecznej chwa≥y.\n\n[color=#00f7ff]+5 inteligencji[/color] [color=#0000ff]+10 many[/color]","passive","","","no_effect",""]
+player.companion2.inventory["main_hand"][2] = "graphics/items/jaszczurzy_kord.png"
+player.companion2.inventory["off_hand"][2] = "graphics/items/stalowa_tarcza.png"
+player.companion2.inventory["armor"][2] = "graphics/items/brygantyna.png"
+player.companion2.inventory["accessory"][2] = "graphics/items/zloty_pierscien.png"
+player.companion2.inventory["accessory2"][2] = "graphics/items/zloty_pierscien.png"
+player.companion2.inventory["accessory3"][2] = "graphics/items/wiekszy_pierscien_sily.png"
+player.companion2.inventory["potion"][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.main_player.inventory[0][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[1][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[2][2] = "graphics/items/skorzany_pancerz.png"
+player.main_player.inventory[3][2] = "graphics/items/miedziany_sztylet.png"
+player.main_player.inventory[4][2] = "graphics/items/mlot_bojowy.png"
+player.main_player.inventory[5][2] = "graphics/items/pika.png"
+player.main_player.inventory[6][2] = "graphics/items/miecz_rycerski.png"
+player.main_player.inventory[7][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.main_player.inventory[8][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.main_player.inventory[9][2] = "graphics/items/ma≥a_mikstura_zdrowia.png"
+player.main_player.inventory[10][2] = "graphics/items/dwureczny_topor_rzeznika.png"
+player.main_player.inventory[11][2] = "graphics/items/gladius.png"
+player.main_player.inventory[12][2] = "graphics/items/grzech_kaplana.png"
+player.main_player.inventory[13][2] = "graphics/items/kostur_maga.png"
+player.main_player.inventory[14][2] = "graphics/items/maczuga_zolnierska.png"
+player.main_player.inventory[15][2] = "graphics/items/miecz_poltorareczny.png"
+player.main_player.inventory[16][2] = "graphics/items/miecz_z_brazu.png"
+player.main_player.inventory[17][2] = "graphics/items/rozczka_z_krysztalem_blyskawicy.png"
+player.main_player.inventory[18][2] = "graphics/items/rytualny_sztylet.png"
+player.main_player.inventory[19][2] = "graphics/items/siewca_smierci.png"
+player.main_player.inventory[20][2] = "graphics/items/stalowy_miecz.png"
+player.main_player.inventory[21][2] = "graphics/items/topor_wojownika.png"
+player.main_player.inventory[22][2] = "graphics/items/wlocznia_straznicza.png"
+player.main_player.inventory[23][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[24][2] = "graphics/items/pikowany_pancerz.png"
+player.main_player.inventory[25][2] = "graphics/items/szata_maga.png"
+player.main_player.inventory[26][2] = "graphics/items/przyszywanica.png"
+player.main_player.inventory[27][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[28][2] = "graphics/items/kolczuga.png"
+player.main_player.inventory[29][2] = "graphics/items/pika.png"
+player.main_player.inventory[30][2] = "graphics/items/szata_maga.png"
+player.main_player.inventory[31][2] = "graphics/items/pierscien_inteligencji.png"
+player.main_player.inventory[32][2] = "graphics/items/pierscien_sily.png"
+player.main_player.inventory[33][2] = "graphics/items/pierscien_sily.png"
+player.main_player.inventory[34][2] = "graphics/items/pancerz_z_wzmocnionej_skory.png"
+player.main_player.inventory[35][2] = "graphics/items/szata_maga.png"
+player.main_player.inventory[36][2] = "graphics/items/gladius.png"
+player.main_player.inventory[37][2] = "graphics/items/pierscien_zdrowia.png"
+player.main_player.inventory[38][2] = "graphics/items/gladius.png"
+player.main_player.inventory[39][2] = "graphics/items/siewca_smierci.png"
+player.main_player.inventory[40][2] = "graphics/items/pierscien_zdrowia.png"
+player.main_player.inventory[41][2] = "graphics/items/srebrny_pierscien.png"
+player.main_player.inventory[42][2] = "graphics/items/pierscien_zrecznosci.png"
+player.main_player.inventory[43][2] = "graphics/items/pierscien_many.png"
+player.main_player.inventory[44][2] = "graphics/items/grzech_kaplana.png"
+player.main_player.inventory[45][2] = "graphics/items/zloty_pierscien.png"
+player.main_player.inventory[46][2] = "graphics/items/drewniana_tarcza.png"
+player.main_player.inventory[47][2] = "graphics/items/pierscien_inteligencji.png"
+fight.current_fight=10
+fight.current_stage=2
+player.team.append(player.companion1)
+player.team.append(player.companion2)
+player.gold = 2760.0

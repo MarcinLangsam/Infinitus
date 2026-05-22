@@ -464,7 +464,7 @@ skeleton_priest2 = Enemy("Upadły kapłan",3,75,10,20,15,15,0,80,25,{
                                                             "klatwa":enemy_skills["klatwa"]},
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80,"graphics/items/magicza_ksiega.png":10},
                                                             "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan",False)
-skeleton_priest3 = Enemy("Upadły kapłan",3,125,10,20,15,15,0,80,25,{
+skeleton_priest3 = Enemy("Upadły kapłan",3,125,10,20,15,15,0,100,25,{
                                                             "atak":enemy_skills["atak"],
                                                             "leczenie":enemy_skills["leczenie"],
                                                             "leczenie":enemy_skills["leczenie"],
@@ -486,7 +486,7 @@ lost_soul = Enemy("Zagubiona Dusza",4,140,17,17,17,21,5,0,0,{
                                                             {},
                                                             "graphics/sprites/zagubiona_dusza_sprite.png","zagubiona_dusza",False)
 
-zjawa = Enemy("Zjawa",4,140,10,30,25,22,0,50,30,{"atak":enemy_skills["atak"],
+zjawa = Enemy("Zjawa",4,140,10,30,25,24,0,70,35,{"atak":enemy_skills["atak"],
                                                 "eteryczny":enemy_skills["eteryczny"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
                                                 "magiczna włócznia":enemy_skills["magiczna włócznia"],
@@ -496,19 +496,19 @@ zjawa = Enemy("Zjawa",4,140,10,30,25,22,0,50,30,{"atak":enemy_skills["atak"],
                                                 {"graphics/items/amulet_precyzji.png":40,"graphics/items/wlocznia_straznicza.png":25,"graphics/items/srebrny_pierscien.png":70,"graphics/items/mała_mikstura_zdrowia.png":45},
                                                 "graphics/sprites/zjawa_sprite.png","zjawa",False)
 
-skeleton_warrior = Enemy("Szkielet Wojownik",4,160,23,5,1,22,5,50,35,{
+skeleton_warrior = Enemy("Szkielet Wojownik",4,160,23,5,1,22,5,70,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":101,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik",False)
-skeleton_warrior2 = Enemy("Szkielet Wojownik",4,160,25,5,1,22,5,50,35,{
+skeleton_warrior2 = Enemy("Szkielet Wojownik",4,160,25,5,1,22,5,70,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
                                                                     {"graphics/items/topor_wojownika.png":30,"graphics/items/drewniana_tarcza.png":80,"graphics/items/mała_mikstura_zdrowia.png":20,"graphics/items/pierscien_zdrowia.png":15},
                                                                     "graphics/sprites/szkielet_wojownik_sprite.png","szkielet_wojownik",False)
-skeleton_warrior3 = Enemy("Szkielet Wojownik",4,160,25,5,1,22,5,50,35,{
+skeleton_warrior3 = Enemy("Szkielet Wojownik",4,160,25,5,1,22,5,70,35,{
                                                                     "atak":enemy_skills["atak"],
                                                                     "szał wojownika":enemy_skills["szał wojownika"],
                                                                     "niezłomny":enemy_skills["niezłomny"]},
@@ -527,7 +527,7 @@ rzeznik = Enemy("Rzeznik",5,215,30,20,10,26,120,200,200,{
                                                     {"graphics/items/mała_mikstura_many.png":101,"graphics/items/dwureczny_topor_rzeznika.png":101,"graphics/items/pikowany_pancerz.png":101},
                                                     "graphics/sprites/rzeznik_sprite.png","rzeznik",False)
 
-zombie = Enemy("Zombie",5,150,30,10,20,18,0,60,45,{
+zombie = Enemy("Zombie",5,150,30,10,20,18,0,90,45,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                             "podcięcie":enemy_skills["podcięcie"],
@@ -536,7 +536,7 @@ zombie = Enemy("Zombie",5,150,30,10,20,18,0,60,45,{
                                             "regeneracja":enemy_skills["regeneracja"]},
                                             {"graphics/items/pikowany_pancerz.png":35,"graphics/items/maczuga_zolnierska.png":30,"graphics/items/amulet_precyzji.png":15},
                                             "graphics/sprites/zombie_sprite.png","zombie",False)
-zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,60,45,{
+zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,90,45,{
                                             "atak":enemy_skills["atak"],
                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],
                                             "podcięcie":enemy_skills["podcięcie"],
@@ -547,7 +547,7 @@ zombie2 = Enemy("Zombie",5,150,25,10,20,25,5,60,45,{
                                             "graphics/sprites/zombie_sprite.png","zombie",False)
 
  
-death_knight = Enemy("Rycerz Śmierci",6,550,30,25,20,15,13,250,150,{
+death_knight = Enemy("Rycerz Śmierci",6,550,30,25,20,15,13,300,150,{
                                                             "atak":enemy_skills["atak"],
                                                             "mroczne ugodzenie":enemy_skills["mroczne ugodzenie"],
                                                             "aura śmierci":enemy_skills["aura śmierci"],

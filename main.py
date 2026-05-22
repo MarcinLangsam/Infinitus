@@ -102,7 +102,6 @@ class Main_Menu(Screen):
             if not line:
                 break
             exec(line.strip())
-            print(line.strip())
         f.close()
         self.manager.current = "menu"
 

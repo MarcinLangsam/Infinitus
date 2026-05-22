@@ -859,8 +859,8 @@ _______________________________________
 lenistwo
 lenistwo
 self.final_damage = 0\nself.action_status = "lenistwo"
-by_status_and_HP_alter
-0.8
+by_status_and_HP
+0.9
 on_all_character
 status
 zrecznosc_debuff_effect
@@ -870,8 +870,8 @@ _______________________________________
 gniew
 gniew
 self.final_damage = 0\nself.action_status = "gniew"
-by_status_and_HP_alter
-0.6
+by_status_and_HP
+0.4
 on_all_character
 status
 sila_debuff_effect
@@ -881,8 +881,8 @@ _______________________________________
 pycha
 pycha
 self.final_damage = 0\nself.action_status = "pycha"
-by_status_and_HP_alter
-0.4
+by_status_and_HP
+0.6
 on_all_character
 status
 inteligencja_debuff_effect

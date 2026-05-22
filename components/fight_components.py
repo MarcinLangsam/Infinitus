@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
-from kivy.metrics import dp
+from kivy.metrics import dp, sp
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.clock import Clock
 from tooltip import set_tooltip_status, clear_tooltip
@@ -26,7 +26,7 @@ class StatusIcon(Image):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super(StatusIcon, self).__init__(**kwargs)
         self.size_hint = (None, None)
-        self.size = (dp(25), dp(25))
+        self.size = (dp(30), dp(30))
         self.source = source
         self.t = text
         self.description = description
@@ -35,12 +35,12 @@ class StatusIcon(Image):
         self.label = Label(
             text=self.t,
             size_hint=(None, None),
-            size=(dp(25), dp(25)),
-            pos=(self.x + (self.width - dp(25)) / 2, self.y + (self.height - dp(25)) / 2),
+            size=(dp(30), dp(30)),
+            pos=(self.x + (self.width - dp(30)) / 2, self.y + (self.height - dp(30)) / 2),
             font_size=20,
             halign='center',
             valign='middle',
-            text_size=(dp(25), dp(25))
+            text_size=(dp(30), dp(30))
         )
         self.add_widget(self.label)
 
@@ -103,6 +103,7 @@ class NameContainer(Label):
             )
         self.bind(pos=self.update_rect, size=self.update_rect)
         self.text = name
+        self.font_size = sp(19)
 
     def update_rect(self, *args):
         self.rect.pos = self.pos

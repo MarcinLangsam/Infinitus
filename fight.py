@@ -425,7 +425,7 @@ class Fight(Screen):
     def create_movement_animation(self, widget, x_pos, y_pos):
         if widget == self.text_pop:
             if self.if_critical_or_miss == True:
-                self.anim_queue.append((widget, Animation(x=x_pos, y=y_pos, duration=0.4, font_size=44, t="out_circ")))
+                self.anim_queue.append((widget, Animation(x=x_pos, y=y_pos, duration=0.4, font_size=47, t="out_circ")))
             if self.if_critical_or_miss == False:
                 self.anim_queue.append((widget, Animation(x=x_pos, y=y_pos, duration=0.4, font_size=38, t="out_circ")))
             self.if_critical_or_miss = False
@@ -699,7 +699,6 @@ class Fight(Screen):
             elif self.if_all_targets and self.current_target in enemy.enemy_team:
                 self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(enemy.enemy_team[0]).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             else:
-                print(self.chose_sprite(self.current_target).pos_hint['center_x'])
                 self.create_movement_animation(self.text_pop, Window.width*self.chose_sprite(self.current_target).pos_hint['center_x']-(Window.width/2)+(Window.width*0.05), Window.height*self.chose_sprite(self.current_target).pos_hint['center_y']-(Window.height/2)+(Window.height*0.1))
             self.create_movement_animation(self.sprite, self.sprite.pos[0], self.sprite.pos[1])
 

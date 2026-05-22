@@ -42,7 +42,7 @@ graphics/skills/szał.png
 graphics/skills/szał_ok.png
 70
 active
-Szał   |   AKTYWNA\nWpadasz w nieposkromony szał, który zwiększa twoją siłę i regeneracje many ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas szału odnosisz 50% więcej obrażeń! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Szał   |   AKTYWNA\nWpadasz w nieposkromiony szał, który zwiększa twoją siłę i regeneracje many ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas szału odnosisz 50% więcej obrażeń! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]
 status
 on_self
 szal_effect
@@ -178,7 +178,7 @@ graphics/skills/trening_siły.png
 graphics/skills/trening_siły_ok.png
 0
 passive
-Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 siły[/color] [color=#00ff00]+2 zręczności[/color] [color=#ff0000]+10 zdrowia[/color]
+Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do ciężkich warunków lochu szlifując swoje umiejętności w dziedzinie fechtunku w bliskim dystansie.\n\n[color=#de8833]+2 siły[/color] [color=#00ff00]+2 zręczności[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
 no_effect
@@ -365,7 +365,7 @@ graphics/skills/barbazynca.png
 graphics/skills/barbazynca_ok.png
 0
 passive
-Barbarzyńca   |   PASYWNA\nOdwaga i sila to jedyna droga do osiągnięcia wiecznej chwały.\n\n[color=#de8833]+5 siły[/color] [color=#ff0000]+10 zdrowia[/color]
+Barbarzyńca   |   PASYWNA\nOdwaga i siła to jedyna droga do osiągnięcia wiecznej chwały.\n\n[color=#de8833]+5 siły[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
 no_effect
@@ -475,7 +475,7 @@ graphics/sounds/positive_effect_1.wav
 _________________________________________
 50
 uzdrowienie
-self.final_damage = int(-(self.current_turn.INT*1.3)-30)
+self.final_damage = int(-(self.current_turn.INT*1.4)-30)
 trening maga I
 graphics/skills/uzdrowienie.png
 0.45
@@ -484,7 +484,7 @@ graphics/skills/uzdrowienie.png
 graphics/skills/uzdrowienie_ok.png
 50
 active
-Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]130%INT[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]140%INT[/color]\nKoszt MP: [color=#0000ff]50[/color]
 heal
 on_characters
 leczenie_effect
@@ -577,7 +577,7 @@ graphics/sounds/negative_effect_3.wav
 _________________________________________
 51
 masowe uzdrowienie
-self.final_damage = int(-(self.current_turn.INT)-20)
+self.final_damage = int(-(self.current_turn.INT*1.2)-40)
 uzdrowienie
 graphics/skills/masowe_uzdrowienie.png
 0.45
@@ -586,7 +586,7 @@ graphics/skills/masowe_uzdrowienie.png
 graphics/skills/masowe_uzdrowienie_ok.png
 70
 active
-Masowe Uzdrowienie   |   AKTWNA\nOgromna fala uzdrawiająca leczy wszystkich sojuszników\n\nLeczy: [color=#fdff80]20[/color] + [color=#00f7ff]100%INT[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Masowe Uzdrowienie   |   AKTWNA\nOgromna fala uzdrawiająca leczy wszystkich sojuszników\n\nLeczy: [color=#fdff80]40[/color] + [color=#00f7ff]120%INT[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
 heal
 on_all_character
 leczenie_effect
@@ -620,7 +620,7 @@ graphics/skills/zrodlo_many.png
 graphics/skills/zrodlo_many_ok.png
 0
 passive
-Źródło Many   |   PASYWNA\nZwiększa twoją manę do rzucania zaklęć .\n\n[color=#0000ff]+10 many[/color]
+Źródło Many   |   PASYWNA\nZwiększa twoją manę do rzucania zaklęć.\n\n[color=#0000ff]+10 many[/color]
 
 
 no_effect
@@ -730,7 +730,7 @@ no_effect
 _________________________________________
 85
 błyskawica
-self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX*0.5)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
+self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX*0.55)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
 zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
 0.84
@@ -739,7 +739,7 @@ graphics/skills/uderzenie_pioruna.png
 graphics/skills/uderzenie_pioruna_ok.png
 90
 active
-Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]40%DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]90[/color]
+Błyskawica   |   AKTYWNA\nWstrząsa wybranym celem aż do kości.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#00ff00]55%DEX[/color] + [color=#fdff80]procent z NIE utraconego twojego zdrowia (+100% przy pełnym zdrowiu)[/color]\nKoszt MP: [color=#0000ff]90[/color]
 ranged
 on_enemy
 piorun_effect
@@ -858,7 +858,7 @@ graphics/skills/zrodlo_energi.png
 graphics/skills/zrodlo_energi_ok.png
 0
 passive
-Źródło energi   |   PASYWNA\nZwiększa twoją enrgię do urzywania umiejętności .\n\n[color=#0000ff]+10 many[/color]
+Źródło energi   |   PASYWNA\nZwiększa twoją enrgię do urzywania umiejętności.\n\n[color=#0000ff]+10 many[/color]
 
 
 no_effect
@@ -926,7 +926,7 @@ graphics/skills/trening_łotra_II.png
 graphics/skills/trening_łotra_II_ok.png
 0
 passive
-Trening Łotra II   |   AKTYWNA\nAkrobatyka, anatomia, domowe trucizny i bomby, wszystko to czyni cię niezrównanym zabójca.\n\n[color=#00ff00]+1 zręczności[/color] [color=#de8833]+3 siły[/color] [color=#fdff80]+2% szansy na unik[/color]
+Trening Łotra II   |   AKTYWNA\nAkrobatyka, anatomia, domowe trucizny i bomby, wszystko to czyni cię niezrównanym zabójcą.\n\n[color=#00ff00]+1 zręczności[/color] [color=#de8833]+3 siły[/color] [color=#fdff80]+2% szansy na unik[/color]
 
 
 no_effect

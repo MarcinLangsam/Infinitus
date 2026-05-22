@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.clock import Clock
 from kivy.metrics import dp
+from kivy.core.audio import SoundLoader
 
 class StatsButton(Button):
     def __init__(self, stat, description, background_source, **kwargs):
@@ -17,6 +18,7 @@ class StatsButton(Button):
         self.border = (0,0,0,0)
         self.size_hint = (0.2, None)
         self.height = self.width
+        self.stat_up_sound = SoundLoader.load("graphics/sounds/stat_up.wav")
 
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
@@ -37,6 +39,7 @@ class StatsButton(Button):
     def on_toggle(self, touch):
         if isinstance(self.last_touch, MouseMotionEvent):
             self.increase_stat()
+            self.stat_up_sound.play()
 
     def increase_stat(self):
         if player.current_player.stat_points > 0:
