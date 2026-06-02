@@ -22,7 +22,7 @@ class Skill_List_Pop_Up(BoxLayout):
         super().__init__(**kwargs)
 
 class StatusIcon(Image):
-    def __init__(self, text, source, description, **kwargs):
+    def __init__(self, text, source, description, tooltip, **kwargs):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super(StatusIcon, self).__init__(**kwargs)
         self.size_hint = (None, None)
@@ -31,6 +31,7 @@ class StatusIcon(Image):
         self.t = text
         self.description = description
         self.allow_stretch = True
+        self.tooltip = tooltip
 
         self.label = Label(
             text=self.t,
@@ -62,9 +63,9 @@ class StatusIcon(Image):
             Clock.schedule_once(self.display_tooltip, 0.5)
 
     def close_tooltip(self, *args):
-        clear_tooltip(self.parent.tooltip)
+        clear_tooltip(self.tooltip)
     def display_tooltip(self, *args):
-        set_tooltip_status(self.parent.tooltip, self.description, self.p)
+        set_tooltip_status(self.tooltip, self.description, self.p)
 
 class StatusIconContainer(BoxLayout):
     def __init__(self, tooltip, **kwargs):
@@ -84,7 +85,8 @@ class StatusIconContainer(BoxLayout):
         for status in status_list:
             self.add_widget(StatusIcon( str(status[0][2]),
                                         status[0][3],
-                                        status[0][6]
+                                        status[0][6],
+                                        self.tooltip
                                     )
                             )
             

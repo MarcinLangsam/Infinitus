@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import ScreenManager
-from kivy.properties import ObjectProperty, StringProperty
+from kivy.properties import ObjectProperty
 
 class WindowManger(ScreenManager):
     menu = ObjectProperty(None) 

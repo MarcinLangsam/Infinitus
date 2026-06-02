@@ -2,7 +2,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 import fight
-from kivy.metrics import dp
 from components.bottom_menu import BottomMenu
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label

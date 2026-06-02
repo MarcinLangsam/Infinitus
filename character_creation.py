@@ -3,7 +3,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.image import Image
-from kivy.metrics import dp
 from components.stats_component import stats_component
 from components.character_creation_component import CreatorContainer
 

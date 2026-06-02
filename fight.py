@@ -119,9 +119,6 @@ class Fight(Screen):
         else:
             return "graphics/battle_background.png"
 
-    def send_tooltip():
-        return Fight.tooltip
-
     def clear_after_battle(self):
         if len(team) >=1:
             self.player1_container.hide_border()

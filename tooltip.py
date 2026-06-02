@@ -1,8 +1,5 @@
 from kivy.uix.label import Label
 from kivy.core.window import Window
-from kivy.uix.button import Button
-from kivy.clock import Clock
-from kivy.metrics import dp
 
 def adjust_tooltip_to_screen(tooltip,pos_x,pos_y): #prewent tooltips to go over the screen where thay can't by seen by user
     #only for x axis, y is self expandable so i can't get valid size...yet

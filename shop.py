@@ -4,7 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
-from kivy.metrics import dp, sp
+from kivy.metrics import sp
 from components.inventory_component import gold_widget
 from kivy.uix.label import Label
 
