@@ -4,6 +4,8 @@ from kivy.clock import Clock
 
 
 class Settings_menu(Screen):
+    def __init__(self, **kw):
+        super().__init__(**kw)
     def on_pre_enter(self):
         self.add_widget(tp.text_pop_save_game)
     def on_pre_leave(self, *args):

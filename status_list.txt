@@ -575,11 +575,11 @@ x.dodge_chance-=30
 ________________________________________
 ofiara
 Ofiara
-
+self.current_turn.dodge_chance_modifier -= 0
 2
 graphics/icons/ukrycie_w_cieniu_status.png
 one_time
-
+self.current_turn.dodge_chance_modifier -= 0
 Ofiara\nZabójca obrał swój cel...
 
 ________________________________________

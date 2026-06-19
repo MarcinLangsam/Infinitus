@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import player, UI_manager as UI, text_pop as tp, tooltip as tt, codecs
-from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.uix.behaviors import DragBehavior
