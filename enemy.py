@@ -572,7 +572,7 @@ rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,29,37,15,0,0,{
                                                             {},
                                                             "graphics/sprites/rozdarta_dusza_sprite.png","rozdarta_dusza",False)
 
-wojownik_qin = Enemy("Wojownik Qin",6,205,28,25,20,18,13,170,135,{
+wojownik_qin = Enemy("Wojownik Qin",6,180,28,24,20,17,12,170,135,{
                                                             "atak":enemy_skills["atak"],
                                                             "wu_jian":enemy_skills["wu_jian"],
                                                             "wu_jian":enemy_skills["wu_jian"],
@@ -843,8 +843,8 @@ story_fight = {
         10:[[death_knight],"one_time"]
     },
     2:{
-        1:[[rozdarta_dusza],"character"],
-        2:[[wojownik_qin,wojownik_qin2],"normal"],
+        1:[[wojownik_qin,wojownik_qin2],"normal"],
+        2:[[rozdarta_dusza],"character"],
         3:[[wojownik_qin,wlocznik_qin, halabardnik_qin],"normal"],
         4:[[golem],"normal"],
         5:[[jaszczurzy_wojownik,jaszczurzy_zabojca],"normal"],
