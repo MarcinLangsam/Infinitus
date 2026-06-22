@@ -61,6 +61,7 @@ class Menu(Screen):
         
     def start_main_fight(self):
         enemy.enemy_team.clear()
+        enemy.player_team_alive = player.team
         fight.is_random_fight = False
         for x in range(0,len(enemy.story_fight[fight.current_stage][fight.current_fight][0])):
             enemy.enemy_team.append(enemy.story_fight[fight.current_stage][fight.current_fight][0][x])
@@ -68,6 +69,7 @@ class Menu(Screen):
 
     def start_random_fight(self):
         enemy.enemy_team.clear()
+        enemy.player_team_alive = player.team
         fight.is_random_fight = True
 
         roll_fight = random.randint(1,fight.current_fight)

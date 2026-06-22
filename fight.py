@@ -31,6 +31,7 @@ def update_stages_progression(current):
         stage1_progress += 1
     if current == 2:
         stage2_progress += 1
+    
 
 class HPBar(ProgressBar):
     pass
@@ -480,7 +481,8 @@ class Fight(Screen):
                     current_fight=current_fight+1
                 self.manager.current = "add_new_character"
             else:
-                if current_fight < 10 and is_random_fight == False:      
+                if current_fight < 10 and is_random_fight == False: 
+                    update_stages_progression(current_stage)     
                     current_fight=current_fight+1
                 self.manager.current = "battle_result"
         if len(enemy.player_team_alive) <= 0:

@@ -59,6 +59,8 @@ class Settings_menu(Screen):
            f.write(characters[x]+'.inventory["potion"][2] = "'+str(player.team[x].inventory["potion"][2])+'"\n')
         for x in range(0,48):
             f.write('player.main_player.inventory['+str(x)+'][2] = "'+(player.current_player.inventory[x][2])+'"\n')
+        f.write("fight.stage1_progress="+str(fight.stage1_progress)+"\n")
+        f.write("fight.stage2_progress="+str(fight.stage2_progress)+"\n")
         f.write("fight.current_fight="+str(fight.current_fight)+"\n")
         f.write("fight.current_stage="+str(fight.current_stage)+"\n")
         if len(player.team)>=2:

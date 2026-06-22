@@ -1,15 +1,14 @@
 from kivy.core.audio import SoundLoader
 from kivy.properties import NumericProperty
-from kivy.event import EventDispatcher
 
-class Music_Player(EventDispatcher):
-    volume = NumericProperty(0.6)
+class Music_Player():
+    
 
     def __init__(self, **kw):
         super().__init__(**kw)
         self.current_track = SoundLoader.load("graphics/music/stage1.wav")
         self.current_source = "graphics/music/stage1.wav" 
-        self.current_track.volume = self.volume
+        self.current_track.volume = 0.55
         self.current_track.loop = True
 
     def play_music(self):

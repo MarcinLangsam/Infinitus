@@ -15,7 +15,7 @@ class Character_Creation(Screen):
         
     def change_screen(self,screen):
         player.main_player.name = self.creation_menu.name_component.return_name()
-        player.gold = 1000
+        player.gold = 5000
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):

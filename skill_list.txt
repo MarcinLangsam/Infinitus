@@ -84,7 +84,7 @@ no_effect
 _______________________________________
 5
 niestrudzony obrońca
-player.current_player.HP += 15\nplayer.current_player.MAX_HP += 20
+player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20
 nakładanie rąk
 graphics/skills/niestrudzony_obrońca.png
 0.21
@@ -339,7 +339,7 @@ _graphics/sounds/positive_effect_3.wav
 ______________________________________
 22
 paladyn
-player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10\nplayer.current_player.INT_base += 5
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.INT_base += 5
 oprawca
 graphics/skills/paladyn.png
 0.21
@@ -356,7 +356,7 @@ no_effect
 ______________________________________
 23
 barbazynca
-player.current_player.MAX_HP += 10\nplayer.current_player.HP += 10\nplayer.current_player.STR_base += 5
+player.current_player.HP += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.STR_base += 5
 oprawca
 graphics/skills/barbazynca.png
 0.11
