@@ -149,7 +149,7 @@ player.current_player.weapon -= 15\nplayer.current_player.crit_chance_bonus -= 1
 Berdysz Mao    |   BROŃ DWURĘCZNA\nObrażenia +15\n[color=#d9d764]Szansa na trafienie krytyczne +10[/color]
 350
 _______________________________________
-graphics/items/halbarda_ji.png
+graphics/items/halabarda_ji.png
 two_hand
 player.current_player.weapon += 7\nplayer.current_player.crit_chance_bonus += 20
 player.current_player.weapon -= 7\nplayer.current_player.crit_chance_bonus -= 20

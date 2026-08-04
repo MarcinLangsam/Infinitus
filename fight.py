@@ -242,7 +242,6 @@ class Fight(Screen):
             self.aplly_stats_modifier(x)
         for x in enemy.enemy_team:
             self.aplly_stats_modifier(x)
-        #self.take_action(self.turn_order[self.turn_number])
 
         Clock.schedule_once(lambda dt: self.take_action(self.turn_order[self.turn_number]), 0)
 
@@ -291,6 +290,7 @@ class Fight(Screen):
             self.turn_order.append(enemy.enemy_team[x])
         self.turn_order.sort(key=self.sort_by)
         self.turn_number = len(self.turn_order)-1
+        self.current_turn = team[0]
       
     def create_target_option(self):
         if len(enemy.enemy_team) >= 1:
@@ -310,6 +310,7 @@ class Fight(Screen):
         if len(team) >= 3:
             self.target_option[5] = [Button(text=team[2].name,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.46, "y": 0.25}, on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
 
+        
         self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18, size_hint=(0.1,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
         self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18, size_hint=(0.1,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
 
@@ -475,16 +476,25 @@ class Fight(Screen):
             self.battle_over()
             self.get_loot_and_exp()
 
-            if enemy.story_fight[current_stage][current_fight][1] == "character":
-                if current_fight < 10 and is_random_fight == False:
-                    update_stages_progression(current_stage)
-                    current_fight=current_fight+1
-                self.manager.current = "add_new_character"
-            else:
-                if current_fight < 10 and is_random_fight == False: 
-                    update_stages_progression(current_stage)     
-                    current_fight=current_fight+1
-                self.manager.current = "battle_result"
+            #if enemy.story_fight[current_stage][current_fight][1] == "character":
+                #if current_fight < 10 and is_random_fight == False:
+                #    update_stages_progression(current_stage)
+                #    current_fight=current_fight+1
+                #    self.manager.current = "add_new_character"
+                #if current_fight < 10 and is_random_fight == True:
+                #    self.manager.current = "battle_result"
+           # else:
+            if current_fight < 10 and is_random_fight == False: 
+                update_stages_progression(current_stage)     
+                current_fight=current_fight+1
+            if current_stage == 1 and  current_fight == 10:
+                import player
+                player.main_player.story_items["telport1"][0] == 1
+                player.main_player.story_items["telport2"][0] == 1
+            if current_stage == 2 and  current_fight == 10:
+                import player
+                player.main_player.story_items["telport3"][0] == 1 
+            self.manager.current = "battle_result"
         if len(enemy.player_team_alive) <= 0:
             self.battle_over()
             self.manager.current = "game_over"

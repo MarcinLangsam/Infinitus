@@ -12,6 +12,7 @@ WindowManger:
     shop: shop
     skills_window: skills_window
     fight: fight
+    game_complete: game_complete
     game_over: game_over
     battle_result: battle_result
     character_creation: character_creation
@@ -44,6 +45,10 @@ WindowManger:
     Fight:
         id: fight
         name: "fight"
+        manager: screen_manager
+    Game_Complete:
+        id: game_complete
+        name: "game_complete"
         manager: screen_manager
     Game_Over:
         id: game_over
@@ -158,7 +163,33 @@ WindowManger:
     Label:
         text: "Nie udało ci się wydostać z nieskończonego lochu.\nWczytaj grę aby spróbować jeszcze raz"
         font_size: 30
-        pos_hint: {"center_x": 0.53, "center_y": 0.5}
+        pos_hint: {"center_x": 0.5, "center_y": 0.63}
+        halign: "center"
+<Game_Complete>:
+    name: "game_complete"
+    size_hint: 1, 1
+    Image:
+        size_hint: 1,1
+        allow_stretch: True
+        source: "graphics/plain_background.png"
+        fit_mode: "fill"
+    Button:
+        on_release: app.root.current = "menu"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size: 200,150
+        size_hint: None,None
+        text: "Do lochu goblinów!"
+        font_size: 25
+        background_normal:"graphics/target_button.png"
+    Label:
+        text: "GRATULACJE\nPokonałeś Zło"
+        font_size: 45
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+        halign: "center"
+    Label:
+        text: "Udało ci się wydostać z nieskończonego lochu.\nMożesz jeszcze stawić czoła goblinom w 2 bonusowych walkach"
+        font_size: 30
+        pos_hint: {"center_x": 0.5, "center_y": 0.63}
         halign: "center"
 <End>:
     name: "end"
@@ -384,7 +415,8 @@ WindowManger:
     name: "battle_result"
     size_hint: 1, 1
     on_pre_enter: root.setup_window()
-        
+    on_pre_leave: root.save_game()
+
 <Character_Sprite>:
     size_hint: 0.25,0.41
     canvas:
@@ -421,6 +453,16 @@ WindowManger:
     drag_rectangle: self.x, self.y, self.width, self.height
     drag_timeout: 10000000
     drag_distance: 0
+    size_hint: 0.031, 0.055 
+    canvas:
+        Color: 
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.sprite
+
+<StorySlot>:
     size_hint: 0.031, 0.055 
     canvas:
         Color: 

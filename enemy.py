@@ -581,7 +581,7 @@ wojownik_qin = Enemy("Wojownik Qin",6,180,28,24,20,17,12,170,135,{
                                                             "skupienie":enemy_skills["skupienie"],
                                                             "grzmotnięcie":enemy_skills["grzmotnięcie"],                                                 
                                                             },
-                                                            {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":45,"graphics/items/pikowany_pancerz.png":25},
+                                                            {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":45,"graphics/items/pikowany_pancerz.png":25,"graphics/items/berdysz_mao.png":10},
                                                             "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin",False)
 wojownik_qin2 = Enemy("Wojownik Qin",6,205,28,25,23,18,13,170,135,{
                                                             "atak":enemy_skills["atak"],
@@ -592,7 +592,7 @@ wojownik_qin2 = Enemy("Wojownik Qin",6,205,28,25,23,18,13,170,135,{
                                                             "skupienie":enemy_skills["skupienie"],
                                                             "grzmotnięcie":enemy_skills["grzmotnięcie"], 
                                                             },
-                                                            {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":45,"graphics/items/pikowany_pancerz.png":25},
+                                                            {"graphics/items/wiekszy_pierscien_sily.png":10,"graphics/items/zloty_pierscien.png":45,"graphics/items/pikowany_pancerz.png":25,"graphics/items/berdysz_mao.png":15},
                                                             "graphics/sprites/wojownik_qin_sprite.png","wojownik_qin",False)
 
 wlocznik_qin = Enemy("Włócznik Qin",6,230,20,20,35,14,7,170,145,{
@@ -603,7 +603,7 @@ wlocznik_qin = Enemy("Włócznik Qin",6,230,20,20,35,14,7,170,145,{
                                                             "shi_mao":enemy_skills["shi_mao"],
                                                             "walnięcie":enemy_skills["walnięcie"],                                                         
                                                             },
-                                                            {"graphics/items/pierscien_zrecznosci.png":40,"graphics/items/wiekszy_pierscien_zrecznosci.png":15,"graphics/items/pikowany_pancerz.png":20},
+                                                            {"graphics/items/pierscien_zrecznosci.png":40,"graphics/items/wiekszy_pierscien_zrecznosci.png":15,"graphics/items/pikowany_pancerz.png":20, "graphics/items/berdysz_mao.png":20},
                                                             "graphics/sprites/wlocznik_qin_sprite.png","wlocznik_qin",False)
 
 halabardnik_qin = Enemy("Halabardnik Qin",6,185,30,20,10,19,10,170,175,{
@@ -616,7 +616,7 @@ halabardnik_qin = Enemy("Halabardnik Qin",6,185,30,20,10,19,10,170,175,{
                                                             "manewr_mlota":enemy_skills["manewr_mlota"],
                                                             "podcięcie":enemy_skills["podcięcie"],
                                                             },
-                                                            {"graphics/items/halbarda_ji.png":101,"graphics/items/amulet_predkosci.png":35,"graphics/items/pierscien_inteligencji.png":25,"graphics/items/pikowany_pancerz.png":13},
+                                                            {"graphics/items/halabarda_ji.png":101,"graphics/items/amulet_predkosci.png":35,"graphics/items/pierscien_inteligencji.png":25,"graphics/items/pikowany_pancerz.png":13,"graphics/items/berdysz_mao.png":15},
                                                             "graphics/sprites/halabardnik_qin_sprite.png","halabardnik_qin",False)
 
 zhihui_guan = Enemy("Zhihui Guan",6,600,30,25,20,15,13,100,200,{

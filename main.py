@@ -2,6 +2,7 @@ import os
 import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+Config.set('kivy', 'exit_on_escape', '0')
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
@@ -12,25 +13,26 @@ from kivy.uix.button import Button
 from kivy.metrics import dp
 from resource_path import get_resource_path
 from components.bottom_menu import BottomMenu
-from components.menu_components import DynamicStageButton
+from components.menu_components import DynamicStageButton, event_companion1, event_companion2, event_dictionary
 from kivy.uix.image import Image
+from music_player import music_player
 
 class StageProgressBar(ProgressBar):
     pass
 class Menu(Screen):
     bar = ObjectProperty(None)
     stage_background = StringProperty("graphics/stage1_background.png")
-    current_shop = ObjectProperty([0.12,0.4])
+    current_shop = ObjectProperty([0.12,0.48])
     current_random_fight = ObjectProperty([0.29,0.6])
     current_main_fight = ObjectProperty([0.82,0.66])
                         #shop -> random fight -> main fight
-    button_placment = [[[0.12,0.4],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
+    button_placment = [[[0.115,0.48],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
     
-
     def __init__(self, **kw):
         super().__init__(**kw)
 
     def change_window(self,window_name):
+        self.clear_widgets()
         self.manager.current = window_name
 
     def get_stage_background(self):
@@ -41,6 +43,14 @@ class Menu(Screen):
         else:
             return "graphics/stage1_background.png"
         
+    def event_add_character(self):
+        self.change_window("add_new_character")
+
+    def add_events(self):
+        if event_dictionary["companion1"] == 0 and fight.current_stage == event_companion1.which_stage and fight.current_fight >= event_companion1.which_fight:
+            self.add_widget(event_companion1)
+        if event_dictionary["companion2"] == 0 and fight.current_stage == event_companion1.which_stage and fight.current_fight >= event_companion1.which_fight:
+            self.add_widget(event_companion2)
 
     def setup_window(self):
         self.stage_background = self.get_stage_background()
@@ -57,7 +67,8 @@ class Menu(Screen):
         self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
         self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
         self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
-    
+        self.add_widget(music_player.music_component)
+        self.add_events()
         
     def start_main_fight(self):
         enemy.enemy_team.clear()
@@ -65,6 +76,7 @@ class Menu(Screen):
         fight.is_random_fight = False
         for x in range(0,len(enemy.story_fight[fight.current_stage][fight.current_fight][0])):
             enemy.enemy_team.append(enemy.story_fight[fight.current_stage][fight.current_fight][0][x])
+        self.clear_widgets()
         self.manager.current = "fight"
 
     def start_random_fight(self):
@@ -78,8 +90,10 @@ class Menu(Screen):
 
         for x in range(0,len(enemy.story_fight[fight.current_stage][roll_fight][0])):
             enemy.enemy_team.append(enemy.story_fight[fight.current_stage][roll_fight][0][x])
+        self.clear_widgets()
         self.manager.current = "fight"
-        
+class Game_Complete(Screen):
+    pass   
 class Game_Over(Screen):
     pass
 class End(Screen):
@@ -95,10 +109,12 @@ class Main_Menu(Screen):
         player.companion2.hard_reset_player()
         player.team.clear()
         player.team.append(player.main_player)
-        save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
-        if not os.path.exists(save_path):
-            save_path = "save_game.txt"
-        f = open(save_path)
+        try:
+            save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
+            f = open(save_path)
+        except Exception as e:
+            print(f"Błąd podczas odczytu pliku")
+            return None
         while True: 
             line = f.readline()
             if not line:

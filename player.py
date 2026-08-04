@@ -234,6 +234,12 @@ class Character(Widget):
             95 : [0.825,0.286,"graphics/items/empty_slot.png","item"],
         }
 
+        self.story_items = {
+            "teleport1": [0,0.438,0.15,"Ten kamień pozwala ci teleportować się do lochu szkieletów"],
+            "teleport2": [0,0.5,0.15,"Ten kamień pozwala ci teleportować się do zaółka spokoju"],
+            "teleport3": [0,0.562,0.15,"Ten kamień pozwala ci teleportować się do lochu MADMAXA"]
+        }
+
     def hard_reset_player(self):
         self.lv = 1
         self.MAX_HP = 100

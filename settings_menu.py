@@ -1,7 +1,7 @@
 import player,fight, text_pop as tp, os
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
-
+from components.menu_components import event_dictionary
 
 class Settings_menu(Screen):
     def __init__(self, **kw):
@@ -68,5 +68,9 @@ class Settings_menu(Screen):
         if len(player.team)>=3:
             f.write("player.team.append(player.companion2)\n")
         f.write("player.gold = "+str(player.gold))
+        for key in event_dictionary.keys():
+            f.write("\nevent_dictionary['"+str(key)+"'] = "+str(event_dictionary[key]))
+        for key in player.main_player.story_items.keys():
+            f.write("\nplayer.main_player.story_items['"+str(key)+"'][0] = "+str(player.main_player.story_items[key][0]))
         f.close()
         Clock.schedule_once(tp.clear_pop_up,2)

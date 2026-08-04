@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import player, UI_manager as UI, text_pop as tp, tooltip as tt, codecs
+import player, UI_manager as UI, text_pop as tp, tooltip as tt, codecs, random
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.uix.behaviors import DragBehavior
@@ -9,12 +9,36 @@ from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from resource_path import get_resource_path
 
+
 global screen
 screen = ""
 
 def check_whitch_screen(s):
     global screen
     screen = s
+
+class StorySlot(Widget):
+    sprite = StringProperty("")
+    tooltip_text = StringProperty("")
+
+    def __init__(self, **kwargs):
+        Window.bind(mouse_pos=self.on_mouse_pos)
+        super().__init__(**kwargs)
+
+    def on_mouse_pos(self, window, pos):
+        if not self.get_root_window():
+            return
+        Clock.unschedule(self.display_tooltip)
+        self.close_tooltip()
+        if self.collide_point(*self.to_widget(*pos)):
+            self.p = (self.pos[0]+25,self.pos[1])
+            self.t = self.tooltip_text
+            Clock.schedule_once(self.display_tooltip, 0.5)
+    
+    def close_tooltip(self, *args):
+        tt.clear_tooltip(self.parent.tooltip)
+    def display_tooltip(self, *args):
+        tt.set_tooltip(self.parent.tooltip,self.t, self.p)
 
 class ItemSlot(DragBehavior, Widget):
     sprite = StringProperty("")
@@ -33,8 +57,12 @@ class ItemSlot(DragBehavior, Widget):
         self.put_down_sound = SoundLoader.load("graphics/sounds/put_down.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
         self.shop_sound = SoundLoader.load("graphics/sounds/shop.wav")
-        
+        self.shopkeeper_sound = SoundLoader.load("graphics/sounds/shopkeeper_buy1.wav")
 
+    def roll_shoopkeeper_sound(self):
+        roll = random.randint(1,3)
+        self.shopkeeper_sound = SoundLoader.load("graphics/sounds/shopkeeper_buy"+str(roll)+".wav")
+        
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
             self.parent.empty_main_hand.color = [1,1,1,1]
@@ -102,7 +130,6 @@ class ItemSlot(DragBehavior, Widget):
                     #print(str(inventory[x].pos[0]+dp(55))+", "+str(inventory[x].pos[1]+dp(55)))
                     #print(str(touch.pos[0])+", "+str(touch.pos[1]))
                     #print(self.drop)
-                    
                 else:
                     inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             #kontrola będów i oszustwa
@@ -176,6 +203,9 @@ class ItemSlot(DragBehavior, Widget):
                                 UI.ui.gold_refresh()
                                 self.switch_items_in_invetory()
                                 tp.text_pop_inventory.text = "Kupiono przedmiot"
+                                self.shopkeeper_sound.stop()
+                                self.roll_shoopkeeper_sound()
+                                self.shopkeeper_sound.play()
                                 self.shop_sound.play()
                             else:
                                 tp.text_pop_inventory.text = "Nie masz wsytarczająco złota"

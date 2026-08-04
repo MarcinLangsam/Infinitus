@@ -1,4 +1,4 @@
-import inventory_manager as im, text_pop as tp, player, UI_manager as UI, fight
+import inventory_manager as im, text_pop as tp, player, UI_manager as UI, fight, random
 import tooltip as tt
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
@@ -13,6 +13,11 @@ class Shop(Screen):
         super().__init__(**kw)
         self.tooltip = tt.Tooltip()
         self.accept_sound = SoundLoader.load("graphics/sounds/t.wav")
+        self.shookeeper_welocome = SoundLoader.load("graphics/sounds/shopkeeper_start1.wav")
+
+    def roll_shopkeeper_welcome(self):
+        roll = random.randint(1,4)
+        self.shookeeper_welocome = SoundLoader.load("graphics/sounds/shopkeeper_start"+str(roll)+".wav")
 
     def change_screen(self):
         self.clear_on_shop_leave()
@@ -20,7 +25,8 @@ class Shop(Screen):
         self.clear_widgets()
         self.manager.current = "menu"
     def setup_window(self):
-        self.add_widget(Image(source="graphics/plain_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
+        self.add_widget(Image(source="graphics/shop_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
+        self.add_widget(Image(source="graphics/goblin_shopkeeper.png", size_hint=(0.43,0.43), allow_stretch=True, pos_hint={"center_x": 0.5, "center_y":0.5}))
         
         for x in range(0,96):
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
@@ -38,6 +44,9 @@ class Shop(Screen):
         self.add_widget(Label(text="EKWIPUNEK", font_size=(sp(50)), pos_hint={"center_x": 0.235, "center_y": 0.9}, outline_width = 1))
         self.add_widget(Label(text="SKLEP", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
         self.add_widget(self.tooltip)
+        self.shookeeper_welocome.stop()
+        self.roll_shopkeeper_welcome()
+        self.shookeeper_welocome.play()
 
     def set_shop_content(self):
         for x in range(48,48+len(self.shop_content[fight.current_stage])):
