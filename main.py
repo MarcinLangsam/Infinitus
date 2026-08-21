@@ -1,5 +1,7 @@
 import os
 import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
+import components.hover_behavior
+from components.hover_behavior import HoverButton
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 Config.set('kivy', 'exit_on_escape', '0')
@@ -9,11 +11,11 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.core.window import Window
 from kivy.uix.progressbar import ProgressBar
-from kivy.uix.button import Button
 from kivy.metrics import dp
 from resource_path import get_resource_path
 from components.bottom_menu import BottomMenu
 from components.menu_components import DynamicStageButton, event_companion1, event_companion2, event_dictionary
+from components.fancy_button import FancyButton
 from kivy.uix.image import Image
 from music_player import music_player
 
@@ -63,10 +65,10 @@ class Menu(Screen):
         self.add_widget(Image(source=self.stage_background, size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(StageProgressBar(max=10,value=self.bar))
         self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
-        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), border=(0,0,0,0),  background_normal="graphics/setting_button.png", on_press = lambda y:self.change_window("settings_menu")))
-        self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", on_press = lambda y:self.change_window("shop")))
-        self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", on_press = lambda y:self.start_random_fight()))
-        self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", on_press = lambda y:self.start_main_fight()))
+        self.add_widget(FancyButton(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), background_normal="graphics/setting_button.png", action = lambda y:self.change_window("settings_menu")))
+        self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", action = lambda y:self.change_window("shop")))
+        self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", action = lambda y:self.start_random_fight()))
+        self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", action = lambda y:self.start_main_fight()))
         self.add_widget(music_player.music_component)
         self.add_events()
         
@@ -92,6 +94,13 @@ class Menu(Screen):
             enemy.enemy_team.append(enemy.story_fight[fight.current_stage][roll_fight][0][x])
         self.clear_widgets()
         self.manager.current = "fight"
+
+    def on_enter(self):
+        buttons = [w for w in self.walk() if isinstance(w, HoverButton)]
+        print(buttons)
+        print("AWDWADWA")
+
+
 class Game_Complete(Screen):
     pass   
 class Game_Over(Screen):

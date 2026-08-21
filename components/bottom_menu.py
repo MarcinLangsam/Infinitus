@@ -3,6 +3,7 @@ from kivy.uix.button import Button
 from kivy.metrics import dp
 from kivy.graphics import Rectangle
 from screen_manager import screen_manager
+from components.fancy_button import FancyButton
 
 class BottomMenu(BoxLayout):
     def __init__(self, manager, **kwargs):
@@ -21,9 +22,9 @@ class BottomMenu(BoxLayout):
         self.spacing = dp(20)
         self.padding = dp(25)
 
-        self.add_widget(Button(border=(0,0,0,0), background_normal="graphics/team_button.png", on_press = lambda y:self.change_screen("team")))
-        self.add_widget(Button(border=(0,0,0,0), background_normal="graphics/skills_button.png", on_press = lambda y:self.change_screen("skills")))
-        self.add_widget(Button(border=(0,0,0,0),  background_normal="graphics/map_button.png", on_press = lambda y:self.change_screen("map")))
+        self.add_widget(FancyButton(background_normal="graphics/team_button.png", action = lambda y:self.change_screen("team")))
+        self.add_widget(FancyButton(background_normal="graphics/skills_button.png", action = lambda y:self.change_screen("skills")))
+        self.add_widget(FancyButton(background_normal="graphics/map_button.png", action = lambda y:self.change_screen("map")))
         
     def update_rect(self, *args):
         self.rect.pos = self.pos

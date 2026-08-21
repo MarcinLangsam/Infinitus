@@ -25,11 +25,13 @@ class UI():
         stats["crit_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Cios krytyczny: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
         stats["dodge_chance_label"] = Label( font_size=23,halign="left", valign="middle", text="Unik: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
         stats["exp_boost_label"] = Label( font_size=23,halign="left", valign="middle", text="Bonus do doświadczenia: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
+        stats["mp_regen_label"] = Label( font_size=23,halign="left", valign="middle", text="Regeneracja MP: ", outline_width = 1, size_hint_x=None, width=dp(200), pos_hint = {'x': 0}, text_size=(dp(200), None))
         stats["damage"] = Label( font_size=23,halign="left", valign="middle", text=str(character.damage), outline_width = 1)
         stats["defence"] = Label( font_size=23,halign="left", valign="middle", text=str(character.defence), outline_width = 1)
         stats["crit_chance"] = Label( font_size=23,halign="left", valign="middle", text=str(character.crit_chance), outline_width = 1)
         stats["dodge_chance"] = Label( font_size=23,halign="left", valign="middle", text=str(character.dodge_chance), outline_width = 1)
         stats["exp_boost"] = Label( font_size=23,halign="left", valign="middle", text=str(character.EXP_boost), outline_width = 1)
+        stats["mp_regen"] = Label( font_size=23,halign="left", valign="middle", text=str(character.MP_regen_base + character.MP_regen_modifier), outline_width = 1)
         
         stats["exp"] = Label( font_size=25,halign="left", valign="middle", text=(("Doświadczenie: ") + str(character.EXP) + ("/") + str(character.EXP_To_Lv)), outline_width = 1, pos_hint = {'center_x':0.5,'center_y':0.905})
         stats["gold"] = Label( font_size=33,halign="left", valign="middle", text=str(player.gold), outline_width = 1)
@@ -54,8 +56,10 @@ class UI():
         stats["crit_chance"].text = "{:.2f}".format(character.crit_chance) + "%"
         stats["dodge_chance"].text = "{:.2f}".format(character.dodge_chance) + "%"
         stats["exp_boost"].text = "{:.2f}".format(character.EXP_boost) + "%"
+        stats["mp_regen"].text = str(character.MP_regen_base + character.MP_regen_modifier)
         stats["exp"].text = (("Doświadczenie: ") + "{:.0f}".format(character.EXP) + ("/") + str(character.EXP_To_Lv))
         stats["gold"].text = "{0:g}".format(player.gold)
+
         if character.stat_points <= 0 :
             stats["stat_points_label"].color = (0.6,0.6,0.6,0.5)
             stats["stat_points"].text = "brak"

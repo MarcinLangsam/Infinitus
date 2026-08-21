@@ -1,19 +1,41 @@
 from kivy.uix.button import Button
-from kivy.graphics import Rectangle
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.metrics import dp
+from kivy.properties import NumericProperty, ObjectProperty
+from kivy.animation import Animation
 
 class DynamicStageButton(Button):
+    scale = NumericProperty(1.0)
+    action = ObjectProperty(None, allownone=True)
+
     def __init__(self, x, y, s,  **kwargs):
+        self.action = kwargs.pop('action', None)
         super(DynamicStageButton, self).__init__(**kwargs)
         self.background_normal = s
+        self.background_down = s
         self.border = (0,0,0,0)
         self.pos_hint = {"center_x": x, "center_y": y}
         self.size = (dp(150),dp(150))
         self.size_hint = (None, None)
+        self.bind(on_press=self._on_press)
+        self.bind(on_release=self._on_release)
+        self.bind(on_cancel=self._on_release)
+
+    def _on_press(self, instace):
+        Animation.cancel_all(self)
+        Animation(scale=0.92, opacity=0.75, duration=0.02).start(self)
+
+    def _on_release(self, instance):
+        Animation.cancel_all(self)
+        anim = Animation(scale=1.0, opacity=1.0, duration=0.03)
+
+        if self.action:
+            anim.bind(on_complete=lambda *a: self.action(self))
+
+        anim.start(self)
 
     def update_rect(self, *args):
         self.rect.pos = self.pos

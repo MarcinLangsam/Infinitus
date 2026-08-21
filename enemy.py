@@ -818,6 +818,25 @@ layt = Enemy("Wiedzma Layt",6,2000,66,66,66,66,0,500,400,{
                                                     {},
                                                     "graphics/sprites/layt_sprite.png","layt",False)
 
+######################### 3 OBSZAR PRZECIWNICY ################################
+goblin_wojownik = Enemy("Golbin Wojownik",8,750,50,30,30,50,20,550,600,{
+                                                    "atak":enemy_skills["atak"],
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/goblin_wojownik_sprite.png","goblin_wojownik",False)
+
+goblin_szaman = Enemy("Golbin Szaman",8,630,30,35,50,30,10,550,600,{
+                                                    "atak":enemy_skills["atak"],
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/goblin_szaman_sprite.png","goblin_szaman",False)
+
+madmax = Enemy("MAD MAX",10,2500,75,75,75,70,25,1000,1500,{
+                                                    "atak":enemy_skills["atak"],
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/madmax.png","madmax",False)
+
 
 
 

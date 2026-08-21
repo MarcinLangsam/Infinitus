@@ -87,14 +87,6 @@ WindowManger:
     name: "menu"
     on_pre_enter: root.setup_window()
     size_hint: 1,1
-    #Image:
-    #    size_hint: 1,1
-    #    allow_stretch: True
-    #    fit_mode: "fill"
-    #    source: root.stage_background
-    #StageProgressBar:
-    #    max: 10
-     #   value: root.bar
     
 <Shop>:
     name: "shop"
@@ -236,11 +228,6 @@ WindowManger:
 <Map>:
     name: "map"
     on_pre_enter: root.setup_window()
-    #Image:
-    #    allow_stretch: True
-    #    size_hint: 1,1
-    #    source: "graphics/plain_background.png"
-    #    fit_mode: "fill"
 <Main_Menu>:
     name: "main_menu"
     size_hint: 1,1
@@ -252,41 +239,57 @@ WindowManger:
         pos: 0,0
     Image:
         size_hint: 1,1
-        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+        pos_hint: {"center_x": 0.25, "center_y": 0.8}
         source: "graphics/title.png"
 
-    Button:
+    HoverButton:
         on_release: app.root.current = "character_creation"
-        pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        pos_hint: {"center_x": 0.18, "center_y": 0.55}
         size: 200,130
         size_hint: None,None
-        text: "Nowa Gra"
+        text: ""
         font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
+        background_normal:"graphics/new_game.png"
+        background_down:"graphics/new_game.png"
+
+        on_enter: self.background_color = (1, 1, 0.5, 1)
+        on_leave: self.background_color = (1, 1, 1, 1)
+    HoverButton:
         on_release: root.load_game()
-        pos_hint: {"center_x": 0.5, "center_y": 0.40}
+        pos_hint: {"center_x": 0.18, "center_y": 0.40}
         size: 200,130
         size_hint: None,None
-        text: "Wczytaj grę"
+        text: ""
         font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
+        background_normal:"graphics/load_game.png"
+        background_down:"graphics/load_game.png"
+
+        on_enter: self.background_color = (1, 1, 0.5, 1)
+        on_leave: self.background_color = (1, 1, 1, 1)
+    HoverButton:
         on_release: app.root.current = "tutorial"
-        pos_hint: {"center_x": 0.5, "center_y": 0.25}
+        pos_hint: {"center_x": 0.18, "center_y": 0.25}
         size: 200,130
         size_hint: None,None
-        text: "Jak grać?"
+        text: ""
         font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
+        background_normal:"graphics/how_to_play.png"
+        background_down:"graphics/how_to_play.png"
+
+        on_enter: self.background_color = (1, 1, 0.5, 1)
+        on_leave: self.background_color = (1, 1, 1, 1)
+    HoverButton:
         on_release: app.exit_app()
-        pos_hint: {"center_x": 0.5, "center_y": 0.10}
+        pos_hint: {"center_x": 0.18, "center_y": 0.10}
         size: 200,130
         size_hint: None,None
-        text: "Wyjście"
+        text: ""
         font_size: 25
-        background_normal:"graphics/target_button.png"
+        background_normal:"graphics/exit.png"
+        background_down:"graphics/exit.png"
+
+        on_enter: self.background_color = (1, 1, 0.5, 1)
+        on_leave: self.background_color = (1, 1, 1, 1)
 <Tutorial>:
     name:"tutorial"
     size_hint: 1,1
@@ -800,6 +803,7 @@ WindowManger:
                 size: self.size
         color: 1, 1, 1, 1
         font_size: dp(16)
+        outline_width: 1
         bold: True
         halign: 'center'
         valign: 'middle'
@@ -831,6 +835,7 @@ WindowManger:
                 size: self.size
         color: 1, 1, 1, 1
         font_size: dp(16)
+        outline_width: 1
         bold: True
         halign: 'center'
         valign: 'middle'
@@ -862,6 +867,7 @@ WindowManger:
                 size: self.size
         color: 1, 1, 1, 1
         font_size: dp(16)
+        outline_width: 1
         bold: True
         halign: 'center'
         valign: 'middle'
@@ -892,6 +898,27 @@ WindowManger:
                 size: self.size
         color: 1, 1, 1, 1
         font_size: dp(16)
+        outline_width: 1
         bold: True
         halign: 'center'
         valign: 'middle'
+
+<FancyButton>:
+    canvas.before:
+        PushMatrix
+        Scale:
+            origin: self.center
+            x: self.scale
+            y: self.scale
+    canvas.after:
+        PopMatrix
+
+<DynamicStageButton>:
+    canvas.before:
+        PushMatrix
+        Scale:
+            origin: self.center
+            x: self.scale
+            y: self.scale
+    canvas.after:
+        PopMatrix

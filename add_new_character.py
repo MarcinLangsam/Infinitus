@@ -39,8 +39,8 @@ class Add_New_Character(Screen):
         
         
         self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.1}, size=(500,70), font_size= 40, text="Dalej!", size_hint=(None,None), background_normal="graphics/target_button.png", on_press = lambda y:self.change_screen("menu")))
-        self.add_widget(Label(text="DODAJ NOWEGO\nCZŁONKA DRUŻYNY!", pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
+        self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.1}, size=(500,70), font_size= 40, text="Dalej!", outline_width=1, size_hint=(None,None), background_normal="graphics/text_box.png", background_down="graphics/text_box_dark.png", on_press = lambda y:self.change_screen("menu")))
+        self.add_widget(Label(text="DODAJ NOWEGO\nCZŁONKA DRUŻYNY!", outline_width=1, pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
         
         self.add_widget(self.sprite)
         stats_component.hidden()
