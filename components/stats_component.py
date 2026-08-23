@@ -65,7 +65,7 @@ class StatsUpButtonContainer(BoxLayout):
     def __init__(self, **kwargs):
         super(StatsUpButtonContainer, self).__init__(**kwargs)
         self.orientation = "vertical"
-        self.padding = [0, 0, 0, dp(45)]
+        self.padding = [-dp(35), -dp(20), dp(35), dp(80)]
         self.size_hint_y = 0.65
         self.size_hint_x = 0.1
         self.add_widget(StatsButton("HP", "Zwiększa zdrowię o 10","graphics/health_stat_up_button.png", "graphics/health_stat_up_button_press.png"))

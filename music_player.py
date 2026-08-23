@@ -13,7 +13,7 @@ class Music_Component(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/text_box.png',
+                source = 'graphics/menu_background.png',
                 pos=self.pos,
                 size=self.size,
             )
