@@ -13,7 +13,7 @@ class Music_Component(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/menu_background.png',
+                source = 'graphics/text_box.png',
                 pos=self.pos,
                 size=self.size,
             )
@@ -27,7 +27,7 @@ class Music_Component(BoxLayout):
         self.rect.size = self.size
 
 class Music_Player(EventDispatcher):
-    volume = NumericProperty(0.5)
+    volume = NumericProperty(0.6)
     
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -35,12 +35,12 @@ class Music_Player(EventDispatcher):
         self.current_source = "graphics/music/stage1.wav" 
         self.current_track.volume = self.volume
         self.current_track.loop = True
-        self.label=Label(font_size = 30, text = str(self.volume))
-        self.music_component = Music_Component(pos_hint={"center_x": 0.75, "y":0}, size_hint=(0.15,0.1))
+        self.label=Label(font_size = 25, text = str(self.volume), outline_width=1)
+        self.music_component = Music_Component(pos_hint={"center_x": 0.75, "y":0}, size_hint=(0.13,0.09))
         self.music_component.add_widget(Image(source="graphics/sound_icon.png", size_hint=(1,1)))
-        self.music_component.add_widget(Button(on_press = lambda y:self.change_volume(-0.05), background_normal = "graphics/sound_minus_icon.png", size_hint=(1,1)))
+        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(-0.05), background_normal = "graphics/sound_minus_icon.png", background_down = "graphics/sound_minus_icon_press.png", size_hint=(1,1)))
         self.music_component.add_widget(self.label)
-        self.music_component.add_widget(Button(on_press = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",size_hint=(1,1)))
+        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",background_down = "graphics/sound_plus_icon.png_press.png", size_hint=(1,1)))
         
     def play_music(self):
         if self.current_track.state == "stop":

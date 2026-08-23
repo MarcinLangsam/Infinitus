@@ -93,7 +93,7 @@ class Battle_Result(Screen):
         self.manager.current = "menu"
     def setup_window(self):
         self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
+        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", background_down="graphics/close_button_press.png", on_release = lambda y:self.change_screen()))
         Clock.schedule_once(self.progress_bar_start)
 
         if len(player.team) >= 1:
@@ -110,10 +110,9 @@ class Battle_Result(Screen):
         self.add_widget(Label(text="ŁUPY", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
         im.check_whitch_screen(self.manager.current)
 
-        if fight.current_stage == 1 and fight.current_fight == 2:
+        if fight.current_stage == 1 and fight.current_fight == 10:
             self.add_widget(Label(text="ZDOBYTE PRZEDMIOTY FABULARNE", pos_hint={"center_x": 0.76,"center_y": 0.225}, font_size=27, outline_width=1))
-            self.add_widget(im.StorySlot(pos_hint={"center_x": 0.7,"center_y": 0.17}, sprite="graphics/teleport1.png", tooltip_text=player.main_player.story_items["teleport1"][3]+"\n\nPrzedmioty fabularne autamtycznie przenoszą się do ekwipunku."))
-            self.add_widget(im.StorySlot(pos_hint={"center_x": 0.762,"center_y": 0.17}, sprite="graphics/teleport2.png", tooltip_text=player.main_player.story_items["teleport2"][3]+"\n\nPrzedmioty fabularne autamtycznie przenoszą się do ekwipunku."))
+            self.add_widget(im.StorySlot(pos_hint={"center_x": 0.7,"center_y": 0.17}, sprite="graphics/teleport2.png", tooltip_text=player.main_player.story_items["teleport2"][3]+"\n\nPrzedmioty fabularne autamtycznie przenoszą się do ekwipunku."))
         if fight.current_stage == 2 and fight.current_fight == 10:
             self.add_widget(Label(text="ZDOBYTE PRZEDMIOTY FABULARNE", pos_hint={"center_x": 0.76,"center_y": 0.225}, font_size=27, outline_width=1))
             self.add_widget(im.StorySlot(pos_hint={"center_x": 0.7,"center_y": 0.17}, sprite="graphics/teleport3.png", tooltip_text=player.main_player.story_items["teleport3"][3]+"\n\nPrzedmioty fabularne autamtycznie przenoszą się do ekwipunku."))

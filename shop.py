@@ -34,7 +34,7 @@ class Shop(Screen):
             self.add_widget(im.inventory[x])
         
 
-        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_screen()))
+        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", background_down="graphics/close_button_press.png", on_release = lambda y:self.change_screen()))
         self.add_widget(gold_widget)
         UI.ui.gold_refresh()
         im.check_whitch_screen(self.manager.current)
@@ -70,7 +70,11 @@ class Shop(Screen):
            "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png",
            "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png",
            "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png",
-
-
+        ],
+        3:["graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
+                   "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png",
+                   "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png",
+                   "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png",
+                   "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png",
         ]
     }

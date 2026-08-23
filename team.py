@@ -111,7 +111,7 @@ class Team(Screen):
         self.add_widget(im.inventory["accessory3"])
         self.add_widget(im.inventory["potion"])
 
-        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_window("menu")))
+        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png",background_down="graphics/close_button_press.png", on_release = lambda y:self.change_window("menu")))
         
         if len(player.team) >= 1:
             self.main_player_button.background_color = (0.4,0.4,0.4,1)
@@ -155,10 +155,10 @@ class Team(Screen):
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
 
-        self.add_widget(Label(text="PRZEDMIOTY FABULARNE", outline_with=1, pos_hint={"center_x": 0.5,"center_y": 0.21}, font_size=27, outline_width=1))
+        self.add_widget(Label(text="PRZEDMIOTY FABULARNE", pos_hint={"center_x": 0.5,"center_y": 0.21}, font_size=27, outline_width=1))
         for key in player.main_player.story_items.keys():
             if player.main_player.story_items[key][0] == 0:
-                self.add_widget(im.StorySlot(pos_hint={"center_x":player.main_player.story_items[key][1],"center_y":player.main_player.story_items[key][2]}, sprite="graphics/empty_story_item.png", tooltip_text=player.main_player.story_items[key][3]))
+                self.add_widget(im.StorySlot(pos_hint={"center_x":player.main_player.story_items[key][1],"center_y":player.main_player.story_items[key][2]}, sprite="graphics/empty_story_item.png", tooltip_text="Nie zdobyłeś jeszcze tego przedmiotu"))
             else:
                 self.add_widget(im.StorySlot(pos_hint={"center_x":player.main_player.story_items[key][1],"center_y":player.main_player.story_items[key][2]}, sprite="graphics/"+key+".png", tooltip_text=player.main_player.story_items[key][3]))
         

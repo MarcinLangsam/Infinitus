@@ -31,7 +31,7 @@ class Skills_Window(Screen):
         self.add_widget(Label(text="Trzymaj kursor na kafelku umiejętności aby zobaczyć jej opis", pos_hint={"center_x": 0.5,"center_y": 0.05}, font_size=18))
         #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(skill_point_widget)
-        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", on_press = lambda y:self.change_window("menu")))
+        self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", background_down="graphics/close_button_press.png", on_release = lambda y:self.change_window("menu")))
         
 
         UI.ui.skill_points_refresh(player.current_player)

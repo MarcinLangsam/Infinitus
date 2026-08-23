@@ -15,7 +15,8 @@ from kivy.metrics import dp
 from resource_path import get_resource_path
 from components.bottom_menu import BottomMenu
 from components.menu_components import DynamicStageButton, event_companion1, event_companion2, event_dictionary
-from components.fancy_button import FancyButton
+#from components.fancy_button import FancyButton
+from kivy.uix.button import Button
 from kivy.uix.image import Image
 from music_player import music_player
 
@@ -28,7 +29,7 @@ class Menu(Screen):
     current_random_fight = ObjectProperty([0.29,0.6])
     current_main_fight = ObjectProperty([0.82,0.66])
                         #shop -> random fight -> main fight
-    button_placment = [[[0.115,0.48],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
+    button_placment = [[[0.115,0.48],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
     
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -42,6 +43,8 @@ class Menu(Screen):
             return "graphics/stage1_background.png"
         elif fight.current_stage == 2:
             return "graphics/stage2_background.png"
+        elif fight.current_stage == 3:
+            return "graphics/stage3_background.png"
         else:
             return "graphics/stage1_background.png"
         
@@ -51,7 +54,7 @@ class Menu(Screen):
     def add_events(self):
         if event_dictionary["companion1"] == 0 and fight.current_stage == event_companion1.which_stage and fight.current_fight >= event_companion1.which_fight:
             self.add_widget(event_companion1)
-        if event_dictionary["companion2"] == 0 and fight.current_stage == event_companion1.which_stage and fight.current_fight >= event_companion1.which_fight:
+        if event_dictionary["companion2"] == 0 and fight.current_stage == event_companion2.which_stage and fight.current_fight >= event_companion2.which_fight:
             self.add_widget(event_companion2)
 
     def setup_window(self):
@@ -65,10 +68,10 @@ class Menu(Screen):
         self.add_widget(Image(source=self.stage_background, size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(StageProgressBar(max=10,value=self.bar))
         self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
-        self.add_widget(FancyButton(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), background_normal="graphics/setting_button.png", action = lambda y:self.change_window("settings_menu")))
-        self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", action = lambda y:self.change_window("shop")))
-        self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", action = lambda y:self.start_random_fight()))
-        self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", action = lambda y:self.start_main_fight()))
+        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.change_window("settings_menu")))
+        self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", "graphics/shop_button_press.png", on_release = lambda y:self.change_window("shop")))
+        self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", "graphics/random_fight_button_press.png", on_release = lambda y:self.start_random_fight()))
+        self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", "graphics/main_fight_button_press.png", on_release = lambda y:self.start_main_fight()))
         self.add_widget(music_player.music_component)
         self.add_events()
         
@@ -94,11 +97,6 @@ class Menu(Screen):
             enemy.enemy_team.append(enemy.story_fight[fight.current_stage][roll_fight][0][x])
         self.clear_widgets()
         self.manager.current = "fight"
-
-    def on_enter(self):
-        buttons = [w for w in self.walk() if isinstance(w, HoverButton)]
-        print(buttons)
-        print("AWDWADWA")
 
 
 class Game_Complete(Screen):

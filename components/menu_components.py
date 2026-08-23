@@ -5,37 +5,20 @@ from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.metrics import dp
 from kivy.properties import NumericProperty, ObjectProperty
-from kivy.animation import Animation
 
 class DynamicStageButton(Button):
     scale = NumericProperty(1.0)
     action = ObjectProperty(None, allownone=True)
 
-    def __init__(self, x, y, s,  **kwargs):
+    def __init__(self, x, y, s, s_d,  **kwargs):
         self.action = kwargs.pop('action', None)
         super(DynamicStageButton, self).__init__(**kwargs)
         self.background_normal = s
-        self.background_down = s
+        self.background_down = s_d
         self.border = (0,0,0,0)
         self.pos_hint = {"center_x": x, "center_y": y}
         self.size = (dp(150),dp(150))
         self.size_hint = (None, None)
-        self.bind(on_press=self._on_press)
-        self.bind(on_release=self._on_release)
-        self.bind(on_cancel=self._on_release)
-
-    def _on_press(self, instace):
-        Animation.cancel_all(self)
-        Animation(scale=0.92, opacity=0.75, duration=0.02).start(self)
-
-    def _on_release(self, instance):
-        Animation.cancel_all(self)
-        anim = Animation(scale=1.0, opacity=1.0, duration=0.03)
-
-        if self.action:
-            anim.bind(on_complete=lambda *a: self.action(self))
-
-        anim.start(self)
 
     def update_rect(self, *args):
         self.rect.pos = self.pos
@@ -79,7 +62,7 @@ class StoryEvent(Button):
 
         close_button = Button(
             text = self.button_description or "OK",
-            size_hint_y = None,
+            size_hint_y = 0.8,
             height= dp(60),
             background_normal="graphics/target_button.png",
         )
@@ -119,8 +102,8 @@ class StoryEvent(Button):
         else:
             return False
         
-event_companion1 = StoryEvent(0.45,0.53,"graphics/companion1_story.png","graphics/companion1_closeup.png",1,4,"companion1","self.parent.event_add_character()","Testowy Opis", "DODAJ NOEWGO CZŁONKA DRUŻYNY!")
-event_companion2 = StoryEvent(0.6,0.53,"graphics/companion2_story.png","graphics/companion2_closeup.png",2,2,"companion2","self.parent.event_add_character()","Testowy Opis nr 2", "DODAJ NOEWGO CZŁONKA DRUŻYNY!")
+event_companion1 = StoryEvent(0.45,0.53,"graphics/companion1_story.png","graphics/companion1_closeup.png",1,4,"companion1","self.parent.event_add_character()","Ah! Jak dobrze ujrzeć jakąś przyjazną twarz w tym zapomnianym przez boga miejscu. Może przyłączę się do ciebie i razem odnajdziemy wyjście z tego przeklętego lochu?", "DODAJ NOEWGO CZŁONKA DRUŻYNY!")
+event_companion2 = StoryEvent(0.6,0.53,"graphics/companion2_story.png","graphics/companion2_closeup.png",2,2,"companion2","self.parent.event_add_character()","Witajcie dzielni wojownicy! Spotkanie tutaj innego człowieka, który nie jest stertą kości graniczy z cudem. Co wy na to abym się do was przyłączył i we trzech będziemy stawiać czoła przeciwnością tego lochu?", "DODAJ NOEWGO CZŁONKA DRUŻYNY!")
 
 event_dictionary = {
     "companion1": 0,

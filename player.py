@@ -235,7 +235,7 @@ class Character(Widget):
         }
 
         self.story_items = {
-            "teleport1": [0,0.438,0.15,"Ten kamień pozwala ci teleportować się do lochu szkieletów"],
+            "teleport1": [1,0.438,0.15,"Ten kamień pozwala ci teleportować się do lochu szkieletów"],
             "teleport2": [0,0.5,0.15,"Ten kamień pozwala ci teleportować się do zaółka spokoju"],
             "teleport3": [0,0.562,0.15,"Ten kamień pozwala ci teleportować się do lochu MADMAXA"]
         }

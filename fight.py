@@ -14,12 +14,14 @@ from kivy.metrics import dp
 from components.fight_components import PlayerStatusContainer, EnemyStatusContainer
 from kivy.core.window import Window
 from kivy.uix.behaviors import ButtonBehavior
+from music_player import music_player
 
 current_stage = 1
 current_fight = 1
 
 stage1_progress = 1
 stage2_progress = 1
+stage3_progress = 1
 
 gold_gain = 0
 is_random_fight = False
@@ -143,6 +145,7 @@ class Fight(Screen):
         self.remove_widget(self.tooltip)
         self.remove_widget(tp.text_pop_fight)
         self.remove_widget(self.text_pop)
+        self.remove_widget(music_player.music_component)
         self.final_damage = 0
         
         
@@ -189,6 +192,7 @@ class Fight(Screen):
         self.add_widget(tp.text_pop_fight)
         self.add_widget(self.text_pop)
         self.add_widget(self.tooltip)
+        self.add_widget(music_player.music_component)
         
 
     def chose_sprite(self,e):
@@ -487,11 +491,10 @@ class Fight(Screen):
             if current_fight < 10 and is_random_fight == False: 
                 update_stages_progression(current_stage)     
                 current_fight=current_fight+1
-            if current_stage == 1 and  current_fight == 10:
+            if current_stage == 1 and current_fight == 10:
                 import player
-                player.main_player.story_items["telport1"][0] == 1
                 player.main_player.story_items["telport2"][0] == 1
-            if current_stage == 2 and  current_fight == 10:
+            if current_stage == 2 and current_fight == 10:
                 import player
                 player.main_player.story_items["telport3"][0] == 1 
             self.manager.current = "battle_result"

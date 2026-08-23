@@ -22,9 +22,9 @@ class BottomMenu(BoxLayout):
         self.spacing = dp(20)
         self.padding = dp(25)
 
-        self.add_widget(FancyButton(background_normal="graphics/team_button.png", action = lambda y:self.change_screen("team")))
-        self.add_widget(FancyButton(background_normal="graphics/skills_button.png", action = lambda y:self.change_screen("skills")))
-        self.add_widget(FancyButton(background_normal="graphics/map_button.png", action = lambda y:self.change_screen("map")))
+        self.add_widget(Button(background_normal="graphics/team_button.png", background_down="graphics/team_button_press.png", on_release = lambda y:self.change_screen("team")))
+        self.add_widget(Button(background_normal="graphics/skills_button.png", background_down="graphics/skills_button_press.png", on_release = lambda y:self.change_screen("skills")))
+        self.add_widget(Button(background_normal="graphics/map_button.png", background_down="graphics/map_button_press.png", on_release = lambda y:self.change_screen("map")))
         
     def update_rect(self, *args):
         self.rect.pos = self.pos
