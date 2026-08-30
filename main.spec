@@ -11,7 +11,6 @@ datas = [
     (os.path.join(project_dir, 'components'), 'components'),
     (os.path.join(project_dir, 'status_list.txt'), '.'),
     (os.path.join(project_dir, 'skill_list.txt'), '.'),
-    (os.path.join(project_dir, 'save_game.txt'), '.'),
     (os.path.join(project_dir, 'items_list.txt'), '.'),
     (os.path.join(project_dir, 'enemy_skill_list.txt'), '.'),
     (os.path.join(project_dir, 'weapon_anim.atlas'), '.'),

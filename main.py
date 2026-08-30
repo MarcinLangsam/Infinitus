@@ -1,5 +1,5 @@
 import os
-import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, settings_menu, add_new_character, music_player as mp
+import player, enemy, abilities_manager as am, random, fight, shop, team, battle_result, skills_window, character_creation, map, add_new_character, music_player as mp
 import components.hover_behavior
 from components.hover_behavior import HoverButton
 from kivy.config import Config
@@ -14,11 +14,12 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.metrics import dp
 from resource_path import get_resource_path
 from components.bottom_menu import BottomMenu
-from components.menu_components import DynamicStageButton, event_companion1, event_companion2, event_dictionary
-#from components.fancy_button import FancyButton
+from components.menu_components import DynamicStageButton, Settings_Menu, event_companion1, event_companion2, event_dictionary
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from music_player import music_player
+from kivy.uix.label import Label
+from kivy.animation import Animation
 
 class StageProgressBar(ProgressBar):
     pass
@@ -29,10 +30,45 @@ class Menu(Screen):
     current_random_fight = ObjectProperty([0.29,0.6])
     current_main_fight = ObjectProperty([0.82,0.66])
                         #shop -> random fight -> main fight
-    button_placment = [[[0.115,0.48],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]]]
+    button_placment = [[[0.115,0.48],[0.29,0.6],[0.82,0.66]],[[0.1,0.7],[0.08,0.22],[0.9,0.62]],[[0.695,0.7],[0.47,0.75],[0.3,0.75]]]
     
     def __init__(self, **kw):
         super().__init__(**kw)
+        self.setting_menu = Settings_Menu(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25))
+        self.settings_button = Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.04,0.07), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.toggle_visibility())
+        music_player.music_component.opacity = 0
+        music_player.music_component.disabled = True
+        self.save_game_label = Label(text="ZAPISANO GRE", font_size=dp(35), outline_width = 1, opacity = 0, pos_hint={"center_x": 0.5, "center_y": 0.75})
+        self.anim = (
+            Animation(opacity=1, duration=0.4) +
+            Animation(duration=2.0) +
+            Animation(opacity=0, duration=0.5)
+        )
+        self.fight_flag_for_save = False
+
+    def show_message(self):
+        if self.fight_flag_for_save == True:
+            self.save_game_label.opacity = 0
+            self.anim.start(self.save_game_label)
+            self.fight_flag_for_save = False
+        else:
+            pass
+
+
+    def toggle_visibility(self):
+        self.setting_menu.is_visible = not self.setting_menu.is_visible
+        
+        if self.setting_menu.is_visible:
+            self.setting_menu.opacity = 1
+            self.setting_menu.disabled = False
+            music_player.music_component.opacity = 1
+            music_player.music_component.disabled = False
+        else:
+            self.setting_menu.opacity = 0
+            self.setting_menu.disabled = True
+            music_player.music_component.opacity = 0
+            music_player.music_component.disabled = True
+
 
     def change_window(self,window_name):
         self.clear_widgets()
@@ -68,14 +104,20 @@ class Menu(Screen):
         self.add_widget(Image(source=self.stage_background, size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(StageProgressBar(max=10,value=self.bar))
         self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
-        self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.change_window("settings_menu")))
+        #self.add_widget(Settings_Menu(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25)))
+        self.add_widget(self.setting_menu)
+        self.add_widget(self.settings_button)
+        #self.add_widget(Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size=(dp(60),dp(60)), size_hint=(None,None), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.change_window("settings_menu")))
         self.add_widget(DynamicStageButton(self.current_shop[0],self.current_shop[1],"graphics/shop_button.png", "graphics/shop_button_press.png", on_release = lambda y:self.change_window("shop")))
         self.add_widget(DynamicStageButton(self.current_random_fight[0],self.current_random_fight[1],"graphics/random_fight_button.png", "graphics/random_fight_button_press.png", on_release = lambda y:self.start_random_fight()))
         self.add_widget(DynamicStageButton(self.current_main_fight[0],self.current_main_fight[1],"graphics/main_fight_button.png", "graphics/main_fight_button_press.png", on_release = lambda y:self.start_main_fight()))
         self.add_widget(music_player.music_component)
+        self.save_game_label.opacity = 0
+        self.add_widget(self.save_game_label)
         self.add_events()
         
     def start_main_fight(self):
+        self.fight_flag_for_save = True
         enemy.enemy_team.clear()
         enemy.player_team_alive = player.team
         fight.is_random_fight = False
@@ -85,6 +127,7 @@ class Menu(Screen):
         self.manager.current = "fight"
 
     def start_random_fight(self):
+        self.fight_flag_for_save = True
         enemy.enemy_team.clear()
         enemy.player_team_alive = player.team
         fight.is_random_fight = True

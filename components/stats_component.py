@@ -21,6 +21,7 @@ class StatsButton(Button):
         #self.size_hint = (None, None)
         #self.height = self.width
         self.stat_up_sound = SoundLoader.load("graphics/sounds/stat_up.wav")
+        self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
 
     def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
@@ -31,7 +32,6 @@ class StatsButton(Button):
             self.t = self.description
             self.p = (self.pos[0]+25,self.pos[1])
             Clock.schedule_once(self.display_tooltip, 0.5)
-            print("TEST")
 
     def close_tooltip(self, *args):
         tt.clear_tooltip(self.tooltip)
@@ -42,7 +42,7 @@ class StatsButton(Button):
         print(self.pos)
         if isinstance(self.last_touch, MouseMotionEvent):
             self.increase_stat()
-            self.stat_up_sound.play()
+            
 
     def increase_stat(self):
         if player.current_player.stat_points > 0:
@@ -57,8 +57,10 @@ class StatsButton(Button):
                 player.current_player.INT_base +=1   
             player.current_player.stat_points -=1
             UI.ui.stats_refresh(player.current_player)
+            self.stat_up_sound.play()
         else:
             tp.text_pop_stat_up.text = "Nie masz punktów statystyk"
+            self.error_sound.play()
             Clock.schedule_interval(tp.clear_pop_up,3)
 
 class StatsUpButtonContainer(BoxLayout):
@@ -99,8 +101,8 @@ class BasicStatsContainer(BoxLayout):
     def __init__(self, **kwargs):
         super(BasicStatsContainer, self).__init__(**kwargs)
         self.orientation = "horizontal"
-        self.add_widget(LabelsContainer(1,7))
-        self.add_widget(ValuesContainer(8,14))
+        self.add_widget(LabelsContainer(1,6))
+        self.add_widget(ValuesContainer(8,13))
 class DetailStatsContainer(BoxLayout):
     def __init__(self, **kwargs):
         super(DetailStatsContainer, self).__init__(**kwargs)

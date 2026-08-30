@@ -6,6 +6,7 @@ from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import Rectangle
 from kivy.event import EventDispatcher
+from kivy.metrics import dp
 
 class Music_Component(BoxLayout):
     def __init__(self, **kwargs):
@@ -13,14 +14,14 @@ class Music_Component(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/menu_background.png',
+                source = 'graphics/text_box.png',
                 pos=self.pos,
                 size=self.size,
             )
         self.bind(pos=self.update_rect, size=self.update_rect)
         self.orientation = "horizontal"
-        self.spacing = 5
-        self.padding = 20
+        self.spacing = 10
+        self.padding = 25
     
     def update_rect(self, *args):
         self.rect.pos = self.pos
@@ -35,12 +36,12 @@ class Music_Player(EventDispatcher):
         self.current_source = "graphics/music/stage1.wav" 
         self.current_track.volume = self.volume
         self.current_track.loop = True
-        self.label=Label(font_size = 25, text = str(self.volume), outline_width=1)
-        self.music_component = Music_Component(pos_hint={"center_x": 0.75, "y":0}, size_hint=(0.13,0.09))
+        self.label=Label(font_size = dp(25), text = str(self.volume), outline_width=1)
+        self.music_component = Music_Component(pos_hint={"center_x": 0.87, "y": 0.38}, size_hint=(0.16,0.11))
         self.music_component.add_widget(Image(source="graphics/sound_icon.png", size_hint=(1,1)))
-        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(-0.05), background_normal = "graphics/sound_minus_icon.png", background_down = "graphics/sound_minus_icon_press.png", size_hint=(1,1)))
+        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(-0.05), background_normal = "graphics/sound_minus_icon.png", background_down = "graphics/sound_minus_icon_press.png", border=(0,0,0,0), size_hint=(1,1)))
         self.music_component.add_widget(self.label)
-        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",background_down = "graphics/sound_plus_icon.png_press.png", size_hint=(1,1)))
+        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",background_down = "graphics/sound_plus_icon.png_press.png", border=(0,0,0,0), size_hint=(1,1)))
         
     def play_music(self):
         if self.current_track.state == "stop":

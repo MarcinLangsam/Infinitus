@@ -236,6 +236,55 @@ player.current_player.MP -= 5\nplayer.current_player.MAX_MP -= 5\nplayer.current
 Magicza Księga   |   DRUGA RĘKA\n[color=#0000ff]Mana +5[/color]\n[color=#00f7ff]Inteligencja +1[/color]
 170
 _______________________________________
+graphics/items/ksiega_ognia.png
+off_hand
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.STR_base += 3
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.STR_base -= 3
+Księga Ognia   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#de8833]Siła +3[/color]
+370
+_______________________________________
+graphics/items/ksiega_wiedzy.png
+off_hand
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.INT_base += 3
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.INT_base -= 3
+Księga Wiedzy   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#00f7ff]Inteligencja +3[/color]
+370
+_______________________________________
+graphics/items/ksiega_burzy.png
+off_hand
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.DEX_base += 3
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.DEX_base -= 3
+Księga Burzy   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#00ff00]Zręczność +3[/color]
+370
+_______________________________________
+graphics/items/ksiega_zycia.png
+off_hand
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.HP += 15\nplayer.current_player.MAX_HP += 15
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.current_player.HP -= 15\nplayer.current_player.MAX_HP -= 15
+Księga Życia   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#ff0000]Zdrowie +15[/color]
+370
+_______________________________________
+graphics/items/ksiega_energi.png
+off_hand
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.MP_regen_base += 5
+player.current_player.MP -= 10\nplayer.current_player.MAX_MP -= 10\nplayer.MP_regen_base -= 5
+Księga Energi   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#e45eff]Regeneracja MP +5[/color]
+370
+_______________________________________
+graphics/items/tom_mocy_magicznej.png
+off_hand
+player.current_player.MP += 15\nplayer.current_player.MAX_MP += 15\nplayer.MP_regen_base += 5\nplayer.current_player.INT_base += 7
+player.current_player.MP -= 15\nplayer.current_player.MAX_MP -= 15\nplayer.MP_regen_base -= 5\nplayer.current_player.INT_base -= 7
+Tom Mocy Magicznej   |   DRUGA RĘKA\n[color=#0000ff]Mana +10[/color]\n[color=#00f7ff]Inteligencja +7[/color]\n[color=#e45eff]Regeneracja MP +5[/color]
+550
+_______________________________________
+graphics/items/tom_walki.png
+off_hand
+player.current_player.STR_base += 4\nplayer.current_player.DEX_base += 3\nplayer.current_player.crit_chance_bonus += 3\nplayer.current_player.dodge_chance_bonus += 3
+player.current_player.STR_base -= 4\nplayer.current_player.DEX_base -= 3\nplayer.current_player.crit_chance_bonus -= 3\nplayer.current_player.dodge_chance_bonus -= 3
+Tom Walki   |   DRUGA RĘKA\n[color=#de8833]Siła +4[/color]\n[color=#00ff00]Zręczność +3[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +3[/color]\n[color=#d9d764]Szansa na unik +3[/color]
+550
+_______________________________________
 _
 _
 ______________ARMORS __________________
@@ -417,6 +466,34 @@ player.current_player.DEX_base -= 5\nplayer.current_player.INT_base -= 5\nplayer
 Pierścień Mrocznych Mocy    |   AKCESORIA\n[color=#ba4949]KARA Zdrowie -20[/color]\n[color=#00ff00]Zręczność +5[/color]\n[color=#00f7ff]Inteligencja +5[/color]
 500
 _______________________________________
+graphics/items/potezny_amulet_precyzji.png
+accessory
+player.current_player.crit_chance_bonus += 6
+player.current_player.crit_chance_bonus -= 6
+Potężny Amulet Precyzji    |   AKCESORIA\n[color=#d9d764]Szansa na trafienie krytyczne +6[/color]
+400
+_______________________________________
+graphics/items/potezny_amulet_predkosci.png
+accessory
+player.current_player.dodge_chance_bonus += 4
+player.current_player.dodge_chance_bonus -= 4
+Potężny Amulet Prędkości    |   AKCESORIA\n[color=#d9d764]Szansa na unik +4[/color]
+400
+_______________________________________
+graphics/items/obrecz_cienia.png
+accessory
+player.current_player.crit_chance_bonus += 5\nplayer.current_player.dodge_chance_bonus += 5
+player.current_player.crit_chance_bonus -= 5\nplayer.current_player.dodge_chance_bonus -= 5
+Obręcz Cienia    |   AKCESORIA\n[color=#d9d764]Szansa na trafienie krytyczne +5[/color]\n[color=#d9d764]Szansa na unik +5[/color]
+650
+_______________________________________
+graphics/items/amulet_energi.png
+accessory
+player.MP_regen_base += 5
+player.MP_regen_base += 5
+Amulet Energi    |   AKCESORIA\n[color=#e45eff]Regeneracja MP +5[/color]
+550
+_______________________________________
 _
 _
 _______________POTIONS_________________
@@ -424,27 +501,55 @@ graphics/items/mała_mikstura_zdrowia.png
 potion
 player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 100 HP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
-Mikstura zdrowia    |   MIKSTURA\nLeczy 100 HP\nUżycia: 1
+Mała mikstura zdrowia    |   MIKSTURA\nOdnawia 100 HP\nUżycia: 1
 250
 _______________________________________
 graphics/items/mała_mikstura_many.png
 potion
-player.current_player.potion_effect = "self.current_turn.MP+=100"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 100 MP"
+player.current_player.potion_effect = "self.current_turn.MP+=60"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 60 MP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
-Mikstura zdrowia    |   MIKSTURA\nOdnawia 100 MP\nUżycia: 1
+Mała mikstura many    |   MIKSTURA\nOdnawia 60 MP\nUżycia: 1
 250
 _______________________________________
 graphics/items/srednia_mikstura_zdrowia.png
 potion
-player.current_player.potion_effect = 'self.final_damage = -200'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 200 MP"
+player.current_player.potion_effect = 'self.final_damage = -225'\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 225 HP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
-Mikstura zdrowia    |   MIKSTURA\nLeczy 200 HP\nUżycia: 1
+Średnia mikstura zdrowia    |   MIKSTURA\nOdnawia 225 HP\nUżycia: 1
 375
 _______________________________________
 graphics/items/srednia_mikstura_many.png
 potion
-player.current_player.potion_effect = "self.current_turn.MP+=150"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 150 MP"
+player.current_player.potion_effect = "self.current_turn.MP+=110"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Odnawia 110 MP"
 player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
-Mikstura zdrowia    |   MIKSTURA\nOdnawia 150 MP\nUżycia: 1
+Średnia mikstura many    |   MIKSTURA\nOdnawia 110 MP\nUżycia: 1
 375
+_______________________________________
+graphics/items/pakiet_malych_mikstor_zdrowia.png
+potion
+player.current_player.potion_effect = 'self.final_damage = -100'\nplayer.current_player.potions = 3\nplayer.current_player.current_potions = 3\nplayer.current_player.potion_description = "Odnawia 100 HP"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Pakiet małych mikstur zdrowia    |   MIKSTURA\nOdnawia 100 HP\nUżycia: 3
+600
+_______________________________________
+graphics/items/pakiet_malych_mikstor_many.png
+potion
+player.current_player.potion_effect = "self.current_turn.MP+=60"\nplayer.current_player.potions = 3\nplayer.current_player.current_potions = 3\nplayer.current_player.potion_description = "Odnawia 60 MP"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Pakiet małych mikstur many    |   MIKSTURA\nOdnawia 60 MP\nUżycia: 3
+600
+_______________________________________
+graphics/items/pakiet_srednich_mikstor_zdrowia.png
+potion
+player.current_player.potion_effect = 'self.final_damage = -225'\nplayer.current_player.potions = 3\nplayer.current_player.current_potions = 3\nplayer.current_player.potion_description = "Odnawia 225 HP"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Pakiet średnich mikstur zdrowia    |   MIKSTURA\nOdnawia 225 HP\nUżycia: 3
+850
+_______________________________________
+graphics/items/pakiet_srednich_mikstor_many.png
+potion
+player.current_player.potion_effect = "self.current_turn.MP+=110"\nplayer.current_player.potions = 3\nplayer.current_player.current_potions = 3\nplayer.current_player.potion_description = "Odnawia 110 MP"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Pakiet średnich mikstur many    |   MIKSTURA\nOdnawia 110 MP\nUżycia: 3
+850
 _______________________________________

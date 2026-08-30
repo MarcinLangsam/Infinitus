@@ -11,9 +11,9 @@ from kivy.metrics import dp
 from resource_path import get_resource_path
 
 def upgrade_krwiopijca():
-        player.current_player.skill["krwiopijca"][0] = "self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"
-        player.current_player.skill["krwiopijca"][3] = "\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]"
-        player.current_player.skill["krwiopijca"][6] = "on_character"
+    player.current_player.skill["krwiopijca"][0] = "self.final_damage = 0\nself.action_status = 'krwiopijca_ulepszony'"
+    player.current_player.skill["krwiopijca"][3] = "\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]"
+    player.current_player.skill["krwiopijca"][6] = "on_character"
 def upgrade_zew_bojowy():
     player.current_player.skill["zew bojowy"][0] = "self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"
     player.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"

@@ -145,7 +145,7 @@ class Fight(Screen):
         self.remove_widget(self.tooltip)
         self.remove_widget(tp.text_pop_fight)
         self.remove_widget(self.text_pop)
-        self.remove_widget(music_player.music_component)
+        #self.remove_widget(music_player.music_component)
         self.final_damage = 0
         
         
@@ -192,7 +192,7 @@ class Fight(Screen):
         self.add_widget(tp.text_pop_fight)
         self.add_widget(self.text_pop)
         self.add_widget(self.tooltip)
-        self.add_widget(music_player.music_component)
+        #self.add_widget(music_player.music_component)
         
 
     def chose_sprite(self,e):

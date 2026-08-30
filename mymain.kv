@@ -20,7 +20,6 @@ WindowManger:
     map: map
     tutorial: tutorial
     end: end
-    settings_menu: settings_menu
 
     Main_Menu:
         id: main_menu
@@ -78,14 +77,11 @@ WindowManger:
         id: end
         name: "end"
         manager: screen_manager
-    Settings_menu:
-        id: settings_menu
-        name: "settings_menu"
-        manager: screen_manager
 
 <Menu>:
     name: "menu"
     on_pre_enter: root.setup_window()
+    on_enter: root.show_message()
     size_hint: 1,1
     
 <Shop>:
@@ -367,53 +363,6 @@ WindowManger:
         font_size: 23
         halign: "left"
         valign: "middle"
-<Settings_menu>:
-    name: "main_menu"
-    size_hint: 1, 1
-    Image:
-        size_hint: 1,1
-        allow_stretch: True
-        source: "graphics/plain_background.png"
-        fit_mode: "fill"
-    Image:
-        size_hint: 1,1
-        pos_hint: {"center_x": 0.5, "center_y": 0.8}
-        source: "graphics/title.png"
-
-    Button:
-        on_release: app.root.current = "menu"
-        pos_hint: {"center_x": 0.5, "center_y": 0.55}
-        size: 200,130
-        size_hint: None,None
-        text: "Powrót do gry"
-        font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
-        on_release: root.save_game()
-        pos_hint: {"center_x": 0.5, "center_y": 0.40}
-        size: 200,130
-        size_hint: None,None
-        text: "Zapisz grę"
-        font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
-        on_release: app.root.current = "main_menu"
-        pos_hint: {"center_x": 0.5, "center_y": 0.25}
-        size: 200,130
-        size_hint: None,None
-        text: "Wyjście do menu"
-        font_size: 25
-        background_normal:"graphics/target_button.png"
-    Button:
-        on_release: app.exit_app()
-        pos_hint: {"center_x": 0.5, "center_y": 0.10}
-        size: 200,130
-        size_hint: None,None
-        text: "Wyjdź z gry"
-        font_size: 25
-        background_normal:"graphics/target_button.png"
-
-
 <Battle_Result>:
     name: "battle_result"
     size_hint: 1, 1

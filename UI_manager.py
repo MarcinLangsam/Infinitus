@@ -35,7 +35,12 @@ class UI():
         
         stats["exp"] = Label( font_size=25,halign="left", valign="middle", text=(("Doświadczenie: ") + str(character.EXP) + ("/") + str(character.EXP_To_Lv)), outline_width = 1, pos_hint = {'center_x':0.5,'center_y':0.905})
         stats["gold"] = Label( font_size=33,halign="left", valign="middle", text=str(player.gold), outline_width = 1)
-        stats["skill_points"] = Label( font_size=40,halign="left", valign="middle", text=(str(character.skill_points)), outline_width = 1)    
+        stats["skill_points"] = Label( font_size=40,halign="left", valign="middle", text=(str(character.skill_points)), outline_width = 1)
+
+        stats["HP_stat_up"]  = Label( font_size=23,halign="left", valign="middle", text="Zdrowie: "+str(character.MAX_HP), outline_width = 1, color=(1,0,0,1))
+        stats["STR_stat_up"] = Label( font_size=23,halign="left", valign="middle", text="Siła: "+str(character.STR), outline_width = 1, color=(1,0.5,0,1))
+        stats["DEX_stat_up"] = Label( font_size=23,halign="left", valign="middle", text="Zręczność: "+str(character.DEX), outline_width = 1, color=(0,1,0,1))
+        stats["INT_stat_up"] = Label( font_size=23,halign="left", valign="middle", text="Inteligencja: "+str(character.INT), outline_width = 1, color=(0.2,0.8,0.8,1))    
         
     def stats_refresh(self,character):
         character.damage = character.STR_base+character.weapon
@@ -60,6 +65,11 @@ class UI():
         stats["exp"].text = (("Doświadczenie: ") + "{:.0f}".format(character.EXP) + ("/") + str(character.EXP_To_Lv))
         stats["gold"].text = "{0:g}".format(player.gold)
 
+        stats["HP_stat_up"].text = "Zdrowie: "+str(character.MAX_HP)
+        stats["STR_stat_up"].text = "Siła: "+"{:.0f}".format(character.STR_base)
+        stats["DEX_stat_up"].text = "Zręczność: "+"{:.0f}".format(character.DEX_base)
+        stats["INT_stat_up"].text = "Inteligencja: "+"{:.0f}".format(character.INT_base)
+        
         if character.stat_points <= 0 :
             stats["stat_points_label"].color = (0.6,0.6,0.6,0.5)
             stats["stat_points"].text = "brak"

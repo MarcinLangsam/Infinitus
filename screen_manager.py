@@ -15,7 +15,6 @@ class WindowManger(ScreenManager):
     main_menu = ObjectProperty(None)
     tutorial = ObjectProperty(None)
     end = ObjectProperty(None)
-    settings_menu = ObjectProperty(None)
 
     def change_screen(self):
         self.current = "team"

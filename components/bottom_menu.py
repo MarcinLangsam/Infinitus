@@ -9,8 +9,9 @@ class BottomMenu(BoxLayout):
     def __init__(self, manager, **kwargs):
         super(BottomMenu, self).__init__(**kwargs)
         self.manager = manager
-        self.size_hint = (None,None)
-        self.size = (dp(320),dp(110))
+        #self.size_hint = (None,None)
+        #self.size = (dp(320),dp(110))
+        self.size_hint=(0.21, 0.14)
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(

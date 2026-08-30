@@ -1,3 +1,4 @@
+import player,fight, text_pop as tp, os
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
@@ -5,6 +6,118 @@ from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.metrics import dp
 from kivy.properties import NumericProperty, ObjectProperty
+from kivy.graphics import Rectangle
+from kivy.clock import Clock
+from kivy.animation import Animation
+from music_player import music_player
+
+class Settings_Menu(BoxLayout):
+    def __init__(self, manager, **kwargs):
+        super().__init__(**kwargs)
+        self.manager = manager
+        self.canvas.before.clear()
+        with self.canvas.before:
+            self.rect = Rectangle(
+                source = 'graphics/text_box.png',
+                pos = self.pos,
+                size = self.size,
+            )
+        self.bind(pos=self.update_rect, size=self.update_rect)
+        self.add_widget(Button(text="Wyjście z gry", outline_width=1, background_normal = 'graphics/text_box.png', background_down = 'graphics/text_box_dark.png', on_release=lambda y:self.exit()))
+        self.add_widget(Button(text="Wyjście do menu", outline_width=1, background_normal = 'graphics/text_box.png', background_down = 'graphics/text_box_dark.png', on_release=lambda y:self.change_screeen("main_menu")))
+        self.add_widget(Button(text="Zapisz grę", outline_width=1, background_normal = 'graphics/text_box.png', background_down = 'graphics/text_box_dark.png', on_release = lambda y:self.save_game()))
+        self.text_pop = Label(text="ZAPISANO GRE", font_size=dp(35), outline_width = 1, opacity = 0)
+        self.add_widget(self.text_pop)
+        self.orientation = "vertical"
+        self.spacing = 15
+        self.padding = 15
+        self.is_visible = False
+        self.opacity = 0
+        self.disabled = True
+
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size
+
+    def change_screeen(self, screen_name):
+        self.parent.clear_widgets()
+        self.manager.current = screen_name
+    def exit(self):
+        quit()
+    def save_game(self):
+        save_path = os.path.join(os.path.expanduser("~"), "save_game.txt")
+        f = open(save_path,"w")
+        characters = ["player.main_player","player.companion1","player.companion2"]
+        for x in range(0,len(player.team)):
+           f.write(characters[x]+'.head = "'+str(player.team[x].head)+'"\n')
+           f.write(characters[x]+'.name = "'+str(player.team[x].name)+'"\n')
+           f.write(characters[x]+'.lv = '+str(player.team[x].lv)+'\n')
+           f.write(characters[x]+'.MAX_HP = '+str(player.team[x].MAX_HP)+'\n')
+           f.write(characters[x]+'.MAX_MP = '+str(player.team[x].MAX_MP)+'\n')
+           f.write(characters[x]+'.MP_regen_base = '+str(player.team[x].MP_regen_base)+'\n')
+           f.write(characters[x]+'.HP = '+str(player.team[x].HP)+'\n')
+           f.write(characters[x]+'.MP = '+str(player.team[x].MP)+'\n')
+           f.write(characters[x]+'.STR_base = '+str(player.team[x].STR_base)+'\n')
+           f.write(characters[x]+'.DEX_base = '+str(player.team[x].DEX_base)+'\n')
+           f.write(characters[x]+'.INT_base = '+str(player.team[x].INT_base)+'\n')
+           f.write(characters[x]+'.weapon = '+str(player.team[x].weapon)+'\n')
+           f.write(characters[x]+'.damage_base = '+str(player.team[x].STR_base+player.team[x].weapon)+'\n')
+           f.write(characters[x]+'.defence_base = '+str(player.team[x].defence_base)+'\n')
+           f.write(characters[x]+'.crit_chance_base = '+str(player.team[x].DEX*0.01)+'\n')
+           f.write(characters[x]+'.dodge_chance_base = '+str(player.team[x].DEX*0.02)+'\n')
+           f.write(characters[x]+'.crit_chance_bonus = '+str(player.team[x].crit_chance_bonus)+'\n')
+           f.write(characters[x]+'.dodge_chance_bonus = '+str(player.team[x].dodge_chance_bonus)+'\n')
+           f.write(characters[x]+'.EXP_boost = '+str(player.team[x].INT*0.01)+'\n')
+           f.write(characters[x]+'.EXP = '+str(player.team[x].EXP)+'\n')
+           f.write(characters[x]+'.EXP_To_Lv = '+str(player.team[x].EXP_To_Lv)+'\n')
+           f.write(characters[x]+'.stat_points = '+str(player.team[x].stat_points)+'\n')
+           f.write(characters[x]+'.skill_points = '+str(player.team[x].skill_points)+'\n')
+           f.write(characters[x]+'.potions = '+str(player.team[x].potions)+'\n')
+           f.write(characters[x]+'.potion_effect = "'+str(player.team[x].potion_effect)+'"\n')
+           f.write(characters[x]+'.current_potions = '+str(player.team[x].current_potions)+'\n')
+           f.write(characters[x]+'.potion_description = "'+str(player.team[x].potion_description)+'"\n')
+           for y in player.team[x].skill:
+               temp = str(player.team[x].skill[y][3]).replace("\n","\\n")
+               temp2 = str(player.team[x].skill[y][0]).replace("\n","\\n")
+               f.write(characters[x]+'.skill["'+y+'"] = ["'+temp2+'",'+str(player.team[x].skill[y][1])+',"'+str(player.team[x].skill[y][2])+'","'+temp+'","'+str(player.team[x].skill[y][4])+'","'+str(player.team[x].skill[y][5])+'","'+str(player.team[x].skill[y][6])+'","'+str(player.team[x].skill[y][7])+'","'+str(player.team[x].skill[y][8])+'"]\n')
+           f.write(characters[x]+'.inventory["main_hand"][2] = "'+str(player.team[x].inventory["main_hand"][2])+'"\n')
+           f.write(characters[x]+'.inventory["off_hand"][2] = "'+str(player.team[x].inventory["off_hand"][2])+'"\n')
+           f.write(characters[x]+'.inventory["armor"][2] = "'+str(player.team[x].inventory["armor"][2])+'"\n')
+           f.write(characters[x]+'.inventory["accessory"][2] = "'+str(player.team[x].inventory["accessory"][2])+'"\n')
+           f.write(characters[x]+'.inventory["accessory2"][2] = "'+str(player.team[x].inventory["accessory2"][2])+'"\n')
+           f.write(characters[x]+'.inventory["accessory3"][2] = "'+str(player.team[x].inventory["accessory3"][2])+'"\n')
+           f.write(characters[x]+'.inventory["potion"][2] = "'+str(player.team[x].inventory["potion"][2])+'"\n')
+        for x in range(0,48):
+            f.write('player.main_player.inventory['+str(x)+'][2] = "'+(player.current_player.inventory[x][2])+'"\n')
+        f.write("fight.stage1_progress="+str(fight.stage1_progress)+"\n")
+        f.write("fight.stage2_progress="+str(fight.stage2_progress)+"\n")
+        f.write("fight.current_fight="+str(fight.current_fight)+"\n")
+        f.write("fight.current_stage="+str(fight.current_stage)+"\n")
+        if len(player.team)>=2:
+            f.write("player.team.append(player.companion1)\n")
+        if len(player.team)>=3:
+            f.write("player.team.append(player.companion2)\n")
+        f.write("player.gold = "+str(player.gold))
+        for key in event_dictionary.keys():
+            f.write("\nevent_dictionary['"+str(key)+"'] = "+str(event_dictionary[key]))
+        for key in player.main_player.story_items.keys():
+            f.write("\nplayer.main_player.story_items['"+str(key)+"'][0] = "+str(player.main_player.story_items[key][0]))
+        f.close()
+        self.show_message()
+
+    def clear_pop_up(self, dt):
+        self.text_pop.text = ""
+
+    def show_message(self):
+        self.text_pop.opacity = 0
+
+        anim = (
+            Animation(opacity=1, duration=0.4) +
+            Animation(duration=2.0) +
+            Animation(opacity=0, duration=0.5)
+        )
+        anim.start(self.text_pop)
+    
 
 class DynamicStageButton(Button):
     scale = NumericProperty(1.0)
@@ -109,7 +222,6 @@ event_dictionary = {
     "companion1": 0,
     "companion2": 0,
     }        
-
 
 
         

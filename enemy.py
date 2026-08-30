@@ -474,7 +474,7 @@ skeleton_priest3 = Enemy("Upadły kapłan",3,125,10,20,15,15,0,100,25,{
                                                             {"graphics/items/grzech_kaplana.png":25,"graphics/items/srebrny_pierscien.png":80,"graphics/items/magicza_ksiega.png":10},
                                                             "graphics/sprites/upadly_kaplan_sprite.png","upadly_kaplan",False)
                                         
-lost_soul = Enemy("Zagubiona Dusza",4,140,17,17,17,21,5,0,0,{
+lost_soul = Enemy("Zagubiona Dusza",4,140,17,17,17,21,5,150,80,{
                                                             "atak":enemy_skills["atak"],
                                                             "atak":enemy_skills["atak"],
                                                             "eteryczny":enemy_skills["eteryczny"],
@@ -561,7 +561,7 @@ death_knight = Enemy("Rycerz Śmierci",6,550,30,25,20,15,13,300,150,{
 
 
 ######################### 2 OBSZAR PRZECIWNICY ################################
-rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,29,37,15,0,0,{
+rozdarta_dusza = Enemy("Rozdarta Dusza",6,350,30,30,29,37,15,220,280,{
                                                             "atak":enemy_skills["atak"],
                                                             "eteryczny":enemy_skills["eteryczny"],
                                                             "bisekcja":enemy_skills["bisekcja"],
