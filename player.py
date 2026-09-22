@@ -138,7 +138,7 @@ class Character(Widget):
             0 : [0.14,0.72,"graphics/items/gladius.png","item"],
             1 : [0.175,0.72,"graphics/items/gladius.png","item"],
             2 : [0.21,0.72,"graphics/items/gladius.png","item"], 
-            3 : [0.245,0.72,"graphics/items/empty_slot.png","item"],
+            3 : [0.245,0.72,"graphics/items/mikstura_sily.png","item"],
             4 : [0.28,0.72,"graphics/items/empty_slot.png","item"],
             5 : [0.315,0.72,"graphics/items/empty_slot.png","item"],
             6 : [0.14,0.658,"graphics/items/empty_slot.png","item"],
@@ -232,12 +232,16 @@ class Character(Widget):
             93 : [0.755,0.286,"graphics/items/empty_slot.png","item"],
             94 : [0.79,0.286,"graphics/items/empty_slot.png","item"],
             95 : [0.825,0.286,"graphics/items/empty_slot.png","item"],
+            96 : [0.5,0.2,"graphics/items/empty_slot.png","item"],
         }
 
         self.story_items = {
-            "teleport1": [1,0.438,0.15,"Ten kamień pozwala ci teleportować się do lochu szkieletów"],
-            "teleport2": [0,0.5,0.15,"Ten kamień pozwala ci teleportować się do zaółka spokoju"],
-            "teleport3": [0,0.562,0.15,"Ten kamień pozwala ci teleportować się do lochu MADMAXA"]
+            "key_item1": [1,0.105,0.658,"Obóz    |   PRZEDMIOT FABULARNY\n\nNamiot najlepszj jakości, wygodne posłanie, woda, jedzenie. Po każdej walce odnawiasz zdrowie, manę oraz mikstury do pełna."],
+            "key_item2": [1,0.105,0.596,"Amulet Rodzinny    |   PRZEDMIOT FABULARNY\n\nBył przekazwany w twojej rodzinie z pokolenia na pokolenie. Zdaje się mocniej świecić im dalej zapuszczasz sie w loch."],
+            "key_item3": [0,0.105,0.534,"Runiczny Młot    |   PRZEDMIOT FABULARNY\n\nDzięki niemu możesz ulepszać swój ekwipunek."],
+            "key_item4": [1,0.105,0.472,"Kamień teleportacji Loch    |   PRZEDMIOT FABULARNY\n\nTen kamień pozwala ci teleportować się do lochu"],
+            "key_item5": [0,0.105,0.41,"Kamień teleportacji Świątynia    |   PRZEDMIOT FABULARNY\n\nTen kamień pozwala ci teleportować się do świątyni"],
+            "key_item6": [0,0.105,0.348,"Kamień teleportacji Głębiny    |   PRZEDMIOT FABULARNY\n\nTen kamień pozwala ci teleportować się do głębin"],                
         }
 
     def hard_reset_player(self):
@@ -308,7 +312,7 @@ class Character(Widget):
             0 : [0.14,0.72,"graphics/items/gladius.png","item"],
             1 : [0.175,0.72,"graphics/items/gladius.png","item"],
             2 : [0.21,0.72,"graphics/items/gladius.png","item"], 
-            3 : [0.245,0.72,"graphics/items/empty_slot.png","item"],
+            3 : [0.245,0.72,"graphics/items/mikstura_sily.png","item"],
             4 : [0.28,0.72,"graphics/items/empty_slot.png","item"],
             5 : [0.315,0.72,"graphics/items/empty_slot.png","item"],
             6 : [0.14,0.658,"graphics/items/empty_slot.png","item"],

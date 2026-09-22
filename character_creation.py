@@ -5,8 +5,11 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from components.stats_component import stats_component
 from components.character_creation_component import CreatorContainer
+from kivy.properties import ObjectProperty
 
 class Character_Creation(Screen):
+    character_portrait = ObjectProperty("graphics/sprites/head1_creation.png")
+
     def __init__(self, **kw):
         super().__init__(**kw)
         self.sprite = player.Character_Sprite(player.main_player,"one_hand",player.main_player.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
@@ -15,7 +18,6 @@ class Character_Creation(Screen):
         
     def change_screen(self,screen):
         player.main_player.name = self.creation_menu.name_component.return_name()
-        player.gold = 5000
         self.clear_widgets()
         self.manager.current = screen
     def setup_window(self):
@@ -35,8 +37,8 @@ class Character_Creation(Screen):
         self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.1}, size=(500,70), font_size= 40, text="Rozpocznij Grę!", outline_width=1, size_hint=(None,None), background_normal="graphics/text_box.png", background_down="graphics/text_box_dark.png", on_release = lambda y:self.change_screen("menu")))
         self.add_widget(Label(text="KIM JESTEŚ?", outline_width=1, pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
         
+        self.add_widget(Image(source=self.character_portrait, pos_hint={"center_x": 0.5, "center_y": 0.5}, size_hint=(0.26,0.37), allow_stretch=True, fit_mode="fill"))
         self.add_widget(self.sprite)
-        stats_component.hidden()
         self.add_widget(stats_component)
         self.add_widget(self.creation_menu)
         self.creation_menu.classes_component.set_class(player.main_player, "warrior")

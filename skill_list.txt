@@ -3,8 +3,8 @@ _ 2. name of skill
 _ 3. efect
 _ 4. previous needed skill
 _ 5. path to graphic file
-_ 6. pos x(in skill window) jump for icon size(50) + 20
-_ 7. pos y(in skill window) jump for icon size(50) + 20
+_ 6. pos x(in skill window) jump for 0.5
+_ 7. pos y(in skill window) jump for 0.8
 _ 8. key name of skill to draw line from
 _ 9. path to graphic file after skill is acquired
 _ 10. MP cost
@@ -19,7 +19,7 @@ zamach
 self.final_damage = self.current_turn.damage+self.current_turn.STR*0.5
 none
 graphics/skills/zamach.png
-0.16
+0.14
 0.13
 none
 graphics/skills/zamach_ok.png
@@ -36,143 +36,24 @@ szał
 self.final_damage = 0\nself.action_status = 'szał'
 zamach
 graphics/skills/szał.png
-0.16
+0.14
 0.21
 1
 graphics/skills/szał_ok.png
 70
 active
-Szał   |   AKTYWNA\nWpadasz w nieposkromiony szał, który zwiększa twoją siłę i regeneracje many ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+25%STR[/color], +15 MP REGEN, podczas szału odnosisz 50% więcej obrażeń! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Szał   |   AKTYWNA\nWpadasz w nieposkromiony szał, który zwiększa twoją siłę i regeneracje many ale nie dbasz o obronę.\n\nNakłada: Szał 3 tury - [color=#de8833]+25%STR[/color], [color=#e45eff]+15 regeneracji many co turę[/color], podczas szału odnosisz 50% więcej obrażeń! [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]70[/color]
 status
 on_self
 szal_effect
 graphics/sounds/positive_effect_1.wav
 ______________________________________
 3
-cios rękojeścią
-self.final_damage = self.current_turn.STR\nself.action_status = 'ogłuszenie'
-szał
-graphics/skills/cios_rękojeścią.png
-0.21
-0.21
-2
-graphics/skills/cios_rękojeścią_ok.png
-20
-active
-Cios Rękojeścią   |   AKTYWNA\nZwód wykonywany przy bliskim dystansie, kończący się uderzeniem rękojeścią.\n\nZadaje: [color=#de8833]STR[/color]\nNakłada: Ogłuszenie 1 tura - [color=#fdff80]Cel traci turę[/color]\nKoszt MP: [color=#0000ff]20[/color]
-melee
-on_enemy
-ogluszenie_effect
-graphics/sounds/ogluszenie.wav
-_______________________________________
-4
-zaciekły wojownik
-player.current_player.STR_base += 3
-zew bojowy
-graphics/skills/zaciekły_wojownik.png
-0.11
-0.21
-6
-graphics/skills/zaciekły_wojownik_ok.png
-0
-passive
-Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca.\n\n[color=#de8833]+3 siły[/color]
-
-
-no_effect
-
-_______________________________________
-5
-niestrudzony obrońca
-player.current_player.HP += 20\nplayer.current_player.MAX_HP += 20
-nakładanie rąk
-graphics/skills/niestrudzony_obrońca.png
-0.21
-0.37
-10
-graphics/skills/niestrudzony_obrońca_ok.png
-0
-passive
-Niestrudzony Obrońca   |   PASYWNA\nNie pozwolisz nikogo przepóścić bez walki.\n\n[color=#ff0000]+20 zdrowia[/color]
-
-
-no_effect
-
-______________________________________
-6
-zew bojowy
-self.final_damage = 0\nself.action_status = 'zew bojowy'
-szał
-graphics/skills/zew_bojowy.png
-0.11
-0.29
-2
-graphics/skills/zew_bojowy_ok.png
-50
-active
-Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 3 tur - [color=#de8833]+25% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
-status
-on_all_character
-szal_effect
-graphics/sounds/positive_effect_1.wav
-______________________________________
-7
-okrzyk bojowy
-upgrade_zew_bojowy()
-zew bojowy
-graphics/skills/okrzyk_bojowy.png
-0.11
-0.37
-6
-graphics/skills/okrzyk_bojowy_ok.png
-0
-passive
-Róg Wojny   |   AKTYWNA\nULEPSZENIE\nZew zwieksza obrażenia o 35% i trwa 4 tury.\n\nNakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
-
-
-szal_effect
-graphics/sounds/positive_effect_1.wav
-______________________________________
-_9
-_boski grzmot
-_self.final_damage = 50+self.current_turn.STR*1.3+self.current_turn.INT*1.7
-_paladyn
-_graphics/skills/boski_grzmot.png
-_305
-_520
-_22
-_graphics/skills/boski_grzmot_ok.png
-_30
-_active
-_Boski Grzmot   |   AKTYWNA\nPrzekierowujesz cały swój gniew sprawiedliwości na przeciwnika.\n\nZadaje: [color=#fdff80]50[/color]+[color=#de8833]STR*1.3[/color]+[color=#00f7ff]INT*1.7[/color]\nKoszt MP: [color=#0000ff]30[/color]
-_melee
-_on_enemy
-_boski_grzmot_effect
-_graphics/sounds/lighting.wav
-______________________________________
-10
-nakładanie rąk
-self.final_damage = int(-(self.current_turn.INT*2)-50)
-szał
-graphics/skills/nakładanie_rąk.png
-0.21
-0.29
-2
-graphics/skills/nakładanie_rąk_ok.png
-40
-active
-Nakładanie Rąk   |   AKTYWNA\nProste zaklęcie leczące kojące nerwy i rany.\n\nLeczy: [color=#fdff80]50[/color]+[color=#00f7ff]INT*2[/color]\nKoszt MP: [color=#0000ff]40[/color]
-heal
-on_character
-leczenie_effect
-graphics/sounds/heal.wav
-______________________________________
-12
 trening wojownika I
 player.current_player.STR_base += 2\nplayer.current_player.DEX_base += 2\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
 szał
 graphics/skills/trening_siły.png
-0.16
+0.14
 0.29
 2
 graphics/skills/trening_siły_ok.png
@@ -184,18 +65,171 @@ Trening Wojownika I   |   PASYWNA\nPowoli dostoswujesz się do ciężkich warunk
 no_effect
 
 ______________________________________
-13
-oprawca
-self.final_damage = self.current_turn.damage*1.4\nself.current_turn.HP += int(self.current_turn.damage*0.5)
+4
+cios rękojeścią
+self.final_damage = self.current_turn.STR\nself.action_status = 'ogłuszenie'
 trening wojownika I
-graphics/skills/oprawca.png
-0.16
-0.37
-12
-graphics/skills/oprawca_ok.png
+graphics/skills/cios_rękojeścią.png
+0.19
+0.21
+3
+graphics/skills/cios_rękojeścią_ok.png
+20
+active
+Cios Rękojeścią   |   AKTYWNA\nZwód wykonywany przy bliskim dystansie, kończący się uderzeniem rękojeścią.\n\nZadaje: [color=#de8833]STR[/color]\nNakłada: Ogłuszenie 1 tura - [color=#fdff80]Cel traci turę[/color]\nKoszt MP: [color=#0000ff]20[/color]
+melee
+on_enemy
+ogluszenie_effect
+graphics/sounds/ogluszenie.wav
+_______________________________________
+5
+zaciekły wojownik
+player.current_player.STR_base += 3
+trening wojownika I
+graphics/skills/zaciekły_wojownik.png
+0.09
+0.21
+3
+graphics/skills/zaciekły_wojownik_ok.png
+0
+passive
+Zaciekły Wojownik   |   PASYWNA\nZawsze pierwszy rwiesz się do boju i walczysz do samego końca.\n\n[color=#de8833]+3 siły[/color]
+
+
+no_effect
+
+_______________________________________
+6
+niestrudzony obrońca
+player.current_player.HP += 15\nplayer.current_player.MAX_HP += 15
+nakładanie rąk
+graphics/skills/niestrudzony_obrońca.png
+0.24
+0.29
+10
+graphics/skills/niestrudzony_obrońca_ok.png
+0
+passive
+Niestrudzony Obrońca   |   PASYWNA\nNie pozwolisz nikogo przepóścić bez walki.\n\n[color=#ff0000]+15 zdrowia[/color]
+
+
+no_effect
+
+______________________________________
+7
+zew bojowy
+self.final_damage = 0\nself.action_status = 'zew bojowy'
+trening wojownika I
+graphics/skills/zew_bojowy.png
+0.09
+0.29
+3
+graphics/skills/zew_bojowy_ok.png
+50
+active
+Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.\n\nNakłada: Zew Bojowy 3 tur - [color=#de8833]+25% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+status
+on_all_character
+szal_effect
+graphics/sounds/positive_effect_1.wav
+______________________________________
+8
+Zew Bojowy Ulepszenie
+upgrade_zew_bojowy()
+zew bojowy
+graphics/skills/zew_bojowy_ulepszony.png
+0.04
+0.29
+7
+graphics/skills/zew_bojowy_ulepszony.png
+0
+passive
+Zew Bojowy   |   AKTYWNA\nULEPSZENIE\nTeraz Zew Bojowy zwiększa obrażenia o 35% i trwa 4 tury.\n\nNakłada: Zew Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]
+
+
+szal_effect
+graphics/sounds/positive_effect_1.wav
+______________________________________
+9
+boski grzmot
+self.final_damage = 20+self.current_turn.INT*2\nself.action_status = 'boski grzmot'
+cios rękojeścią
+graphics/skills/boski_grzmot.png
+0.24
+0.21
+4
+graphics/skills/boski_grzmot_ok.png
 40
 active
-Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]140% Obrażeń[/color]\nZwraca 50% zadanych obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]40[/color]
+Boski Grzmot   |   AKTYWNA\nPrzekierowujesz cały swój gniew sprawiedliwości na przeciwnika.\n\nZadaje: [color=#fdff80]20[/color] + [color=#00f7ff]200%INT[/color]\nNakłada: Boski Grzmot 2 tur - [color=#fdff80]Cel otrzymuje 25% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]40[/color]
+melee
+on_enemy
+boski_grzmot_effect
+graphics/sounds/lighting.wav
+______________________________________
+10
+nakładanie rąk
+self.final_damage = self.current_turn.HP*0.25
+trening wojownika I
+graphics/skills/nakładanie_rąk.png
+0.19
+0.29
+3
+graphics/skills/nakładanie_rąk_ok.png
+60
+active
+Nakładanie Rąk   |   AKTYWNA\nProste zaklęcie leczące kojące nerwy i rany.\n\nLeczy: [color=#fdff80]25% twojego maksymalnego zdroiwa[/color]\nKoszt MP: [color=#0000ff]60[/color]
+heal
+on_character
+leczenie_effect
+graphics/sounds/heal.wav
+______________________________________
+11
+Zamach Ekspert
+upgrade_zamach_ekspert()
+trening wojownika I
+graphics/skills/zamach_ekspert.png
+0.14
+0.37
+3
+graphics/skills/zamach_ekspert_ok.png
+0
+passive
+Zamach Ekspert   |   AKTYWNA\nULEPSZENIE\nZamach staje sie bardziej efektywny. Skalowanie ze STR zwiększone do 60% a koszt użycia zmniejsza sie do 25 MP .\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]25[/color]
+
+
+szal_effect
+graphics/sounds/positive_effect_1.wav
+______________________________________
+12
+trening wojownika II
+player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen_base += 5
+Zamach Ekspert
+graphics/skills/trening_siły_II.png
+0.14
+0.45
+11
+graphics/skills/trening_siły_II_ok.png
+0
+passive
+Trening Wojownika II   |   PASYWNA\nPchnięcia, cięcia czy parady nie są ci obce, wraz z narastającą siłą i wytrzymałością stajesz się nadprzeciętnym wojownikiem.\n\n[color=#de8833]+3 siły[/color] [color=#ff0000]+20 zdrowia[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+no_effect
+
+______________________________________
+13
+oprawca
+self.final_damage = self.current_turn.damage*1.5\nself.current_turn.HP += int(self.current_turn.damage*0.5)
+trening wojownika II
+graphics/skills/oprawca.png
+0.09
+0.53
+12
+graphics/skills/oprawca_ok.png
+70
+active
+Oprawca   |   AKTYWNA\nWalka staje sie twoją drugą naturą, po udanym ciosie czujesz ukojenie.\n\nZadaje: [color=#fdff80]150% Obrażeń[/color]\nZwraca 50% zadanych obrażenia jako zdrowie\nKoszt MP: [color=#0000ff]70[/color]
 melee
 on_enemy
 oprawca_effect
@@ -204,15 +238,15 @@ ______________________________________
 14
 rozplatanie
 self.final_damage = self.current_turn.damage+self.current_turn.HP*0.2
-oprawca
+trening wojownika II
 graphics/skills/rozplatanie.png
-0.16
-0.45
-13
+0.19
+0.53
+12
 graphics/skills/rozplatanie_ok.png
-50
+60
 active
-Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 20% swojego obecnego zdrowia [/color]\nKoszt MP: [color=#0000ff]50[/color]
+Rozpłatanie   |   AKTYWNA\nPotężne uderzenie rozdzierające przeciwnika\nZadaje: [color=#fdff80]Obrażenia + 20% swojego maksymalnego zdrowia[/color]\nKoszt MP: [color=#0000ff]60[/color]
 melee
 on_enemy
 rozplatanie_effect
@@ -223,7 +257,7 @@ szkolenie bojowe
 player.current_player.crit_chance_bonus += 3
 none
 graphics/skills/szkolenie_bojowe.png
-0.11
+0.09
 0.13
 none
 graphics/skills/szkolenie_bojowe_ok.png
@@ -238,113 +272,45 @@ ______________________________________
 16
 precyzyjne ciosy
 self.final_damage = 0\nself.action_status = 'precyzyjne ciosy'
-barbazynca
+trening wojownika II
 graphics/skills/precyzyjne_ciosy.png
-0.06
+0.09
 0.45
-23
+12
 graphics/skills/precyzyjne_ciosy_ok.png
 40
 active
-Precyzyjne Ciosy   |   AKTYWNA\nNa pewnien czas skupiasz się na swoich atakch tak aby jak najczęściej trafiać w czułe punkty.\n\nNakłada: Precyzyjne Ciosy 4 tur - [color=#fdff80]+25% Szansy na trafienie krytyczne[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
+Precyzyjne Ciosy   |   AKTYWNA\nNa pewnien czas skupiasz się na swoich atakch tak aby jak najczęściej trafiać w czułe punkty.\n\nNakłada: Precyzyjne Ciosy 5 tur - [color=#fdff80]+25% Szansy na trafienie krytyczne[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
 status
 on_self
 obrazenia_buff_effect
 graphics/sounds/positive_effect_2.wav
 ______________________________________
-_17
-_aura heroizmu
-_self.final_damage = 0\nself.action_status = 'aura heroizmu'
-_niestrudzony obrońca
-_graphics/skills/aura_heroizmu.png
-_375
-_380
-_5
-_graphics/skills/aura_heroizmu_ok.png
-_35
-_active
-_Aura Heroizmu   |   AKTYWNA\nTwoja obecność napawa ciebie i twoich swojuszników do walki.\n\nNakłada: Aura Heroizmu 10 tur - [color=#fdff80]+15% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH[/color]\nKoszt MP: [color=#0000ff]35[/color]
-_status
-_on_self
-_aura_effect
-_graphics/sounds/aura.wav
-______________________________________
-_18
-_aura leczenia
-_self.final_damage = 0\nself.action_status = 'aura leczenia'
-_aura heroizmu
-_graphics/skills/aura_leczenia.png
-_375
-_450
-_17
-_graphics/skills/aura_leczenia_ok.png
-_35
-_active
-_Aura Leczenia   |   AKTYWNA\nPrzy tobie każdy czuje, że może walczyć w nieskończoność.\n\nNakłada: Aura Leczenia 10 tur - [color=#fdff80]Co turę odnawia 10 HP[/color] [color=#e45eff]NA WSZYSTKICH[/color]\nKoszt MP: [color=#0000ff]35[/color]
-_status
-_on_self
-_aura_effect
-_graphics/sounds/aura.wav
-______________________________________
 19
 aura energi
 self.final_damage = 0\nself.action_status = 'aura energi'
-paladyn
+trening wojownika II
 graphics/skills/aura_energi.png
-0.26
+0.19
 0.45
-22
+12
 graphics/skills/aura_energi_ok.png
-35
+0
 active
-Aura Energi   |   AKTYWNA\nGdy jesteś w pobliżu nikt nie traci tchu.\n\nNakłada: Aura Energi 10 tur - [color=#fdff80]Co turę odnawia 10 MP[/color] [color=#e45eff]NA WSZYSTKICH[/color]\nKoszt MP: [color=#0000ff]35[/color]
+Aura Energi   |   AKTYWNA\nGdy jesteś w pobliżu nikt nie traci tchu.\n\nNakłada: Aura Energi 10 tur - [color=#fdff80]Co turę odnawia 10 MP[/color] [color=#e45eff]NA WSZYSTKICH[/color]\nKoszt MP: [color=#0000ff]0[/color]
 status
 on_self
 aura_effect
 graphics/sounds/aura.wav
 ______________________________________
-_20
-_blogoslawienstwo
-_self.final_damage = 0\nself.action_status = 'blogoslawienstwo'
-_niestrudzony obrońca
-_graphics/skills/blogoslawienstwo.png
-_305
-_380
-_5
-_graphics/skills/blogoslawienstwo_ok.png
-_25
-_active
-_Błogosławieństwo   |   AKTYWNA\nWybrany cel na krótką chwile ma zwiększone statystyki.\n\nNakłada: Błogosławieństwo 3 tury - [color=#fdff80]Wszystkie atrybuty +15%[/color]\nKoszt MP: [color=#0000ff]25[/color]
-_status
-_on_self
-_obrazenia_buff_effect
-_graphics/sounds/positive_effect_3.wav
-______________________________________
-_21
-_masowe blogoslawienstwo
-_self.final_damage = 0\nself.action_status = 'blogoslawienstwo'
-_niestrudzony obrońca
-_graphics/skills/masowe_blogoslawienstwo.png
-_305
-_450
-_5
-_graphics/skills/masowe_blogoslawienstwo_ok.png
-_35
-_active
-_Błogosławieństwo   |   AKTYWNA\nWszystkim na krótką chwile zwiększa statystyki.\n\nNakłada: Błogosławieństwo 3 tury - [color=#fdff80]Wszystkie atrybuty +15%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]35[/color]
-_status
-_on_all_character
-_obrazenia_buff_effect
-_graphics/sounds/positive_effect_3.wav
-______________________________________
 22
 paladyn
 player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.INT_base += 5
-oprawca
+aura energi
 graphics/skills/paladyn.png
-0.21
+0.24
 0.45
-13
+19
 graphics/skills/paladyn_ok.png
 0
 passive
@@ -356,61 +322,112 @@ no_effect
 ______________________________________
 23
 barbazynca
-player.current_player.HP += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.STR_base += 5
-oprawca
+player.current_player.HP += 10\nplayer.current_player.MAX_HP += 10\nplayer.current_player.STR_base += 3
+precyzyjne ciosy
 graphics/skills/barbazynca.png
-0.11
+0.04
 0.45
-13
+16
 graphics/skills/barbazynca_ok.png
 0
 passive
-Barbarzyńca   |   PASYWNA\nOdwaga i siła to jedyna droga do osiągnięcia wiecznej chwały.\n\n[color=#de8833]+5 siły[/color] [color=#ff0000]+10 zdrowia[/color]
+Barbarzyńca   |   PASYWNA\nOdwaga i siła to jedyna droga do osiągnięcia wiecznej chwały.\n\n[color=#de8833]+3 siły[/color] [color=#ff0000]+10 zdrowia[/color]
 
 
 no_effect
 
 ______________________________________
 24
+zamach mistrz
+upgrade_zamach_mistrz()
 trening wojownika II
-player.current_player.STR_base += 3\nplayer.current_player.HP += 20\nplayer.current_player.MAX_HP += 20\nplayer.current_player.MP_regen_base += 5
-rozplatanie
-graphics/skills/trening_siły_II.png
-0.16
+graphics/skills/zamach_mistrz.png
+0.14
 0.53
-2
-graphics/skills/trening_siły_II_ok.png
+12
+graphics/skills/zamach_mistrz_ok.png
 0
 passive
-Trening Wojownika II   |   PASYWNA\nPchnięcia, cięcia czy parady nie są ci obce, wraz z narastającą siłą i wytrzymałością stajesz się nadprzeciętnym wojownikiem.\n\n[color=#de8833]+3 siły[/color] [color=#ff0000]+20 zdrowia[/color] [color=#e45eff]+5 regeneracji many[/color]
+Zamach Mistrz   |   AKTYWNA\nULEPSZENIE\nZamach staje sie perfekcyjny. Skalowanie ze STR zwiększone do 70% a koszt MP do 20.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]70%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]
 
 
-no_effect
-
+szal_effect
+graphics/sounds/positive_effect_1.wav
 ______________________________________
-_11
-_końskie zdrowie
-_player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30
-_boski grzmot
-_graphics/skills/końskie_zdrowie.png
-_375
-_380
-_9
-_graphics/skills/końskie_zdrowie_ok.png
-_0
-_passive
-_Końskie Zdrowie   |   PASYWNA\nJesteś zdrowy i wytrzymały jak koń.\n\n[color=#ff0000]+30 zdrowia[/color]
-_
-_
-_no_effect
-_
+27
+trening wojownika III
+player.current_player.STR_base += 5\nplayer.current_player.crit_chance_bonus += 5\nplayer.current_player.MP_regen_base += 5
+zamach mistrz
+graphics/skills/trening_siły_III.png
+0.14
+0.62
+24
+graphics/skills/trening_siły_III_ok.png
+0
+passive
+Trening Wojownika III   |   PASYWNA\nLoch uczynił z ciebie niepokonanego czempiona, jestes mistrzem sztuki wojennej.\n\n[color=#de8833]+5 siły[/color] [color=#fdff80]+5% Szansy na trafienie krytyczne[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+szal_effect
+graphics/sounds/positive_effect_1.wav
+______________________________________
+28
+awatar wojny
+self.final_damage = 0\nself.action_status = 'awatar wojny'
+trening wojownika III
+graphics/skills/awatar_wojny.png
+0.14
+0.70
+27
+graphics/skills/awatar_wojny_ok.png
+100
+active
+Awatar Wojny   |   AKTYWNA\nNa krótki czas budza się w tobie duchy wszystkich poległych wojownikow czyniąc cię niemal nie pokonanym.\n\nNakłada: Awatar Wojny 3 tury - [color=#fdff80]co turę odnawia 100 MP oraz 50 HP[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]100[/color]
+status
+on_self
+szal_effect
+graphics/sounds/positive_effect_1.wav
+______________________________________
+21
+blogoslawienstwo
+self.final_damage = 0\nself.action_status = 'blogoslawienstwo'
+trening wojownika III
+graphics/skills/masowe_blogoslawienstwo.png
+0.19
+0.70
+27
+graphics/skills/masowe_blogoslawienstwo_ok.png
+75
+active
+Błogosławieństwo   |   AKTYWNA\nŁaska boska zstępuje na was zwiększając waszą moc.\n\nNakłada: Błogosławieństwo 5 tur - [color=#fdff80]Wszystkie atrybuty +20%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]75[/color]
+status
+on_all_character
+obrazenia_buff_effect
+graphics/sounds/positive_effect_3.wav
+______________________________________
+29
+osad
+self.final_damage = 200+self.current_player.damage
+trening wojownika III
+graphics/skills/osad.png
+0.09
+0.70
+27
+graphics/skills/osad_ok.png
+120
+active
+Osąd    |   AKTYWNA\nNiepowstrzymane uderzenie, które wypala z rzeczywistości każde plugawstwo.\n\nZadaje: [color=#fdff80]200+Obrażenia[/color]\nKoszt MP: [color=#0000ff]120[/color]
+ranged
+on_enemy
+szal_effect
+graphics/sounds/positive_effect_1.wav
 _____________mage skill________________
 41
 kula ognia
 self.final_damage = 12+self.current_turn.INT*0.80\nself.action_status = 'płonięcie'
 none
 graphics/skills/kula_ognia.png
-0.5
+0.43
 0.13
 none
 graphics/skills/kula_ognia_ok.png
@@ -422,80 +439,12 @@ on_enemy
 kula_ognia_effect
 graphics/sounds/kula_ognia.wav
 _________________________________________
-42
-magiczny pocisk
-self.final_damage = self.current_turn.damage*2.5\nself.action_status = 'magiczny pocisk'
-trening maga I
-graphics/skills/magiczny_pocisk.png
-0.5
-0.37
-41
-graphics/skills/magiczny_pocisk_ok.png
-80
-active
-Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]250%Obrażenia[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]80[/color]
-ranged
-on_enemy
-magiczny_pocisk_effect
-graphics/sounds/magic.wav
-_________________________________________
-45
-trening maga I
-player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
-pięść wichru
-graphics/skills/trening_maga.png
-0.5
-0.29
-44
-graphics/skills/trening_maga_ok.png
-0
-passive
-Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]
-
-
-no_effect
-
-_________________________________________
-43
-morska bryza
-self.final_damage = 0\nself.action_status = 'morska bryza'
-trening maga I
-graphics/skills/morska_bryza.png
-0.55
-0.37
-45
-graphics/skills/morska_bryza_ok.png
-50
-active
-Morska Bryza   |   AKTYWNA\nOrzeźwiająca a przede wszystkim magiczna morska bryza, z takim powietrzem lepiej sie walczy.\n\nNakłada: Morska Bryza 6 tury - [color=#fdff80]Szansa na trafienie krytyczne i unik +15%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
-status
-on_all_character
-obrazenia_buff_effect
-graphics/sounds/positive_effect_1.wav
-_________________________________________
-50
-uzdrowienie
-self.final_damage = int(-(self.current_turn.INT*1.4)-30)
-trening maga I
-graphics/skills/uzdrowienie.png
-0.45
-0.29
-45
-graphics/skills/uzdrowienie_ok.png
-50
-active
-Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]30[/color] + [color=#00f7ff]140%INT[/color]\nKoszt MP: [color=#0000ff]50[/color]
-heal
-on_characters
-leczenie_effect
-graphics/sounds/heal.wav
-_________________________________________
 44
 pięść wichru
 self.final_damage = self.current_turn.damage+self.current_turn.INT*1.1\nself.action_status = 'pięść wichru'
 kula ognia
 graphics/skills/piesc_wichru.png
-0.5
+0.43
 0.21
 41
 graphics/skills/piesc_wichru_ok.png
@@ -507,29 +456,46 @@ on_enemy
 piesc_wichru_effect
 graphics/sounds/hit2.wav
 _________________________________________
-46
-zamrożenie
-self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'
-morska bryza
-graphics/skills/zamrożenie.png
-0.55
-0.45
-43
-graphics/skills/zamrożenie_ok.png
-70
+45
+trening maga I
+player.current_player.INT_base += 4\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP +=10
+pięść wichru
+graphics/skills/trening_maga.png
+0.43
+0.29
+44
+graphics/skills/trening_maga_ok.png
+0
+passive
+Trening maga I   |   PASYWNA\nPowoli dostoswujesz się do cieżkich warunków lochu szlifując swoje umiejętności w dziedzinie magi i wiedzy.\n\n[color=#00f7ff]+4 inteligencji[/color] [color=#0000ff]+10 many[/color]
+
+
+no_effect
+
+_________________________________________
+50
+uzdrowienie
+self.final_damage = int(-(self.current_turn.INT*1.5)-50)
+trening maga I
+graphics/skills/uzdrowienie.png
+0.38
+0.29
+45
+graphics/skills/uzdrowienie_ok.png
+50
 active
-Zamrożenie   |   AKTYWNA\nZamyka przeciwnika w twardej jak skała bryle lodu nie pozwalając mu na ruch ale też ciężko go trafić\n\nZamrożenie 3 tury - [color=#fdff80]Cel traci turę ale odnosi 90% mniej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
-ranged
-on_enemy
-zamrozenie_effect
-graphics/sounds/bisekcja.wav
+Uzdrowienie   |   AKTYWNA\nKojące zaklęcia zasklepiające powierzchowne rany.\n\nLeczy: [color=#fdff80]50[/color] + [color=#00f7ff]150%INT[/color]\nKoszt MP: [color=#0000ff]50[/color]
+heal
+on_character
+leczenie_effect
+graphics/sounds/heal.wav
 _________________________________________
 47
 szybka nauka
 player.current_player.EXP_boost_bonus += 5 
 none
 graphics/skills/szybka_nauka.png
-0.55
+0.48
 0.13
 none
 graphics/skills/szybka_nauka_ok.png
@@ -541,31 +507,14 @@ Szybka nauka   |   PASYWNA\nDoskonale interpretujesz nowe otoczenie i chłoniesz
 no_effect
 
 _________________________________________
-48
-kamienna skóra
-self.final_damage = 0\nself.action_status = 'kamienna skóra'
-magiczny pocisk
-graphics/skills/kamienna_skóra.png
-0.45
-0.45
-42
-graphics/skills/kamienna_skóra_ok.png
-35
-active
-Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Zmniejsza odtrzymywane obrażenia o 50%[/color]\nKoszt MP: [color=#0000ff]35[/color]
-status
-on_characters
-obrona_buff_effect
-graphics/sounds/positive_effect_3.wav
-_________________________________________
 49
 syfon
 self.final_damage = self.current_turn.damage\nself.current_turn.MP+=int(self.current_turn.damage)
-pięść wichru
+trening maga I
 graphics/skills/syfon.png
-0.45
+0.48
 0.21
-44
+45
 graphics/skills/syfon_ok.png
 0
 active
@@ -577,16 +526,16 @@ graphics/sounds/negative_effect_3.wav
 _________________________________________
 51
 masowe uzdrowienie
-self.final_damage = int(-(self.current_turn.INT*1.2)-40)
+self.final_damage = int(-(self.current_turn.INT*1.25)-40)
 uzdrowienie
 graphics/skills/masowe_uzdrowienie.png
-0.45
-0.37
+0.33
+0.29
 50
 graphics/skills/masowe_uzdrowienie_ok.png
 70
 active
-Masowe Uzdrowienie   |   AKTWNA\nOgromna fala uzdrawiająca leczy wszystkich sojuszników\n\nLeczy: [color=#fdff80]40[/color] + [color=#00f7ff]120%INT[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
+Masowe Uzdrowienie   |   AKTWNA\nOgromna fala uzdrawiająca leczy wszystkich sojuszników\n\nLeczy: [color=#fdff80]40[/color] + [color=#00f7ff]125%INT[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
 heal
 on_all_character
 leczenie_effect
@@ -595,15 +544,15 @@ ______________________________________
 52
 runiczna klinga
 self.final_damage = 0\nself.action_status = 'runiczna klinga'
-pięść wichru
+trening maga I
 graphics/skills/runiczna_klinga.png
-0.55
+0.38
 0.21
-44
+45
 graphics/skills/runiczna_klinga_ok.png
 20
 active
-Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNadaje: Runiczna klinga 5 tur - [color=#fdff80]dodaje 20 do obrażeń[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]20[/color]
+Runiczna Klinga   |   AKTYWNA\nNasyczasz broń magiczną mocą czyniąc ją ostrzejszą niż brzytwa.\n\nNakłada: Runiczna klinga 5 tur - [color=#fdff80]dodaje 20 do obrażeń[/color]\nKoszt MP: [color=#0000ff]20[/color]
 status
 on_character
 obrazenia_buff_effect
@@ -614,7 +563,7 @@ __________________________________________
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
 trening maga I
 graphics/skills/zrodlo_many.png
-0.55
+0.48
 0.29
 45
 graphics/skills/zrodlo_many_ok.png
@@ -626,14 +575,48 @@ passive
 no_effect
 
 __________________________________________
+56
+kula ognia ekspert
+upgrade_kula_ognia_ekspert()
+trening maga I
+graphics/skills/kula_ognia_ekspert.png
+0.43
+0.37
+45
+graphics/skills/kula_ognia_ekspert_ok.png
+0
+passive
+Kula Ognia Ekspert   |   PASYWNA\nULEPSZENIE\nKula ognia staje się potężniejsza.Bazowe obrażenia wzrastają do 17, skalowanie z inteligencję do 90%, koszt many zmniejszony do 35 a efekty płonięcia zadaje 10 obrażeń\n\nZadaje: [color=#fdff80]17[/color] + [color=#00f7ff]90%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]10 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]35[/color]
+
+
+no_effect
+
+_________________________________________
+55
+trening maga II
+player.current_player.INT_base += 3\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP +=10\nplayer.current_player.MP_regen_base +=5\nplayer.current_player.DEX_base += 1
+kula ognia ekspert
+graphics/skills/trening_maga_II.png
+0.43
+0.45
+56
+graphics/skills/trening_maga_II_ok.png
+0
+passive
+Trening maga II   |   PASYWNA\nSztuczki, zaklęcia, klątwy próbowałeś już wszystkiego, czujesz, że przepływa przez ciebie prawdziwa moc.\n\n[color=#00f7ff]+3 inteligencji[/color] [color=#00ff00]+3 zręczności[/color] [color=#ff0000]+10 zdrowia[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+no_effect
+
+_________________________________________
 54
 oświecenie
 player.current_player.MP_regen_base += 5
-magiczny pocisk
+trening maga II
 graphics/skills/oswiecenie.png
-0.5
-0.45
-42
+0.48
+0.53
+55
 graphics/skills/oswiecenie_ok.png
 0
 passive
@@ -643,18 +626,188 @@ Oświecenie   |   PASYWNA\nNagle wszystko staje sie oczywiste.\n\n[color=#e45eff
 no_effect
 
 _________________________________________
-55
+48
+kamienna skóra
+self.final_damage = 0\nself.action_status = 'kamienna skóra'
 trening maga II
-player.current_player.INT_base += 3\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP +=10
+graphics/skills/kamienna_skóra.png
+0.38
+0.45
+55
+graphics/skills/kamienna_skóra_ok.png
+35
+active
+Kamienna Skóra   |   AKTYWNA\nTwoja skóra staje się twarda niczym kamień dzięki czemu możesz wytrzymać więcej ciosów.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Zmniejsza odtrzymywane obrażenia o 50%[/color]\nKoszt MP: [color=#0000ff]35[/color]
+status
+on_character
+obrona_buff_effect
+graphics/sounds/positive_effect_3.wav
+_________________________________________
+63
+kamienna skóra
+upgrade_kamienna_skora()
+kamienna skóra
+graphics/skills/kamienna_skóra_ulepszenie.png
+0.33
+0.45
+48
+graphics/skills/kamienna_skóra_ulepszenie_ok.png
+0
+pasive
+Kamienna Skóra   |   PASYWNA\nULEPSZENIE\nKamienna Skóra działa teraz na wszystkich sojuszników.\n\nNakłada: Kamienna skóra 3 tury - [color=#fdff80]Zmniejsza odtrzymywane obrażenia o 50%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]35[/color]
+
+
+obrona_buff_effect
+graphics/sounds/positive_effect_3.wav
+_________________________________________
+46
+zamrożenie
+self.final_damage = self.current_turn.INT\nself.action_status = 'zamrożenie'
+trening maga II
+graphics/skills/zamrożenie.png
+0.48
+0.45
+55
+graphics/skills/zamrożenie_ok.png
+70
+active
+Zamrożenie   |   AKTYWNA\nZamyka przeciwnika w twardej jak skała bryle lodu nie pozwalając mu na ruch ale też ciężko go trafić\n\nNakłada: Zamrożenie 3 tury - [color=#fdff80]Cel traci turę ale odnosi 90% mniej obrażeń[/color]\nKoszt MP: [color=#0000ff]70[/color]
+ranged
+on_enemy
+zamrozenie_effect
+graphics/sounds/bisekcja.wav
+_________________________________________
+43
+morska bryza
+self.final_damage = 0\nself.action_status = 'morska bryza'
 oświecenie
-graphics/skills/trening_maga_II.png
-0.5
+graphics/skills/morska_bryza.png
+0.53
 0.53
 54
-graphics/skills/trening_maga_II_ok.png
+graphics/skills/morska_bryza_ok.png
+50
+active
+Morska Bryza   |   AKTYWNA\nOrzeźwiająca a przede wszystkim magiczna morska bryza, z takim powietrzem lepiej sie walczy.\n\nNakłada: Morska Bryza 6 tury - [color=#fdff80]Szansa na trafienie krytyczne i unik +15%[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]70[/color]
+status
+on_all_character
+obrazenia_buff_effect
+graphics/sounds/positive_effect_1.wav
+_________________________________________
+42
+magiczny pocisk
+self.final_damage = self.current_turn.damage*2.5\nself.action_status = 'magiczny pocisk'
+trening maga II
+graphics/skills/magiczny_pocisk.png
+0.38
+0.53
+55
+graphics/skills/magiczny_pocisk_ok.png
+80
+active
+Magiczny Pocisk   |   AKTYWNA\nPocisk czystej energi zwiększający wrażliwość przeciwnika na ataki.\n\nZadaje: [color=#fdff80]Obrażenia 250%[/color]\nNakłada: Magiczny Pocisk 1 tura - [color=#fdff80]Cel otrzymuje 50% więcej obrażeń[/color]\nKoszt MP: [color=#0000ff]80[/color]
+ranged
+on_enemy
+magiczny_pocisk_effect
+graphics/sounds/magic.wav
+_________________________________________
+57
+kula ognia mistrz
+upgrade_kula_ognia_ekspert()
+trening maga II
+graphics/skills/kula_ognia_mistrz.png
+0.43
+0.53
+55
+graphics/skills/kula_ognia_mistrz_ok.png
 0
 passive
-Trening maga II   |   PASYWNA\nSztuczki, zaklęcia, klątwy próbowałeś już wszystkiego, czujesz, że przepływa przez ciebie prawdziwa moc.\n\n[color=#00f7ff]+3 inteligencji[/color] [color=#ff0000]+10 zdrowia[/color]
+Kula Ognia Mistrz   |   PASYWNA\nULEPSZENIE\nKula ognia to wiezczny ogień. Bazowe obrażenia wzrastają do 25, skalowanie z inteligencję do 100%, koszt many zmniejszony do 30 a efekty płonięcia zadaje 15 obrażeń\n\nZadaje: [color=#fdff80]25[/color] + [color=#00f7ff]100%INT[/color]\nNakłada: Płonięcie 3 tury - [color=#fdff80]15 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]30[/color]
+
+
+no_effect
+
+_________________________________________
+58
+trening maga III
+player.current_player.INT_base += 5\nplayer.current_player.MP_regen_base += 5\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP += 10
+kula ognia mistrz
+graphics/skills/trening_maga_III.png
+0.43
+0.62
+57
+graphics/skills/trening_maga_III_ok.png
+0
+passive
+Trening Maga III   |   PASYWNA\nStajesy sie ekspertem każdej sztuki mistycznej a twój intelekt jest niezrównany.\n\n[color=#00f7ff]+5 inteligencji[/color] [color=#0000ff]+10 many[/color] [color=#e45eff]+5 regeneracji many[/color] 
+
+
+no_effect
+
+_________________________________________
+59
+pelnia zdrowia
+self.final_damage = -9999
+trening maga III
+graphics/skills/pelnia_zdrowia.png
+0.38
+0.70
+58
+graphics/skills/pelnia_zdrowia_ok.png
+75
+active
+Pełnia Zdrowia   |   AKTYWNA\nTo zaklęcie przywraca każgo do pełni sił.\n\nLeczy: [color=#fdff80]100% zdrowia[/color]\nKoszt MP: [color=#0000ff]75[/color]
+heal
+on_character
+no_effect
+
+_________________________________________
+60
+deszcz ognia
+self.final_damage = 100+self.current_turn.INT*0.50\nself.action_status = 'pozoga'
+trening maga III
+graphics/skills/deszcz_ognia.png
+0.43
+0.70
+58
+graphics/skills/deszcz_ognia_ok.png
+100
+active
+Deszcz Ognia   |   AKTYWNA\nEpicki deszcz ognia spada na głowy twoich pryeciwnków siejąc pożogę.\n\nZadaje: [color=#fdff80]100[/color] + [color=#00f7ff]50%INT[/color]\nNakłada: Pożoga 5 tur - [color=#fdff80]20 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]100[/color]
+ranged
+on_all_enemys
+no_effect
+
+_________________________________________
+61
+goracy gejzer
+self.final_damage = self.current_turn.INT*3
+trening maga III
+graphics/skills/gorący_gejzer.png
+0.48
+0.70
+58
+graphics/skills/gorący_gejzer_ok.png
+80
+active
+Gorący Gejzer   |   AKTYWNA\nWywołujesz erupcje potężnego gejzeru u stóp przeciwnika\n\nZadaje: [color=#00f7ff]300%INT[/color]\nKoszt MP: [color=#0000ff]80[/color]
+ranged
+on_enemy
+no_effect
+
+_________________________________________
+62
+arcymag
+player.current_player.STR_base += 5\nplayer.current_player.DEX_base += 5\nplayer.current_player.INT_base += 5\nplayer.current_player.MP_regen_base += 5\nplayer.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.HP += 10\nplayer.current_player.MAX_HP += 10
+deszcz ognia
+graphics/skills/arcymag.png
+0.43
+0.78
+60
+graphics/skills/arcymag_ok.png
+0
+passive
+Arcymag   |   PASYWNA\nMasz nieskończoną wiedzę i umiejętności na poziomie najwybitniejszych uczonych.\n\n[color=#de8833]+5 siły[/color] [color=#00ff00]+5 zręczności[/color] [color=#00f7ff]+5 inteligencji[/color] [color=#ff0000]+10 zdrowia[/color] [color=#0000ff]+10 many[/color] [color=#e45eff]+5 regeneracji many[/color]
 
 
 no_effect
@@ -665,13 +818,13 @@ zatrute ostrze
 self.final_damage = 0\nself.action_status = 'zatrute ostrze'
 none
 graphics/skills/zatrute_ostrze.png
-0.84
+0.7
 0.13
 none
 graphics/skills/zatrute_ostrze_ok.png
 50
 active
-Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 4 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Zatrute Ostrze   |   AKTYWNA\nPokryj swoją broń trucizną aby wykonywała większą szkodę.\n\nNakłada: Zatrute Ostrze 3 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]50[/color]
 status
 on_self
 obrazenia_buff_effect
@@ -682,7 +835,7 @@ głębokie rany
 self.final_damage = self.current_turn.STR+self.current_turn.damage\nself.action_status = 'krwawienie'
 precyzja
 graphics/skills/głębokie_rany.png
-0.94
+0.8
 0.29
 84
 graphics/skills/głębokie_rany_ok.png
@@ -699,13 +852,13 @@ nadzwyczajna zwinność
 player.current_player.DEX_base += 4
 trening łotra I
 graphics/skills/nadzwyczajna_zwinność.png
-0.89
+0.75
 0.37
 90
 graphics/skills/nadzwyczajna_zwinność_ok.png
 0
 passive
-Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój reflex polepsza się.\n\n[color=#00ff00]+4 zwinności[/color]
+Nadzwyczajna Zwinność   |   PASYWNA\nStajesz się szybszy a twój refleks polepsza się.\n\n[color=#00ff00]+4 zręczności[/color]
 
 
 no_effect
@@ -716,7 +869,7 @@ precyzja
 player.current_player.crit_chance_bonus += 3
 trening łotra I
 graphics/skills/precyzja.png
-0.89
+0.75
 0.29
 90
 graphics/skills/precyzja_ok.png
@@ -733,7 +886,7 @@ błyskawica
 self.final_damage = int((self.current_turn.damage + (self.current_turn.DEX*0.55)) * ((self.current_turn.HP/self.current_turn.MAX_HP)+1))
 zatrute ostrze
 graphics/skills/uderzenie_pioruna.png
-0.84
+0.7
 0.21
 81
 graphics/skills/uderzenie_pioruna_ok.png
@@ -750,7 +903,7 @@ trening łotra I
 player.current_player.DEX_base += 3\nplayer.current_player.STR_base += 1\nplayer.current_player.dodge_chance_bonus += 3
 błyskawica
 graphics/skills/trening_łotra.png
-0.84
+0.7
 0.29
 85
 graphics/skills/trening_łotra_ok.png
@@ -767,7 +920,7 @@ krwiopijca
 self.final_damage = 0\nself.action_status = 'krwiopijca'
 błyskawica
 graphics/skills/krwiopijca.png
-0.79
+0.65
 0.29
 90
 graphics/skills/krwiopijca_ok.png
@@ -783,11 +936,11 @@ _________________________________________
 dziedziczenie krwi
 upgrade_krwiopijca()
 krwiopijca
-graphics/skills/dziedziczenie_krwi.png
-0.74
+graphics/skills/krwiopijca_ulepszenie.png
+0.6
 0.29
 86
-graphics/skills/dziedziczenie_krwi_ok.png
+graphics/skills/krwiopijca_ulepszenie_ok.png
 0
 passive
 Krwiopijca   |   AKTYWNA\nULEPSZENIE\nKrwiopijca działa teraz 4 tury oraz na dowolny cel.\n\nNakłada: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA DOWOLNEGO SOJUSZNIKA[/color]\nKoszt MP: [color=#0000ff]40[/color]
@@ -796,31 +949,14 @@ Krwiopijca   |   AKTYWNA\nULEPSZENIE\nKrwiopijca działa teraz 4 tury oraz na do
 krwiopijca_effect
 graphics/sounds/positive_effect_1.wav
 _________________________________________
-_88
-_zew krwi
-_self.final_damage = 0\nself.action_status = 'krwiopijca'
-_ukrycie w cieniu
-_graphics/skills/zew_krwi.png
-_1260
-_520
-_96
-_graphics/skills/zew_krwi_ok.png
-_60
-_active
-_Zew Krwi   |   AKTYWNA\nWszyscy sojusznicy są głodniu krwi i krzyków swoich wrogów.\n\nNadaje: Krwiopijca 4 tury - [color=#fdff80]50% zadanych obrażeń wraca jako zdrowie[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]60[/color]
-_status
-_on_all_character
-_krwiopijca_effect
-_graphics/sounds/positive_effect_1.wav
-_________________________________________
 89
 rozbrojenie
 self.final_damage = 0\nself.action_status = 'rozbrojenie'
-błyskawica
+trening łotra I
 graphics/skills/rozbrojenie.png
-0.79
+0.65
 0.21
-85
+90
 graphics/skills/rozbrojenie_ok.png
 40
 active
@@ -835,7 +971,7 @@ parowanie
 player.current_player.defence_base += 2
 none
 graphics/skills/parowanie.png
-0.89
+0.75
 0.13
 none
 graphics/skills/parowanie_ok.png
@@ -850,11 +986,11 @@ _________________________________________
 93
 źródło energi
 player.current_player.MAX_MP += 10\nplayer.current_player.MP += 10
-błyskawica
+trening łotra I
 graphics/skills/zrodlo_energi.png
-0.89
+0.75
 0.21
-85
+90
 graphics/skills/zrodlo_energi_ok.png
 0
 passive
@@ -864,18 +1000,52 @@ passive
 no_effect
 
 _________________________________________
+98
+zatrute ostrze ekspert
+upgrade_zatrute_ostrze_ekspert()
+trening łotra I
+graphics/skills/zatrute_ostrze_ekspert.png
+0.7
+0.37
+90
+graphics/skills/zatrute_ostrze_ekspert_ok.png
+0
+passive
+Zatrute Ostrze Ekspert   |   AKTYWNA\nULEPSZENIE\nZrozumiałeś jak ulepszyć swoje trucizny aby działały dłużej. Zatrute ostrze działa teraz przez 5 tur a koszt many zostaje zmniejszony do 40.\n\nNakłada: Zatrute Ostrze 5 tury - [color=#fdff80]dodaje wartość zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]40[/color]
+
+
+no_effect
+
+_________________________________________
+97
+trening łotra II
+player.current_player.DEX_base += 1\nplayer.current_player.STR_base += 3\nplayer.current_player.dodge_chance_bonus += 3\nplayer.current_player.MP_regen_base += 5
+zatrute ostrze ekspert
+graphics/skills/trening_łotra_II.png
+0.7
+0.45
+98
+graphics/skills/trening_łotra_II_ok.png
+0
+passive
+Trening Łotra II   |   AKTYWNA\nAkrobatyka, anatomia, domowe trucizny i bomby, wszystko to czyni cię niezrównanym zabójcą.\n\n[color=#00ff00]+1 zręczności[/color] [color=#de8833]+3 siły[/color] [color=#fdff80]+3% szansy na unik[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+no_effect
+
+_________________________________________
 94
 rozprucie
 self.final_damage = self.current_turn.damage*1.3 + self.current_turn.DEX
-trening łotra I
+trening łotra II
 graphics/skills/rozprucie.png
-0.84
-0.37
-90
+0.75
+0.45
+97
 graphics/skills/rozprucie_ok.png
-50
+60
 active
-Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]130% obrażeń[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]50[/color]
+Rozprucie   |   AKTYWNA\nDwa precyzyjne cięcia, szatkujące worgów.\n\nZadaje: [color=#fdff80]130% obrażeń[/color] + [color=#00ff00]100%DEX[/color]\nKoszt MP: [color=#0000ff]60[/color]
 melee
 on_enemy
 rozprucie_effect
@@ -883,29 +1053,46 @@ graphics/sounds/rozprucie.wav
 _________________________________________
 95
 spokojny oddech
-self.final_damage = 0\nself.current_turn.MP += 30
-rozprucie
+self.final_damage = 0\nself.current_turn.MP += 75
+trening łotra II
 graphics/skills/spokojny_oddech.png
-0.79
-0.37
-94
+0.65
+0.45
+97
 graphics/skills/spokojny_oddech_ok.png
 0
 active
-Spokojny Oddech   |   AKTYWNA\nKażdy potrzebuje sobie odsapnąć, aby zregenerować manę.\n\nOdnawia: [color=#0000ff]30 MP[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]0[/color]
+Spokojny Oddech   |   AKTYWNA\nKażdy potrzebuje sobie odsapnąć, aby zregenerować manę.\n\nOdnawia: [color=#0000ff]75 MP[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]0[/color]
 status
 on_self
 leczenie_effect
 graphics/sounds/heal.wav
 _________________________________________
+105
+maratonczyk
+player.current_player.MP += 10\nplayer.current_player.MAX_MP += 10\nplayer.current_player.MP_regen_base += 5
+spokojny oddech
+graphics/skills/maratonczyk.png
+0.60
+0.45
+95
+graphics/skills/maratonczyk_ok.png
+0
+passive
+Maratończyk   |   PASYWNA\nJesteś niezwykle zahartowany, prawie sie nie męczysz.\n\n[color=#0000ff]+10 many[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+no_effect
+
+_________________________________________
 96
 ukrycie w cieniu
 self.final_damage = 0\nself.action_status = 'ukrycie w cieniu'
-rozprucie
+trening łotra II
 graphics/skills/ukrycie_w_cieniu.png
-0.84
-0.45
-94
+0.65
+0.53
+97
 graphics/skills/ukrycie_w_cieniu_ok.png
 70
 active
@@ -915,52 +1102,105 @@ on_self
 krycie_w_cieniu_effect
 graphics/sounds/positive_effect_2.wav
 _________________________________________
-97
+99
+zatrute ostrze mistrz
+upgrade_zatrute_ostrze_mistrz()
 trening łotra II
-player.current_player.DEX_base += 1\nplayer.current_player.STR_base += 3\nplayer.current_player.dodge_chance_bonus += 2
-ukrycie w cieniu
-graphics/skills/trening_łotra_II.png
-0.84
+graphics/skills/zatrute_ostrze_mistrz.png
+0.7
 0.53
-96
-graphics/skills/trening_łotra_II_ok.png
+97
+graphics/skills/zatrute_ostrze_mistrz_ok.png
 0
 passive
-Trening Łotra II   |   AKTYWNA\nAkrobatyka, anatomia, domowe trucizny i bomby, wszystko to czyni cię niezrównanym zabójcą.\n\n[color=#00ff00]+1 zręczności[/color] [color=#de8833]+3 siły[/color] [color=#fdff80]+2% szansy na unik[/color]
+Zatrute Ostrze Mistrz   |   AKTYWNA\nULEPSZENIE\nStajesz sie ekspertem od trucizn, są niezrównane w swojej jakości. Zatrute ostrze dodaj 125%DEX do ataku a koszt many zostaje zmniejszony do 30.\n\nNakłada: Zatrute Ostrze 5 tury - [color=#fdff80]dodaje wartość 125% zręczności od ataku[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]30[/color]
 
 
 no_effect
 
 _________________________________________
-_85
-_łaska hermesa
-_self.final_damage = 0\nself.action_status = 'łaska hermesa'
-_precyzja
-_graphics/skills/łaska_hermesa.png
-_1330
-_380
-_84
-_graphics/skills/łaska_hermesa_ok.png
-_10
-_active
-_Łaska Hermesa   |   AKTYWNA\nTest status na wszystkich sojuszników\nDaje wszysktim sojusznkom łaskę hermesa
-_status
-_on_all_character
+100
+trening łotra III
+player.current_player.MP_regen_base += 5\nplayer.current_player.DEX_base += 5\nplayer.current_player.STR_base += 2
+zatrute ostrze mistrz
+graphics/skills/trening_łotra_III.png
+0.7
+0.62
+99
+graphics/skills/trening_łotra_III_ok.png
+0
+passive
+Trening Łotra III   |   PASYWNA\nJestes niczym idealny zabójcą, szybki, przebiegły i zabójczy. Jesteś królem łotrzyków.\n\n[color=#00ff00]+5 zręczności[/color] [color=#de8833]+2 siły[/color] [color=#e45eff]+5 regeneracji many[/color]
+
+
+no_effect
+
 _________________________________________
-_94
-_lustrzane odbicie
-_self.final_damage = 0\nself.action_status = 'lustrzane odbicie'
-_nadzwyczajna zwinność
-_graphics/skills/lustrzane_odbicie.png
-_1330
-_240
-_83
-_graphics/skills/lustrzane_odbicie_ok.png
-_0
-_active
-_Źródło energi   |   PASYWNA\nZwiększa twoją enrgię do urzywania umiejętności .\n\n[color=#0000ff]+10 many[/color]
-_status
-_on_character
-_no_effect
-_graphics/sounds/positive_effect_3.wav
+101
+lowca glow
+player.current_player.crit_chance_bonus += 25
+trening łotra III
+graphics/skills/lowca_glow.png
+0.7
+0.70
+100
+graphics/skills/lowca_glow_ok.png
+0
+passive
+Łowca Głów   |   PASYWNA\nTwojej wiedza w dziedzinie anatomi najrozmaitrzych bytów pozazdrościł by nie jeden uczony.\n\n[color=#fdff80]+25% Szansy na trafienie krytyczne[/color]
+status
+on_all_character
+no_effect
+
+_________________________________________
+102
+granat odlamkowy
+self.final_damage = 150 + self.current_player.damage + self.current_player.DEX*0.3
+trening łotra III 
+graphics/skills/granat_odlamkowy.png
+0.75
+0.70
+100
+graphics/skills/granat_odlamkowy_ok.png
+75
+active
+Granat Odłamkowy   |   AKTWNA\nWybuchowy odłamkowy, który bez problemu przebije sie przez najtwardszych przeciwników\n\nZadaje: [color=#fdff80]150[/color] + [color=#fdff80]Obrażenia[/color] + [color=#00ff00]30%DEX[/color] [color=#e45eff]NA WSZYSTKICH PRZECIWNIKÓW[/color]\nKoszt MP: [color=#0000ff]75[/color]
+ranged
+on_all_enemys
+no_effect
+
+_________________________________________
+103
+granat toksyn
+self.final_damage = 0\nself.action_status = "tokszcyne opary"
+trening łotra III
+graphics/skills/grant_toksyn.png
+0.75
+0.62
+100
+graphics/skills/grant_toksyn_ok.png
+75
+active
+Granat Toksyn   |   AKTWNA\nTen granat wypuszcza chmure niezwykle silnie toksycznego gazu. Wystarczy obecność w jego oparach aby każdy odczój jej negatywne efekty.\n\nNakłada: Toksyczne Opary na 6 tury - [color=#fdff80]Zadaje 55 obrażeń na ture[/color] [color=#e45eff]NA WSZYSTKICH PRZECIWNIKÓW[/color]\nKoszt MP: [color=#0000ff]65[/color]
+ranged
+on_all_enemys
+no_effect
+
+_________________________________________
+104
+lustrzane odbicie
+self.final_damage = 0\nself.action_status = "lustrzane odbicie"
+trening łotra III
+graphics/skills/lustrzane_odbicie.png
+0.65
+0.70
+100
+graphics/skills/lustrzane_odbicie_ok.png
+75
+active
+Lustrzane Odbicie   |   AKTWNA\nTworzysz na krótką chwile wiele kopi swojego odbicia w rórznych kierunkach przez co niezwykle trudno cie trafić.\n\nNakłada: Lustryane Odbicie na 3 tury - [color=#fdff80]Szansa na unik +50%[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]75[/color]
+status
+on_self
+no_effect
+
 _________________________________________

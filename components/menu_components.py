@@ -18,7 +18,7 @@ class Settings_Menu(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/text_box.png',
+                source = 'graphics/text_box_simple.png',
                 pos = self.pos,
                 size = self.size,
             )
@@ -117,8 +117,38 @@ class Settings_Menu(BoxLayout):
             Animation(opacity=0, duration=0.5)
         )
         anim.start(self.text_pop)
-    
 
+class Settings_Menu_Fight(BoxLayout):
+    def __init__(self, manager, **kwargs):
+        super().__init__(**kwargs)
+        self.manager = manager
+        self.canvas.before.clear()
+        with self.canvas.before:
+            self.rect = Rectangle(
+                source = 'graphics/text_box_simple.png',
+                pos = self.pos,
+                size = self.size,
+            )
+        self.bind(pos=self.update_rect, size=self.update_rect)
+        self.add_widget(Button(text="Wyjście z gry", outline_width=1, background_normal = 'graphics/text_box.png', background_down = 'graphics/text_box_dark.png', on_release=lambda y:self.exit()))
+        #self.add_widget(Button(text="Wyjście do menu", outline_width=1, background_normal = 'graphics/text_box.png', background_down = 'graphics/text_box_dark.png', on_release=lambda y:self.change_screeen("main_menu")))
+        self.orientation = "vertical"
+        self.spacing = 15
+        self.padding = 15
+        self.is_visible = False
+        self.opacity = 0
+        self.disabled = True
+
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size
+
+    def change_screeen(self, screen_name):
+        self.parent.clear_widgets()
+        self.manager.current = screen_name
+    def exit(self):
+        quit()
+    
 class DynamicStageButton(Button):
     scale = NumericProperty(1.0)
     action = ObjectProperty(None, allownone=True)
@@ -175,16 +205,18 @@ class StoryEvent(Button):
 
         close_button = Button(
             text = self.button_description or "OK",
+            outline_width=1,
             size_hint_y = 0.8,
             height= dp(60),
-            background_normal="graphics/target_button.png",
+            background_normal="graphics/text_box.png",
+            background_down="graphics/text_box_dark.png",
         )
 
         self.popup = Popup(
             title = '',
             content=content,
             size_hint = (None, None),
-            size = (dp(500), dp(400)),
+            size = (dp(800), dp(400)),
             auto_dismiss = True,
             separator_color = (0,0,0,0),
             background = 'graphics/text_box.png',

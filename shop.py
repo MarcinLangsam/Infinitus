@@ -24,6 +24,10 @@ class Shop(Screen):
         self.accept_sound.play()
         self.clear_widgets()
         self.manager.current = "menu"
+
+    def upgrade_item(self):
+        pass
+
     def setup_window(self):
         self.add_widget(Image(source="graphics/shop_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Image(source="graphics/goblin_shopkeeper.png", size_hint=(0.43,0.43), allow_stretch=True, pos_hint={"center_x": 0.5, "center_y":0.5}))
@@ -38,6 +42,7 @@ class Shop(Screen):
         self.add_widget(gold_widget)
         UI.ui.gold_refresh()
         im.check_whitch_screen(self.manager.current)
+        self.add_widget(Button(text = "ULEPSZ", pos_hint={"x":0.5, "y": 0.15}, on_release = lambda y:self.upgrade_item()))
         self.add_widget(tp.text_pop_shop)
 
         self.set_shop_content()
@@ -62,19 +67,18 @@ class Shop(Screen):
     shop_content={
         1:["graphics/items/pierscien_many.png","graphics/items/pierscien_zdrowia.png","graphics/items/pierscien_sily.png","graphics/items/pierscien_zrecznosci.png","graphics/items/pierscien_inteligencji.png",
            "graphics/items/srebrny_pierscien.png","graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/drewniana_tarcza.png","graphics/items/magicza_ksiega.png","graphics/items/podstepny_majcher.png",
-           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/miecz_poltorareczny.png",
+           "graphics/items/mała_mikstura_zdrowia.png","graphics/items/mała_mikstura_many.png","graphics/items/kostur_maga.png","graphics/items/mikstura_ataku.png","graphics/items/mikstura_pancerza.png",
+           "graphics/items/rytualny_sztylet.png","graphics/items/mlot_bojowy.png","graphics/items/miecz_poltorareczny.png",
            "graphics/items/pikowany_pancerz.png","graphics/items/szata_maga.png","graphics/items/przyszywanica.png","graphics/items/kolczuga.png",
         ],
         2:["graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
-           "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png",
-           "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png",
+           "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png","graphics/items/puklerz.png","graphics/items/ksiega_ognia.png","graphics/items/ksiega_wiedzy.png","graphics/items/ksiega_zycia.png","graphics/items/ksiega_burzy.png","graphics/items/ksiega_energi.png",
+           "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png","graphics/items/pakiet_srednich_mikstor_zdrowia.png","graphics/items/pakiet_srednich_mikstor_many.png","graphics/items/mikstura_sily.png","graphics/items/mikstura_zrecznosci.png","graphics/items/mikstura_inteligencji.png",
            "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png",
            "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png",
         ],
-        3:["graphics/items/wiekszy_pierscien_many.png","graphics/items/wiekszy_pierscien_zdrowia.png","graphics/items/wiekszy_pierscien_sily.png","graphics/items/wiekszy_pierscien_zrecznosci.png","graphics/items/wiekszy_pierscien_inteligencji.png",
-                   "graphics/items/amulet_precyzji.png","graphics/items/amulet_predkosci.png","graphics/items/zelazna_rekawica.png","graphics/items/zloty_pierscien.png","graphics/items/stalowa_tarcza.png",
-                   "graphics/items/srednia_mikstura_zdrowia.png","graphics/items/srednia_mikstura_many.png",
-                   "graphics/items/miecz_rycerski.png","graphics/items/zaklety_oskard.png","graphics/items/kostur_kaplanski.png","graphics/items/rapier.png",
-                   "graphics/items/pancerz_z_wzmocnionej_skory.png","graphics/items/brygantyna.png","graphics/items/ozdobna_toga.png",
+        3:["graphics/items/pierscien_z_diamentem.png","graphics/items/pierscien_rozkoszy.png","graphics/items/obrecz_cienia.png","graphics/items/amulet_energi.png","graphics/items/potezny_amulet_precyzji.png","graphics/items/potezny_amulet_predkosci.png",
+           "graphics/items/mikstura_energi.png",
+           "graphics/items/tarcza_wysadzana_klejnotami.png","graphics/items/tom_mocy_magicznej.png","graphics/items/tom_walki.png",
         ]
     }

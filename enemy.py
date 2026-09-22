@@ -821,18 +821,61 @@ layt = Enemy("Wiedzma Layt",6,2000,66,66,66,66,0,500,400,{
 ######################### 3 OBSZAR PRZECIWNICY ################################
 goblin_wojownik = Enemy("Golbin Wojownik",8,750,50,30,30,50,20,550,600,{
                                                     "atak":enemy_skills["atak"],
+                                                    "rach i ciach":enemy_skills["rach i ciach"],
+                                                    "ogluszenie":enemy_skills["ogluszenie"],
+                                                    "wybuchowa mieszanka":["wybuchowa mieszanka"],
+                                                    "goblinski wywar":enemy_skills["goblinski wywar"],
+                                                    "gniewne przebicie":enemy_skills["gniewne przebicie"]
                                                     },
                                                     {},
                                                     "graphics/sprites/goblin_wojownik_sprite.png","goblin_wojownik",False)
 
 goblin_szaman = Enemy("Golbin Szaman",8,630,30,35,50,30,10,550,600,{
                                                     "atak":enemy_skills["atak"],
+                                                    "vodou":enemy_skills["vodou"],
+                                                    "leczenie":enemy_skills["leczenie"],
+                                                    "blyskawica":enemy_skills["blyskawica"],
+                                                    "laska dobrego pana":enemy_skills["laska dobrego pana"],
+                                                    "wyssanie":enemy_skills["wyssanie"],
                                                     },
                                                     {},
                                                     "graphics/sprites/goblin_szaman_sprite.png","goblin_szaman",False)
 
+goblin_obronca = Enemy("Golbin Obrońca",8,630,30,35,50,30,10,550,600,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "protekcja":enemy_skills["protekcja"],
+                                                    "goblinski wywar":enemy_skills["goblinski wywar"],
+                                                    "piach w oczy":["piach w oczy"],
+                                                    "za naszego masta":enemy_skills["za naszego masta"],
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/goblin_obronca_sprite.png","goblin_obronca",False)
+
+trol_brutal = Enemy("Trol Brutal",8,630,30,35,50,30,10,550,600,{
+                                                    "atak":enemy_skills["atak"],
+                                                    "wstrzas":enemy_skills["wstrzas"],
+                                                    "walic w rylo":enemy_skills["walic w rylo"],
+                                                    "ostateczny szal":enemy_skills["ostateczny szal"],
+                                                    "ja bic":enemy_skills["ja bic"],
+                                                    "ja cie zmiazdzyc":enemy_skills["ja cie zmiazdzyc"]
+                                                    },
+                                                    {},
+                                                    "graphics/sprites/troll_brutal_sprite.png","trol_brutal",False)
+
 madmax = Enemy("MAD MAX",10,2500,75,75,75,70,25,1000,1500,{
                                                     "atak":enemy_skills["atak"],
+                                                    "MAD":enemy_skills["MAD"],
+                                                    "MAX":enemy_skills["MAX"],
+                                                    "Mad Bust":enemy_skills["Mad Bust"],
+                                                    "SKAD!":enemy_skills["SKAD!"],
+                                                    "Przeciwpancerny":enemy_skills["Przeciwpancerny"],
+                                                    "Torpeda":enemy_skills["Torpeda"],
+                                                    "MADMAX JEST NIEPOKONANY":enemy_skills["MADMAX JEST NIEPOKONANY"],
+                                                    "Gniew Masta":enemy_skills["Gniew Masta"],
+                                                    "Te cholerne...":enemy_skills["Te cholerne..."],
+                                                    "MASTA BASTA":enemy_skills["MASTA BASTA"],
+                                                    "FOLLOW ME MASTA":enemy_skills["FOLLOW ME MASTA"],
+                                                    "YES MY MASTA":enemy_skills["YES MY MASTA"],    
                                                     },
                                                     {},
                                                     "graphics/sprites/madmax.png","madmax",False)

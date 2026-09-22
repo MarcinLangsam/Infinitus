@@ -16,8 +16,23 @@ def upgrade_krwiopijca():
     player.current_player.skill["krwiopijca"][6] = "on_character"
 def upgrade_zew_bojowy():
     player.current_player.skill["zew bojowy"][0] = "self.final_damage = 0\nself.action_status = 'zew bojowy ulepszony'"
-    player.current_player.skill["zew bojowy"][2] = "graphics/skills/okrzyk_bojowy.png"
-    player.current_player.skill["zew bojowy"][3] = "Nakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]"
+    player.current_player.skill["zew bojowy"][3] = "Zew Bojowy   |   AKTYWNA\nPotężny okrzyk, który zagrzewa do walki użytkownika.Nakłada: Okrzyk Bojowy 4 tur - [color=#de8833]+35% Obrażeń[/color] [color=#e45eff]NA WSZYSTKICH SOJUSZNIKÓW[/color]\nKoszt MP: [color=#0000ff]50[/color]"
+def upgrade_zamach_ekspert():
+    player.current_player.skill["zamach"][3] = "self.final_damage = self.current_turn.damage+self.current_turn.STR*0.6"
+    player.current_player.skill["zamach"][3] = "Zamach   |   AKTYWNA\nProsta ale skuteczna technika prowadząca rozpędzoną broń prosto we wroga.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]60%STR[/color]\nKoszt MP: [color=#0000ff]25[/color]"
+    player.current_player.skill["zamach"][4] = "25"
+def upgrade_kamienna_skora():
+    pass
+def upgrade_zamach_mistrz():
+    pass
+def upgrade_kula_ognia_ekspert():
+    pass
+def upgrade_kula_ognia_mistrz():
+    pass
+def upgrade_zatrute_ostrze_ekspert():
+    pass
+def upgrade_zatrute_ostrze_mistrz():
+    pass
 
 class Skill_line(Widget):
     points = ListProperty([])

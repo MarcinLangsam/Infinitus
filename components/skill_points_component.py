@@ -33,7 +33,7 @@ class Stat_Up_Container(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/stat_background.png',
+                source = 'graphics/menu_background_simple.png',
                 pos = self.pos,
                 size = self.size,
             )
@@ -103,3 +103,4 @@ strength_widget = Stat_Up_Widget("STR", "TEST", "graphics/strength_stat_up_butto
 aglity_widget = Stat_Up_Widget("DEX", "TEST", "graphics/agility_stat_up_button.png", "")
 inteligencec_widget = Stat_Up_Widget("INT", "TEST", "graphics/inteligence_stat_up_button.png", "")
 stata_points_widget = Stat_Points_Widget()
+stat_up_container = Stat_Up_Container(pos_hint={"x": 0.83, "y": 0.09}, size_hint=(0.17, 0.25))

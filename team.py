@@ -130,7 +130,6 @@ class Team(Screen):
         self.exp_bar.pos_hint = {'center_x':0.5,'center_y':0.9}
         self.exp_bar.size_hint_x = 0.20
         self.add_widget(self.exp_bar)
-        stats_component.visible()
         self.add_widget(stats_component)
         self.add_widget(gold_widget)
         self.add_widget(self.trash)
@@ -155,13 +154,11 @@ class Team(Screen):
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
             self.add_widget(im.inventory[x])
 
-        self.add_widget(Label(text="PRZEDMIOTY FABULARNE", pos_hint={"center_x": 0.5,"center_y": 0.21}, font_size=27, outline_width=1))
         for key in player.main_player.story_items.keys():
             if player.main_player.story_items[key][0] == 0:
                 self.add_widget(im.StorySlot(pos_hint={"center_x":player.main_player.story_items[key][1],"center_y":player.main_player.story_items[key][2]}, sprite="graphics/empty_story_item.png", tooltip_text="Nie zdobyłeś jeszcze tego przedmiotu"))
             else:
                 self.add_widget(im.StorySlot(pos_hint={"center_x":player.main_player.story_items[key][1],"center_y":player.main_player.story_items[key][2]}, sprite="graphics/"+key+".png", tooltip_text=player.main_player.story_items[key][3]))
-        
         
         self.refresh_items()
             

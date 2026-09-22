@@ -33,3 +33,25 @@ class HoverBehavior(object):
 
 class HoverButton(HoverBehavior, Button):
     pass
+
+class TargetButton(HoverBehavior, Button):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+        self.normal_source = "graphics/target_normal.png"
+        self.hover_source = "graphics/target_hover.png"
+        self.down_source = "graphics/target_down.png"
+
+        self.background_normal = self.normal_source
+        self.background_down = self.down_source
+        
+        self.size_hint = (0.1,0.15)
+        self.allow_stretch = True
+        self.keep_ratio = True
+        self.opacity = 0.9
+        
+    def on_enter(self, *args):
+        self.background_normal = self.hover_source
+
+    def on_leave(self, *args):
+        self.background_normal = self.normal_source

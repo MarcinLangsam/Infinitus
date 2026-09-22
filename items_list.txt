@@ -285,6 +285,20 @@ player.current_player.STR_base -= 4\nplayer.current_player.DEX_base -= 3\nplayer
 Tom Walki   |   DRUGA RĘKA\n[color=#de8833]Siła +4[/color]\n[color=#00ff00]Zręczność +3[/color]\n[color=#d9d764]Szansa na trafienie krytyczne +3[/color]\n[color=#d9d764]Szansa na unik +3[/color]
 550
 _______________________________________
+graphics/items/puklerz.png
+off_hand
+player.current_player.dodge_chance_bonus += 7
+player.current_player.dodge_chance_bonus -= 7
+Puklerz   |   DRUGA RĘKA\n[color=#d9d764]Szansa na unik +7[/color]
+380
+_______________________________________
+graphics/items/tarcza_wysadzana_klejnotami.png
+off_hand
+player.current_player.defence_base += 5\nplayer.current_player.DEX_base+=2\nplayer.current_player.STR_base+=2\nplayer.current_player.INT_base+=2
+player.current_player.defence_base -= 5\nplayer.current_player.DEX_base-=2\nplayer.current_player.STR_base-=2\nplayer.current_player.INT_base-=2
+Puklerz   |   DRUGA RĘKA\nPancerz +5\n[color=#de8833]Siła +2[/color]\n[color=#00ff00]Zręczność +2[/color]\n[color=#00f7ff]Inteligencja +2[/color]
+700
+_______________________________________
 _
 _
 ______________ARMORS __________________
@@ -494,6 +508,22 @@ player.MP_regen_base += 5
 Amulet Energi    |   AKCESORIA\n[color=#e45eff]Regeneracja MP +5[/color]
 550
 _______________________________________
+graphics/items/pierscien_z_diamentem.png
+accessory
+player.current_player.HP += 30\nplayer.current_player.MAX_HP += 30\nplayer.current_player.MP += 15\nplayer.current_player.MAX_MP += 15\nplayer.current_player.DEX_base += 4\nplayer.current_player.STR_base += 4\nplayer.current_player.INT_base += 4
+player.current_player.HP -= 30\nplayer.current_player.MAX_HP -= 30\nplayer.current_player.MP -= 15\nplayer.current_player.MAX_MP -= 15\nplayer.current_player.DEX_base -= 4\nplayer.current_player.STR_base -= 4\nplayer.current_player.INT_base -= 4
+Pierścień z diamentem    |   AKCESORIA\n[color=#ff0000]Zdrowie +30[/color]\n[color=#0000ff]Mana +15[/color]\n[color=#de8833]Siła +4[/color]\n[color=#00ff00]Zręczność +4[/color]\n[color=#00f7ff]Inteligencja +4[/color]
+800
+_______________________________________
+graphics/items/pierscien_rozkoszy.png
+accessory
+player.current_player.weapon += 99
+player.current_player.weapon += 99
+Pierścień rozkoszy    |   AKCESORIA\nObrażenia +99
+100000
+_______________________________________
+_
+_
 _
 _
 _______________POTIONS_________________
@@ -553,3 +583,46 @@ player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
 Pakiet średnich mikstur many    |   MIKSTURA\nOdnawia 110 MP\nUżycia: 3
 850
 _______________________________________
+graphics/items/mikstura_sily.png
+potion
+player.current_player.potion_effect = "self.mikstura_sily()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zwiększa siłę o 30% na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura siły    |   MIKSTURA\nZwiększa siłę o 30% na 5 tur\nUżycia: 1
+500
+_______________________________________
+graphics/items/mikstura_zrecznosci.png
+potion
+player.current_player.potion_effect = "self.mikstura_zrecznosci.png()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zwiększa zręczność o 30% na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura Zręczności    |   MIKSTURA\nZwiększa zręczność o 30% na 5 tur\nUżycia: 1
+500
+_______________________________________
+graphics/items/mikstura_inteligencji.png
+potion
+player.current_player.potion_effect = "self.mikstura_inteligencji.png()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zwiększa inteligencje o 30% na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura Inteligencje    |   MIKSTURA\nZwiększa inteligencje o 30% na 5 tur\nUżycia: 1
+500
+_______________________________________
+graphics/items/mikstura_ataku.png
+potion
+player.current_player.potion_effect = "self.mikstura_ataku.png()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zwiększa obrażenia o 25% na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura Ataku    |   MIKSTURA\nZwiększa obrażenia o 25% na 5 tur\nUżycia: 1
+500
+_______________________________________
+graphics/items/mikstura_pancerza.png
+potion
+player.current_player.potion_effect = "self.mikstura_pancerza.png()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zmiejsza otrzymywane obrażenia o 25% na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura Pancerza    |   MIKSTURA\nZmiejsza otrzymywane obrażenia o 25% na 5 tur\nUżycia: 1
+500
+_______________________________________
+graphics/items/mikstura_energi.png
+potion
+player.current_player.potion_effect = "self.mikstura_energi.png()"\nplayer.current_player.potions = 1\nplayer.current_player.current_potions = 1\nplayer.current_player.potion_description = "Zwiększa regeneracja many o 10 na 5 tur"
+player.current_player.potion_effect = ''\nplayer.current_player.potions = 0
+Mikstura Energi    |   MIKSTURA\nZwiększa regeneracje many o 10 na 5 tur\nUżycia: 1
+500
+_______________________________________
+

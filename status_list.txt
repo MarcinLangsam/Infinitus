@@ -38,6 +38,16 @@ stun
 Ogłuszenie\nCel pomija swoją turę
 
 _______________________________________
+boski grzmot
+boski grzmot
+self.current_target.damage_reduction += 0.25
+3
+graphics/icons/boski_grzmot_status.png
+one_time
+self.current_turn.damage_reduction -= 0.25
+Boski Grzmot\nCel odnosi 25% więcej obrażeń
+
+________________________________________
 zew bojowy
 zew bojowy
 self.current_target.damage_modifier += 0.25
@@ -61,7 +71,7 @@ _______________________________________
 precyzyjne ciosy
 precyzyjne ciosy
 self.current_target.crit_chance_modifier += 25
-5
+6
 graphics/icons/precyzyjne_ciosy_status.png
 one_time
 self.current_turn.crit_chance_modifier -= 25
@@ -98,14 +108,24 @@ self.current_turn.MP_regen_modifier -= 10
 Aura Energi\nZwiększa regeneracje MP o 10
 x.MP_regen_modifier += 10
 _______________________________________
+awatar wojny
+awatar wojny
+self.current_target.MP_regen_modifier += 100\nself.current_turn.HP += 50
+4
+graphics/icons/awatar_wojny_status.png
+dmg_ot
+
+Awatar Wojny\nCo turę odnawia 100 MP oraz 50 HP
+
+_______________________________________
 blogoslawienstwo
 blogoslawienstwo
-self.current_target.STR_modifier += 0.15\nself.current_target.DEX_modifier += 0.15\nself.current_target.INT_modifier += 0.15
-3
+self.current_target.STR_modifier += 0.20\nself.current_target.DEX_modifier += 0.20\nself.current_target.INT_modifier += 0.20
+6
 graphics/icons/blogoslawienstwo_status.png
 one_time
-self.current_turn.STR_modifier -= 0.15\nself.current_turn.DEX_modifier -= 0.15\nself.current_turn.INT_modifier -= 0.15
-Błogosławieństwo\nSiła, Zreczność oraz Inteligencja zwiększone o 15%
+self.current_turn.STR_modifier -= 0.20\nself.current_turn.DEX_modifier -= 0.20\nself.current_turn.INT_modifier -= 0.20
+Błogosławieństwo\nSiła, Zreczność oraz Inteligencja zwiększone o 25%
 x.STR_modifier -= 0.15\nx.DEX_modifier -= 0.15\nx.INT_modifier -= 0.15
 ________________________________________
 płonięcie
@@ -116,6 +136,36 @@ graphics/icons/płonięcie_status.png
 dmg_ot
 
 Płonięcie\nCel traci 5 HP co turę
+
+________________________________________
+płonięcie ekspert
+płonięcie ekspert
+self.current_turn.HP -= 5
+4
+graphics/icons/płonięcie_status.png
+dmg_ot
+
+Płonięcie\nCel traci 10 HP co turę
+
+________________________________________
+płonięcie mistrz
+płonięcie mistrz
+self.current_turn.HP -= 5
+4
+graphics/icons/płonięcie_status.png
+dmg_ot
+
+Płonięcie\nCel traci 15 HP co turę
+
+________________________________________
+pozoga
+pozoga
+self.current_turn.HP -= 20
+6
+graphics/icons/pozoga.png
+dmg_ot
+
+Pożoga\nCel traci 20 HP co turę
 
 ________________________________________
 magiczny pocisk
@@ -168,6 +218,26 @@ self.current_turn.crit_chance_modifier -= 15\nself.current_turn.dodge_chance_mod
 Morska Bryza\nZwiększa szansę na trafienie krytyczne i unik o 15%
 x.damage_bonus -= x.INT
 ________________________________________
+laska hermesa
+laska hermesa
+self.current_target.crit_chance_modifier += 50\nself.current_target.dodge_chance_modifier += 50
+4
+graphics/icons/łaska_hermesa_status.png
+one_time
+self.current_turn.crit_chance_modifier -= 50\nself.current_turn.dodge_chance_modifier -= 50
+Morska Bryza\nZwiększa szansę na trafienie krytyczne i unik o 50%
+x.damage_bonus -= x.INT
+________________________________________
+lustrzane odbicie
+lustrzane odbicie
+self.current_target.dodge_chance_modifier += 75
+4
+graphics/icons/lustrzane_odbicie_status.png.png
+one_time
+self.current_turn.dodge_chance_modifier -= 50
+Lustrzane Odbicie\nZwiększa szansę na unik o 75%
+x.damage_bonus -= x.INT
+________________________________________
 pięść wichru
 pięść wichru
 self.current_target.damage_modifier -= 0.1\nself.current_target.DEX_modifier -= 0.8
@@ -186,6 +256,26 @@ graphics/icons/zatrute_ostrze_status.png
 one_time
 self.current_turn.damage_bonus -= self.current_turn.DEX
 Zatrute Ostrze\nDodaje statystykę zręczności do wartości obrażeń
+x.damage_bonus -= x.DEX
+________________________________________
+zatrute ostrze ekspert
+zatrute ostrze ekspert
+self.current_target.damage_bonus += self.current_target.DEX
+6
+graphics/icons/zatrute_ostrze_status.png
+one_time
+self.current_turn.damage_bonus -= self.current_turn.DEX
+Zatrute Ostrze\nDodaje statystykę zręczności do wartości obrażeń
+x.damage_bonus -= x.DEX
+________________________________________
+zatrute ostrze mistrz
+zatrute ostrze mistrz
+self.current_target.damage_bonus += self.current_target.DEX*1.25
+6
+graphics/icons/zatrute_ostrze_status.png
+one_time
+self.current_turn.damage_bonus -= self.current_turn.DEX*1.25
+Zatrute Ostrze\nDodaje 125% zręczności do wartości obrażeń
 x.damage_bonus -= x.DEX
 ________________________________________
 ukrycie w cieniu
@@ -836,10 +926,212 @@ _______________________________________
 rozbicie
 rozbicie
 self.current_target.STR_modifier -= 0.7\nself.current_target.DEX_modifier -= 0.7\nself.current_target.INT_modifier -= 0.7
-2
+4
 graphics/icons/klatwa_status.png
 one_time
 self.current_turn.STR_modifier += 0.7\nself.current_turn.DEX_modifier += 0.7\nself.current_turn.INT_modifier += 0.7
 Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 70%
 x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+_______________________________________
+goblinski wywar
+goblinski wywar
+self.current_target.STR_modifier += 0.5\nself.current_target.damage_modifier += 0.2
+4
+graphics/icons/klatwa_status.png
+one_time
+self.current_target.STR_modifier -= 0.5\nself.current_target.damage_modifier -= 0.2
+Gobliński Wywar\nSiła zwiększana o 50% a obrażenia o 20%
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+_______________________________________
+przebicie
+przebicie
+self.current_target.damage_modifier += 0.15
+11
+graphics/icons/obrona_debuff_status.png
+one_time
+self.current_turn.damage_modifier -= 0.15
+Przebicie\nCel otrzymuje 15% wiecej obrażeń
+
+_______________________________________
+wyssanie
+wyssanie
+self.current_target.MP -= 30
+1
+graphics/icons/energy_drain_status.png
+one_time
+self.current_turn.MP += 0
+Wyssanie\nTracisz 30 many.
+x.damage_modifier -= 1.3\nx.defence += 10
+________________________________________
+vodou
+vodou
+self.current_turn.HP -= 30
+6
+graphics/icons/trujace_opary_status.png
+dmg_ot
+
+Vodou\nCo ture tracisz 30 HP
+x.damage = 25
+________________________________________
+laska dobrego pana
+laska dobrego pana
+self.current_turn.HP += 30
+6
+graphics/icons/trujace_opary_status.png
+dmg_ot
+
+Łaska Dobrego Masta\nCo ture leczysz 30 HP
+x.damage = 25
+________________________________________
+protekcja
+protekcja
+self.current_target.damage_reduction -= 0.8
+5
+graphics/icons/kamienna_skóra_status.png
+one_time
+self.current_turn.damage_reduction += 0.8
+Protekcja\nCel odnosi 80% mniej obrażeń
+x.defence-=15
+_______________________________________
+za naszego masta
+za naszego masta
+self.current_target.damage_reduction -= 0.2\nself.current_target.damage_modifier += 1.0
+99
+graphics/icons/kamienna_skóra_status.png
+one_time
+self.current_turn.damage_reduction += 0.2\nself.current_target.damage_modifier -= 1.0
+Za Naszego Masta\nCel odnosi 25% mniej obrażeń i zadaje 100% obrażeń
+x.defence-=15
+_______________________________________
+piach w oczy
+piach w oczy
+self.current_target.DEX_modifier -= 0.35\nself.current_target.STR_modifier -= 0.35
+4
+graphics/icons/zrecznosc_debuff_status.png
+one_time
+self.current_target.DEX_modifier += 0.35\nself.current_target.STR_modifier += 0.35
+Piach w Oczy\nZręczność oraz Siła zmniejszona o 35%.
+x.INT/=0.8
+________________________________________
+polamanie
+polamanie
+self.current_target.damage_modifier += 0.25
+11
+graphics/icons/obrona_debuff_status.png
+one_time
+self.current_turn.damage_modifier -= 0.25
+Połamanie\nCel otrzymuje 25% wiecej obrażeń
+
+_______________________________________
+ostateczny szal
+ostateczny szal
+self.current_target.STR_modifier += 1.0
+99
+graphics/icons/obrona_debuff_status.png
+one_time
+self.current_turn.damage_modifier -= 0.25
+Połamanie\nSiła zwiększana o 100%
+_______________________________________
+MAD
+MAD
+
+99
+graphics/icons/obrona_debuff_status.png
+one_time
+
+Połamanie\nMAD MAX obrał cię za cel.
+_______________________________________
+Mad Bust
+Mad Bust
+self.current_target.STR_modifier -= 0.25\nself.current_target.DEX_modifier -= 0.25\nself.current_target.INT_modifier -= 0.25
+4
+graphics/icons/klatwa_status.png
+one_time
+self.current_turn.STR_modifier += 0.25\nself.current_turn.DEX_modifier += 0.25\nself.current_turn.INT_modifier += 0.25
+Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 25%
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+________________________________________
+SKAD!
+SKAD!
+self.current_target.damage_reduction += 0.5\nself.current_target.damage_modifier += 0.5
+5
+graphics/icons/klatwa_status.png
+one_time
+self.current_target.damage_reduction -= 0.5\nself.current_target.damage_modifier -= 0.5
+Klatwa\nMadmax odnosi 50% wiecej obrażeń ale też zadaje 50% wiecej.
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+________________________________________
+MADMAX JEST NIEPOKONANY
+MADMAX JEST NIEPOKONANY
+self.current_target.STR_modifier += 0.30\nself.current_target.DEX_modifier += 0.30\nself.current_target.INT_modifier += 0.30
+99
+graphics/icons/klatwa_status.png
+one_time
+self.current_target.STR_modifier -= 0.30\nself.current_target.DEX_modifier -= 0.30\nself.current_target.INT_modifier -= 0.30
+Klatwa\nWszystkie statystyki zwiekszone o 30%.
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+________________________________________
+_
+_
+_
+_____________potions status____________
+mikstura sily
+mikstura sily
+self.current_target.STR_modifier += 0.30
+6
+graphics/icons/mikstura_sily_status.png
+one_time
+self.current_turn.STR_modifier -= 0.30
+Mikstura siły\nSiła zwiększona o 30%
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
+_______________________________________
+mikstura zrecznosci
+mikstura zrecznosci
+self.current_target.DEX_modifier += 0.30
+6
+graphics/icons/mikstura_zrecznosci_status.png
+one_time
+self.current_turn.DEX_modifier -= 0.30
+Mikstura siły\nZręczność zwiększona o 30%
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
+_______________________________________
+mikstura inteligencji
+mikstura inteligencji
+self.current_target.INT_modifier += 0.30
+6
+graphics/icons/mikstura_inteligencji_status.png
+one_time
+self.current_turn.INT_modifier -= 0.30
+Mikstura siły\nInteligencja zwiększona o 30%
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
+_______________________________________
+mikstura ataku
+mikstura ataku
+self.current_target.damage_modifier += 0.25
+6
+graphics/icons/mikstura_ataku_status.png
+one_time
+self.current_turn.damage_modifier -= 0.25
+Mikstura siły\nObrażenia zwiększone o 25%
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
+_______________________________________
+mikstura pancerza
+mikstura pancerza
+self.current_target.defence_modifier += 0.25
+6
+graphics/icons/mikstura_pancerza_status.png
+one_time
+self.current_turn.defence_modifier -= 0.25
+Mikstura siły\nOtrzymywane obrażenia zmniejszone o 25%
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
+_______________________________________
+mikstura energi
+mikstura energi
+self.current_target.MP_regen_modifier += 10
+6
+graphics/icons/mikstura_energi_status.png
+one_time
+self.current_turn.MP_regen_modifier -= 10
+Mikstura siły\nRegeneracja many zwiększona o 10
+x.STR /= 1.2\nx.damage = x.STR+x.weapon
 _______________________________________

@@ -15,6 +15,8 @@ from components.fight_components import PlayerStatusContainer, EnemyStatusContai
 from kivy.core.window import Window
 from kivy.uix.behaviors import ButtonBehavior
 from music_player import music_player
+from components.hover_behavior import TargetButton
+from components.menu_components import Settings_Menu_Fight
 
 current_stage = 1
 current_fight = 1
@@ -112,7 +114,42 @@ class Fight(Screen):
         self.skill_sound_effect = SoundLoader.load("graphics/sounds/hit.wav")
         self.error_sound = SoundLoader.load("graphics/sounds/error.wav")
         self.pos_hint_copy = {}
+        self.settings_button = Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.04,0.07), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.toggle_visibility())
+        self.setting_menu_fight = Settings_Menu_Fight(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25))
 
+    def toggle_visibility(self):
+            self.setting_menu_fight.is_visible = not self.setting_menu_fight.is_visible
+            
+            if self.setting_menu_fight.is_visible:
+                self.setting_menu_fight.opacity = 1
+                self.setting_menu_fight.disabled = False
+                music_player.music_component.opacity = 1
+                music_player.music_component.disabled = False
+            else:
+                self.setting_menu_fight.opacity = 0
+                self.setting_menu_fight.disabled = True
+                music_player.music_component.opacity = 0
+                music_player.music_component.disabled = True
+
+    def mikstura_sily(self):
+        self.final_damage = 0
+        self.action_status = 'mikstura sily'
+    def mikstura_zrecznosci(self):
+            self.final_damage = 0
+            self.action_status = 'mikstura zrecznosci'
+    def mikstura_inteligencji(self):
+            self.final_damage = 0
+            self.action_status = 'mikstura inteligencji'
+    def mikstura_ataku(self):
+            self.final_damage = 0
+            self.action_status = 'mikstura ataku'
+    def mikstura_pancerza(self):
+            self.final_damage = 0
+            self.action_status = 'mikstura pancerza'
+    def mikstura_energi(self):
+            self.final_damage = 0
+            self.action_status = 'mikstura energi'
+    
 
     def get_battle_background(self):
         if current_stage == 1:
@@ -145,9 +182,10 @@ class Fight(Screen):
         self.remove_widget(self.tooltip)
         self.remove_widget(tp.text_pop_fight)
         self.remove_widget(self.text_pop)
-        #self.remove_widget(music_player.music_component)
+        self.remove_widget(self.settings_button)
+        self.remove_widget(music_player.music_component)
+        self.remove_widget(self.setting_menu_fight)
         self.final_damage = 0
-        
         
     def prepare_battle_visuals(self):
         self.battle_background = self.get_battle_background()
@@ -192,7 +230,11 @@ class Fight(Screen):
         self.add_widget(tp.text_pop_fight)
         self.add_widget(self.text_pop)
         self.add_widget(self.tooltip)
-        #self.add_widget(music_player.music_component)
+        self.add_widget(self.settings_button)
+        self.add_widget(music_player.music_component)
+        self.add_widget(self.setting_menu_fight)
+        music_player.music_component.opacity = 0
+        music_player.music_component.disabled = True
         
 
     def chose_sprite(self,e):
@@ -299,24 +341,24 @@ class Fight(Screen):
     def create_target_option(self):
         if len(enemy.enemy_team) >= 1:
             enemy_name1 = enemy.enemy_team[0].name.replace(" ","\n")
-            self.target_option[0] = [Button(text=enemy_name1,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[0]).pos]
+            self.target_option[0] = [TargetButton(text=enemy_name1,font_size = 22, outline_width=1, pos_hint={"center_x": 0.61, "center_y": 0.58}, on_press = lambda y:self.attack(0)),self.chose_sprite(enemy.enemy_team[0]).pos]
         if len(enemy.enemy_team) >= 2:
             enemy_name2 = enemy.enemy_team[1].name.replace(" ","\n")
-            self.target_option[1] = [Button(text=enemy_name2,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.38, "y": 0.25}, on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[1]).pos]
+            self.target_option[1] = [TargetButton(text=enemy_name2,font_size = 22, outline_width=1, pos_hint={"center_x": 0.76, "center_y": 0.73}, on_press = lambda y:self.attack(1)),self.chose_sprite(enemy.enemy_team[1]).pos]
         if len(enemy.enemy_team) >= 3:
             enemy_name3 = enemy.enemy_team[2].name.replace(" ","\n")
-            self.target_option[2] = [Button(text=enemy_name3,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.46, "y": 0.25}, on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(enemy.enemy_team[2]).pos]
+            self.target_option[2] = [TargetButton(text=enemy_name3,font_size = 22, outline_width=1, pos_hint={"center_x": 0.71, "center_y": 0.45}, on_press = lambda y:self.attack(2)),self.chose_sprite(enemy.enemy_team[2]).pos]
         
         if len(team) >= 1:
-            self.target_option[3] = [Button(text=team[0].name,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(0), background_normal="graphics/target_button.png"),self.chose_sprite(team[0]).pos]
+            self.target_option[3] = [TargetButton(text=team[0].name,font_size = 22, outline_width=1, pos_hint={"center_x": 0.76, "center_y": 0.73}, on_press = lambda y:self.attack(0)),self.chose_sprite(team[0]).pos]
         if len(team) >= 2:
-            self.target_option[4] = [Button(text=team[1].name,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.38, "y": 0.25}, on_press = lambda y:self.attack(1), background_normal="graphics/target_button.png"),self.chose_sprite(team[1]).pos]
+            self.target_option[4] = [TargetButton(text=team[1].name,font_size = 22, outline_width=1, pos_hint={"center_x": 0.76, "center_y": 0.73}, on_press = lambda y:self.attack(1)),self.chose_sprite(team[1]).pos]
         if len(team) >= 3:
-            self.target_option[5] = [Button(text=team[2].name,font_size = 18, size_hint=(0.08,0.07), pos_hint={"x": 0.46, "y": 0.25}, on_press = lambda y:self.attack(2), background_normal="graphics/target_button.png"),self.chose_sprite(team[2]).pos]
+            self.target_option[5] = [TargetButton(text=team[2].name,font_size = 22, outline_width=1, pos_hint={"center_x": 0.29, "center_y": 0.45}, on_press = lambda y:self.attack(2)),self.chose_sprite(team[2]).pos]
 
-        
-        self.target_option[6] = [Button(text="Wszyscy wrogowie",font_size = 18, size_hint=(0.1,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(3), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
-        self.target_option[7] = [Button(text="Wszyscy sojusznicy",font_size = 18, size_hint=(0.1,0.07), pos_hint={"x": 0.30, "y": 0.25}, on_press = lambda y:self.attack(4), background_normal="graphics/target_button.png"),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+
+        self.target_option[6] = [TargetButton(text="Wszyscy wrogowie", font_size = 22, outline_width=1, pos_hint={"center_x": 0.61, "center_y": 0.58}, on_press = lambda y:self.attack(3)),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
+        self.target_option[7] = [TargetButton(text="Wszyscy sojusznicy", font_size = 22, outline_width=1, pos_hint={"center_x": 0.76, "center_y": 0.73}, on_press = lambda y:self.attack(4)),self.chose_sprite(team[self.chose_enemy_index(self.current_turn)]).pos]
 
 
     def set_sound_effect(self,sound_source):

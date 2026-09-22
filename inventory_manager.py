@@ -159,6 +159,8 @@ class ItemSlot(DragBehavior, Widget):
                         tp.text_pop_inventory.text = "Sprzedano przedmiot"
                         self.shop_sound.play()
                         self.switch_items_in_invetory()
+                    elif self.drop == 96 and screen == "shop":
+                        print((items.item_list[player.current_player.inventory[self.select][2]][4]*0.5))
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]: #zakładnie przedmitów
                         if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
@@ -216,7 +218,6 @@ class ItemSlot(DragBehavior, Widget):
                             self.put_down_sound.play()
                     elif self.drop in range(48,95): #uniemożliwia przesuwanie przedmitów w sklepie
                         inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
-                 
 
                 self.check_collision = False
                 self.check_touch = False

@@ -4,7 +4,7 @@ from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from kivy.core.audio import SoundLoader
 from components.bottom_menu import BottomMenu
-from components.skill_points_component import skill_point_widget, Stat_Up_Container
+from components.skill_points_component import skill_point_widget, stat_up_container
 from kivy.clock import Clock
 from kivy.uix.label import Label
 
@@ -13,9 +13,9 @@ class Switch_Character_Button(Button):
 class Skills_Window(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.main_player_button = Button(pos_hint={"center_x": 0.1, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))
-        self.companion1_button = Button(pos_hint={"center_x": 0.2, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion1.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion1))
-        self.companion2_button = Button(pos_hint={"center_x": 0.3, "y": 0.8}, size_hint=(0.065,0.13), background_normal="graphics/sprites/"+player.companion2.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion2))
+        self.main_player_button = Button(pos_hint={"center_x": 0.1, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.main_player.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.main_player))
+        self.companion1_button = Button(pos_hint={"center_x": 0.2, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.companion1.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion1))
+        self.companion2_button = Button(pos_hint={"center_x": 0.3, "y": 0.8}, size_hint=(0.05,0.10), background_normal="graphics/sprites/"+player.companion2.head+"_portrait.png", on_press = lambda y:self.change_character_menu(player.companion2))
         self.current_button = self.main_player_button
         self.tooltip = tt.Tooltip()
         self.accept_sound = SoundLoader.load("graphics/sounds/accept.wav")
@@ -27,11 +27,11 @@ class Skills_Window(Screen):
         self.manager.current = window_name
 
     def setup_window(self):
-        self.add_widget(Image(source="graphics/skills_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
+        self.add_widget(Image(source="graphics/team_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Label(text="Trzymaj kursor na kafelku umiejętności aby zobaczyć jej opis", pos_hint={"center_x": 0.5,"center_y": 0.05}, font_size=18))
         #self.add_widget(BottomMenu(self.manager, pos_hint={"center_x": 0.5, "y": 0}))
         self.add_widget(skill_point_widget)
-        self.add_widget(Stat_Up_Container(pos_hint={"center_x": 0.75,"y":0}, size_hint=(0.2, 0.25)))
+        self.add_widget(stat_up_container)
         self.add_widget(Button(pos_hint={"center_x": 0.95, "center_y": 0.95}, size=(50,50), size_hint=(None,None), background_normal="graphics/close_button.png", background_down="graphics/close_button_press.png", on_release = lambda y:self.change_window("menu")))
         
 

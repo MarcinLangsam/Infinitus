@@ -54,7 +54,6 @@ class Menu(Screen):
         else:
             pass
 
-
     def toggle_visibility(self):
         self.setting_menu.is_visible = not self.setting_menu.is_visible
         
@@ -115,6 +114,8 @@ class Menu(Screen):
         self.save_game_label.opacity = 0
         self.add_widget(self.save_game_label)
         self.add_events()
+        music_player.music_component.opacity = 0
+        music_player.music_component.disabled = True
         
     def start_main_fight(self):
         self.fight_flag_for_save = True

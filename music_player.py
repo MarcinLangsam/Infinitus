@@ -14,7 +14,7 @@ class Music_Component(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/text_box.png',
+                source = 'graphics/text_box_simple.png',
                 pos=self.pos,
                 size=self.size,
             )
@@ -41,7 +41,7 @@ class Music_Player(EventDispatcher):
         self.music_component.add_widget(Image(source="graphics/sound_icon.png", size_hint=(1,1)))
         self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(-0.05), background_normal = "graphics/sound_minus_icon.png", background_down = "graphics/sound_minus_icon_press.png", border=(0,0,0,0), size_hint=(1,1)))
         self.music_component.add_widget(self.label)
-        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",background_down = "graphics/sound_plus_icon.png_press.png", border=(0,0,0,0), size_hint=(1,1)))
+        self.music_component.add_widget(Button(on_release = lambda y:self.change_volume(0.05), background_normal = "graphics/sound_plus_icon.png",background_down = "graphics/sound_plus_icon_press.png", border=(0,0,0,0), size_hint=(1,1)))
         
     def play_music(self):
         if self.current_track.state == "stop":
