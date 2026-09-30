@@ -380,7 +380,7 @@ class Enemy(Widget):
             if drop_roll <= self.enemy_drop[x]:
                 items_droped.append(x)
                 drop_roll = random.randint(0,100)
-        for x in range(48,48+len(items_droped)):
+        for x in range(49,49+len(items_droped)):
             from player import current_player
             current_player.inventory[x][2] = items_droped[count]
             count += 1
@@ -862,23 +862,23 @@ trol_brutal = Enemy("Trol Brutal",8,630,30,35,50,30,10,550,600,{
                                                     {},
                                                     "graphics/sprites/troll_brutal_sprite.png","trol_brutal",False)
 
-madmax = Enemy("MAD MAX",10,2500,75,75,75,70,25,1000,1500,{
-                                                    "atak":enemy_skills["atak"],
-                                                    "MAD":enemy_skills["MAD"],
-                                                    "MAX":enemy_skills["MAX"],
-                                                    "Mad Bust":enemy_skills["Mad Bust"],
-                                                    "SKAD!":enemy_skills["SKAD!"],
-                                                    "Przeciwpancerny":enemy_skills["Przeciwpancerny"],
-                                                    "Torpeda":enemy_skills["Torpeda"],
-                                                    "MADMAX JEST NIEPOKONANY":enemy_skills["MADMAX JEST NIEPOKONANY"],
-                                                    "Gniew Masta":enemy_skills["Gniew Masta"],
-                                                    "Te cholerne...":enemy_skills["Te cholerne..."],
-                                                    "MASTA BASTA":enemy_skills["MASTA BASTA"],
-                                                    "FOLLOW ME MASTA":enemy_skills["FOLLOW ME MASTA"],
-                                                    "YES MY MASTA":enemy_skills["YES MY MASTA"],    
-                                                    },
-                                                    {},
-                                                    "graphics/sprites/madmax.png","madmax",False)
+#madmax = Enemy("MAD MAX",10,2500,75,75,75,70,25,1000,1500,{
+#                                                    "atak":enemy_skills["atak"],
+#                                                    "MAD":enemy_skills["MAD"],
+#                                                    "MAX":enemy_skills["MAX"],
+#                                                    "Mad Bust":enemy_skills["Mad Bust"],
+#                                                    "SKAD!":enemy_skills["SKAD!"],
+#                                                    "Przeciwpancerny":enemy_skills["Przeciwpancerny"],
+#                                                    "Torpeda":enemy_skills["Torpeda"],
+#                                                    "MADMAX JEST NIEPOKONANY":enemy_skills["MADMAX JEST NIEPOKONANY"],
+#                                                    "Gniew Masta":enemy_skills["Gniew Masta"],
+##                                                    "Te cholerne...":enemy_skills["Te cholerne..."],
+#                                                   "MASTA BASTA":enemy_skills["MASTA BASTA"],
+#                                                    "FOLLOW ME MASTA":enemy_skills["FOLLOW ME MASTA"],
+#                                                    "YES MY MASTA":enemy_skills["YES MY MASTA"],    
+#                                                    },
+#                                                    {},
+#                                                    "graphics/sprites/madmax.png","madmax",False)
 
 
 

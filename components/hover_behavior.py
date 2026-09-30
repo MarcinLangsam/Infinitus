@@ -35,9 +35,9 @@ class HoverButton(HoverBehavior, Button):
     pass
 
 class TargetButton(HoverBehavior, Button):
-    def __init__(self, **kwargs):
+    def __init__(self, target, **kwargs):
         super().__init__(**kwargs)
-        
+        self.target = target
         self.normal_source = "graphics/target_normal.png"
         self.hover_source = "graphics/target_hover.png"
         self.down_source = "graphics/target_down.png"
@@ -52,6 +52,8 @@ class TargetButton(HoverBehavior, Button):
         
     def on_enter(self, *args):
         self.background_normal = self.hover_source
+        self.parent.hover_target_border_show(self.target)
 
     def on_leave(self, *args):
         self.background_normal = self.normal_source
+        self.parent.hover_target_border_hide(self.target)

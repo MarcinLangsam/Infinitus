@@ -338,6 +338,16 @@ self.current_turn.DEX_modifier -= 2.0
 Łaska Hermesa\nPodwaja wartość zręczności
 
 ________________________________________
+tokszcyne opary
+tokszcyne opary
+self.current_target.HP -= 55
+5
+graphics/icons/granat_toksyn_status.png
+dmg_ot
+
+Toksyczne Opary\nCel traci 55 HP co turę.
+
+________________________________________
 _
 _
 _
@@ -1029,17 +1039,19 @@ self.current_target.STR_modifier += 1.0
 99
 graphics/icons/obrona_debuff_status.png
 one_time
-self.current_turn.damage_modifier -= 0.25
+self.current_target.STR_modifier -= 1.0
 Połamanie\nSiła zwiększana o 100%
+
 _______________________________________
 MAD
 MAD
-
+self.current_target.STR_modifier += 1.0
 99
 graphics/icons/obrona_debuff_status.png
 one_time
+self.current_target.STR_modifier += 1.0
+MAD\nMAD MAX obrał cię za cel.
 
-Połamanie\nMAD MAX obrał cię za cel.
 _______________________________________
 Mad Bust
 Mad Bust
@@ -1048,7 +1060,7 @@ self.current_target.STR_modifier -= 0.25\nself.current_target.DEX_modifier -= 0.
 graphics/icons/klatwa_status.png
 one_time
 self.current_turn.STR_modifier += 0.25\nself.current_turn.DEX_modifier += 0.25\nself.current_turn.INT_modifier += 0.25
-Klatwa\nSiła, Zręcznośc i Inteligencja obniżone o 25%
+Mad Bust\nSiła, Zręcznośc i Inteligencja obniżone o 25%
 x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 ________________________________________
 SKAD!
@@ -1058,7 +1070,7 @@ self.current_target.damage_reduction += 0.5\nself.current_target.damage_modifier
 graphics/icons/klatwa_status.png
 one_time
 self.current_target.damage_reduction -= 0.5\nself.current_target.damage_modifier -= 0.5
-Klatwa\nMadmax odnosi 50% wiecej obrażeń ale też zadaje 50% wiecej.
+SKAD!\nMadmax odnosi 50% wiecej obrażeń ale też zadaje 50% wiecej.
 x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 ________________________________________
 MADMAX JEST NIEPOKONANY
@@ -1068,7 +1080,7 @@ self.current_target.STR_modifier += 0.30\nself.current_target.DEX_modifier += 0.
 graphics/icons/klatwa_status.png
 one_time
 self.current_target.STR_modifier -= 0.30\nself.current_target.DEX_modifier -= 0.30\nself.current_target.INT_modifier -= 0.30
-Klatwa\nWszystkie statystyki zwiekszone o 30%.
+MADMAX JEST NIEPOKONANY\nWszystkie statystyki zwiekszone o 30%.
 x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 ________________________________________
 _

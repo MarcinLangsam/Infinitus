@@ -5,16 +5,14 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from components.stats_component import stats_component
 from components.character_creation_component import CreatorContainer
-from kivy.properties import ObjectProperty
 
 class Character_Creation(Screen):
-    character_portrait = ObjectProperty("graphics/sprites/head1_creation.png")
-
     def __init__(self, **kw):
         super().__init__(**kw)
         self.sprite = player.Character_Sprite(player.main_player,"one_hand",player.main_player.head,pos_hint={"center_x": 0.5, "center_y": 0.65})
         self.tooltip = tt.Tooltip()
-        self.creation_menu = CreatorContainer(self.sprite, player.main_player, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
+        self.character_portrait_image = Image(source="graphics/sprites/head1_creation.png", pos_hint={"center_x": 0.5, "center_y": 0.5}, size_hint=(0.26,0.37), allow_stretch=True, fit_mode="fill")
+        self.creation_menu = CreatorContainer(self.character_portrait_image ,self.sprite, player.main_player, pos_hint={"center_x": 0.2, "center_y": 0.5}, size_hint=(0.25,0.95))
         
     def change_screen(self,screen):
         player.main_player.name = self.creation_menu.name_component.return_name()
@@ -37,8 +35,8 @@ class Character_Creation(Screen):
         self.add_widget(Button(pos_hint={"center_x": 0.5, "center_y": 0.1}, size=(500,70), font_size= 40, text="Rozpocznij Grę!", outline_width=1, size_hint=(None,None), background_normal="graphics/text_box.png", background_down="graphics/text_box_dark.png", on_release = lambda y:self.change_screen("menu")))
         self.add_widget(Label(text="KIM JESTEŚ?", outline_width=1, pos_hint={"center_x": 0.5, "center_y": 0.9}, font_size=45))
         
-        self.add_widget(Image(source=self.character_portrait, pos_hint={"center_x": 0.5, "center_y": 0.5}, size_hint=(0.26,0.37), allow_stretch=True, fit_mode="fill"))
-        self.add_widget(self.sprite)
+        self.add_widget(self.character_portrait_image)
+        #self.add_widget(self.sprite)
         self.add_widget(stats_component)
         self.add_widget(self.creation_menu)
         self.creation_menu.classes_component.set_class(player.main_player, "warrior")

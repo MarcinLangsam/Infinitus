@@ -20,13 +20,14 @@ class NameInputComponent(BoxLayout):
         return self.enter_name.text
 
 class PortraitComponent(BoxLayout):
-    def __init__(self, sprite, current_character,  **kwargs):
+    def __init__(self, character_portrait_image, sprite, current_character,  **kwargs):
         super(PortraitComponent, self).__init__(**kwargs)
         self.current_portrait = 1
         self.sprite = sprite
         self.current_character = current_character
         self.orientation = "vertical"
         self.padding = [45,0,45,0]
+        self.character_portrait_image = character_portrait_image
 
         self.container = (BoxLayout(orientation = "horizontal", spacing = 15))
         self.portarit = (Image(source="graphics/sprites/glowa1_portrait.png"))
@@ -46,6 +47,7 @@ class PortraitComponent(BoxLayout):
         self.sprite.head_source = self.current_character.head
         self.sprite.set_head()
         self.portarit.source = self.sprite.portrait
+        self.character_portrait_image.source = "graphics/sprites/head"+str(self.current_portrait)+"_creation.png"
 
     def next_portrait(self):
         if self.current_portrait == 5:
@@ -57,6 +59,7 @@ class PortraitComponent(BoxLayout):
         self.sprite.head_source = self.current_character.head
         self.sprite.set_head()
         self.portarit.source = self.sprite.portrait
+        self.character_portrait_image.source = "graphics/sprites/head"+str(self.current_portrait)+"_creation.png"
 
 class ClassesComponent(BoxLayout):
     def __init__(self, current_character, **kwargs):
@@ -158,15 +161,16 @@ class ClassesComponent(BoxLayout):
         return self.current_class
 
 class CreatorContainer(BoxLayout):
-    def __init__(self, sprite, current_character, **kwargs):
+    def __init__(self, character_portrait_image, sprite, current_character, **kwargs):
         super(CreatorContainer, self).__init__(**kwargs)
         self.spacing = dp(15)
         self.sprite = sprite
         self.current_character = current_character
         self.orientation = "vertical"
+        self.character_portrait_image = character_portrait_image
 
         self.name_component = NameInputComponent(size_hint_y = 0.15)
-        self.portrait_component = PortraitComponent(self.sprite, self.current_character, size_hint_y=0.4)
+        self.portrait_component = PortraitComponent(self.character_portrait_image,self.sprite, self.current_character, size_hint_y=0.4)
         self.classes_component = ClassesComponent(self.current_character)
         self.add_widget(self.name_component)
         self.add_widget(self.portrait_component)

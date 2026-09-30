@@ -775,7 +775,7 @@ graphics/skills/deszcz_ognia_ok.png
 active
 Deszcz Ognia   |   AKTYWNA\nEpicki deszcz ognia spada na głowy twoich pryeciwnków siejąc pożogę.\n\nZadaje: [color=#fdff80]100[/color] + [color=#00f7ff]50%INT[/color]\nNakłada: Pożoga 5 tur - [color=#fdff80]20 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]100[/color]
 ranged
-on_all_enemys
+on_all_enemy
 no_effect
 
 _________________________________________
@@ -1166,30 +1166,30 @@ graphics/skills/granat_odlamkowy_ok.png
 active
 Granat Odłamkowy   |   AKTWNA\nWybuchowy odłamkowy, który bez problemu przebije sie przez najtwardszych przeciwników\n\nZadaje: [color=#fdff80]150[/color] + [color=#fdff80]Obrażenia[/color] + [color=#00ff00]30%DEX[/color] [color=#e45eff]NA WSZYSTKICH PRZECIWNIKÓW[/color]\nKoszt MP: [color=#0000ff]75[/color]
 ranged
-on_all_enemys
+on_all_enemy
 no_effect
-
+graphics/sounds/positive_effect_2.wav
 _________________________________________
 103
 granat toksyn
-self.final_damage = 0\nself.action_status = "tokszcyne opary"
+self.final_damage = 0\nself.action_status = 'tokszcyne opary'
 trening łotra III
-graphics/skills/grant_toksyn.png
+graphics/skills/granat_toksyn.png
 0.75
 0.62
 100
-graphics/skills/grant_toksyn_ok.png
-75
+graphics/skills/granat_toksyn_ok.png
+65
 active
 Granat Toksyn   |   AKTWNA\nTen granat wypuszcza chmure niezwykle silnie toksycznego gazu. Wystarczy obecność w jego oparach aby każdy odczój jej negatywne efekty.\n\nNakłada: Toksyczne Opary na 6 tury - [color=#fdff80]Zadaje 55 obrażeń na ture[/color] [color=#e45eff]NA WSZYSTKICH PRZECIWNIKÓW[/color]\nKoszt MP: [color=#0000ff]65[/color]
 ranged
-on_all_enemys
-no_effect
-
+on_all_enemy
+granat_toksyn_effect
+graphics/sounds/positive_effect_2.wav
 _________________________________________
 104
 lustrzane odbicie
-self.final_damage = 0\nself.action_status = "lustrzane odbicie"
+self.final_damage = 0\nself.action_status = 'lustrzane odbicie'
 trening łotra III
 graphics/skills/lustrzane_odbicie.png
 0.65
@@ -1202,5 +1202,5 @@ Lustrzane Odbicie   |   AKTWNA\nTworzysz na krótką chwile wiele kopi swojego o
 status
 on_self
 no_effect
-
+graphics/sounds/positive_effect_2.wav
 _________________________________________

@@ -59,9 +59,32 @@ class ItemSlot(DragBehavior, Widget):
         self.shop_sound = SoundLoader.load("graphics/sounds/shop.wav")
         self.shopkeeper_sound = SoundLoader.load("graphics/sounds/shopkeeper_buy1.wav")
 
+    def loot_all(self):
+        pass
+
     def roll_shoopkeeper_sound(self):
         roll = random.randint(1,3)
         self.shopkeeper_sound = SoundLoader.load("graphics/sounds/shopkeeper_buy"+str(roll)+".wav")
+
+    def get_upgrade_description(self,x):
+        if player.current_player.inventory[x][4] == "None":
+            return ""
+        if player.current_player.inventory[x][4] == "HP":
+            return "\n==========\n[color=#ff0000]Zdrowie +15[/color]\n=========="
+        if player.current_player.inventory[x][4] == "MP":
+                    return "\n==========\n[color=#0000ff]Mana +5[/color]\n=========="
+        if player.current_player.inventory[x][4] == "STR":
+                    return "\n==========\n[color=#de8833]Siła +3[/color]\n=========="
+        if player.current_player.inventory[x][4] == "DEX":
+                    return "\n==========\n[color=#00ff00]Zręczność +3[/color]\n=========="
+        if player.current_player.inventory[x][4] == "INT":
+                    return "\n==========\n[color=#00f7ff]Inteligencja +3[/color]\n=========="
+        if player.current_player.inventory[x][4] == "DODGE":
+                    return "\n==========\n[color=#d9d764]Szansa na trafienie krytyczne +2[/color]\n=========="
+        if player.current_player.inventory[x][4] == "CRIT":
+                    return "\n==========\n[color=#d9d764]Szansa na unik +1[/color]\n=========="
+        else:
+             return "\nupgrade error"
         
     def check_for_empty_slot(self):
         if player.current_player.inventory["main_hand"][2] == "graphics/items/empty_slot.png":
@@ -95,14 +118,20 @@ class ItemSlot(DragBehavior, Widget):
             self.parent.empty_potion.color = [0,0,0,0]
 
     def switch_items_in_invetory(self):
+        #przeniesienie przedmiotu
         self.temp = inventory[self.select].sprite
         inventory[self.select].sprite = inventory[self.drop].sprite
         player.current_player.inventory[self.select][2] = inventory[self.drop].sprite
         inventory[self.drop].sprite = self.temp
         player.current_player.inventory[self.drop][2] = self.temp
         inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
-        #inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
+        #przeniesienie ulepszenia
+        temp_select = player.current_player.inventory[self.select][4]
+        temp_drop = player.current_player.inventory[self.drop][4]
+        player.current_player.inventory[self.select][4] = temp_drop
+        player.current_player.inventory[self.drop][4] = temp_select
 
+        
         if screen == "team":
             self.check_for_empty_slot()
 
@@ -145,22 +174,26 @@ class ItemSlot(DragBehavior, Widget):
                     inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}        
             if player.current_player.inventory[self.select][2] == "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy wyposażaniu
                 inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
-            if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] != "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy kupowaniu
+            if self.drop in range(49,97) and player.current_player.inventory[self.drop][2] != "graphics/items/empty_slot.png": #zapobiega oszustwa z wykożystaniem pustego pola przy kupowaniu
                 inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
-            if self.drop in range(48,95) and screen != "shop": #naprawia bug z przenoszeniem do sklepu z poziomu drużyny
+            if self.drop in range(49,97) and screen != "shop": #naprawia bug z przenoszeniem do sklepu z poziomu drużyny
                 inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
             ##########################
 
             elif self.check_collision is True and self.check_touch is True:
-                if self.select in range (0,48) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
-                    if self.drop in range(48,95) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
+                if self.select in range (0,49) or self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
+                    if self.drop in range(49,97) and player.current_player.inventory[self.drop][2] == "graphics/items/empty_slot.png" and screen == "shop": #sprzedawanie przedmiotu
                         player.gold += (items.item_list[player.current_player.inventory[self.select][2]][4]*0.2)
                         UI.ui.gold_refresh()
                         tp.text_pop_inventory.text = "Sprzedano przedmiot"
                         self.shop_sound.play()
                         self.switch_items_in_invetory()
-                    elif self.drop == 96 and screen == "shop":
-                        print((items.item_list[player.current_player.inventory[self.select][2]][4]*0.5))
+                    elif self.drop == 48 and screen == "shop": #ulepszanie przedmiotu
+                        self.switch_items_in_invetory()
+                        price = "{0:g}".format((items.item_list[player.current_player.inventory[48][2]][4]*0.3))
+                        self.parent.update_upgrade_label(price)
+                        #player.current_player.inventory[self.select][4] = self.roll_item_upgrade()
+                                                                        
                     
                     elif self.drop in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]: #zakładnie przedmitów
                         if self.drop == "off_hand" and items.item_list[player.current_player.inventory["main_hand"][2]][0] in ["two_hand","two_hand_sword","two_hand_spear"]:
@@ -187,7 +220,7 @@ class ItemSlot(DragBehavior, Widget):
                             inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
                             tp.text_pop_inventory.text = "Nie możesz założyć tutaj tego przedmiotu"
                             self.error_sound.play()
-                    elif self.drop in range(0,48):
+                    elif self.drop in range(0,49):
                         if self.select in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                             items.unequip()
                             self.switch_items_in_invetory()
@@ -197,8 +230,8 @@ class ItemSlot(DragBehavior, Widget):
                         else:
                             self.switch_items_in_invetory()
                             self.put_down_sound.play()
-                elif self.select in range(48,95):
-                    if self.drop in range(0,48):
+                elif self.select in range(49,97):
+                    if self.drop in range(0,49):
                         if screen == "shop": #kupowanie przedmitów
                             if player.gold >= items.item_list[player.current_player.inventory[self.select][2]][4] and screen == "shop":
                                 player.gold -= items.item_list[player.current_player.inventory[self.select][2]][4]
@@ -216,7 +249,7 @@ class ItemSlot(DragBehavior, Widget):
                         elif screen != "shop":
                             self.switch_items_in_invetory()
                             self.put_down_sound.play()
-                    elif self.drop in range(48,95): #uniemożliwia przesuwanie przedmitów w sklepie
+                    elif self.drop in range(49,97): #uniemożliwia przesuwanie przedmitów w sklepie
                         inventory[self.select].pos_hint={"x":player.current_player.inventory[self.select][0], "y":player.current_player.inventory[self.select][1]}
 
                 self.check_collision = False
@@ -238,10 +271,12 @@ class ItemSlot(DragBehavior, Widget):
                             if player.current_player.inventory[x][2] == "graphics/items/empty_slot.png":
                                 self.t = ""
                             else:
-                                if x in range(0,48) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
+                                upgrade_description = self.get_upgrade_description(x)
+                                if x in range(0,49) or x in ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]:
                                     price = "{0:g}".format((items.item_list[player.current_player.inventory[x][2]][4]*0.2))
                                     colored_price = f"[color=ffd700]{price}[/color]"
                                     self.t = (items.item_list[player.current_player.inventory[x][2]][3]
+                                              +upgrade_description
                                               +"\n\n----------------------------------------\n"
                                               +f"Wartość sprzedarzy: {colored_price}"
                                               )
@@ -250,6 +285,7 @@ class ItemSlot(DragBehavior, Widget):
                                     colored_price = f"[color=ffd700]{price}[/color]"
                                     
                                     self.t = (items.item_list[player.current_player.inventory[x][2]][3]
+                                              +upgrade_description
                                               +"\n\n----------------------------------------\n"
                                               +f"Wartość kupna: {colored_price}"
                                               )
@@ -263,26 +299,73 @@ class ItemSlot(DragBehavior, Widget):
 
 class Items(Widget):
     def __init__(self):
+        self.slots = ["main_hand","off_hand","armor","accessory","accessory2","accessory3","potion"]
         self.item_list={}
 
+    def apply_upgrade(self, x):
+            if player.current_player.inventory[x][4] == "None":
+                pass
+            if player.current_player.inventory[x][4] == "HP":
+                exec("player.current_player.MAX_HP += 15\nplayer.current_player.HP += 15")
+            if player.current_player.inventory[x][4] == "MP":
+                exec("player.current_player.MAX_MP += 5\nplayer.current_player.MP += 5")
+            if player.current_player.inventory[x][4] == "STR":
+                exec("player.current_player.STR_base += 3")
+            if player.current_player.inventory[x][4] == "DEX":
+                exec("player.current_player.DEX_base += 3")
+            if player.current_player.inventory[x][4] == "INT":
+                exec("player.current_player.INT_base += 3")
+            if player.current_player.inventory[x][4] == "DODGE":
+                exec("player.current_player.crit_chance_bonus += 2")
+            if player.current_player.inventory[x][4] == "CRIT":
+                exec("player.current_player.dodge_chance_bonus += 1")
+            else:
+                pass
+    def revoke_upgrade(self, x):
+        if player.current_player.inventory[x][4] == "None":
+            pass
+        if player.current_player.inventory[x][4] == "HP":
+            exec("player.current_player.MAX_HP -= 15\nplayer.current_player.HP -= 15")
+        if player.current_player.inventory[x][4] == "MP":
+            exec("player.current_player.MAX_MP -= 5\nplayer.current_player.MP -= 5")
+        if player.current_player.inventory[x][4] == "STR":
+            exec("player.current_player.STR_base -= 3")
+        if player.current_player.inventory[x][4] == "DEX":
+            exec("player.current_player.DEX_base -= 3")
+        if player.current_player.inventory[x][4] == "INT":
+            exec("player.current_player.INT_base -= 3")
+        if player.current_player.inventory[x][4] == "DODGE":
+            exec("player.current_player.crit_chance_bonus -= 2")
+        if player.current_player.inventory[x][4] == "CRIT":
+            exec("player.current_player.dodge_chance_bonus -= 1")
+        else:
+            pass
+
     def equip(self):
-        exec(self.item_list[player.current_player.inventory["main_hand"][2]][1])
-        exec(self.item_list[player.current_player.inventory["off_hand"][2]][1])
-        exec(self.item_list[player.current_player.inventory["armor"][2]][1])
-        exec(self.item_list[player.current_player.inventory["accessory"][2]][1])
-        exec(self.item_list[player.current_player.inventory["accessory2"][2]][1])
-        exec(self.item_list[player.current_player.inventory["accessory3"][2]][1])
-        exec(self.item_list[player.current_player.inventory["potion"][2]][1])
+        
+        #exec(self.item_list[player.current_player.inventory["main_hand"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["off_hand"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["armor"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["accessory"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["accessory2"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["accessory3"][2]][1])
+        #exec(self.item_list[player.current_player.inventory["potion"][2]][1])
+        for slot in self.slots:
+             exec(self.item_list[player.current_player.inventory[slot][2]][1])
+             self.apply_upgrade(slot)
         UI.ui.stats_refresh(player.current_player)
 
     def unequip(self):  
-        exec(self.item_list[player.current_player.inventory["main_hand"][2]][2])
-        exec(self.item_list[player.current_player.inventory["off_hand"][2]][2])
-        exec(self.item_list[player.current_player.inventory["armor"][2]][2])
-        exec(self.item_list[player.current_player.inventory["accessory"][2]][2])
-        exec(self.item_list[player.current_player.inventory["accessory2"][2]][2])
-        exec(self.item_list[player.current_player.inventory["accessory3"][2]][2])
-        exec(self.item_list[player.current_player.inventory["potion"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["main_hand"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["off_hand"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["armor"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["accessory"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["accessory2"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["accessory3"][2]][2])
+        #exec(self.item_list[player.current_player.inventory["potion"][2]][2])
+        for slot in self.slots:
+            exec(self.item_list[player.current_player.inventory[slot][2]][2])
+            self.revoke_upgrade(slot)
         UI.ui.stats_refresh(player.current_player)
 
     def load_items(self):

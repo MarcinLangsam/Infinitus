@@ -34,7 +34,7 @@ class Menu(Screen):
     
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.setting_menu = Settings_Menu(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25))
+        #self.setting_menu = Settings_Menu(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25))
         self.settings_button = Button(pos_hint={"center_x": 0.9, "center_y": 0.055}, size_hint=(0.04,0.07), background_normal="graphics/setting_button.png", background_down="graphics/setting_button_press.png", on_release = lambda y:self.toggle_visibility())
         music_player.music_component.opacity = 0
         music_player.music_component.disabled = True
@@ -93,6 +93,7 @@ class Menu(Screen):
             self.add_widget(event_companion2)
 
     def setup_window(self):
+        self.setting_menu = Settings_Menu(self.manager, pos_hint={"center_x": 0.87, "center_y": 0.25}, size_hint=(0.175, 0.25))
         self.stage_background = self.get_stage_background()
         self.current_shop = self.button_placment[fight.current_stage-1][0]
         self.current_random_fight = self.button_placment[fight.current_stage-1][1]

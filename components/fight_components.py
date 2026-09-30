@@ -21,6 +21,29 @@ class Skill_List_Pop_Up(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+class All_Attack_Sprite(Widget):
+    sprite = ObjectProperty("graphics/sprites/empty_slot_sprite_w.png")
+    effect = ObjectProperty("graphics/effects/no_effect.png")
+
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.time = 0.0
+        self.rate= 0.0001
+        self.frame = 1
+        self.frame_sum = 46
+        self.effect_source = ""
+        self.set_sprite()
+                
+    def set_sprite(self):
+        #self.sprite = self.sprite
+        #self.anim = self.source
+        pass
+    def set_anim_parameters(self,time,rate,frame,frame_sum):
+        self.time = time
+        self.rate = rate
+        self.frame = frame
+        self.frame = frame_sum
+
 class StatusIcon(Image):
     def __init__(self, text, source, description, tooltip, **kwargs):
         Window.bind(mouse_pos=self.on_mouse_pos)
@@ -173,6 +196,13 @@ class PlayerStatusContainer(BoxLayout):
                 rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
                 width=9
             )
+    def show_border_hover(self):
+            with self.hp_portrait_mp_container.canvas.before:
+                Color(0.85,0.35,0,0.85)
+                self.border = Line(
+                    rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
+                    width=11
+            )
     def hide_border(self):
         self.hp_portrait_mp_container.canvas.before.clear()
 
@@ -240,6 +270,13 @@ class EnemyStatusContainer(BoxLayout):
             self.border = Line(
                 rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
                 width=9
+            )
+    def show_border_hover(self):
+                with self.hp_portrait_mp_container.canvas.before:
+                    Color(0.85,0.35,0,0.85)
+                    self.border = Line(
+                        rectangle=(self.hp_portrait_mp_container.x, self.hp_portrait_mp_container.y, self.hp_portrait_mp_container.width, self.hp_portrait_mp_container.height),
+                        width=11
             )
     def hide_border(self):
         self.hp_portrait_mp_container.canvas.before.clear()

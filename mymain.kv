@@ -401,6 +401,18 @@ WindowManger:
             size: self.size
             pos: self.pos
 
+<All_Attack_Sprite>:
+    size_hint: 0.27,0.5
+    canvas:
+        Rectangle:
+            source: root.sprite
+            size: self.size
+            pos: self.pos
+        Rectangle:
+            source: root.effect
+            size: self.size
+            pos: self.pos
+
 <ItemSlot>:
     drag_rectangle: self.x, self.y, self.width, self.height
     drag_timeout: 10000000

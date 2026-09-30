@@ -14,6 +14,8 @@ class Shop(Screen):
         self.tooltip = tt.Tooltip()
         self.accept_sound = SoundLoader.load("graphics/sounds/t.wav")
         self.shookeeper_welocome = SoundLoader.load("graphics/sounds/shopkeeper_start1.wav")
+        self.upgrade_label = Label(text = "0", font_size = 25, outline_width=1, pos_hint={"x": 0, "y": -0.38})
+                
 
     def roll_shopkeeper_welcome(self):
         roll = random.randint(1,4)
@@ -25,16 +27,22 @@ class Shop(Screen):
         self.clear_widgets()
         self.manager.current = "menu"
 
+    def update_upgrade_label(self, price):
+        self.upgrade_label.text = price
+
     def upgrade_item(self):
-        pass
+        if player.current_player.inventory[48][2] != "graphics/items/empty_slot.png":
+            upgrade_table = ["HP","MP","STR","DEX","INT","DODGE","CRIT"]
+            player.current_player.inventory[48][4] = random.choice(upgrade_table)
+        else:
+            pass
 
     def setup_window(self):
         self.add_widget(Image(source="graphics/shop_background.png", size_hint=(1,1), allow_stretch=True, fit_mode="fill"))
         self.add_widget(Image(source="graphics/goblin_shopkeeper.png", size_hint=(0.43,0.43), allow_stretch=True, pos_hint={"center_x": 0.5, "center_y":0.5}))
         
-        for x in range(0,96):
+        for x in range(0,97):
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.current_player.inventory[x][0], "y": player.current_player.inventory[x][1]}, sprite=(player.current_player.inventory[x][2]))
-            
             self.add_widget(im.inventory[x])
         
 
@@ -42,7 +50,8 @@ class Shop(Screen):
         self.add_widget(gold_widget)
         UI.ui.gold_refresh()
         im.check_whitch_screen(self.manager.current)
-        self.add_widget(Button(text = "ULEPSZ", pos_hint={"x":0.5, "y": 0.15}, on_release = lambda y:self.upgrade_item()))
+        self.add_widget(Button(text = "ULEPSZ", size=(150,50), size_hint=(None,None), pos_hint={"x":0.5, "y": 0.15}, on_release = lambda y:self.upgrade_item()))
+        self.add_widget(self.upgrade_label)
         self.add_widget(tp.text_pop_shop)
 
         self.set_shop_content()
@@ -54,12 +63,12 @@ class Shop(Screen):
         self.shookeeper_welocome.play()
 
     def set_shop_content(self):
-        for x in range(48,48+len(self.shop_content[fight.current_stage])):
-            im.inventory[x].sprite = str(self.shop_content[fight.current_stage][x-48])
-            player.current_player.inventory[x][2] = str(self.shop_content[fight.current_stage][x-48])
+        for x in range(49,49+len(self.shop_content[fight.current_stage])):
+            im.inventory[x].sprite = str(self.shop_content[fight.current_stage][x-49])
+            player.current_player.inventory[x][2] = str(self.shop_content[fight.current_stage][x-49])
 
     def clear_on_shop_leave(self):
-        for x in range(48,95):
+        for x in range(49,96):
             im.inventory[x].sprite = "graphics/items/empty_slot.png"
             player.current_player.inventory[x][2] = "graphics/items/empty_slot.png"
 

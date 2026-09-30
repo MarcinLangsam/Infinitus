@@ -33,7 +33,7 @@ class Stat_Up_Container(BoxLayout):
         self.canvas.before.clear()
         with self.canvas.before:
             self.rect = Rectangle(
-                source = 'graphics/menu_background_simple.png',
+                source = 'graphics/stat_background.png',
                 pos = self.pos,
                 size = self.size,
             )
@@ -65,7 +65,7 @@ class Stat_Up_Widget(BoxLayout):
 
         self.add_widget(Image(source = self.background_source, size_hint_x=0.4))
         self.add_widget(UI.stats[stat+"_stat_up"])
-        self.add_widget(Button(background_normal = "graphics/stat_up_button.png", background_down = "graphics/stat_up_button_press.png", border = (0,0,0,0), on_release= lambda y:self.increase_stat(), size_hint=(0.2, 0.5)))
+        self.add_widget(Button(background_normal = "graphics/stat_up_button.png", background_down = "graphics/stat_up_button_press.png", border = (0,0,0,0), on_release= lambda y:self.increase_stat(), size_hint=(0.2, 1)))
 
 
     def increase_stat(self):

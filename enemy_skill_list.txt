@@ -1098,22 +1098,22 @@ glebokie_rany_effect
 graphics/sounds/lighting.wav
 ostateczny szal
 _______________________________________
-MAD
-MAD
+mad
+mad
 self.final_damage = self.current_turn.damage*1.3\nself.action_status = 'MAD'
-by_status_on
-MAD
+0
+0
 attack
 melee
-miazga_effect
-graphics/sounds/miazga.wav
+glebokie_rany_effect
+graphics/sounds/lighting.wav
 
 _______________________________________
-MAX
-MAX
-self.final_damage = self.current_turn.damage*2
+max
+max
+self.final_damage = self.current_turn.damage*2.5
 by_status_on
-MAD
+0
 attack
 melee
 miazga_effect
@@ -1173,5 +1173,5 @@ on_self
 heal
 leczenie_effect
 graphics/sounds/heal.wav
-instynkt przetrwania
+MADMAX JEST NIEPOKONANY
 _______________________________________

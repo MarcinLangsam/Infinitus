@@ -108,6 +108,7 @@ class Battle_Result(Screen):
         self.add_widget(gold_gain_widget)
         self.add_widget(Label(text="EKWIPUNEK", font_size=(sp(50)), pos_hint={"center_x": 0.235, "center_y": 0.9}, outline_width = 1))
         self.add_widget(Label(text="ŁUPY", font_size=(sp(50)), pos_hint={"center_x": 0.75, "center_y": 0.9}, outline_width = 1))
+        self.add_widget(Button(size=(100,50), size_hint=(None,None), pos_hint={"x": 0.7, "y":0.8}, text="<== Zbierz Wszystko", on_release=lambda y:self.loot_all()))
         im.check_whitch_screen(self.manager.current)
 
         if fight.current_stage == 1 and fight.current_fight == 10:
@@ -117,8 +118,7 @@ class Battle_Result(Screen):
             self.add_widget(Label(text="ZDOBYTE PRZEDMIOTY FABULARNE", pos_hint={"center_x": 0.76,"center_y": 0.225}, font_size=27, outline_width=1))
             self.add_widget(im.StorySlot(pos_hint={"center_x": 0.7,"center_y": 0.17}, sprite="graphics/teleport3.png", tooltip_text=player.main_player.story_items["teleport3"][3]+"\n\nPrzedmioty fabularne autamtycznie przenoszą się do ekwipunku."))
                             
-        
-        for x in range(0,96):
+        for x in range(0,97):
             im.inventory[x] = im.ItemSlot(pos_hint={"x": player.main_player.inventory[x][0], "y": player.main_player.inventory[x][1]}, sprite=(player.main_player.inventory[x][2]))
             
             self.add_widget(im.inventory[x])
