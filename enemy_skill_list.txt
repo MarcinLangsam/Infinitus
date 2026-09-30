@@ -852,8 +852,8 @@ by_HP_alter
 0.01
 on_character
 melee
-boski_grzmot_effect
-graphics/sounds/hit3.wav
+blyskawica_effect
+graphics/sounds/lighting.wav
 
 _______________________________________
 lenistwo
@@ -929,8 +929,8 @@ self.final_damage = self.current_turn.damage*1.25+self.current_turn.STR*1.25
 0
 attack
 melee
-obrona_debuff_effect
-graphics/sounds/hit5.wav
+rach_i_ciach_effect
+graphics/sounds/hit7.wav
 
 _______________________________________
 ogluszenie
@@ -951,8 +951,8 @@ self.final_damage = 75
 0
 on_character
 range
-ogluszenie_effect
-graphics/sounds/ogluszenie.wav
+granat_odlamkowy_effect
+graphics/sounds/boom.wav
 
 _______________________________________
 goblinski wywar
@@ -962,8 +962,8 @@ by_HP_must_have
 0.4
 on_self
 status
-inteligencja_debuff_effect
-graphics/sounds/negative_effect_3.wav
+obrazenia_buff_effect
+graphics/sounds/aura.wav
 goblinski wywar
 _______________________________________
 gniewne przebicie
@@ -973,8 +973,8 @@ self.final_damage = 50 + self.current_turn.STR*1.5\nself.action_status = 'przebi
 0
 attack
 melee
-ogluszenie_effect
-graphics/sounds/ogluszenie.wav
+rozprucie_effect
+graphics/sounds/magic.wav
 
 _______________________________________
 wyssanie
@@ -995,8 +995,8 @@ by_status
 vodou
 on_character
 status
-klatwa_effect
-graphics/sounds/negative_effect_4.wav
+roztrzaskanie_effect
+graphics/sounds/negative_effect_skill.wav
 
 _______________________________________
 laska dobrego pana
@@ -1006,8 +1006,8 @@ by_HP_alter
 0.05
 on_enemy
 status
-klatwa_effect
-graphics/sounds/negative_effect_4.wav
+aura_effect
+graphics/sounds/shopkeeper_buy3.wav
 laska dobrego pana
 _______________________________________
 blyskawica
@@ -1017,8 +1017,8 @@ by_HP_alter
 0.05
 on_character
 ranged
-klatwa_effect
-graphics/sounds/negative_effect_4.wav
+blyskawica_effect
+graphics/sounds/lighting.wav
 
 _______________________________________
 protekcja
@@ -1028,8 +1028,8 @@ by_status
 protekcja
 on_enemy
 status
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+obrazenia_buff_effect
+graphics/sounds/positive_effect_1.wav
 
 _______________________________________
 za naszego masta
@@ -1039,8 +1039,8 @@ by_HP_must_have
 0.35
 on_enemy
 status
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+masta_effect
+graphics/sounds/shopkeeper_buy3.wav
 za naszego masta
 _______________________________________
 piach w oczy
@@ -1050,8 +1050,8 @@ self.final_damage = 0\nself.action_status = 'piach w oczy'
 0
 attack
 melee
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+obrazenia_debuff_effect
+graphics/sounds/negative_effect_2.wav
 
 _______________________________________
 walic w rylo
@@ -1061,8 +1061,8 @@ self.final_damage = self.current_turn.damage*1.2\nself.action_status = 'ogłusze
 0
 attack
 melee
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+ogluszenie_effect
+graphics/sounds/hit6.wav
 
 _______________________________________
 ja bic
@@ -1072,8 +1072,8 @@ self.final_damage = self.current_turn.damage + self.current_turn.STR
 0
 attack
 melee
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+fala_effect
+graphics/sounds/hit8.wav
 
 _______________________________________
 ja cie zmiazdzyc
@@ -1083,8 +1083,8 @@ self.final_damage = self.current_turn.damage*1.10 + self.current_turn.STR*1.10\n
 0
 attack
 melee
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+miazga_effect
+graphics/sounds/miazga2.wav
 
 _______________________________________
 ostateczny szal
@@ -1094,8 +1094,8 @@ by_HP_must_have
 0.35
 on_enemy
 status
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+szal_effect
+graphics/sounds/breath_attack.wav
 ostateczny szal
 _______________________________________
 mad
@@ -1116,8 +1116,8 @@ by_status_on
 0
 attack
 melee
-miazga_effect
-graphics/sounds/miazga.wav
+klatwa_effect
+graphics/sounds/dark_magic.wav
 
 _______________________________________
 Mad Bust
@@ -1127,8 +1127,8 @@ by_status
 Mad Bust
 on_character
 status
-klatwa_effect
-graphics/sounds/negative_effect_3.wav
+mad_bust_effect
+graphics/sounds/boom.wav
 
 _______________________________________
 SKAD!
@@ -1138,8 +1138,8 @@ by_status
 SKAD!
 on_character
 status
-klatwa_effect
-graphics/sounds/negative_effect_3.wav
+masta_effect
+graphics/sounds/positive_effect_1.wav
 
 _______________________________________
 Przeciwpancerny
@@ -1149,7 +1149,7 @@ by_HP_alter
 0.25
 on_all_character
 ranged
-obrazenia_debuff_effect
+bisekcja_effect
 graphics/sounds/magic.wav
 
 _______________________________________
@@ -1160,8 +1160,8 @@ self.final_damage = self.current_turn.damage*1.25 + self.current_turn.STR*1.25
 0
 attack
 melee
-glebokie_rany_effect
-graphics/sounds/lighting.wav
+torpeda_effect
+graphics/sounds/boom.wav
 
 _______________________________________
 MADMAX JEST NIEPOKONANY
@@ -1174,4 +1174,15 @@ heal
 leczenie_effect
 graphics/sounds/heal.wav
 MADMAX JEST NIEPOKONANY
+_______________________________________
+Te cholerne...
+Te cholerne...
+self.final_damage = 0\nself.action_status = 'Te cholerne...'
+by_HP
+0.50
+on_self
+status
+obrona_buff_effect
+graphics/sounds/obrona_buff_status.wav
+
 _______________________________________

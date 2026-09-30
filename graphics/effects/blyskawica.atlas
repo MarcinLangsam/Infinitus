@@ -1,5 +1,5 @@
 {
-    "zrecznosc_debuff_effect.png": {
+    "blyskawica_effect.png": {
         "effect1": [0, 0, 350, 400],
         "effect2": [350, 0, 350, 400],
         "effect3": [700 , 0, 350, 400],

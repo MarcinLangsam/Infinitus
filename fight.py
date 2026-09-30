@@ -181,6 +181,8 @@ class Fight(Screen):
         for x in range(0,len(enemy.enemy_team)):
             for y in range(0,2):
                 self.remove_widget(self.enemy_sprites[x][y])
+        self.remove_widget(self.all_attack_player_sprite)
+        self.remove_widget(self.all_attack_enemy_sprite)
         self.remove_widget(self.tooltip)
         self.remove_widget(tp.text_pop_fight)
         self.remove_widget(self.text_pop)

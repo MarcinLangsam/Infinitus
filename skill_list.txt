@@ -351,8 +351,8 @@ passive
 Zamach Mistrz   |   AKTYWNA\nULEPSZENIE\nZamach staje sie perfekcyjny. Skalowanie ze STR zwiększone do 70% a koszt MP do 20.\n\nZadaje: [color=#fdff80]Obrażenia[/color] + [color=#de8833]70%STR[/color]\nKoszt MP: [color=#0000ff]20[/color]
 
 
-szal_effect
-graphics/sounds/positive_effect_1.wav
+no_effect
+
 ______________________________________
 27
 trening wojownika III
@@ -368,8 +368,8 @@ passive
 Trening Wojownika III   |   PASYWNA\nLoch uczynił z ciebie niepokonanego czempiona, jestes mistrzem sztuki wojennej.\n\n[color=#de8833]+5 siły[/color] [color=#fdff80]+5% Szansy na trafienie krytyczne[/color] [color=#e45eff]+5 regeneracji many[/color]
 
 
-szal_effect
-graphics/sounds/positive_effect_1.wav
+no_effect
+
 ______________________________________
 28
 awatar wojny
@@ -386,7 +386,7 @@ Awatar Wojny   |   AKTYWNA\nNa krótki czas budza się w tobie duchy wszystkich 
 status
 on_self
 szal_effect
-graphics/sounds/positive_effect_1.wav
+graphics/sounds/positive_effect_5.wav
 ______________________________________
 21
 blogoslawienstwo
@@ -419,8 +419,8 @@ active
 Osąd    |   AKTYWNA\nNiepowstrzymane uderzenie, które wypala z rzeczywistości każde plugawstwo.\n\nZadaje: [color=#fdff80]200+Obrażenia[/color]\nKoszt MP: [color=#0000ff]120[/color]
 ranged
 on_enemy
-szal_effect
-graphics/sounds/positive_effect_1.wav
+osad_effect
+graphics/sounds/hit7.wav
 _____________mage skill________________
 41
 kula ognia
@@ -759,8 +759,8 @@ active
 Pełnia Zdrowia   |   AKTYWNA\nTo zaklęcie przywraca każgo do pełni sił.\n\nLeczy: [color=#fdff80]100% zdrowia[/color]\nKoszt MP: [color=#0000ff]75[/color]
 heal
 on_character
-no_effect
-
+pelnia_zdrowia_effect
+graphics/sounds/heal.wav
 _________________________________________
 60
 deszcz ognia
@@ -776,8 +776,8 @@ active
 Deszcz Ognia   |   AKTYWNA\nEpicki deszcz ognia spada na głowy twoich pryeciwnków siejąc pożogę.\n\nZadaje: [color=#fdff80]100[/color] + [color=#00f7ff]50%INT[/color]\nNakłada: Pożoga 5 tur - [color=#fdff80]20 obrażeń na turę[/color]\nKoszt MP: [color=#0000ff]100[/color]
 ranged
 on_all_enemy
-no_effect
-
+deszcz_ognia_effect
+graphics/sounds/deszcz_ognia.wav
 _________________________________________
 61
 goracy gejzer
@@ -793,8 +793,8 @@ active
 Gorący Gejzer   |   AKTYWNA\nWywołujesz erupcje potężnego gejzeru u stóp przeciwnika\n\nZadaje: [color=#00f7ff]300%INT[/color]\nKoszt MP: [color=#0000ff]80[/color]
 ranged
 on_enemy
-no_effect
-
+goracy_gejzer_effect
+graphics/sounds/gejzer.wav
 _________________________________________
 62
 arcymag
@@ -1065,7 +1065,7 @@ active
 Spokojny Oddech   |   AKTYWNA\nKażdy potrzebuje sobie odsapnąć, aby zregenerować manę.\n\nOdnawia: [color=#0000ff]75 MP[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]0[/color]
 status
 on_self
-leczenie_effect
+spokojny_oddech_effect
 graphics/sounds/heal.wav
 _________________________________________
 105
@@ -1149,7 +1149,7 @@ graphics/skills/lowca_glow_ok.png
 passive
 Łowca Głów   |   PASYWNA\nTwojej wiedza w dziedzinie anatomi najrozmaitrzych bytów pozazdrościł by nie jeden uczony.\n\n[color=#fdff80]+25% Szansy na trafienie krytyczne[/color]
 status
-on_all_character
+
 no_effect
 
 _________________________________________
@@ -1167,8 +1167,8 @@ active
 Granat Odłamkowy   |   AKTWNA\nWybuchowy odłamkowy, który bez problemu przebije sie przez najtwardszych przeciwników\n\nZadaje: [color=#fdff80]150[/color] + [color=#fdff80]Obrażenia[/color] + [color=#00ff00]30%DEX[/color] [color=#e45eff]NA WSZYSTKICH PRZECIWNIKÓW[/color]\nKoszt MP: [color=#0000ff]75[/color]
 ranged
 on_all_enemy
-no_effect
-graphics/sounds/positive_effect_2.wav
+granat_odlamkowy_effect
+graphics/sounds/granat.wav
 _________________________________________
 103
 granat toksyn
@@ -1185,7 +1185,7 @@ Granat Toksyn   |   AKTWNA\nTen granat wypuszcza chmure niezwykle silnie toksycz
 ranged
 on_all_enemy
 granat_toksyn_effect
-graphics/sounds/positive_effect_2.wav
+graphics/sounds/granat.wav
 _________________________________________
 104
 lustrzane odbicie
@@ -1201,6 +1201,6 @@ active
 Lustrzane Odbicie   |   AKTWNA\nTworzysz na krótką chwile wiele kopi swojego odbicia w rórznych kierunkach przez co niezwykle trudno cie trafić.\n\nNakłada: Lustryane Odbicie na 3 tury - [color=#fdff80]Szansa na unik +50%[/color] [color=#e45eff]NA SIEBIE[/color]\nKoszt MP: [color=#0000ff]75[/color]
 status
 on_self
-no_effect
-graphics/sounds/positive_effect_2.wav
+krycie_w_cieniu_effect
+graphics/sounds/hit5.wav
 _________________________________________

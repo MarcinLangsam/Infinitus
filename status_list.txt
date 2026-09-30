@@ -947,7 +947,7 @@ goblinski wywar
 goblinski wywar
 self.current_target.STR_modifier += 0.5\nself.current_target.damage_modifier += 0.2
 4
-graphics/icons/klatwa_status.png
+graphics/icons/goblinski_wywar_icon.png
 one_time
 self.current_target.STR_modifier -= 0.5\nself.current_target.damage_modifier -= 0.2
 Gobliński Wywar\nSiła zwiększana o 50% a obrażenia o 20%
@@ -987,7 +987,7 @@ laska dobrego pana
 laska dobrego pana
 self.current_turn.HP += 30
 6
-graphics/icons/trujace_opary_status.png
+graphics/icons/aura_leczenia_status.png
 dmg_ot
 
 Łaska Dobrego Masta\nCo ture leczysz 30 HP
@@ -997,7 +997,7 @@ protekcja
 protekcja
 self.current_target.damage_reduction -= 0.8
 5
-graphics/icons/kamienna_skóra_status.png
+graphics/icons/blok_status.png
 one_time
 self.current_turn.damage_reduction += 0.8
 Protekcja\nCel odnosi 80% mniej obrażeń
@@ -1007,7 +1007,7 @@ za naszego masta
 za naszego masta
 self.current_target.damage_reduction -= 0.2\nself.current_target.damage_modifier += 1.0
 99
-graphics/icons/kamienna_skóra_status.png
+graphics/icons/aura_heroizmu_status.png
 one_time
 self.current_turn.damage_reduction += 0.2\nself.current_target.damage_modifier -= 1.0
 Za Naszego Masta\nCel odnosi 25% mniej obrażeń i zadaje 100% obrażeń
@@ -1017,7 +1017,7 @@ piach w oczy
 piach w oczy
 self.current_target.DEX_modifier -= 0.35\nself.current_target.STR_modifier -= 0.35
 4
-graphics/icons/zrecznosc_debuff_status.png
+graphics/icons/piach_w_oczy_icon.png
 one_time
 self.current_target.DEX_modifier += 0.35\nself.current_target.STR_modifier += 0.35
 Piach w Oczy\nZręczność oraz Siła zmniejszona o 35%.
@@ -1037,7 +1037,7 @@ ostateczny szal
 ostateczny szal
 self.current_target.STR_modifier += 1.0
 99
-graphics/icons/obrona_debuff_status.png
+graphics/icons/ostateczny_szal_icon.png
 one_time
 self.current_target.STR_modifier -= 1.0
 Połamanie\nSiła zwiększana o 100%
@@ -1047,7 +1047,7 @@ MAD
 MAD
 self.current_target.STR_modifier += 1.0
 99
-graphics/icons/obrona_debuff_status.png
+graphics/icons/max_icon.png
 one_time
 self.current_target.STR_modifier += 1.0
 MAD\nMAD MAX obrał cię za cel.
@@ -1067,7 +1067,7 @@ SKAD!
 SKAD!
 self.current_target.damage_reduction += 0.5\nself.current_target.damage_modifier += 0.5
 5
-graphics/icons/klatwa_status.png
+graphics/icons/okrzyk_bojowy_status.png
 one_time
 self.current_target.damage_reduction -= 0.5\nself.current_target.damage_modifier -= 0.5
 SKAD!\nMadmax odnosi 50% wiecej obrażeń ale też zadaje 50% wiecej.
@@ -1077,10 +1077,20 @@ MADMAX JEST NIEPOKONANY
 MADMAX JEST NIEPOKONANY
 self.current_target.STR_modifier += 0.30\nself.current_target.DEX_modifier += 0.30\nself.current_target.INT_modifier += 0.30
 99
-graphics/icons/klatwa_status.png
+graphics/icons/madmad_jest_nie_pokonany_icon.png
 one_time
 self.current_target.STR_modifier -= 0.30\nself.current_target.DEX_modifier -= 0.30\nself.current_target.INT_modifier -= 0.30
 MADMAX JEST NIEPOKONANY\nWszystkie statystyki zwiekszone o 30%.
+x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
+________________________________________
+Te cholerne...
+Te cholerne...
+self.current_target.damage_reduction -= 0.35
+3
+graphics/icons/skowyt_banshee_status.png
+one_time
+self.current_target.damage_reduction += 0.35
+Te cholerne...\nOtrzymywane obrażenia zmniejszone o 35%.
 x.STR/=0.80\nx.DEX/=0.80\nx.INT/=0.80\nx.damage/=0.80
 ________________________________________
 _
